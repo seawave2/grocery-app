@@ -1,0 +1,1416 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl" class="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>רשימת קניות - Grocery List</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+        }
+    </script>
+    <!-- Font Awesome Icons CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- SheetJS (xlsx) for reading Excel files directly in browser -->
+    <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+    <!-- Trilingual Product Translations Dictionary -->
+    <script src="translations.js"></script>
+    <!-- PWA & Mobile Web App Meta Tags -->
+    <link rel="manifest" href="manifest.json">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="רשימת קניות">
+    <meta name="theme-color" content="#059669">
+    <link rel="apple-touch-icon" href="icon-192.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
+    
+    <script>
+        // Kill Netlify Drawer / Feedback overlay immediately
+        (function() {
+            function killNetlify() {
+                var els = document.querySelectorAll('iframe[src*="netlify"], [id*="netlify"], [class*="netlify"], [data-netlify-drawer], #netlify-drawer');
+                for (var i = 0; i < els.length; i++) {
+                    els[i].remove();
+                }
+            }
+            setInterval(killNetlify, 100);
+            window.addEventListener('DOMContentLoaded', killNetlify);
+            window.addEventListener('load', killNetlify);
+        })();
+    </script>
+
+    <style>
+        body {
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+        }
+        /* Completely hide Netlify feedback drawer / badge */
+        #netlify-drawer,
+        [data-netlify-drawer],
+        iframe[src*="netlify"],
+        iframe[id*="netlify"],
+        div[class*="netlify-drawer"],
+        div[id*="netlify-drawer"],
+        [class*="netlify-feedback"] {
+            display: none !important;
+            visibility: hidden !important;
+            opacity: 0 !important;
+            pointer-events: none !important;
+            position: absolute !important;
+            top: -9999px !important;
+            width: 0 !important;
+            height: 0 !important;
+            z-index: -9999 !important;
+        }
+
+        /* Easter Egg Heart Animation */
+        @keyframes heartPop {
+            0% {
+                transform: scale(0.2);
+                opacity: 0;
+            }
+            15% {
+                transform: scale(1.15);
+                opacity: 1;
+            }
+            30% {
+                transform: scale(0.95);
+            }
+            45% {
+                transform: scale(1.1);
+            }
+            60% {
+                transform: scale(1);
+                opacity: 1;
+            }
+            85% {
+                transform: scale(1.05);
+                opacity: 1;
+            }
+            100% {
+                transform: scale(1.4);
+                opacity: 0;
+            }
+        }
+        .animate-heart-pop {
+            animation: heartPop 2s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+        }
+    </style>
+</head>
+<body class="min-h-screen pb-12 flex flex-col items-center bg-slate-50 dark:bg-slate-900 text-slate-800 dark:text-slate-100 transition-colors duration-200">
+
+    <!-- Easter Egg Heart Overlay -->
+    <div id="heartEasterEgg" class="hidden fixed inset-0 z-[100] pointer-events-none flex items-center justify-center">
+        <div id="heartIcon" class="text-red-500 drop-shadow-[0_10px_25px_rgba(239,68,68,0.6)]">
+            <i class="fa-solid fa-heart text-8xl md:text-9xl"></i>
+        </div>
+    </div>
+
+    <!-- Top Navigation Bar -->
+    <header class="w-full bg-emerald-600 dark:bg-emerald-800 text-white shadow-md py-4 px-6 flex justify-between items-center max-w-md md:max-w-2xl">
+        <h1 class="text-xl font-bold flex items-center gap-2">
+            <i class="fa-solid fa-basket-shopping me-1"></i> <span data-i18n="appTitle">רשימת קניות</span>
+        </h1>
+        <div class="flex gap-2 items-center">
+            <button id="undoBtn" onclick="performUndo()" disabled class="bg-emerald-700 hover:bg-emerald-800 disabled:opacity-40 disabled:hover:bg-emerald-700 disabled:cursor-not-allowed dark:bg-emerald-900 dark:hover:bg-emerald-950 dark:disabled:hover:bg-emerald-900 text-white px-3 py-2 rounded-lg text-sm transition flex items-center gap-1.5 font-medium shadow-sm" title="בטל פעולה אחרונה (Ctrl+Z)">
+                <i class="fa-solid fa-rotate-left text-base"></i>
+                <span data-i18n="undoBtn" class="hidden sm:inline">בטל</span>
+            </button>
+            <button onclick="openSettingsModal()" class="bg-emerald-700 hover:bg-emerald-800 dark:bg-emerald-900 dark:hover:bg-emerald-950 text-white p-2 rounded-lg text-sm transition" id="settingsBtnTooltip" title="הגדרות">
+                <i class="fa-solid fa-gear text-lg"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- Main Content Container -->
+    <main class="w-full max-w-md md:max-w-2xl px-4 mt-6 flex-1 flex flex-col gap-6">
+
+        <!-- Notification Banner -->
+        <div id="toastNotification" class="hidden p-3 rounded-lg text-sm font-medium transition-all"></div>
+
+        <!-- Autocomplete Input (Keep Style) -->
+        <div class="relative">
+            <div class="flex items-center bg-white dark:bg-slate-800 shadow-sm border border-gray-300 dark:border-slate-700 rounded-xl px-4 py-2.5 focus-within:border-emerald-500 focus-within:ring-2 focus-within:ring-emerald-200 dark:focus-within:ring-emerald-900 transition">
+                <input type="text" id="productInput" 
+                       placeholder="הקלד שם מוצר להוספה או חיפוש..." 
+                       class="w-full outline-none text-slate-800 dark:text-slate-100 placeholder-gray-400 dark:placeholder-slate-500 bg-transparent text-base"
+                       oninput="handleSearchInput()" 
+                       onkeydown="handleKeyDown(event)">
+                <button onclick="addCurrentInputToList()" class="text-emerald-600 dark:text-emerald-400 hover:text-emerald-700 p-1.5 text-xl" id="addBtnTooltip" title="הוסף לרשימה">
+                    <i class="fa-solid fa-circle-plus"></i>
+                </button>
+            </div>
+
+            <!-- Autocomplete Dropdown List -->
+            <div id="autocompleteDropdown" class="hidden absolute left-0 right-0 top-full mt-1 bg-white dark:bg-slate-800 border border-gray-200 dark:border-slate-700 rounded-xl shadow-lg z-50 max-h-60 overflow-y-auto divide-y divide-gray-100 dark:divide-slate-700">
+            </div>
+        </div>
+
+        <!-- TWO LISTS CONTAINER -->
+        <div class="flex-1 flex flex-col gap-8">
+
+            <!-- LIST 1: Active Shopping List (Products inside the list right now) -->
+            <section class="bg-white dark:bg-slate-800 border border-emerald-200 dark:border-emerald-900/40 rounded-2xl p-4 shadow-sm">
+                <div class="flex items-center justify-between mb-3 border-b border-gray-100 dark:border-slate-700 pb-2">
+                    <h2 class="text-base font-bold text-emerald-800 dark:text-emerald-400 flex items-center gap-2">
+                        <i class="fa-solid fa-cart-shopping text-emerald-600 dark:text-emerald-400"></i>
+                        <span data-i18n="list1Title">1. מוצרים ברשימה</span> (<span id="activeCount">0</span>)
+                    </h2>
+                    <span class="text-xs text-gray-400 dark:text-slate-400" data-i18n="list1Hint">לחץ להסרה</span>
+                </div>
+                <div id="activeItemsContainer" class="flex flex-col gap-2">
+                    <!-- Dynamic Active Items -->
+                </div>
+            </section>
+
+            <!-- LIST 2: Master Catalog (Products outside the list that can be chosen) -->
+            <section class="bg-white dark:bg-slate-800 border border-gray-200 dark:border-slate-700 rounded-2xl p-4 shadow-sm">
+                <div class="flex flex-col gap-2.5 mb-3 border-b border-gray-100 dark:border-slate-700 pb-3">
+                    <!-- Title & Count -->
+                    <div class="flex items-center justify-between">
+                        <h2 class="text-base font-bold text-slate-700 dark:text-slate-200 flex items-center gap-2">
+                            <i class="fa-solid fa-layer-group text-emerald-600 dark:text-emerald-400"></i>
+                            <span data-i18n="list2Title">2. מוצרים זמינים לבחירה</span> (<span id="catalogCount">0</span>)
+                        </h2>
+                    </div>
+                    
+                    <!-- Search, Category Filter & Sorting Controls -->
+                    <div class="flex items-center gap-2 flex-wrap sm:flex-nowrap">
+                        <!-- Search Filter -->
+                        <div class="relative flex-1 min-w-[120px]">
+                            <i class="fa-solid fa-magnifying-glass absolute start-2.5 top-1/2 -translate-y-1/2 text-gray-400 text-xs pointer-events-none"></i>
+                            <input type="text" id="catalogSearch" oninput="renderCatalog()" placeholder="סינון מוצרים..." class="w-full text-xs bg-gray-50 dark:bg-slate-700 border border-gray-300 dark:border-slate-600 rounded-lg ps-7 pe-2.5 py-1.5 outline-none focus:border-emerald-500 text-slate-800 dark:text-slate-100">
+                        </div>
+
+                        <!-- Category Filter Selector -->
+                        <div class="flex items-center bg-gray-100 dark:bg-slate-700 border border-gray-300 dark:border-slate-600 rounded-lg px-2 py-1 gap-1 text-xs shrink-0 max-w-[140px]">
+                            <i class="fa-solid fa-tags text-gray-500 dark:text-slate-400 shrink-0"></i>
+                            <select id="categoryFilter" onchange="renderCatalog()" class="bg-transparent outline-none font-medium text-slate-700 dark:text-slate-200 cursor-pointer w-full truncate">
+                                <option value="all" data-i18n="allCategoriesOption">כל המשפחות</option>
+                            </select>
+                        </div>
+
+                        <!-- Sort Selector -->
+                        <div class="flex items-center bg-gray-100 dark:bg-slate-700 border border-gray-300 dark:border-slate-600 rounded-lg px-2 py-1 gap-1 text-xs shrink-0 max-w-[140px]">
+                            <i class="fa-solid fa-arrow-down-wide-short text-gray-500 dark:text-slate-400 shrink-0"></i>
+                            <select id="sortOption" onchange="renderCatalog()" class="bg-transparent outline-none font-medium text-slate-700 dark:text-slate-200 cursor-pointer w-full truncate">
+                                <option value="usage" class="dark:bg-slate-800" data-i18n="sortByUsage">לפי שימוש תדיר</option>
+                                <option value="alphabet" class="dark:bg-slate-800" data-i18n="sortByAlphabet">לפי א'-ב'</option>
+                                <option value="category" class="dark:bg-slate-800" data-i18n="sortByCategory">לפי משפחה</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                
+                <div id="masterCatalogContainer" class="grid grid-cols-2 sm:grid-cols-3 gap-2.5 max-h-96 overflow-y-auto p-1">
+                    <!-- Dynamic Products Outside List -->
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+    <!-- SETTINGS MODAL -->
+    <div id="settingsModal" class="hidden fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+        <div class="bg-white dark:bg-slate-800 rounded-2xl max-w-sm w-full p-6 shadow-xl border border-gray-200 dark:border-slate-700 flex flex-col gap-6">
+            <div class="flex justify-between items-center border-b border-gray-100 dark:border-slate-700 pb-3">
+                <h3 class="text-lg font-bold text-slate-800 dark:text-slate-100 flex items-center gap-2">
+                    <i class="fa-solid fa-gear text-emerald-600"></i> <span data-i18n="settingsTitle">הגדרות האפליקציה</span>
+                </h3>
+                <button onclick="closeSettingsModal()" class="text-gray-400 hover:text-gray-600 dark:hover:text-gray-200">
+                    <i class="fa-solid fa-xmark text-xl"></i>
+                </button>
+            </div>
+
+            <div class="flex flex-col gap-5">
+                <!-- Language Selector -->
+                <div class="flex items-center justify-between">
+                    <div>
+                        <p class="font-medium text-slate-800 dark:text-slate-100 text-sm" data-i18n="languageSettingTitle">שפת ממשק (Language)</p>
+                        <p class="text-xs text-gray-500 dark:text-slate-400" data-i18n="languageSettingDesc">בחר שפה עבור תפריטים ומוצרים</p>
+                    </div>
+                    <select id="languageSelect" onchange="changeLanguage(this.value)" class="bg-gray-100 dark:bg-slate-700 border border-gray-300 dark:border-slate-600 text-slate-800 dark:text-slate-100 text-xs rounded-lg px-2.5 py-1.5 outline-none cursor-pointer font-medium focus:border-emerald-500">
+                        <option value="he">🇮🇱 עברית</option>
+                        <option value="en">🇺🇸 English</option>
+                        <option value="ru">🇷🇺 Русский</option>
+                    </select>
+                </div>
+
+                <hr class="border-gray-100 dark:border-slate-700">
+
+                <!-- Dark Mode Toggle -->
+                <div class="flex items-center justify-between">
+                    <div>
+                        <p class="font-medium text-slate-800 dark:text-slate-100 text-sm" data-i18n="darkModeTitle">מצב כהה (Dark Mode)</p>
+                        <p class="text-xs text-gray-500 dark:text-slate-400" data-i18n="darkModeDesc">שנה את המראה של האפליקציה</p>
+                    </div>
+                    <button id="darkModeBtn" onclick="toggleDarkMode()" class="w-12 h-6 bg-gray-300 rounded-full p-1 transition-colors duration-200 flex items-center">
+                        <div id="darkModeDot" class="w-4 h-4 bg-white rounded-full transition-transform duration-200"></div>
+                    </button>
+                </div>
+
+                <hr class="border-gray-100 dark:border-slate-700">
+
+                <!-- Clear Active List Option -->
+                <div class="flex flex-col gap-2">
+                    <div>
+                        <p class="font-medium text-slate-800 dark:text-slate-100 text-sm" data-i18n="clearActiveListTitle">ניקוי רשימת הקניות</p>
+                        <p class="text-xs text-gray-500 dark:text-slate-400" data-i18n="clearActiveListDesc">הסר את כל המוצרים שנמצאים כרגע ברשימת הקניות הפעילה</p>
+                    </div>
+                    <button onclick="openConfirmClearListModal()" class="w-full bg-amber-50 hover:bg-amber-100 dark:bg-amber-950/40 dark:hover:bg-amber-900/60 text-amber-700 dark:text-amber-300 border border-amber-200 dark:border-amber-800/60 font-medium py-2 rounded-xl text-sm transition flex items-center justify-center gap-2">
+                        <i class="fa-solid fa-broom text-amber-600 dark:text-amber-400"></i>
+                        <span data-i18n="clearActiveListBtn">נקה רשימה פעילה</span>
+                    </button>
+                </div>
+
+                <hr class="border-gray-100 dark:border-slate-700">
+
+                <!-- Reset Count Option -->
+                <div class="flex flex-col gap-2">
+                    <div>
+                        <p class="font-medium text-slate-800 dark:text-slate-100 text-sm" data-i18n="resetUsageTitle">איפוס מוני שימוש</p>
+                        <p class="text-xs text-gray-500 dark:text-slate-400" data-i18n="resetUsageDesc">אפס את מונה השימושים של כל המוצרים ל-0</p>
+                    </div>
+                    <button onclick="openConfirmResetModal()" class="w-full bg-red-50 hover:bg-red-100 dark:bg-red-950/40 dark:hover:bg-red-900/60 text-red-600 dark:text-red-400 border border-red-200 dark:border-red-800/60 font-medium py-2 rounded-xl text-sm transition flex items-center justify-center gap-2">
+                        <i class="fa-solid fa-rotate-left"></i>
+                        <span data-i18n="resetUsageBtn">אפס מוני שימוש כעת</span>
+                    </button>
+                </div>
+            </div>
+
+            <div class="pt-3 border-t border-gray-100 dark:border-slate-700 flex items-center justify-between">
+                <span class="text-[11px] text-gray-400 dark:text-slate-500 font-medium tracking-wide">
+                    &copy; made by seawave
+                </span>
+                <button onclick="closeSettingsModal()" class="bg-gray-100 dark:bg-slate-700 hover:bg-gray-200 dark:hover:bg-slate-600 text-slate-700 dark:text-slate-200 px-4 py-2 rounded-xl text-sm font-medium transition" data-i18n="closeBtn">
+                    סגור
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ARE YOU SURE CONFIRMATION MODAL (CLEAR ACTIVE LIST) -->
+    <div id="confirmClearListModal" class="hidden fixed inset-0 bg-black/60 backdrop-blur-sm z-[62] flex items-center justify-center p-4">
+        <div class="bg-white dark:bg-slate-800 rounded-2xl max-w-sm w-full p-6 shadow-2xl border border-amber-200 dark:border-amber-900/50 flex flex-col gap-4 text-center">
+            <div class="w-12 h-12 bg-amber-100 dark:bg-amber-950/80 text-amber-600 dark:text-amber-400 rounded-full flex items-center justify-center mx-auto text-xl">
+                <i class="fa-solid fa-broom"></i>
+            </div>
+            
+            <h4 class="text-lg font-bold text-slate-800 dark:text-slate-100" data-i18n="confirmClearListTitle">ניקוי רשימת הקניות</h4>
+            <p class="text-sm text-gray-600 dark:text-slate-300" data-i18n="confirmClearListDesc">
+                האם אתה בטוח שברצונך להסיר את כל המוצרים מרשימת הקניות הפעילה?
+            </p>
+
+            <div class="flex gap-3 mt-2">
+                <button onclick="executeClearActiveList()" class="flex-1 bg-amber-600 hover:bg-amber-700 text-white py-2.5 rounded-xl font-medium text-sm shadow transition" data-i18n="confirmClearYesBtn">
+                    כן, נקה רשימה
+                </button>
+                <button onclick="closeConfirmClearListModal()" class="flex-1 bg-gray-100 dark:bg-slate-700 hover:bg-gray-200 dark:hover:bg-slate-600 text-slate-700 dark:text-slate-200 py-2.5 rounded-xl font-medium text-sm transition" data-i18n="confirmCancelBtn">
+                    ביטול
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ARE YOU SURE CONFIRMATION MODAL (RESET COUNTERS) -->
+    <div id="confirmResetModal" class="hidden fixed inset-0 bg-black/60 backdrop-blur-sm z-[60] flex items-center justify-center p-4">
+        <div class="bg-white dark:bg-slate-800 rounded-2xl max-w-sm w-full p-6 shadow-2xl border border-red-200 dark:border-red-900/50 flex flex-col gap-4 text-center">
+            <div class="w-12 h-12 bg-red-100 dark:bg-red-950/80 text-red-600 dark:text-red-400 rounded-full flex items-center justify-center mx-auto text-xl">
+                <i class="fa-solid fa-triangle-exclamation"></i>
+            </div>
+            
+            <h4 class="text-lg font-bold text-slate-800 dark:text-slate-100" data-i18n="confirmModalTitle">האם אתה בטוח?</h4>
+            <p class="text-sm text-gray-600 dark:text-slate-300" data-i18n="confirmModalDesc">
+                פעולה זו תאפס את מונה הסטטיסטיקות והשימושים של כל המוצרים ל-0. לא ניתן לבטל פעולה זו.
+            </p>
+
+            <div class="flex gap-3 mt-2">
+                <button onclick="confirmResetUsageCounts()" class="flex-1 bg-red-600 hover:bg-red-700 text-white py-2.5 rounded-xl font-medium text-sm shadow transition" data-i18n="confirmYesBtn">
+                    כן, אפס מוצרים
+                </button>
+                <button onclick="closeConfirmResetModal()" class="flex-1 bg-gray-100 dark:bg-slate-700 hover:bg-gray-200 dark:hover:bg-slate-600 text-slate-700 dark:text-slate-200 py-2.5 rounded-xl font-medium text-sm transition" data-i18n="confirmCancelBtn">
+                    ביטול
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ARE YOU SURE CONFIRMATION MODAL (DELETE PRODUCT FROM CATALOG) -->
+    <div id="confirmDeleteProductModal" class="hidden fixed inset-0 bg-black/60 backdrop-blur-sm z-[65] flex items-center justify-center p-4">
+        <div class="bg-white dark:bg-slate-800 rounded-2xl max-w-sm w-full p-6 shadow-2xl border border-red-200 dark:border-red-900/50 flex flex-col gap-4 text-center">
+            <div class="w-12 h-12 bg-red-100 dark:bg-red-950/80 text-red-600 dark:text-red-400 rounded-full flex items-center justify-center mx-auto text-xl">
+                <i class="fa-solid fa-trash-can"></i>
+            </div>
+            
+            <h4 class="text-lg font-bold text-slate-800 dark:text-slate-100" data-i18n="confirmDeleteProductTitle">מחיקת מוצר מהרשימה</h4>
+            <p class="text-sm text-gray-600 dark:text-slate-300">
+                <span data-i18n="confirmDeleteProductDesc">האם אתה בטוח שברצונך למחוק לצמיתות את המוצר</span> 
+                <strong id="deleteTargetProductName" class="text-emerald-700 dark:text-emerald-400"></strong>?
+            </p>
+
+            <div class="flex gap-3 mt-2">
+                <button onclick="executeDeleteProduct()" class="flex-1 bg-red-600 hover:bg-red-700 text-white py-2.5 rounded-xl font-medium text-sm shadow transition" data-i18n="confirmDeleteYesBtn">
+                    כן, מחק מוצר
+                </button>
+                <button onclick="closeConfirmDeleteProductModal()" class="flex-1 bg-gray-100 dark:bg-slate-700 hover:bg-gray-200 dark:hover:bg-slate-600 text-slate-700 dark:text-slate-200 py-2.5 rounded-xl font-medium text-sm transition" data-i18n="confirmCancelBtn">
+                    ביטול
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- SELECT CATEGORY FOR NEW PRODUCT MODAL -->
+    <div id="newProductCategoryModal" class="hidden fixed inset-0 bg-black/60 backdrop-blur-sm z-[70] flex items-center justify-center p-4">
+        <div class="bg-white dark:bg-slate-800 rounded-2xl max-w-sm w-full p-6 shadow-2xl border border-gray-200 dark:border-slate-700 flex flex-col gap-4">
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 bg-emerald-100 dark:bg-emerald-950 text-emerald-600 dark:text-emerald-400 rounded-xl flex items-center justify-center text-lg shrink-0">
+                    <i class="fa-solid fa-tags"></i>
+                </div>
+                <div class="flex-1 min-w-0 text-start">
+                    <h4 class="text-base font-bold text-slate-800 dark:text-slate-100" data-i18n="newProductModalTitle">הוספת מוצר חדש</h4>
+                    <p class="text-xs text-gray-500 dark:text-slate-400" data-i18n="newProductModalDesc">בחר לאיזו משפחה להוסיף את המוצר:</p>
+                </div>
+            </div>
+
+            <!-- Product Name Banner -->
+            <div class="p-3 bg-emerald-50/70 dark:bg-emerald-950/40 border border-emerald-200 dark:border-emerald-900/60 rounded-xl flex items-center gap-2">
+                <i class="fa-solid fa-basket-shopping text-emerald-600 dark:text-emerald-400"></i>
+                <span id="newProductNameDisplay" class="font-bold text-slate-800 dark:text-slate-100 truncate"></span>
+            </div>
+
+            <!-- Category Picker -->
+            <div class="flex flex-col gap-1.5 text-start">
+                <label for="newProductCategorySelect" class="text-xs font-semibold text-slate-600 dark:text-slate-300" data-i18n="chooseFamilyLabel">משפחת מוצרים:</label>
+                <select id="newProductCategorySelect" class="w-full bg-gray-50 dark:bg-slate-700 border border-gray-300 dark:border-slate-600 rounded-xl px-3 py-2.5 text-sm font-medium text-slate-800 dark:text-slate-100 outline-none focus:border-emerald-500 cursor-pointer">
+                    <!-- Populated dynamically -->
+                </select>
+            </div>
+
+            <div class="flex gap-3 mt-2">
+                <button onclick="confirmAddNewProductWithCategory()" class="flex-1 bg-emerald-600 hover:bg-emerald-700 text-white py-2.5 rounded-xl font-medium text-sm shadow transition" data-i18n="saveAndAddBtn">
+                    שמור והוסף לרשימה
+                </button>
+                <button onclick="closeNewProductCategoryModal()" class="flex-1 bg-gray-100 dark:bg-slate-700 hover:bg-gray-200 dark:hover:bg-slate-600 text-slate-700 dark:text-slate-200 py-2.5 rounded-xl font-medium text-sm transition" data-i18n="confirmCancelBtn">
+                    ביטול
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Multilingual dictionary for UI
+        const translations = {
+            he: {
+                appTitle: "רשימת קניות",
+                importExcel: "ייבוא אקסל",
+                importExcelTitle: "ייבוא מאקסל",
+                clearList: "נקה רשימה",
+                clearListTitle: "נקה את כל הרשימה הפעילה",
+                settingsTitle: "הגדרות האפליקציה",
+                settingsBtnTitle: "הגדרות",
+                inputPlaceholder: "הקלד שם מוצר להוספה או חיפוש...",
+                addBtnTitle: "הוסף לרשימה",
+                list1Title: "1. מוצרים ברשימה",
+                list1Hint: "לחץ להסרה",
+                list1Empty: "הרשימה ריקה. הקלד מוצר למעלה או לחץ על מוצרים מהרשימה למטה כדי להוסיף!",
+                list2Title: "2. מוצרים זמינים לבחירה",
+                sortByUsage: "לפי שימוש תדיר",
+                sortByAlphabet: "לפי א'-ב'",
+                sortByCategory: "לפי משפחה",
+                catalogFilterPlaceholder: "סינון מוצרים...",
+                catalogEmptyFilter: "לא נמצאו מוצרים התואמים לחיפוש",
+                catalogEmptyAll: "כל המוצרים מהקטלוג נמצאים כרגע ברשימה!",
+                alreadyInListBadge: "כבר ברשימה",
+                languageSettingTitle: "שפת ממשק (Language)",
+                languageSettingDesc: "בחר שפה עבור תפריטים ומוצרים",
+                darkModeTitle: "מצב כהה (Dark Mode)",
+                darkModeDesc: "שנה את המראה של האפליקציה",
+                resetUsageTitle: "איפוס מוני שימוש",
+                resetUsageDesc: "אפס את מונה השימושים של כל המוצרים ל-0",
+                resetUsageBtn: "אפס מוני שימוש כעת",
+                closeBtn: "סגור",
+                confirmModalTitle: "האם אתה בטוח?",
+                confirmModalDesc: "פעולה זו תאפס את מונה הסטטיסטיקות והשימושים של כל המוצרים ל-0. לא ניתן לבטל פעולה זו.",
+                confirmYesBtn: "כן, אפס מוצרים",
+                confirmCancelBtn: "ביטול",
+                confirmDeleteProductTitle: "מחיקת מוצר מהרשימה",
+                confirmDeleteProductDesc: "האם אתה בטוח שברצונך למחוק לצמיתות את המוצר",
+                confirmDeleteYesBtn: "כן, מחק מוצר",
+                deleteProductTooltip: "מחק מוצר זה מהרשימה לצמיתות",
+                allCategoriesOption: "כל המשפחות",
+                newProductModalTitle: "הוספת מוצר חדש",
+                newProductModalDesc: "בחר לאיזו משפחה להוסיף את המוצר:",
+                chooseFamilyLabel: "משפחת מוצרים:",
+                saveAndAddBtn: "שמור והוסף לרשימה",
+                importExcelDesc: "ייבא רשימת מוצרים מקובץ Excel (.xlsx / .xls)",
+                importExcelBtn: "בחר קובץ אקסל לייבוא",
+                clearActiveListTitle: "ניקוי רשימת הקניות",
+                clearActiveListDesc: "הסר את כל המוצרים שנמצאים כרגע ברשימת הקניות הפעילה",
+                clearActiveListBtn: "נקה רשימה פעילה",
+                confirmClearListTitle: "ניקוי רשימת הקניות",
+                confirmClearListDesc: "האם אתה בטוח שברצונך להסיר את כל המוצרים מרשימת הקניות הפעילה?",
+                confirmClearYesBtn: "כן, נקה רשימה",
+                toastListCleared: "רשימת הקניות הפעילה נוקתה בהצלחה",
+                toastResetSuccess: "מוני השימוש אופסו בהצלחה ל-0",
+                toastDeleteProductSuccess: "המוצר נמחק בהצלחה מהרשימה הזמינה",
+                toastImportSuccess: "ייבוא הושלם! נוספו {count} מוצרים חדשים לקטלוג.",
+                toastImportError: "שגיאה בייבוא הקובץ. וודא שזהו קובץ אקסל תקין.",
+                undoBtn: "בטל",
+                undoBtnTitle: "בטל פעולה אחרונה (Ctrl+Z)",
+                undoSuccessAdd: "הפעולה בוטלה: '{name}' הוסר מהרשימה",
+                undoSuccessRemove: "הפעולה בוטלה: '{name}' הוחזר לרשימה",
+                undoSuccessClear: "הפעולה בוטלה: רשימת הקניות שוחזרה",
+                undoSuccessDelete: "הפעולה בוטלה: '{name}' הוחזר לקטלוג"
+            },
+            en: {
+                appTitle: "Grocery List",
+                importExcel: "Import Excel",
+                importExcelTitle: "Import from Excel",
+                clearList: "Clear List",
+                clearListTitle: "Clear all active items",
+                settingsTitle: "App Settings",
+                settingsBtnTitle: "Settings",
+                inputPlaceholder: "Type product name to add or search...",
+                addBtnTitle: "Add to list",
+                list1Title: "1. Products in list",
+                list1Hint: "Click to remove",
+                list1Empty: "Your list is empty. Type a product above or click from the catalog below to add!",
+                list2Title: "2. Available products to choose",
+                sortByUsage: "By most used",
+                sortByAlphabet: "Alphabetical (A-Z)",
+                sortByCategory: "By family / category",
+                catalogFilterPlaceholder: "Filter products...",
+                catalogEmptyFilter: "No products match your search",
+                catalogEmptyAll: "All catalog products are already in your list!",
+                alreadyInListBadge: "In list",
+                languageSettingTitle: "Visual Language",
+                languageSettingDesc: "Select language for menus and products",
+                darkModeTitle: "Dark Mode",
+                darkModeDesc: "Switch app appearance",
+                resetUsageTitle: "Reset Usage Counts",
+                resetUsageDesc: "Reset all product usage counters to 0",
+                resetUsageBtn: "Reset usage counters now",
+                closeBtn: "Close",
+                confirmModalTitle: "Are you sure?",
+                confirmModalDesc: "This will reset all usage statistics and product counters to 0. This cannot be undone.",
+                confirmYesBtn: "Yes, reset counters",
+                confirmCancelBtn: "Cancel",
+                confirmDeleteProductTitle: "Delete Product from Catalog",
+                confirmDeleteProductDesc: "Are you sure you want to permanently delete",
+                confirmDeleteYesBtn: "Yes, delete product",
+                deleteProductTooltip: "Permanently delete this product from catalog",
+                allCategoriesOption: "All Categories",
+                newProductModalTitle: "Add New Product",
+                newProductModalDesc: "Choose a category for this product:",
+                chooseFamilyLabel: "Product Category / Family:",
+                saveAndAddBtn: "Save & Add to List",
+                importExcelDesc: "Import product catalog from Excel (.xlsx / .xls)",
+                importExcelBtn: "Select Excel file to import",
+                clearActiveListTitle: "Clear Shopping List",
+                clearActiveListDesc: "Remove all items currently in your active shopping list",
+                clearActiveListBtn: "Clear Active List",
+                confirmClearListTitle: "Clear Shopping List",
+                confirmClearListDesc: "Are you sure you want to remove all items from your active shopping list?",
+                confirmClearYesBtn: "Yes, clear list",
+                toastListCleared: "Active shopping list cleared successfully",
+                toastResetSuccess: "Usage counters successfully reset to 0",
+                toastDeleteProductSuccess: "Product deleted from catalog successfully",
+                toastImportSuccess: "Import completed! Added {count} new products to catalog.",
+                toastImportError: "Error importing file. Please make sure it is a valid Excel file.",
+                undoBtn: "Undo",
+                undoBtnTitle: "Undo last operation (Ctrl+Z)",
+                undoSuccessAdd: "Undo: '{name}' removed from list",
+                undoSuccessRemove: "Undo: '{name}' restored to list",
+                undoSuccessClear: "Undo: Shopping list restored",
+                undoSuccessDelete: "Undo: '{name}' restored to catalog"
+            },
+            ru: {
+                appTitle: "Список покупок",
+                importExcel: "Импорт Excel",
+                importExcelTitle: "Импорт из Excel",
+                clearList: "Очистить список",
+                clearListTitle: "Очистить активный список",
+                settingsTitle: "Настройки приложения",
+                settingsBtnTitle: "Настройки",
+                inputPlaceholder: "Введите название товара для добавления или поиска...",
+                addBtnTitle: "Добавить в список",
+                list1Title: "1. Товары в списке",
+                list1Hint: "Нажмите, чтобы удалить",
+                list1Empty: "Список пуст. Введите товар выше или выберите из каталога ниже!",
+                list2Title: "2. Доступные товары для выбора",
+                sortByUsage: "По использованию",
+                sortByAlphabet: "По алфавиту",
+                sortByCategory: "По категориям",
+                catalogFilterPlaceholder: "Фильтр товаров...",
+                catalogEmptyFilter: "Товары не найдены",
+                catalogEmptyAll: "Все товары из каталога уже в списке!",
+                alreadyInListBadge: "Уже в списке",
+                languageSettingTitle: "Язык интерфейса",
+                languageSettingDesc: "Выберите язык меню и товаров",
+                darkModeTitle: "Темная тема (Dark Mode)",
+                darkModeDesc: "Переключить оформление приложения",
+                resetUsageTitle: "Сброс счетчиков использования",
+                resetUsageDesc: "Сбросить счетчик использования всех товаров на 0",
+                resetUsageBtn: "Сбросить счетчики сейчас",
+                closeBtn: "Закрыть",
+                confirmModalTitle: "Вы уверены?",
+                confirmModalDesc: "Это действие сбросит счетчик использования всех товаров на 0. Это действие необратимо.",
+                confirmYesBtn: "Да, сбросить счетчики",
+                confirmCancelBtn: "Отмена",
+                confirmDeleteProductTitle: "Удаление товара из списка",
+                confirmDeleteProductDesc: "Вы уверены, что хотите навсегда удалить товар",
+                confirmDeleteYesBtn: "Да, удалить товар",
+                deleteProductTooltip: "Навсегда удалить этот товар из каталога",
+                allCategoriesOption: "Все категории",
+                newProductModalTitle: "Добавление нового товара",
+                newProductModalDesc: "Выберите категорию для этого товара:",
+                chooseFamilyLabel: "Категория товара:",
+                saveAndAddBtn: "Сохранить и добавить в список",
+                importExcelDesc: "Импорт каталога товаров из файла Excel (.xlsx / .xls)",
+                importExcelBtn: "Выбрать файл Excel для импорта",
+                clearActiveListTitle: "Очистка списка покупок",
+                clearActiveListDesc: "Удалить все товары из текущего активного списка покупок",
+                clearActiveListBtn: "Очистить активный список",
+                confirmClearListTitle: "Очистка списка покупок",
+                confirmClearListDesc: "Вы уверены, что хотите удалить все товары из активного списка покупок?",
+                confirmClearYesBtn: "Да, очистить список",
+                toastListCleared: "Активный список покупок успешно очищен",
+                toastResetSuccess: "Счетчики использования успешно сброшены на 0",
+                toastDeleteProductSuccess: "Товар успешно удален из каталога",
+                toastImportSuccess: "Импорт завершен! В каталог добавлено {count} новых товаров.",
+                toastImportError: "Ошибка импорта файла. Убедитесь, что это корректный файл Excel.",
+                undoBtn: "Отмена",
+                undoBtnTitle: "Отменить последнее действие (Ctrl+Z)",
+                undoSuccessAdd: "Отменено: '{name}' удален из списка",
+                undoSuccessRemove: "Отменено: '{name}' возвращен в список",
+                undoSuccessClear: "Отменено: Список покупок восстановлен",
+                undoSuccessDelete: "Отменено: '{name}' возвращен в каталог"
+            }
+        };
+
+        // Normalize string for clean comparison (remove non-breaking spaces, leading/trailing whitespace, quotes)
+        function cleanProductName(str) {
+            if (!str) return "";
+            return String(str).replace(/[\u00A0\u1680\u2000-\u200A\u2028\u2029\u202F\u205F\u3000]/g, ' ').trim();
+        }
+
+        // Get localized product display name
+        function getLocalizedProductName(name, lang = currentLanguage) {
+            if (!name) return "";
+            const cleaned = cleanProductName(name);
+
+            // 1. Check exact match in dictionary
+            let entry = (typeof productTranslations !== 'undefined') ? (productTranslations[cleaned] || productTranslations[name]) : null;
+
+            // 2. If not found, try case-insensitive and trimmed search
+            if (!entry && typeof productTranslations !== 'undefined') {
+                const lower = cleaned.toLowerCase();
+                for (const key in productTranslations) {
+                    if (cleanProductName(key).toLowerCase() === lower) {
+                        entry = productTranslations[key];
+                        break;
+                    }
+                    // Also check if key's translation matches
+                    if (productTranslations[key].en && cleanProductName(productTranslations[key].en).toLowerCase() === lower) {
+                        entry = { he: key, ...productTranslations[key] };
+                        break;
+                    }
+                    if (productTranslations[key].ru && cleanProductName(productTranslations[key].ru).toLowerCase() === lower) {
+                        entry = { he: key, ...productTranslations[key] };
+                        break;
+                    }
+                }
+            }
+
+            if (entry) {
+                if (lang === 'he') return entry.he || cleaned;
+                if (lang === 'en') return entry.en || cleaned;
+                if (lang === 'ru') return entry.ru || cleaned;
+            }
+
+            return cleaned;
+        }
+
+        // Get localized product category name
+        function getLocalizedCategoryName(category, lang = currentLanguage) {
+            if (!category || category === "כללי") return "";
+            if (typeof categoryTranslations !== 'undefined' && categoryTranslations[category]) {
+                if (lang === 'en') return categoryTranslations[category].en || category;
+                if (lang === 'ru') return categoryTranslations[category].ru || category;
+                return categoryTranslations[category].he || category;
+            }
+            return category;
+        }
+
+        // Helper to get category for a product
+        function getProductCategory(name) {
+            const clean = cleanProductName(name);
+            if (typeof productCategoryMap !== 'undefined' && productCategoryMap[clean]) {
+                return productCategoryMap[clean];
+            }
+            const found = masterCatalog.find(p => cleanProductName(p.name) === clean);
+            return (found && found.category && found.category !== "כללי") ? found.category : "";
+        }
+
+        // Current application language: 'he', 'en', 'ru'
+        let currentLanguage = localStorage.getItem('appLanguage') || 'he';
+        let isDarkMode = JSON.parse(localStorage.getItem('isDarkMode')) || false;
+
+        // Master product catalog initialized with 0 usage
+        let storedCatalog = JSON.parse(localStorage.getItem('masterCatalog'));
+        let deletedProducts = JSON.parse(localStorage.getItem('deletedProducts')) || [];
+        let masterCatalog = storedCatalog || [];
+
+        // Ensure all products in the comprehensive dictionary are in masterCatalog (unless deleted by user)
+        if (typeof productTranslations !== 'undefined') {
+            for (const key in productTranslations) {
+                const cleanKey = cleanProductName(key);
+                const assignedCategory = (typeof productCategoryMap !== 'undefined' && productCategoryMap[cleanKey]) ? productCategoryMap[cleanKey] : "כללי";
+                
+                if (!deletedProducts.includes(cleanKey)) {
+                    const existing = masterCatalog.find(p => cleanProductName(p.name) === cleanKey);
+                    if (!existing) {
+                        masterCatalog.push({ name: cleanKey, category: assignedCategory, usage: 0 });
+                    } else if (!existing.category || existing.category === "כללי") {
+                        existing.category = assignedCategory;
+                    }
+                }
+            }
+        }
+
+        // Populate Category Filter Dropdown
+        function updateCategoryFilterOptions() {
+            const select = document.getElementById('categoryFilter');
+            if (!select) return;
+            const currentSelected = select.value || "all";
+            const t = translations[currentLanguage] || translations.he;
+
+            // Collect all unique categories from masterCatalog
+            const uniqueCats = new Set();
+            masterCatalog.forEach(p => {
+                const cat = getProductCategory(p.name);
+                if (cat) uniqueCats.add(cat);
+            });
+
+            // Sort categories alphabetically according to current locale
+            const sortedCats = Array.from(uniqueCats).sort((a, b) => {
+                const nameA = getLocalizedCategoryName(a);
+                const nameB = getLocalizedCategoryName(b);
+                const locale = (currentLanguage === 'ru' ? 'ru' : (currentLanguage === 'en' ? 'en' : 'he'));
+                return nameA.localeCompare(nameB, locale);
+            });
+
+            select.innerHTML = `<option value="all">${t.allCategoriesOption || 'כל המשפחות'}</option>`;
+            sortedCats.forEach(cat => {
+                const localized = getLocalizedCategoryName(cat);
+                const opt = document.createElement('option');
+                opt.value = cat;
+                opt.innerText = localized;
+                if (cat === currentSelected) opt.selected = true;
+                select.appendChild(opt);
+            });
+        }
+
+        // Active shopping list (starts empty by default)
+        let activeList = JSON.parse(localStorage.getItem('activeList')) || [];
+
+        // Apply visual language & RTL/LTR
+        function applyLanguage() {
+            const t = translations[currentLanguage] || translations.he;
+            const isRtl = (currentLanguage === 'he');
+
+            document.documentElement.lang = currentLanguage;
+            document.documentElement.dir = isRtl ? 'rtl' : 'ltr';
+
+            // Update all static i18n texts
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (t[key]) {
+                    el.innerText = t[key];
+                }
+            });
+
+            // Update placeholders & tooltips
+            document.getElementById('productInput').placeholder = t.inputPlaceholder;
+            document.getElementById('catalogSearch').placeholder = t.catalogFilterPlaceholder;
+            if (document.getElementById('settingsBtnTooltip')) document.getElementById('settingsBtnTooltip').title = t.settingsBtnTitle;
+            if (document.getElementById('addBtnTooltip')) document.getElementById('addBtnTooltip').title = t.addBtnTitle;
+            if (document.getElementById('undoBtn')) document.getElementById('undoBtn').title = t.undoBtnTitle;
+
+            // Update language selector dropdown
+            document.getElementById('languageSelect').value = currentLanguage;
+
+            // Update Category Filter options with localized names
+            updateCategoryFilterOptions();
+
+            localStorage.setItem('appLanguage', currentLanguage);
+        }
+
+        function changeLanguage(newLang) {
+            currentLanguage = newLang;
+            applyLanguage();
+            applyDarkMode();
+            renderAll();
+            closeSettingsModal();
+        }
+
+        // Apply dark mode on load
+        function applyDarkMode() {
+            const dot = document.getElementById('darkModeDot');
+            const btn = document.getElementById('darkModeBtn');
+            const isRtl = (currentLanguage === 'he');
+
+            if (isDarkMode) {
+                document.documentElement.classList.add('dark');
+                if (btn) {
+                    btn.classList.add('bg-emerald-600');
+                    btn.classList.remove('bg-gray-300');
+                }
+                if (dot) {
+                    dot.style.transform = isRtl ? 'translateX(-24px)' : 'translateX(24px)';
+                }
+            } else {
+                document.documentElement.classList.remove('dark');
+                if (btn) {
+                    btn.classList.remove('bg-emerald-600');
+                    btn.classList.add('bg-gray-300');
+                }
+                if (dot) {
+                    dot.style.transform = 'translateX(0px)';
+                }
+            }
+            localStorage.setItem('isDarkMode', JSON.stringify(isDarkMode));
+        }
+
+        function toggleDarkMode() {
+            isDarkMode = !isDarkMode;
+            applyDarkMode();
+        }
+
+        // Save data to localStorage
+        function saveData() {
+            localStorage.setItem('masterCatalog', JSON.stringify(masterCatalog));
+            localStorage.setItem('activeList', JSON.stringify(activeList));
+        }
+
+        // Render both lists
+        function renderAll() {
+            renderActiveList();
+            renderCatalog();
+            saveData();
+        }
+
+        // Render LIST 1: Active Items
+        function renderActiveList() {
+            const container = document.getElementById('activeItemsContainer');
+            const t = translations[currentLanguage] || translations.he;
+            container.innerHTML = '';
+            document.getElementById('activeCount').innerText = activeList.length;
+
+            if (activeList.length === 0) {
+                container.innerHTML = `
+                    <div class="text-center text-gray-400 dark:text-slate-500 py-6 bg-gray-50 dark:bg-slate-700/40 border border-dashed border-gray-200 dark:border-slate-700 rounded-xl">
+                        <i class="fa-solid fa-basket-shopping text-3xl mb-1 text-gray-300 dark:text-slate-600"></i>
+                        <p class="text-sm">${t.list1Empty}</p>
+                    </div>`;
+                return;
+            }
+
+            activeList.forEach((rawName) => {
+                const displayName = getLocalizedProductName(rawName);
+                const rawCategory = getProductCategory(rawName);
+                const displayCategory = getLocalizedCategoryName(rawCategory);
+
+                const div = document.createElement('div');
+                div.className = "flex items-center justify-between bg-emerald-50/60 dark:bg-emerald-950/40 border border-emerald-200 dark:border-emerald-900/60 rounded-xl px-4 py-2.5 shadow-sm hover:bg-red-50/60 dark:hover:bg-red-950/30 hover:border-red-200 dark:hover:border-red-900/50 transition cursor-pointer select-none group";
+                div.title = t.list1Hint;
+                div.onclick = () => removeFromActiveList(rawName);
+                div.innerHTML = `
+                    <div class="flex items-center gap-3 min-w-0 pointer-events-none">
+                        <i class="fa-solid fa-circle-check text-emerald-600 dark:text-emerald-400 text-lg shrink-0 group-hover:text-red-500 transition-colors"></i>
+                        <div class="flex flex-col min-w-0">
+                            <span class="text-slate-800 dark:text-slate-100 font-medium truncate">${escapeHtml(displayName)}</span>
+                            ${displayCategory ? `<span class="text-[11px] text-emerald-700/70 dark:text-emerald-400/70 truncate">${escapeHtml(displayCategory)}</span>` : ''}
+                        </div>
+                    </div>
+                    <div class="text-gray-400 dark:text-slate-400 group-hover:text-red-500 dark:group-hover:text-red-400 p-1.5 transition shrink-0 pointer-events-none">
+                        <i class="fa-solid fa-xmark text-lg"></i>
+                    </div>
+                `;
+                container.appendChild(div);
+            });
+        }
+
+        // Render LIST 2: Available Catalog
+        function renderCatalog() {
+            const container = document.getElementById('masterCatalogContainer');
+            const filterQuery = (document.getElementById('catalogSearch').value || '').trim().toLowerCase();
+            const sortMode = document.getElementById('sortOption').value;
+            const categoryFilter = (document.getElementById('categoryFilter') ? document.getElementById('categoryFilter').value : "all") || "all";
+            const t = translations[currentLanguage] || translations.he;
+            container.innerHTML = '';
+
+            let availableProducts = masterCatalog.filter(product => {
+                if (activeList.includes(product.name)) return false;
+                
+                // Filter by Category
+                if (categoryFilter !== "all") {
+                    const cat = getProductCategory(product.name);
+                    if (cat !== categoryFilter) return false;
+                }
+
+                // Filter by Search Query
+                if (!filterQuery) return true;
+                const localized = getLocalizedProductName(product.name).toLowerCase();
+                const original = product.name.toLowerCase();
+                const catLocalized = getLocalizedCategoryName(getProductCategory(product.name)).toLowerCase();
+                return localized.includes(filterQuery) || original.includes(filterQuery) || catLocalized.includes(filterQuery);
+            });
+
+            if (sortMode === 'category') {
+                const locale = (currentLanguage === 'ru' ? 'ru' : (currentLanguage === 'en' ? 'en' : 'he'));
+                availableProducts.sort((a, b) => {
+                    const catA = getLocalizedCategoryName(getProductCategory(a.name));
+                    const catB = getLocalizedCategoryName(getProductCategory(b.name));
+                    const catCompare = catA.localeCompare(catB, locale);
+                    if (catCompare !== 0) return catCompare;
+                    return getLocalizedProductName(a.name).localeCompare(getLocalizedProductName(b.name), locale);
+                });
+            } else if (sortMode === 'alphabet') {
+                const locale = (currentLanguage === 'ru' ? 'ru' : (currentLanguage === 'en' ? 'en' : 'he'));
+                availableProducts.sort((a, b) => {
+                    const nameA = getLocalizedProductName(a.name);
+                    const nameB = getLocalizedProductName(b.name);
+                    return nameA.localeCompare(nameB, locale);
+                });
+            } else {
+                availableProducts.sort((a, b) => (b.usage || 0) - (a.usage || 0) || getLocalizedProductName(a.name).localeCompare(getLocalizedProductName(b.name)));
+            }
+
+            document.getElementById('catalogCount').innerText = availableProducts.length;
+
+            if (availableProducts.length === 0) {
+                container.innerHTML = `
+                    <div class="col-span-full text-center text-gray-400 dark:text-slate-500 py-4">
+                        ${filterQuery || categoryFilter !== 'all' ? t.catalogEmptyFilter : t.catalogEmptyAll}
+                    </div>`;
+                return;
+            }
+
+            availableProducts.forEach(product => {
+                const displayName = getLocalizedProductName(product.name);
+                const rawCategory = getProductCategory(product.name);
+                const displayCategory = getLocalizedCategoryName(rawCategory);
+
+                const itemDiv = document.createElement('div');
+                itemDiv.className = "flex items-center justify-between p-2.5 sm:p-3 rounded-xl border border-gray-200 dark:border-slate-700 bg-gray-50 dark:bg-slate-700/60 hover:bg-emerald-50 dark:hover:bg-emerald-950/50 hover:border-emerald-300 dark:hover:border-emerald-700 transition shadow-sm group";
+
+                itemDiv.innerHTML = `
+                    <div onclick="addProductToActiveList('${escapeHtml(product.name)}')" class="flex items-center justify-between flex-1 min-w-0 cursor-pointer select-none">
+                        <div class="flex flex-col min-w-0 text-start">
+                            <span class="truncate text-sm font-medium text-slate-700 dark:text-slate-200 group-hover:text-emerald-800 dark:group-hover:text-emerald-300">${escapeHtml(displayName)}</span>
+                            ${displayCategory ? `<span class="truncate text-[11px] text-gray-400 dark:text-slate-400 font-normal mt-0.5">${escapeHtml(displayCategory)}</span>` : ''}
+                        </div>
+                        <div class="flex items-center gap-1 shrink-0 px-1">
+                            <i class="fa-solid fa-plus text-gray-400 group-hover:text-emerald-600 dark:group-hover:text-emerald-400 text-xs ms-1"></i>
+                        </div>
+                    </div>
+                    <button onclick="requestDeleteProduct('${escapeHtml(product.name)}')" class="text-gray-300 dark:text-slate-500 hover:text-red-500 dark:hover:text-red-400 p-1 ms-1 rounded hover:bg-red-50 dark:hover:bg-red-950/40 transition shrink-0" title="${t.deleteProductTooltip || 'מחק'}">
+                        <i class="fa-solid fa-trash-can text-xs"></i>
+                    </button>
+                `;
+                container.appendChild(itemDiv);
+            });
+        }
+
+        // UNDO History Stack
+        const undoStack = [];
+        const MAX_UNDO_DEPTH = 30;
+
+        function pushUndoAction(action) {
+            undoStack.push(action);
+            if (undoStack.length > MAX_UNDO_DEPTH) {
+                undoStack.shift();
+            }
+            updateUndoButtonState();
+        }
+
+        function updateUndoButtonState() {
+            const btn = document.getElementById('undoBtn');
+            if (!btn) return;
+            if (undoStack.length > 0) {
+                btn.removeAttribute('disabled');
+            } else {
+                btn.setAttribute('disabled', 'true');
+            }
+        }
+
+        function performUndo() {
+            if (undoStack.length === 0) return;
+            const action = undoStack.pop();
+            updateUndoButtonState();
+
+            const t = translations[currentLanguage] || translations.he;
+
+            switch (action.type) {
+                case 'ADD_TO_ACTIVE': {
+                    // Undo adding to list: remove item from activeList and decrement usage
+                    activeList = activeList.filter(item => item !== action.productName);
+                    let catalogItem = masterCatalog.find(p => p.name === action.productName);
+                    if (catalogItem) {
+                        catalogItem.usage = Math.max(0, (catalogItem.usage || 1) - 1);
+                    }
+                    if (action.isNewProduct) {
+                        // Remove newly created item from masterCatalog
+                        masterCatalog = masterCatalog.filter(p => p.name !== action.productName);
+                    }
+                    updateCategoryFilterOptions();
+                    renderAll();
+                    const disp = getLocalizedProductName(action.productName);
+                    showToast((t.undoSuccessAdd || "Undo: removed").replace('{name}', disp), "success");
+                    break;
+                }
+                case 'REMOVE_FROM_ACTIVE': {
+                    // Undo removing from list: restore item to activeList at its previous position
+                    if (!activeList.includes(action.productName)) {
+                        const targetIdx = (typeof action.index === 'number' && action.index <= activeList.length) ? action.index : 0;
+                        activeList.splice(targetIdx, 0, action.productName);
+                    }
+                    renderAll();
+                    const disp = getLocalizedProductName(action.productName);
+                    showToast((t.undoSuccessRemove || "Undo: restored").replace('{name}', disp), "success");
+                    break;
+                }
+                case 'CLEAR_ACTIVE_LIST': {
+                    // Undo clearing list: restore previous list
+                    activeList = [...action.previousList];
+                    renderAll();
+                    showToast(t.undoSuccessClear || "Undo: List restored", "success");
+                    break;
+                }
+                case 'DELETE_PRODUCT': {
+                    // Undo deleting product from catalog: restore to masterCatalog and deletedProducts
+                    const cleanTarget = cleanProductName(action.product.name);
+                    deletedProducts = deletedProducts.filter(name => name !== cleanTarget);
+                    localStorage.setItem('deletedProducts', JSON.stringify(deletedProducts));
+
+                    if (!masterCatalog.some(p => cleanProductName(p.name) === cleanTarget)) {
+                        masterCatalog.push(action.product);
+                    }
+                    if (action.wasInActiveList && !activeList.includes(action.product.name)) {
+                        activeList.push(action.product.name);
+                    }
+                    updateCategoryFilterOptions();
+                    renderAll();
+                    const disp = getLocalizedProductName(action.product.name);
+                    showToast((t.undoSuccessDelete || "Undo: restored").replace('{name}', disp), "success");
+                    break;
+                }
+            }
+        }
+
+        // Global keyboard shortcut for Undo (Ctrl+Z / Cmd+Z)
+        window.addEventListener('keydown', (e) => {
+            if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'z' && !e.shiftKey) {
+                // Ignore if focus is in an active text input or textarea
+                const activeTag = document.activeElement ? document.activeElement.tagName.toLowerCase() : '';
+                if (activeTag === 'input' || activeTag === 'textarea') {
+                    return;
+                }
+                e.preventDefault();
+                performUndo();
+            }
+        });
+
+        // Easter Egg Trigger
+        let heartTimer = null;
+        function triggerHeartEasterEgg() {
+            const overlay = document.getElementById('heartEasterEgg');
+            const icon = document.getElementById('heartIcon');
+            if (!overlay || !icon) return;
+
+            if (heartTimer) {
+                clearTimeout(heartTimer);
+                heartTimer = null;
+            }
+
+            overlay.classList.remove('hidden');
+            icon.classList.remove('animate-heart-pop');
+            // Force DOM reflow to re-trigger animation
+            void icon.offsetWidth;
+            icon.classList.add('animate-heart-pop');
+
+            heartTimer = setTimeout(() => {
+                overlay.classList.add('hidden');
+                icon.classList.remove('animate-heart-pop');
+                heartTimer = null;
+            }, 2000);
+        }
+
+        function addProductToActiveList(name, category = null, recordUndo = true) {
+            // Check for Easter Egg ("ברוש")
+            if (cleanProductName(name).toLowerCase() === "ברוש" || name === "ברוש") {
+                triggerHeartEasterEgg();
+            }
+
+            if (!activeList.includes(name)) {
+                activeList.unshift(name);
+
+                let isNewProduct = false;
+                let catalogItem = masterCatalog.find(p => p.name === name);
+                if (catalogItem) {
+                    catalogItem.usage = (catalogItem.usage || 0) + 1;
+                    if (category && (!catalogItem.category || catalogItem.category === "כללי")) {
+                        catalogItem.category = category;
+                    }
+                } else {
+                    isNewProduct = true;
+                    const finalCategory = category || getProductCategory(name) || "כללי";
+                    masterCatalog.push({ name: name, category: finalCategory, usage: 1 });
+                    if (typeof productCategoryMap !== 'undefined') {
+                        productCategoryMap[cleanProductName(name)] = finalCategory;
+                    }
+                }
+
+                if (recordUndo) {
+                    pushUndoAction({
+                        type: 'ADD_TO_ACTIVE',
+                        productName: name,
+                        isNewProduct: isNewProduct
+                    });
+                }
+            }
+            updateCategoryFilterOptions();
+            renderAll();
+        }
+
+        function removeFromActiveList(name, recordUndo = true) {
+            const index = activeList.indexOf(name);
+            if (index !== -1) {
+                if (recordUndo) {
+                    pushUndoAction({
+                        type: 'REMOVE_FROM_ACTIVE',
+                        productName: name,
+                        index: index
+                    });
+                }
+                activeList.splice(index, 1);
+                renderAll();
+            }
+        }
+
+        function clearActiveList() {
+            activeList = [];
+            renderAll();
+        }
+
+        // New Product Category Selection Handlers
+        let pendingNewProductName = "";
+
+        function promptCategoryForNewProduct(productName) {
+            pendingNewProductName = productName;
+            document.getElementById('newProductNameDisplay').innerText = productName;
+
+            const select = document.getElementById('newProductCategorySelect');
+            select.innerHTML = '';
+
+            // Get all unique categories available
+            const uniqueCats = new Set();
+            masterCatalog.forEach(p => {
+                const cat = getProductCategory(p.name);
+                if (cat) uniqueCats.add(cat);
+            });
+            if (typeof categoryTranslations !== 'undefined') {
+                Object.keys(categoryTranslations).forEach(cat => uniqueCats.add(cat));
+            }
+
+            const sortedCats = Array.from(uniqueCats).sort((a, b) => {
+                const nameA = getLocalizedCategoryName(a);
+                const nameB = getLocalizedCategoryName(b);
+                const locale = (currentLanguage === 'ru' ? 'ru' : (currentLanguage === 'en' ? 'en' : 'he'));
+                return nameA.localeCompare(nameB, locale);
+            });
+
+            sortedCats.forEach(cat => {
+                const opt = document.createElement('option');
+                opt.value = cat;
+                opt.innerText = getLocalizedCategoryName(cat);
+                select.appendChild(opt);
+            });
+
+            document.getElementById('newProductCategoryModal').classList.remove('hidden');
+        }
+
+        function closeNewProductCategoryModal() {
+            pendingNewProductName = "";
+            document.getElementById('newProductCategoryModal').classList.add('hidden');
+        }
+
+        function confirmAddNewProductWithCategory() {
+            if (!pendingNewProductName) return;
+            const chosenCategory = document.getElementById('newProductCategorySelect').value || "כללי";
+            const nameToAdd = pendingNewProductName;
+            closeNewProductCategoryModal();
+            addProductToActiveList(nameToAdd, chosenCategory);
+        }
+
+        // Settings Modal Handlers
+        function openSettingsModal() {
+            document.getElementById('settingsModal').classList.remove('hidden');
+        }
+
+        function closeSettingsModal() {
+            document.getElementById('settingsModal').classList.add('hidden');
+        }
+
+        function openConfirmResetModal() {
+            document.getElementById('confirmResetModal').classList.remove('hidden');
+        }
+
+        function closeConfirmResetModal() {
+            document.getElementById('confirmResetModal').classList.add('hidden');
+        }
+
+        function openConfirmClearListModal() {
+            document.getElementById('confirmClearListModal').classList.remove('hidden');
+        }
+
+        function closeConfirmClearListModal() {
+            document.getElementById('confirmClearListModal').classList.add('hidden');
+        }
+
+        function executeClearActiveList() {
+            if (activeList.length > 0) {
+                pushUndoAction({
+                    type: 'CLEAR_ACTIVE_LIST',
+                    previousList: [...activeList]
+                });
+            }
+            activeList = [];
+            renderAll();
+            closeConfirmClearListModal();
+            closeSettingsModal();
+            const t = translations[currentLanguage] || translations.he;
+            showToast(t.toastListCleared || "רשימת הקניות הפעילה נוקתה בהצלחה", "success");
+        }
+
+        function confirmResetUsageCounts() {
+            masterCatalog.forEach(product => {
+                product.usage = 0;
+            });
+            saveData();
+            renderCatalog();
+            closeConfirmResetModal();
+            closeSettingsModal();
+            const t = translations[currentLanguage] || translations.he;
+            showToast(t.toastResetSuccess, "success");
+        }
+
+        // Product Catalog Deletion Handlers
+        let productToDelete = null;
+
+        function requestDeleteProduct(rawName) {
+            productToDelete = rawName;
+            const displayName = getLocalizedProductName(rawName);
+            const nameEl = document.getElementById('deleteTargetProductName');
+            if (nameEl) {
+                nameEl.innerText = displayName;
+            }
+            document.getElementById('confirmDeleteProductModal').classList.remove('hidden');
+        }
+
+        function closeConfirmDeleteProductModal() {
+            productToDelete = null;
+            document.getElementById('confirmDeleteProductModal').classList.add('hidden');
+        }
+
+        function executeDeleteProduct() {
+            if (!productToDelete) return;
+            const targetClean = cleanProductName(productToDelete);
+
+            const existingCatalogItem = masterCatalog.find(p => cleanProductName(p.name) === targetClean);
+            const wasInActiveList = activeList.some(name => cleanProductName(name) === targetClean);
+
+            if (existingCatalogItem) {
+                pushUndoAction({
+                    type: 'DELETE_PRODUCT',
+                    product: { ...existingCatalogItem },
+                    wasInActiveList: wasInActiveList
+                });
+            }
+
+            // Add to persistent deletedProducts list
+            if (!deletedProducts.includes(targetClean)) {
+                deletedProducts.push(targetClean);
+                localStorage.setItem('deletedProducts', JSON.stringify(deletedProducts));
+            }
+
+            // Remove from masterCatalog
+            masterCatalog = masterCatalog.filter(p => cleanProductName(p.name) !== targetClean);
+
+            // Also remove from activeList if present
+            activeList = activeList.filter(name => cleanProductName(name) !== targetClean);
+
+            saveData();
+            renderAll();
+            closeConfirmDeleteProductModal();
+
+            const t = translations[currentLanguage] || translations.he;
+            showToast(t.toastDeleteProductSuccess, "success");
+        }
+
+        // Handle Search Autocomplete
+        function handleSearchInput() {
+            const query = document.getElementById('productInput').value.trim().toLowerCase();
+            const dropdown = document.getElementById('autocompleteDropdown');
+            const t = translations[currentLanguage] || translations.he;
+
+            if (!query) {
+                dropdown.classList.add('hidden');
+                return;
+            }
+
+            const matches = masterCatalog.filter(product => {
+                const localized = getLocalizedProductName(product.name).toLowerCase();
+                const original = product.name.toLowerCase();
+                return localized.includes(query) || original.includes(query);
+            }).sort((a, b) => (b.usage || 0) - (a.usage || 0)).slice(0, 5);
+
+            if (matches.length === 0) {
+                dropdown.classList.add('hidden');
+                return;
+            }
+
+            dropdown.innerHTML = matches.map(prod => {
+                const displayName = getLocalizedProductName(prod.name);
+                const rawCategory = getProductCategory(prod.name);
+                const displayCategory = getLocalizedCategoryName(rawCategory);
+                return `
+                <div onclick="selectAutocomplete('${escapeHtml(prod.name)}')" class="px-4 py-3 hover:bg-emerald-50 dark:hover:bg-slate-700 cursor-pointer flex justify-between items-center transition">
+                    <div class="flex items-center gap-2">
+                        <i class="fa-solid fa-clock-rotate-left text-gray-400 dark:text-slate-400 text-sm"></i>
+                        <span class="font-medium text-slate-800 dark:text-slate-100">${escapeHtml(displayName)}</span>
+                        ${displayCategory ? `<span class="text-xs text-gray-400 dark:text-slate-400">(${escapeHtml(displayCategory)})</span>` : ''}
+                    </div>
+                    ${activeList.includes(prod.name) ? `<span class="text-xs bg-emerald-100 dark:bg-emerald-900/60 text-emerald-800 dark:text-emerald-300 px-2 py-0.5 rounded">${t.alreadyInListBadge}</span>` : ''}
+                </div>
+            `}).join('');
+
+            dropdown.classList.remove('hidden');
+        }
+
+        function handleKeyDown(event) {
+            if (event.key === 'Enter') {
+                addCurrentInputToList();
+            }
+        }
+
+        function selectAutocomplete(name) {
+            document.getElementById('productInput').value = getLocalizedProductName(name);
+            document.getElementById('autocompleteDropdown').classList.add('hidden');
+            addProductToActiveList(name);
+            document.getElementById('productInput').value = '';
+        }
+
+        function addCurrentInputToList() {
+            const input = document.getElementById('productInput');
+            const enteredVal = input.value.trim();
+            if (!enteredVal) return;
+
+            // Check if enteredVal matches localized or original name in catalog
+            let matchedCatalog = masterCatalog.find(p => 
+                p.name.toLowerCase() === enteredVal.toLowerCase() ||
+                getLocalizedProductName(p.name).toLowerCase() === enteredVal.toLowerCase()
+            );
+
+            if (matchedCatalog) {
+                // Already exists in catalog
+                addProductToActiveList(matchedCatalog.name);
+                input.value = '';
+                document.getElementById('autocompleteDropdown').classList.add('hidden');
+            } else {
+                // New product! Prompt user to choose its category / family
+                input.value = '';
+                document.getElementById('autocompleteDropdown').classList.add('hidden');
+                promptCategoryForNewProduct(enteredVal);
+            }
+        }
+
+        // Handle Excel Import
+        function handleExcelImport(event) {
+            const file = event.target.files[0];
+            const t = translations[currentLanguage] || translations.he;
+            if (!file) return;
+
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                try {
+                    const data = new Uint8Array(e.target.result);
+                    const workbook = XLSX.read(data, { type: 'array' });
+                    const firstSheetName = workbook.SheetNames[0];
+                    const worksheet = workbook.Sheets[firstSheetName];
+                    const jsonRows = XLSX.utils.sheet_to_json(worksheet, { header: 1 });
+
+                    let addedCount = 0;
+                    jsonRows.forEach((row, index) => {
+                        if (!row || row.length === 0) return;
+                        let productName = String(row[0]).trim();
+
+                        if (index === 0 && (productName.includes("שם") || productName.toLowerCase().includes("name") || productName.toLowerCase().includes("название"))) {
+                            return;
+                        }
+
+                        if (productName) {
+                            let category = row[1] ? String(row[1]).trim() : "כללי";
+                            if (!masterCatalog.some(p => p.name.toLowerCase() === productName.toLowerCase())) {
+                                masterCatalog.push({ name: productName, category: category, usage: 0 });
+                                addedCount++;
+                            }
+                        }
+                    });
+
+                    renderAll();
+                    closeSettingsModal();
+                    event.target.value = '';
+                    showToast(t.toastImportSuccess.replace('{count}', addedCount), "success");
+                } catch (err) {
+                    showToast(t.toastImportError, "error");
+                }
+            };
+            reader.readAsArrayBuffer(file);
+        }
+
+        function showToast(message, type = "success") {
+            const toast = document.getElementById('toastNotification');
+            toast.innerText = message;
+            toast.className = `mb-4 p-3 rounded-lg text-sm font-medium transition-all ${type === 'success' ? 'bg-emerald-100 dark:bg-emerald-950 text-emerald-800 dark:text-emerald-300 border border-emerald-300 dark:border-emerald-800' : 'bg-red-100 dark:bg-red-950 text-red-800 dark:text-red-300 border border-red-300 dark:border-red-800'}`;
+            toast.classList.remove('hidden');
+            setTimeout(() => {
+                toast.classList.add('hidden');
+            }, 4000);
+        }
+
+        function escapeHtml(text) {
+            return String(text).replace(/[&<>"']/g, function(m) {
+                return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#039;' }[m];
+            });
+        }
+
+        // Initialize UI, Language & Dark Mode
+        applyDarkMode();
+        applyLanguage();
+        renderAll();
+
+        // Register Service Worker for PWA
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('./sw.js').catch((err) => {
+                    console.log('SW registration error:', err);
+                });
+            });
+        }
+    </script>
+</body>
+</html>

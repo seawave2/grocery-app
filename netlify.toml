@@ -1,0 +1,6 @@
+# Disable Netlify drawer and feedback tools
+[build.processing]
+  skip_processing = true
+
+[context.production.environment]
+  NETLIFY_DRAWER = "false"
