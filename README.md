@@ -10,13 +10,22 @@ A modern, fast, lightweight, and customizable **Progressive Web App (PWA)** for 
   - **1. Active Shopping List**: Items currently needed. Click anywhere on an item card to check it off with a strike-through and smooth removal.
   - **2. Available Catalog**: Fast selection from a rich database of 460+ items sorted by frequency of use, alphabetical order, or aisle / family. Clean catalog header without unnecessary counters.
 
+- **📤 Export & Share Shopping List**:
+  - Export and share your active shopping list with a single click via the **"שתף" (Share)** button in the list header.
+  - Opens the native **mobile share sheet** (WhatsApp, Telegram, SMS, Email, Notes, etc.) on supported devices (HTTPS / Web Share API).
+  - Automatically falls back to one-click **clipboard copy** on unsupported platforms.
+  - Smart contextual formatting:
+    - **Grouped mode**: Organized by supermarket aisle/category with family headers and emoji icons.
+    - **Flat mode**: Each product listed with its dedicated colorful family emoji and item quantities.
+
 - **🎨 Color Themes (Palette Customizer)**:
   - Personalize the app's look and feel with a palette of vibrant themes: **Emerald Green (Default), Classic Blue, Purple, Amber, Rose, and Teal**.
   - Selectable in Settings via clean, icon-based color swatches.
   - Dynamically updates header navigation, action buttons, active item tints, category chips, and floating buttons.
 
-- **🔤 Font Size Customization**:
-  - Switch text size on the fly between **Small (קטן)**, **Medium (בינוני)**, and **Large (גדול)** to fit any screen or personal reading comfort.
+- **🔤 Font Size & Typography Options**:
+  - Three distinct text sizes: **Medium (בינוני)**, **Large (גדול)** (Default), and **Extra Large (גדול מאוד)**.
+  - **Bold Text (הדגשת טקסט)**: Optional high-contrast toggle for thicker, highly legible typography across the app (enabled by default for maximum readability).
   - Responsive layout designed to scale without overflowing settings or modals.
 
 - **🧼 Simple Mode (Classic Clean UI)**:
@@ -25,7 +34,7 @@ A modern, fast, lightweight, and customizable **Progressive Web App (PWA)** for 
 
 - **🔢 Item Quantities & Aisle Grouping**:
   - Increment / decrement quantity counters ($+$ / $-$) directly on active shopping list items.
-  - Quick toggle button to show or hide quantity counters.
+  - Quick toggle button in the list header to show or hide quantity counters.
   - Option to group active items by supermarket aisle/category.
 
 - **🔍 Flexible Search & Add**:
@@ -45,6 +54,9 @@ A modern, fast, lightweight, and customizable **Progressive Web App (PWA)** for 
 
 - **🌙 Dark Mode**:
   - Smooth light/dark theme transition with persistent user preference and RTL-aware toggle animation.
+
+- **📬 Direct Feedback**:
+  - Clickable "Made by Seawave" footer in Settings to send instant feedback or suggestions directly via email.
 
 - **📱 Installable Progressive Web App (PWA)**:
   - Works on **Android, iPhone, and Desktop**.
@@ -94,6 +106,7 @@ This project is fully static and requires **no build step or backend**. It can b
 - **Tailwind CSS** (via CDN with dynamic theme variables and dark mode support)
 - **FontAwesome 6** (Icons)
 - **SheetJS (xlsx)** (Client-side spreadsheet engine)
+- **Web Share API & Clipboard API**
 - **Service Worker & Cache API** (Offline PWA)
 
 ---
@@ -101,4 +114,5 @@ This project is fully static and requires **no build step or backend**. It can b
 ## 📄 License & Credits
 
 © Made with ❤️ by **seawave**.  
+Feedback & Suggestions: [seawave2@gmail.com](mailto:seawave2@gmail.com?subject=Grocery%20List%20Feedback)  
 Licensed under the [MIT License](LICENSE).

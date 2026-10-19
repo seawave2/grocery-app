@@ -13,8 +13,6 @@
     </script>
     <!-- Font Awesome Icons CDN -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- SheetJS (xlsx) for reading Excel files directly in browser -->
-    <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
     <!-- Trilingual Product Translations Dictionary -->
     <script src="translations.js"></script>
     <!-- PWA & Mobile Web App Meta Tags -->
@@ -147,14 +145,41 @@
         }
 
         /* Font Size Modes */
-        html.font-size-small {
-            font-size: 14.5px;
-        }
         html.font-size-medium {
-            font-size: 16px;
+            font-size: 15.5px;
         }
         html.font-size-large {
-            font-size: 18px;
+            font-size: 17px;
+        }
+        html.font-size-xlarge {
+            font-size: 19px;
+        }
+
+        /* Bold Text Mode */
+        html.app-bold body,
+        html.app-bold span,
+        html.app-bold p,
+        html.app-bold button,
+        html.app-bold input,
+        html.app-bold select {
+            font-weight: 600 !important;
+        }
+        html.app-bold .font-bold,
+        html.app-bold .font-semibold,
+        html.app-bold h1,
+        html.app-bold h2,
+        html.app-bold h3,
+        html.app-bold h4 {
+            font-weight: 800 !important;
+        }
+
+        /* Prevent Settings Modal overflow in Extra Large font */
+        html.font-size-xlarge #settingsModal > div {
+            padding: 0.75rem 1rem !important;
+            gap: 0.5rem !important;
+        }
+        html.font-size-xlarge #settingsModal .flex-col.gap-2 {
+            gap: 0.35rem !important;
         }
 
         /* Color Themes (Primary Palette overrides) */
@@ -372,6 +397,11 @@
                             <i class="fa-solid fa-layer-group text-[11px]"></i>
                             <span data-i18n="groupByCategoryLabel" class="hidden xs:inline">קבץ לפי מחלקות</span>
                         </button>
+                        <!-- Export / Share Active List Button -->
+                        <button id="exportListBtn" onclick="exportShoppingList()" class="text-xs px-2.5 py-1 rounded-lg border border-gray-200 dark:border-slate-700 text-gray-500 dark:text-slate-400 hover:bg-gray-100 dark:hover:bg-slate-700 flex items-center gap-1.5 transition font-medium" title="שתף רשימה">
+                            <i class="fa-solid fa-arrow-up-from-bracket text-[11px]"></i>
+                            <span data-i18n="exportListLabel" class="hidden xs:inline">שתף</span>
+                        </button>
                         <span class="text-xs text-gray-400 dark:text-slate-400 hidden sm:inline" data-i18n="list1Hint">לחץ להסרה</span>
                     </div>
                 </div>
@@ -428,7 +458,8 @@
 
     <!-- SETTINGS MODAL -->
     <div id="settingsModal" class="hidden fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-2.5 sm:p-4">
-        <div class="bg-white dark:bg-slate-800 rounded-2xl max-w-sm w-full p-3.5 sm:p-4 shadow-xl border border-gray-200 dark:border-slate-700 flex flex-col gap-2.5 max-h-[92vh] overflow-y-auto">
+        <div class="bg-white dark:bg-slate-800 rounded-2xl max-w-sm w-full p-3.5 sm:p-4 shadow-xl border border-gray-200 dark:border-slate-700 flex flex-col gap-2.5 max-h-[92vh]">
+            <!-- Header -->
             <div class="flex justify-between items-center border-b border-gray-100 dark:border-slate-700 pb-2">
                 <h3 class="text-base sm:text-lg font-bold text-slate-800 dark:text-slate-100 flex items-center gap-2">
                     <i class="fa-solid fa-gear text-emerald-600"></i> <span data-i18n="settingsTitle">הגדרות</span>
@@ -438,7 +469,22 @@
                 </button>
             </div>
 
-            <div class="flex flex-col gap-2">
+            <!-- Settings Tabs Selector (כללי / מתקדם) -->
+            <div class="grid grid-cols-2 p-1 bg-gray-100 dark:bg-slate-700/70 rounded-xl gap-1 text-xs font-semibold">
+                <button type="button" id="settingsTabBtn-general" onclick="switchSettingsTab('general')" 
+                        class="py-1.5 rounded-lg transition-all flex items-center justify-center gap-1.5 bg-white dark:bg-slate-800 text-emerald-700 dark:text-emerald-300 shadow-2xs">
+                    <i class="fa-solid fa-sliders text-[11px]"></i>
+                    <span data-i18n="settingsTabGeneral">כללי</span>
+                </button>
+                <button type="button" id="settingsTabBtn-advanced" onclick="switchSettingsTab('advanced')" 
+                        class="py-1.5 rounded-lg transition-all flex items-center justify-center gap-1.5 text-gray-500 dark:text-slate-400 hover:text-slate-700 dark:hover:text-slate-200">
+                    <i class="fa-solid fa-wand-magic-sparkles text-[11px]"></i>
+                    <span data-i18n="settingsTabAdvanced">מתקדם</span>
+                </button>
+            </div>
+
+            <!-- Tab 1: General Settings (תצוגה, שפה, גודל פונט, הדגשה, צבע) -->
+            <div id="settingsTab-general" class="flex flex-col gap-2.5 overflow-y-auto pr-0.5">
                 <!-- Language Selector -->
                 <div class="flex items-center justify-between">
                     <div>
@@ -467,6 +513,65 @@
 
                 <hr class="border-gray-100 dark:border-slate-700">
 
+                <!-- Font Size Selector -->
+                <div class="flex items-center justify-between">
+                    <div>
+                        <p class="font-medium text-slate-800 dark:text-slate-100 text-sm" data-i18n="fontSizeSettingTitle">גודל גופן</p>
+                        <p class="text-[11px] text-gray-500 dark:text-slate-400" data-i18n="fontSizeSettingDesc">בחר את גודל הטקסט באפליקציה</p>
+                    </div>
+                    <div class="inline-flex rounded-xl bg-gray-100 dark:bg-slate-700 p-0.5 border border-gray-200 dark:border-slate-600">
+                        <button id="fontSizeBtn-medium" onclick="setFontSize('medium')" class="px-2 py-1 text-xs rounded-lg font-medium transition" data-i18n="fontSizeMedium">בינוני</button>
+                        <button id="fontSizeBtn-large" onclick="setFontSize('large')" class="px-2 py-1 text-xs rounded-lg font-medium transition" data-i18n="fontSizeLarge">גדול</button>
+                        <button id="fontSizeBtn-xlarge" onclick="setFontSize('xlarge')" class="px-2 py-1 text-xs rounded-lg font-medium transition" data-i18n="fontSizeXLarge">גדול מאוד</button>
+                    </div>
+                </div>
+
+                <hr class="border-gray-100 dark:border-slate-700">
+
+                <!-- Bold Text Toggle -->
+                <div class="flex items-center justify-between">
+                    <div>
+                        <p class="font-medium text-slate-800 dark:text-slate-100 text-sm" data-i18n="boldSettingTitle">הדגשת טקסט (Bold)</p>
+                        <p class="text-[11px] text-gray-500 dark:text-slate-400" data-i18n="boldSettingDesc">טקסט עבה וקריא יותר</p>
+                    </div>
+                    <button id="boldTextBtn" onclick="toggleBoldText()" class="w-11 h-5.5 bg-gray-300 rounded-full p-0.5 transition-colors duration-200 flex items-center">
+                        <div id="boldTextDot" class="w-4 h-4 bg-white rounded-full transition-transform duration-200"></div>
+                    </button>
+                </div>
+
+                <hr class="border-gray-100 dark:border-slate-700">
+
+                <!-- Theme Color Selector -->
+                <div class="flex items-center justify-between gap-2">
+                    <div>
+                        <p class="font-medium text-slate-800 dark:text-slate-100 text-sm" data-i18n="themeSettingTitle">צבע</p>
+                        <p class="text-[11px] text-gray-500 dark:text-slate-400" data-i18n="themeSettingDesc">בחר גוון צבע ראשי לממשק</p>
+                    </div>
+                    <div class="flex items-center gap-1.5" id="themeColorsPicker">
+                        <button type="button" onclick="setThemeColor('emerald')" data-theme="emerald" class="theme-swatch w-6 h-6 rounded-full bg-emerald-600 flex items-center justify-center transition-all duration-150 active:scale-90 shadow-2xs hover:scale-105" title="Emerald">
+                            <i class="fa-solid fa-check text-white text-[10px] hidden"></i>
+                        </button>
+                        <button type="button" onclick="setThemeColor('blue')" data-theme="blue" class="theme-swatch w-6 h-6 rounded-full bg-blue-600 flex items-center justify-center transition-all duration-150 active:scale-90 shadow-2xs hover:scale-105" title="Blue">
+                            <i class="fa-solid fa-check text-white text-[10px] hidden"></i>
+                        </button>
+                        <button type="button" onclick="setThemeColor('purple')" data-theme="purple" class="theme-swatch w-6 h-6 rounded-full bg-purple-600 flex items-center justify-center transition-all duration-150 active:scale-90 shadow-2xs hover:scale-105" title="Purple">
+                            <i class="fa-solid fa-check text-white text-[10px] hidden"></i>
+                        </button>
+                        <button type="button" onclick="setThemeColor('amber')" data-theme="amber" class="theme-swatch w-6 h-6 rounded-full bg-amber-500 flex items-center justify-center transition-all duration-150 active:scale-90 shadow-2xs hover:scale-105" title="Amber">
+                            <i class="fa-solid fa-check text-white text-[10px] hidden"></i>
+                        </button>
+                        <button type="button" onclick="setThemeColor('rose')" data-theme="rose" class="theme-swatch w-6 h-6 rounded-full bg-rose-600 flex items-center justify-center transition-all duration-150 active:scale-90 shadow-2xs hover:scale-105" title="Rose">
+                            <i class="fa-solid fa-check text-white text-[10px] hidden"></i>
+                        </button>
+                        <button type="button" onclick="setThemeColor('teal')" data-theme="teal" class="theme-swatch w-6 h-6 rounded-full bg-teal-600 flex items-center justify-center transition-all duration-150 active:scale-90 shadow-2xs hover:scale-105" title="Teal">
+                            <i class="fa-solid fa-check text-white text-[10px] hidden"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tab 2: Advanced Settings (מיקום שדה חיפוש, ממשק פשוט, ניקוי רשימה, איפוס מונים) -->
+            <div id="settingsTab-advanced" class="hidden flex flex-col gap-2.5 overflow-y-auto pr-0.5">
                 <!-- Simple Mode Toggle -->
                 <div class="flex items-center justify-between">
                     <div>
@@ -494,55 +599,11 @@
 
                 <hr class="search-position-setting-row border-gray-100 dark:border-slate-700">
 
-                <!-- Font Size Selector -->
-                <div class="flex items-center justify-between">
-                    <div>
-                        <p class="font-medium text-slate-800 dark:text-slate-100 text-sm" data-i18n="fontSizeSettingTitle">גודל גופן</p>
-                        <p class="text-[11px] text-gray-500 dark:text-slate-400" data-i18n="fontSizeSettingDesc">בחר את גודל הטקסט באפליקציה</p>
-                    </div>
-                    <div class="inline-flex rounded-xl bg-gray-100 dark:bg-slate-700 p-0.5 border border-gray-200 dark:border-slate-600">
-                        <button id="fontSizeBtn-small" onclick="setFontSize('small')" class="px-2 py-1 text-xs rounded-lg font-medium transition" data-i18n="fontSizeSmall">קטן</button>
-                        <button id="fontSizeBtn-medium" onclick="setFontSize('medium')" class="px-2 py-1 text-xs rounded-lg font-medium transition" data-i18n="fontSizeMedium">בינוני</button>
-                        <button id="fontSizeBtn-large" onclick="setFontSize('large')" class="px-2 py-1 text-xs rounded-lg font-medium transition" data-i18n="fontSizeLarge">גדול</button>
-                    </div>
-                </div>
-
-                <hr class="border-gray-100 dark:border-slate-700">
-
-                <!-- Theme Color Selector (Color icons only, no text labels) -->
-                <div class="flex items-center justify-between gap-2">
-                    <div>
-                        <p class="font-medium text-slate-800 dark:text-slate-100 text-sm" data-i18n="themeSettingTitle">צבע</p>
-                        <p class="text-[11px] text-gray-500 dark:text-slate-400" data-i18n="themeSettingDesc">בחר גוון צבע ראשי לממשק</p>
-                    </div>
-                    <div class="flex items-center gap-1.5" id="themeColorsPicker">
-                        <button type="button" onclick="setThemeColor('emerald')" data-theme="emerald" class="theme-swatch w-6 h-6 rounded-full bg-emerald-600 flex items-center justify-center transition-all duration-150 active:scale-90 shadow-2xs hover:scale-105" title="Emerald">
-                            <i class="fa-solid fa-check text-white text-[10px] hidden"></i>
-                        </button>
-                        <button type="button" onclick="setThemeColor('blue')" data-theme="blue" class="theme-swatch w-6 h-6 rounded-full bg-blue-600 flex items-center justify-center transition-all duration-150 active:scale-90 shadow-2xs hover:scale-105" title="Blue">
-                            <i class="fa-solid fa-check text-white text-[10px] hidden"></i>
-                        </button>
-                        <button type="button" onclick="setThemeColor('purple')" data-theme="purple" class="theme-swatch w-6 h-6 rounded-full bg-purple-600 flex items-center justify-center transition-all duration-150 active:scale-90 shadow-2xs hover:scale-105" title="Purple">
-                            <i class="fa-solid fa-check text-white text-[10px] hidden"></i>
-                        </button>
-                        <button type="button" onclick="setThemeColor('amber')" data-theme="amber" class="theme-swatch w-6 h-6 rounded-full bg-amber-500 flex items-center justify-center transition-all duration-150 active:scale-90 shadow-2xs hover:scale-105" title="Amber">
-                            <i class="fa-solid fa-check text-white text-[10px] hidden"></i>
-                        </button>
-                        <button type="button" onclick="setThemeColor('rose')" data-theme="rose" class="theme-swatch w-6 h-6 rounded-full bg-rose-600 flex items-center justify-center transition-all duration-150 active:scale-90 shadow-2xs hover:scale-105" title="Rose">
-                            <i class="fa-solid fa-check text-white text-[10px] hidden"></i>
-                        </button>
-                        <button type="button" onclick="setThemeColor('teal')" data-theme="teal" class="theme-swatch w-6 h-6 rounded-full bg-teal-600 flex items-center justify-center transition-all duration-150 active:scale-90 shadow-2xs hover:scale-105" title="Teal">
-                            <i class="fa-solid fa-check text-white text-[10px] hidden"></i>
-                        </button>
-                    </div>
-                </div>
-
-                <hr class="border-gray-100 dark:border-slate-700">
-
-                <!-- Compact Action Rows: Clear Active List & Reset Count -->
+                <!-- Action Row: Clear Active List -->
                 <div class="flex items-center justify-between gap-2">
                     <div class="min-w-0">
                         <p class="font-medium text-slate-800 dark:text-slate-100 text-xs sm:text-sm truncate" data-i18n="clearActiveListTitle">ניקוי רשימת הקניות</p>
+                        <p class="text-[11px] text-gray-500 dark:text-slate-400" data-i18n="clearActiveListDesc">הסר את כל המוצרים שברשימה</p>
                     </div>
                     <button onclick="openConfirmClearListModal()" class="shrink-0 bg-amber-50 hover:bg-amber-100 dark:bg-amber-950/40 dark:hover:bg-amber-900/60 text-amber-700 dark:text-amber-300 border border-amber-200 dark:border-amber-800/60 font-semibold px-2.5 py-1.5 rounded-lg text-xs transition flex items-center gap-1.5 active:scale-95">
                         <i class="fa-solid fa-broom text-amber-600 dark:text-amber-400"></i>
@@ -550,9 +611,13 @@
                     </button>
                 </div>
 
+                <hr class="border-gray-100 dark:border-slate-700">
+
+                <!-- Action Row: Reset Usage Count -->
                 <div class="flex items-center justify-between gap-2">
                     <div class="min-w-0">
                         <p class="font-medium text-slate-800 dark:text-slate-100 text-xs sm:text-sm truncate" data-i18n="resetUsageTitle">איפוס מוני שימוש</p>
+                        <p class="text-[11px] text-gray-500 dark:text-slate-400" data-i18n="resetUsageDesc">אפס את מונה השימושים של המוצרים ל-0</p>
                     </div>
                     <button onclick="openConfirmResetModal()" class="shrink-0 bg-red-50 hover:bg-red-100 dark:bg-red-950/40 dark:hover:bg-red-900/60 text-red-600 dark:text-red-400 border border-red-200 dark:border-red-800/60 font-semibold px-2.5 py-1.5 rounded-lg text-xs transition flex items-center gap-1.5 active:scale-95">
                         <i class="fa-solid fa-rotate-left"></i>
@@ -561,10 +626,14 @@
                 </div>
             </div>
 
+            <!-- Footer -->
             <div class="pt-2.5 border-t border-gray-100 dark:border-slate-700 flex items-center justify-between mt-0.5">
-                <span class="text-[11px] text-gray-400 dark:text-slate-500 font-medium tracking-wide">
-                    &copy; made by seawave
-                </span>
+                <a href="mailto:seawave2@gmail.com?subject=Grocery%20List%20Feedback" 
+                   class="text-[11px] text-gray-400 dark:text-slate-500 hover:text-emerald-600 dark:hover:text-emerald-400 font-medium tracking-wide transition-colors flex items-center gap-1 group"
+                   title="שלח משוב / Send feedback">
+                    <span>&copy; made by seawave</span>
+                    <i class="fa-regular fa-envelope text-[10px] opacity-70 group-hover:opacity-100"></i>
+                </a>
                 <button onclick="closeSettingsModal()" class="bg-gray-100 dark:bg-slate-700 hover:bg-gray-200 dark:hover:bg-slate-600 text-slate-700 dark:text-slate-200 px-3.5 py-1.5 rounded-xl text-xs sm:text-sm font-medium transition" data-i18n="closeBtn">
                     סגור
                 </button>
@@ -761,7 +830,7 @@
                 addBtnTitle: "הוסף לרשימה",
                 list1Title: "מוצרים ברשימה",
                 list1Hint: "לחץ להסרה",
-                list1Empty: "הרשימה ריקה. הקלד מוצר למעלה או לחץ על מוצרים מהרשימה למטה כדי להוסיף!",
+                list1Empty: "הרשימה ריקה. הקלד מוצר או לחץ על מוצרים מהרשימה למטה כדי להוסיף!",
                 list2Title: "מוצרים זמינים",
                 sortByUsage: "לפי שימוש תדיר",
                 sortByAlphabet: "לפי א'-ב'",
@@ -816,9 +885,11 @@
                 allItemsCategory: "הכל",
                 fontSizeSettingTitle: "גודל גופן",
                 fontSizeSettingDesc: "בחר את גודל הטקסט באפליקציה",
-                fontSizeSmall: "קטן",
                 fontSizeMedium: "בינוני",
                 fontSizeLarge: "גדול",
+                fontSizeXLarge: "גדול מאוד",
+                boldSettingTitle: "הדגשת טקסט",
+                boldSettingDesc: "טקסט עבה וקריא יותר",
                 toggleQuantitiesLabel: "כמויות",
                 toggleQuantitiesTitle: "הצג או הסתר מונה כמויות",
                 quickAddModalTitle: "הוספת מוצר לרשימה",
@@ -831,12 +902,16 @@
                 themeSettingTitle: "צבע",
                 themeSettingDesc: "בחר גוון צבע ראשי לממשק",
                 simpleModeTitle: "ממשק פשוט",
-                simpleModeDesc: "ממשק קלאסי ונקי ללא תוספות"
+                simpleModeDesc: "ממשק קלאסי ונקי ללא תוספות",
+                exportListLabel: "שתף",
+                exportListTitle: "שתף רשימה",
+                exportEmptyToast: "רשימת הקניות ריקה",
+                exportSuccessToast: "הרשימה הועתקה ללוח!",
+                settingsTabGeneral: "כללי",
+                settingsTabAdvanced: "מתקדם"
             },
             en: {
                 appTitle: "Grocery List",
-                importExcel: "Import Excel",
-                importExcelTitle: "Import from Excel",
                 clearList: "Clear List",
                 clearListTitle: "Clear all active items",
                 settingsTitle: "App Settings",
@@ -845,7 +920,7 @@
                 addBtnTitle: "Add to list",
                 list1Title: "Products in list",
                 list1Hint: "Click to remove",
-                list1Empty: "Your list is empty. Add products from the input above, the (+) button below, or catalog!",
+                list1Empty: "Your list is empty. Add products from the search input, (+) button, or catalog!",
                 list2Title: "Available products",
                 sortByUsage: "By most used",
                 sortByAlphabet: "Alphabetical (A-Z)",
@@ -875,8 +950,6 @@
                 newProductModalDesc: "Choose a category for this product:",
                 chooseFamilyLabel: "Product Category / Family:",
                 saveAndAddBtn: "Save & Add to List",
-                importExcelDesc: "Import product catalog from Excel (.xlsx / .xls)",
-                importExcelBtn: "Select Excel file to import",
                 clearActiveListTitle: "Clear Shopping List",
                 clearActiveListDesc: "Remove all items currently in your active shopping list",
                 clearActiveListBtn: "Clear List",
@@ -886,8 +959,6 @@
                 toastListCleared: "Active shopping list cleared successfully",
                 toastResetSuccess: "Usage counters successfully reset to 0",
                 toastDeleteProductSuccess: "Product deleted from catalog successfully",
-                toastImportSuccess: "Import completed! Added {count} new products to catalog.",
-                toastImportError: "Error importing file. Please make sure it is a valid Excel file.",
                 undoBtn: "Undo",
                 undoBtnTitle: "Undo last operation (Ctrl+Z)",
                 undoSuccessAdd: "Undo: '{name}' removed from list",
@@ -900,9 +971,11 @@
                 allItemsCategory: "All",
                 fontSizeSettingTitle: "Font Size",
                 fontSizeSettingDesc: "Choose text display size",
-                fontSizeSmall: "Small",
                 fontSizeMedium: "Medium",
                 fontSizeLarge: "Large",
+                fontSizeXLarge: "Extra Large",
+                boldSettingTitle: "Bold Text",
+                boldSettingDesc: "Make all text bolder and easier to read",
                 toggleQuantitiesLabel: "Quantities",
                 toggleQuantitiesTitle: "Show or hide quantity counters",
                 quickAddModalTitle: "Add Product to List",
@@ -915,12 +988,16 @@
                 themeSettingTitle: "Theme Color",
                 themeSettingDesc: "Choose primary interface color",
                 simpleModeTitle: "Simple Mode",
-                simpleModeDesc: "Classic clean UI without extras"
+                simpleModeDesc: "Classic clean UI without extras",
+                exportListLabel: "Share",
+                exportListTitle: "Share List",
+                exportEmptyToast: "Shopping list is empty",
+                exportSuccessToast: "List copied to clipboard!",
+                settingsTabGeneral: "General",
+                settingsTabAdvanced: "Advanced"
             },
             ru: {
                 appTitle: "Список покупок",
-                importExcel: "Импорт Excel",
-                importExcelTitle: "Импорт из Excel",
                 clearList: "Очистить список",
                 clearListTitle: "Очистить активный список",
                 settingsTitle: "Настройки приложения",
@@ -929,7 +1006,7 @@
                 addBtnTitle: "Добавить в список",
                 list1Title: "Товары в списке",
                 list1Hint: "Нажмите, чтобы удалить",
-                list1Empty: "Список пуст. Введите товар вверху, нажмите кнопку (+) внизу или выберите из каталога!",
+                list1Empty: "Список пуст. Введите товар для поиска, нажмите кнопку (+) или выберите из каталога!",
                 list2Title: "Доступные товары",
                 sortByUsage: "По использованию",
                 sortByAlphabet: "По алфавиту",
@@ -959,8 +1036,6 @@
                 newProductModalDesc: "Выберите категорию для этого товара:",
                 chooseFamilyLabel: "Категория товара:",
                 saveAndAddBtn: "Сохранить и добавить в список",
-                importExcelDesc: "Импорт каталога товаров из файла Excel (.xlsx / .xls)",
-                importExcelBtn: "Выбрать файл Excel для импорта",
                 clearActiveListTitle: "Очистка списка покупок",
                 clearActiveListDesc: "Удалить все товары из текущего активного списка покупок",
                 clearActiveListBtn: "Очистить список",
@@ -970,8 +1045,6 @@
                 toastListCleared: "Активный список покупок успешно очищен",
                 toastResetSuccess: "Счетчики использования успешно сброшены на 0",
                 toastDeleteProductSuccess: "Товар успешно удален из каталога",
-                toastImportSuccess: "Импорт завершен! В каталог добавлено {count} новых товаров.",
-                toastImportError: "Ошибка импорта файла. Убедитесь, что это корректный файл Excel.",
                 undoBtn: "Отмена",
                 undoBtnTitle: "Отменить последнее действие (Ctrl+Z)",
                 undoSuccessAdd: "Отменено: '{name}' удален из списка",
@@ -984,9 +1057,11 @@
                 allItemsCategory: "Все",
                 fontSizeSettingTitle: "Размер шрифта",
                 fontSizeSettingDesc: "Выберите размер текста приложения",
-                fontSizeSmall: "Мелкий",
                 fontSizeMedium: "Средний",
                 fontSizeLarge: "Крупный",
+                fontSizeXLarge: "Очень крупный",
+                boldSettingTitle: "Жирный шрифт",
+                boldSettingDesc: "Сделать текст более четким и жирным",
                 toggleQuantitiesLabel: "Количество",
                 toggleQuantitiesTitle: "Показать или скрыть количество товаров",
                 quickAddModalTitle: "Добавление товара в список",
@@ -999,7 +1074,13 @@
                 themeSettingTitle: "Цвет темы",
                 themeSettingDesc: "Выберите основной цвет интерфейса",
                 simpleModeTitle: "Простой интерфейс",
-                simpleModeDesc: "Классический чистый вид без дополнений"
+                simpleModeDesc: "Классический чистый вид без дополнений",
+                exportListLabel: "Поделиться",
+                exportListTitle: "Поделиться списком",
+                exportEmptyToast: "Список покупок пуст",
+                exportSuccessToast: "Список скопирован в буфер!",
+                settingsTabGeneral: "Основные",
+                settingsTabAdvanced: "Дополнительно"
             }
         };
 
@@ -1076,8 +1157,20 @@
         let deletedProducts = JSON.parse(localStorage.getItem('deletedProducts')) || [];
         let masterCatalog = storedCatalog || [];
 
-        // Ensure all products in the comprehensive dictionary are in masterCatalog (unless deleted by user)
+        // Synchronize masterCatalog with the latest Excel catalog dictionary
         if (typeof productTranslations !== 'undefined') {
+            const validKeys = new Set(Object.keys(productTranslations).map(k => cleanProductName(k)));
+            
+            // Remove items that were deleted from the Excel sheet by the user (preserving user-custom additions)
+            masterCatalog = masterCatalog.filter(p => {
+                const cName = cleanProductName(p.name);
+                // Keep if in new Excel or if user manually deleted
+                if (validKeys.has(cName)) return true;
+                // If it was in older Excel versions but no longer present, prune it
+                return false;
+            });
+
+            // Add or update items from the new Excel dictionary
             for (const key in productTranslations) {
                 const cleanKey = cleanProductName(key);
                 const assignedCategory = (typeof productCategoryMap !== 'undefined' && productCategoryMap[cleanKey]) ? productCategoryMap[cleanKey] : "כללי";
@@ -1086,7 +1179,7 @@
                     const existing = masterCatalog.find(p => cleanProductName(p.name) === cleanKey);
                     if (!existing) {
                         masterCatalog.push({ name: cleanKey, category: assignedCategory, usage: 0 });
-                    } else if (!existing.category || existing.category === "כללי") {
+                    } else {
                         existing.category = assignedCategory;
                     }
                 }
@@ -1218,6 +1311,7 @@
             if (document.getElementById('addBtnTooltipTop')) document.getElementById('addBtnTooltipTop').title = t.addBtnTitle;
             if (document.getElementById('undoBtn')) document.getElementById('undoBtn').title = t.undoBtnTitle;
             if (document.getElementById('toggleQuantitiesBtn')) document.getElementById('toggleQuantitiesBtn').title = t.toggleQuantitiesTitle;
+            if (document.getElementById('exportListBtn')) document.getElementById('exportListBtn').title = t.exportListTitle;
             if (document.getElementById('openAddModalFab')) document.getElementById('openAddModalFab').title = t.fabAddProductTitle;
 
             // Update language selector dropdown
@@ -1270,20 +1364,21 @@
             applyDarkMode();
         }
 
-        // Font Size Management ('small', 'medium', 'large')
-        let currentFontSize = localStorage.getItem('appFontSize') || 'medium';
+        // Font Size Management ('medium', 'large', 'xlarge') - Default: 'large'
+        let currentFontSize = localStorage.getItem('appFontSize') || 'large';
+        if (currentFontSize === 'small') currentFontSize = 'large';
 
         function applyFontSize() {
-            document.documentElement.classList.remove('font-size-small', 'font-size-medium', 'font-size-large');
+            document.documentElement.classList.remove('font-size-small', 'font-size-medium', 'font-size-large', 'font-size-xlarge');
             document.documentElement.classList.add(`font-size-${currentFontSize}`);
 
-            ['small', 'medium', 'large'].forEach(size => {
+            ['medium', 'large', 'xlarge'].forEach(size => {
                 const btn = document.getElementById(`fontSizeBtn-${size}`);
                 if (!btn) return;
                 if (size === currentFontSize) {
-                    btn.className = "px-2.5 py-1 text-xs rounded-lg font-bold bg-white dark:bg-slate-800 text-emerald-700 dark:text-emerald-300 shadow-sm transition";
+                    btn.className = "px-2 py-1 text-xs rounded-lg font-bold bg-white dark:bg-slate-800 text-emerald-700 dark:text-emerald-300 shadow-sm transition";
                 } else {
-                    btn.className = "px-2.5 py-1 text-xs rounded-lg font-medium text-gray-500 dark:text-slate-400 hover:text-slate-800 dark:hover:text-slate-200 transition";
+                    btn.className = "px-2 py-1 text-xs rounded-lg font-medium text-gray-500 dark:text-slate-400 hover:text-slate-800 dark:hover:text-slate-200 transition";
                 }
             });
 
@@ -1294,6 +1389,42 @@
             triggerHaptic(15);
             currentFontSize = newSize;
             applyFontSize();
+        }
+
+        // Bold Text Management - Default: true (הדגשת טקסט פעילה כברירת מחדל)
+        let isBoldText = localStorage.getItem('isBoldText') !== null ? JSON.parse(localStorage.getItem('isBoldText')) : true;
+
+        function applyBoldText() {
+            const dot = document.getElementById('boldTextDot');
+            const btn = document.getElementById('boldTextBtn');
+            const isRtl = (currentLanguage === 'he');
+
+            if (isBoldText) {
+                document.documentElement.classList.add('app-bold');
+                if (btn) {
+                    btn.classList.add('bg-emerald-600');
+                    btn.classList.remove('bg-gray-300');
+                }
+                if (dot) {
+                    dot.style.transform = isRtl ? 'translateX(-24px)' : 'translateX(24px)';
+                }
+            } else {
+                document.documentElement.classList.remove('app-bold');
+                if (btn) {
+                    btn.classList.remove('bg-emerald-600');
+                    btn.classList.add('bg-gray-300');
+                }
+                if (dot) {
+                    dot.style.transform = 'translateX(0px)';
+                }
+            }
+            localStorage.setItem('isBoldText', JSON.stringify(isBoldText));
+        }
+
+        function toggleBoldText() {
+            triggerHaptic(15);
+            isBoldText = !isBoldText;
+            applyBoldText();
         }
 
         // Color Theme Management ('emerald', 'blue', 'purple', 'amber', 'rose', 'teal')
@@ -1473,6 +1604,107 @@
             activeQuantities[name] = updated;
             saveData();
             renderActiveList();
+        }
+
+        // Export & Share active shopping list via Web Share API or Clipboard
+        function exportShoppingList() {
+            triggerHaptic(15);
+            const t = translations[currentLanguage] || translations.he;
+            if (!activeList || activeList.length === 0) {
+                showToast(t.exportEmptyToast, "error");
+                return;
+            }
+
+            const totalCount = activeList.length;
+            const unit = t.itemsUnit || "יח'";
+            let lines = [];
+            lines.push(`🛒 ${t.appTitle} (${totalCount} ${unit}):`);
+            lines.push('');
+
+            if (isGroupedByAisle && !isSimpleMode) {
+                // Group items by category / aisle
+                const grouped = {};
+                activeList.forEach(rawName => {
+                    const cat = getProductCategory(rawName) || "כללי";
+                    if (!grouped[cat]) grouped[cat] = [];
+                    grouped[cat].push(rawName);
+                });
+
+                const sortedCatKeys = Object.keys(grouped).sort((a, b) => {
+                    const nameA = getLocalizedCategoryName(a);
+                    const nameB = getLocalizedCategoryName(b);
+                    const locale = (currentLanguage === 'ru' ? 'ru' : (currentLanguage === 'en' ? 'en' : 'he'));
+                    return nameA.localeCompare(nameB, locale);
+                });
+
+                sortedCatKeys.forEach(cat => {
+                    const emoji = getCategoryEmoji(cat);
+                    const catTitle = getLocalizedCategoryName(cat) || cat;
+                    lines.push(`${emoji} *${catTitle}* (${grouped[cat].length}):`);
+                    grouped[cat].forEach(rawName => {
+                        const name = getLocalizedProductName(rawName);
+                        const qty = activeQuantities[rawName] || 1;
+                        const qtyStr = (qty > 1 || showQuantities) ? ` (${qty} ${unit})` : '';
+                        lines.push(`  • ${name}${qtyStr}`);
+                    });
+                    lines.push('');
+                });
+            } else {
+                // Flat list with category emoji beside each product
+                activeList.forEach(rawName => {
+                    const cat = getProductCategory(rawName) || "כללי";
+                    const emoji = getCategoryEmoji(cat);
+                    const name = getLocalizedProductName(rawName);
+                    const qty = activeQuantities[rawName] || 1;
+                    const qtyStr = (qty > 1 || showQuantities) ? ` (${qty} ${unit})` : '';
+                    lines.push(`${emoji} ${name}${qtyStr}`);
+                });
+            }
+
+            const shareText = lines.join('\n').trim();
+
+            if (navigator.share) {
+                navigator.share({
+                    title: t.appTitle,
+                    text: shareText
+                }).catch(err => {
+                    // Ignore user cancellation abort
+                    if (err.name !== 'AbortError') {
+                        fallbackCopyText(shareText, t);
+                    }
+                });
+            } else {
+                fallbackCopyText(shareText, t);
+            }
+        }
+
+        function fallbackCopyText(text, t) {
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+                navigator.clipboard.writeText(text).then(() => {
+                    showToast(t.exportSuccessToast, "success");
+                }).catch(() => {
+                    promptCopyFallback(text, t);
+                });
+            } else {
+                promptCopyFallback(text, t);
+            }
+        }
+
+        function promptCopyFallback(text, t) {
+            try {
+                const ta = document.createElement('textarea');
+                ta.value = text;
+                ta.style.position = 'fixed';
+                ta.style.opacity = '0';
+                document.body.appendChild(ta);
+                ta.focus();
+                ta.select();
+                document.execCommand('copy');
+                document.body.removeChild(ta);
+                showToast(t.exportSuccessToast, "success");
+            } catch (e) {
+                console.error("Copy failed", e);
+            }
         }
 
         // Save data to localStorage
@@ -1959,7 +2191,31 @@
         }
 
         // Settings Modal Handlers
+        let currentSettingsTab = 'general';
+
+        function switchSettingsTab(tab) {
+            triggerHaptic(10);
+            currentSettingsTab = tab;
+            const tabGen = document.getElementById('settingsTab-general');
+            const tabAdv = document.getElementById('settingsTab-advanced');
+            const btnGen = document.getElementById('settingsTabBtn-general');
+            const btnAdv = document.getElementById('settingsTabBtn-advanced');
+
+            if (tab === 'advanced') {
+                if (tabGen) tabGen.classList.add('hidden');
+                if (tabAdv) tabAdv.classList.remove('hidden');
+                if (btnAdv) btnAdv.className = "py-1.5 rounded-lg transition-all flex items-center justify-center gap-1.5 bg-white dark:bg-slate-800 text-emerald-700 dark:text-emerald-300 shadow-2xs";
+                if (btnGen) btnGen.className = "py-1.5 rounded-lg transition-all flex items-center justify-center gap-1.5 text-gray-500 dark:text-slate-400 hover:text-slate-700 dark:hover:text-slate-200";
+            } else {
+                if (tabAdv) tabAdv.classList.add('hidden');
+                if (tabGen) tabGen.classList.remove('hidden');
+                if (btnGen) btnGen.className = "py-1.5 rounded-lg transition-all flex items-center justify-center gap-1.5 bg-white dark:bg-slate-800 text-emerald-700 dark:text-emerald-300 shadow-2xs";
+                if (btnAdv) btnAdv.className = "py-1.5 rounded-lg transition-all flex items-center justify-center gap-1.5 text-gray-500 dark:text-slate-400 hover:text-slate-700 dark:hover:text-slate-200";
+            }
+        }
+
         function openSettingsModal() {
+            switchSettingsTab(currentSettingsTab || 'general');
             document.getElementById('settingsModal').classList.remove('hidden');
         }
 
@@ -2219,50 +2475,6 @@
             }
         }
 
-        // Handle Excel Import
-        function handleExcelImport(event) {
-            const file = event.target.files[0];
-            const t = translations[currentLanguage] || translations.he;
-            if (!file) return;
-
-            const reader = new FileReader();
-            reader.onload = function(e) {
-                try {
-                    const data = new Uint8Array(e.target.result);
-                    const workbook = XLSX.read(data, { type: 'array' });
-                    const firstSheetName = workbook.SheetNames[0];
-                    const worksheet = workbook.Sheets[firstSheetName];
-                    const jsonRows = XLSX.utils.sheet_to_json(worksheet, { header: 1 });
-
-                    let addedCount = 0;
-                    jsonRows.forEach((row, index) => {
-                        if (!row || row.length === 0) return;
-                        let productName = String(row[0]).trim();
-
-                        if (index === 0 && (productName.includes("שם") || productName.toLowerCase().includes("name") || productName.toLowerCase().includes("название"))) {
-                            return;
-                        }
-
-                        if (productName) {
-                            let category = row[1] ? String(row[1]).trim() : "כללי";
-                            if (!masterCatalog.some(p => p.name.toLowerCase() === productName.toLowerCase())) {
-                                masterCatalog.push({ name: productName, category: category, usage: 0 });
-                                addedCount++;
-                            }
-                        }
-                    });
-
-                    renderAll();
-                    closeSettingsModal();
-                    event.target.value = '';
-                    showToast(t.toastImportSuccess.replace('{count}', addedCount), "success");
-                } catch (err) {
-                    showToast(t.toastImportError, "error");
-                }
-            };
-            reader.readAsArrayBuffer(file);
-        }
-
         function showToast(message, type = "success") {
             const toast = document.getElementById('toastNotification');
             toast.innerText = message;
@@ -2279,9 +2491,10 @@
             });
         }
 
-        // Initialize UI, Language, Font Size, Theme Color, Simple Mode, Search Bar Mode & Dark Mode
+        // Initialize UI, Language, Font Size, Bold Text, Theme Color, Simple Mode, Search Bar Mode & Dark Mode
         applyDarkMode();
         applyFontSize();
+        applyBoldText();
         applyThemeColor();
         applySimpleMode();
         applySearchBarMode();
