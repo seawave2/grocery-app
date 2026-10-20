@@ -302,17 +302,19 @@
             background-color: var(--theme-primary-dark) !important;
         }
 
-        /* Simple Mode (Original Clean UI) overrides */
+        /* Simple Mode & Modular UI Feature overrides */
         body.simple-mode #categoryChipsCarousel,
         body.simple-mode #toggleGroupingBtn,
         body.simple-mode #toggleQuantitiesBtn,
-        body.simple-mode .search-position-setting-row,
-        body.simple-mode #openAddModalFab,
-        body.simple-mode .product-cat-tag {
+        body.simple-mode .product-cat-tag,
+        body.no-category-carousel #categoryChipsCarousel,
+        body.no-aisle-grouping #toggleGroupingBtn,
+        body.no-quantities #toggleQuantitiesBtn,
+        body.no-quantities .qty-control,
+        body.no-category-tags .product-cat-tag,
+        body.no-progress-bar #shoppingProgressBarContainer,
+        body.no-purchased-list #purchasedItemsWrapper {
             display: none !important;
-        }
-        body.simple-mode #topSearchBarContainer {
-            display: block !important;
         }
     </style>
 </head>
@@ -331,13 +333,21 @@
             <i class="fa-solid fa-basket-shopping me-1"></i> <span data-i18n="appTitle">רשימת קניות</span>
         </h1>
         <div class="flex gap-2 items-center">
-            <button id="navSavedListsBtn" onclick="openSavedListsModal()" class="theme-btn-header text-white px-2.5 py-1.5 rounded-xl text-xs sm:text-sm transition flex items-center gap-1.5 font-medium shadow-sm active:scale-95" title="רשימות שמורות ותבניות">
-                <i class="fa-solid fa-bookmark text-xs text-amber-300"></i>
-                <span data-i18n="savedListsBtnLabel">תבניות</span>
-            </button>
             <button id="undoBtn" onclick="performUndo()" disabled class="theme-btn-header disabled:opacity-40 disabled:cursor-not-allowed text-white px-3 py-1.5 rounded-xl text-xs sm:text-sm transition flex items-center gap-1.5 font-medium shadow-sm active:scale-95" title="בטל פעולה אחרונה (Ctrl+Z)">
                 <i class="fa-solid fa-rotate-left text-sm sm:text-base"></i>
                 <span data-i18n="undoBtn" class="hidden sm:inline">בטל</span>
+            </button>
+            <!-- Header Mode Switcher (מלא / פשוט) -->
+            <div id="headerModeToggle" class="inline-flex items-center p-0.5 bg-black/20 hover:bg-black/25 dark:bg-black/35 rounded-xl border border-white/20 text-xs select-none shadow-xs transition" title="בחר מצב ממשק">
+                <button type="button" id="headerModeBtnFull" onclick="setUiModeFromHeader('full')" class="px-2 py-1 rounded-lg text-xs transition-all flex items-center justify-center">
+                    <span data-i18n="modeFull">מלא</span>
+                </button>
+                <button type="button" id="headerModeBtnSimple" onclick="setUiModeFromHeader('simple')" class="px-2 py-1 rounded-lg text-xs transition-all flex items-center justify-center">
+                    <span data-i18n="modeSimple">פשוט</span>
+                </button>
+            </div>
+            <button onclick="openHelpModal()" class="theme-btn-header text-white p-2 rounded-xl text-sm transition shadow-sm active:scale-95" id="helpBtnTooltip" title="מדריך ועזרה">
+                <i class="fa-solid fa-circle-question text-base sm:text-lg"></i>
             </button>
             <button onclick="openSettingsModal()" class="theme-btn-header text-white p-2 rounded-xl text-sm transition shadow-sm active:scale-95" id="settingsBtnTooltip" title="הגדרות">
                 <i class="fa-solid fa-gear text-base sm:text-lg"></i>
@@ -411,6 +421,18 @@
                             <i class="fa-solid fa-arrow-up-from-bracket text-[11px]"></i>
                             <span data-i18n="exportListLabel" class="hidden sm:inline">שתף</span>
                         </button>
+                    </div>
+                </div>
+
+                <!-- Shopping Progress Bar (Ultra-Compact Single Row) -->
+                <div id="shoppingProgressBarContainer" class="hidden mb-2.5 flex items-center gap-2.5 px-0.5">
+                    <div class="flex-1 bg-gray-200/80 dark:bg-slate-700 rounded-full h-1.5 overflow-hidden">
+                        <div id="shoppingProgressBarFill" class="h-full rounded-full transition-all duration-300 ease-out" style="width: 0%; background-color: var(--theme-primary);"></div>
+                    </div>
+                    <div class="flex items-center gap-1.5 shrink-0 text-[11px] font-medium text-slate-600 dark:text-slate-300">
+                        <span id="shoppingProgressIcon" class="text-xs">🛒</span>
+                        <span id="shoppingProgressText">0 מתוך 0</span>
+                        <span id="shoppingProgressPercent" class="font-bold theme-text-primary text-[11px]">0%</span>
                     </div>
                 </div>
 
@@ -533,19 +555,25 @@
                 </button>
             </div>
 
-            <!-- Tab 1: General Settings (תצוגה, שפה, גודל פונט, הדגשה, צבע) -->
+            <!-- Tab 1: General Settings (ממשק פשוט, מצב כהה, גודל גופן, הדגשה, צבע) -->
             <div id="settingsTab-general" class="flex flex-col gap-2.5 overflow-y-auto pr-0.5">
-                <!-- Language Selector -->
-                <div class="flex items-center justify-between">
-                    <div>
-                        <p class="font-medium text-slate-800 dark:text-slate-100 text-sm" data-i18n="languageSettingTitle">שפת ממשק</p>
-                        <p class="text-[11px] text-gray-500 dark:text-slate-400" data-i18n="languageSettingDesc">בחר שפה עבור תפריטים ומוצרים</p>
+                <!-- UI Components Customizer Card (Opens customizer without on/off toggle) -->
+                <div onclick="openUiCustomizerModal()" class="p-3 bg-gray-50/80 dark:bg-slate-700/40 rounded-2xl border border-gray-200/80 dark:border-slate-700 hover:border-emerald-500/60 dark:hover:border-emerald-500/60 cursor-pointer flex items-center justify-between transition group active:scale-[0.99] shadow-2xs">
+                    <div class="flex items-center gap-3">
+                        <div class="w-9 h-9 rounded-xl bg-emerald-100/80 dark:bg-emerald-950/80 text-emerald-700 dark:text-emerald-300 flex items-center justify-center text-sm shrink-0 group-hover:scale-105 transition-transform">
+                            <i class="fa-solid fa-sliders"></i>
+                        </div>
+                        <div>
+                            <p class="font-medium text-slate-800 dark:text-slate-100 text-sm flex items-center gap-2">
+                                <span data-i18n="customizerCardTitle">התאמת רכיבי ממשק</span>
+                                <span id="uiModeBadge" class="text-[10px] px-2 py-0.5 rounded-full font-bold bg-emerald-100 dark:bg-emerald-950/80 text-emerald-700 dark:text-emerald-300 border border-emerald-300/60 dark:border-emerald-800">פשוט</span>
+                            </p>
+                            <p class="text-[11px] text-gray-500 dark:text-slate-400" data-i18n="customizerCardDesc">סמן ב-✓ אילו רכיבים יוצגו באפליקציה</p>
+                        </div>
                     </div>
-                    <select id="languageSelect" onchange="changeLanguage(this.value)" class="bg-gray-100 dark:bg-slate-700 border border-gray-300 dark:border-slate-600 text-slate-800 dark:text-slate-100 text-xs rounded-lg px-2.5 py-1.5 outline-none cursor-pointer font-medium focus:border-emerald-500">
-                        <option value="he">🇮🇱 עברית</option>
-                        <option value="en">🇺🇸 English</option>
-                        <option value="ru">🇷🇺 Русский</option>
-                    </select>
+                    <div class="text-gray-400 group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors px-1">
+                        <i class="fa-solid fa-chevron-left rtl:rotate-0 ltr:rotate-180 text-xs"></i>
+                    </div>
                 </div>
 
                 <hr class="border-gray-100 dark:border-slate-700">
@@ -618,45 +646,18 @@
                         </button>
                     </div>
                 </div>
+            </div>
 
-                <hr class="border-gray-100 dark:border-slate-700">
-
+            <!-- Tab 2: Advanced Settings (הצג מחירים משוערים, מסך דולק תמיד, מיקום שדה חיפוש, ניקוי רשימה, איפוס מונים, שפת ממשק) -->
+            <div id="settingsTab-advanced" class="hidden flex flex-col gap-2.5 overflow-y-auto pr-0.5">
                 <!-- Show Prices Toggle -->
                 <div class="flex items-center justify-between">
                     <div>
                         <p class="font-medium text-slate-800 dark:text-slate-100 text-sm" data-i18n="showPricesTitle">הצג מחירים משוערים</p>
-                        <p class="text-[11px] text-gray-500 dark:text-slate-400" id="showPricesSubtitle">מחיר משוער מעודכן ל-19/10/2026 (לק״ג / יח׳)</p>
+                        <p class="text-[11px] text-gray-500 dark:text-slate-400" id="showPricesSubtitle">מחיר משוער מעודכן ל-10/2026</p>
                     </div>
                     <button id="showPricesBtn" onclick="toggleShowPrices()" class="w-11 h-5.5 bg-gray-300 rounded-full p-0.5 transition-colors duration-200 flex items-center">
                         <div id="showPricesDot" class="w-4 h-4 bg-white rounded-full transition-transform duration-200"></div>
-                    </button>
-                </div>
-
-                <hr class="border-gray-100 dark:border-slate-700">
-
-                <!-- Saved Lists & Templates Action Row in Settings -->
-                <div class="flex items-center justify-between">
-                    <div>
-                        <p class="font-medium text-slate-800 dark:text-slate-100 text-sm" data-i18n="savedListsModalTitle">רשימות שמורות ותבניות</p>
-                        <p class="text-[11px] text-gray-500 dark:text-slate-400" data-i18n="savedListsModalDesc">שמור את הסל הנוכחי או טען רשימה קבועה</p>
-                    </div>
-                    <button onclick="closeSettingsModal(); openSavedListsModal();" class="shrink-0 bg-emerald-50 hover:bg-emerald-100 dark:bg-emerald-950/60 dark:hover:bg-emerald-900/60 text-emerald-700 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800/60 font-semibold px-2.5 py-1.5 rounded-lg text-xs transition flex items-center gap-1.5 active:scale-95">
-                        <i class="fa-solid fa-bookmark text-emerald-600 dark:text-emerald-400 text-xs"></i>
-                        <span data-i18n="openSavedListsBtn">פתח תבניות</span>
-                    </button>
-                </div>
-            </div>
-
-            <!-- Tab 2: Advanced Settings (מיקום שדה חיפוש, ממשק פשוט, ניקוי רשימה, איפוס מונים) -->
-            <div id="settingsTab-advanced" class="hidden flex flex-col gap-2.5 overflow-y-auto pr-0.5">
-                <!-- Simple Mode Toggle -->
-                <div class="flex items-center justify-between">
-                    <div>
-                        <p class="font-medium text-slate-800 dark:text-slate-100 text-sm" data-i18n="simpleModeTitle">ממשק פשוט</p>
-                        <p class="text-[11px] text-gray-500 dark:text-slate-400" data-i18n="simpleModeDesc">ממשק קלאסי ונקי ללא תוספות</p>
-                    </div>
-                    <button id="simpleModeBtn" onclick="toggleSimpleMode()" class="w-11 h-5.5 bg-gray-300 rounded-full p-0.5 transition-colors duration-200 flex items-center">
-                        <div id="simpleModeDot" class="w-4 h-4 bg-white rounded-full transition-transform duration-200"></div>
                     </button>
                 </div>
 
@@ -683,7 +684,7 @@
                     </div>
                     <div class="inline-flex rounded-xl bg-gray-100 dark:bg-slate-700 p-0.5 border border-gray-200 dark:border-slate-600">
                         <button id="searchPosBtn-top" onclick="setSearchBarMode('top')" class="px-2 py-1 text-xs rounded-lg font-medium transition" data-i18n="searchPositionTop">בראש הדף</button>
-                        <button id="searchPosBtn-fab" onclick="setSearchBarMode('fab')" class="px-2 py-1 text-xs rounded-lg font-medium transition" data-i18n="searchPositionFab">כפתור + צף</button>
+                        <button id="searchPosBtn-fab" onclick="setSearchBarMode('fab')" class="px-2 py-1 text-xs rounded-lg font-medium transition" data-i18n="searchPositionFab">כפתור צף</button>
                     </div>
                 </div>
 
@@ -714,6 +715,21 @@
                         <span data-i18n="resetUsageBtn">אפס מוני שימוש</span>
                     </button>
                 </div>
+
+                <hr class="border-gray-100 dark:border-slate-700">
+
+                <!-- Language Selector -->
+                <div class="flex items-center justify-between">
+                    <div>
+                        <p class="font-medium text-slate-800 dark:text-slate-100 text-sm" data-i18n="languageSettingTitle">שפת ממשק</p>
+                        <p class="text-[11px] text-gray-500 dark:text-slate-400" data-i18n="languageSettingDesc">בחר שפה עבור תפריטים ומוצרים</p>
+                    </div>
+                    <select id="languageSelect" onchange="changeLanguage(this.value)" class="bg-gray-100 dark:bg-slate-700 border border-gray-300 dark:border-slate-600 text-slate-800 dark:text-slate-100 text-xs rounded-lg px-2.5 py-1.5 outline-none cursor-pointer font-medium focus:border-emerald-500">
+                        <option value="he">🇮🇱 עברית</option>
+                        <option value="en">🇺🇸 English</option>
+                        <option value="ru">🇷🇺 Русский</option>
+                    </select>
+                </div>
             </div>
 
             <!-- Footer -->
@@ -724,8 +740,123 @@
                     <span>&copy; made by seawave</span>
                     <i class="fa-regular fa-envelope text-[10px] opacity-70 group-hover:opacity-100"></i>
                 </a>
-                <span class="text-[10px] font-mono text-emerald-600 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-950/60 px-2 py-0.5 rounded-md border border-emerald-200 dark:border-emerald-900/60">v1.4 (20/10/2026)</span>
+                <span id="appVersionDisplay" class="text-[11px] text-gray-400 dark:text-slate-500 font-normal tracking-wide">v1.5</span>
                 <button onclick="closeSettingsModal()" class="bg-gray-100 dark:bg-slate-700 hover:bg-gray-200 dark:hover:bg-slate-600 text-slate-700 dark:text-slate-200 px-3.5 py-1.5 rounded-xl text-xs sm:text-sm font-medium transition" data-i18n="closeBtn">
+                    סגור
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- UI CUSTOMIZER MODAL (MODULAR FEATURES SELECTION) -->
+    <div id="uiCustomizerModal" class="hidden fixed inset-0 bg-black/60 backdrop-blur-sm z-[65] flex items-center justify-center p-3 sm:p-4">
+        <div class="bg-white dark:bg-slate-800 rounded-3xl max-w-md w-full p-4 sm:p-5 shadow-2xl border border-gray-200 dark:border-slate-700 flex flex-col gap-3.5 max-h-[92vh]">
+            <!-- Header -->
+            <div class="flex justify-between items-center border-b border-gray-100 dark:border-slate-700 pb-3">
+                <div class="flex items-center gap-2.5">
+                    <div class="w-9 h-9 rounded-2xl bg-emerald-50 dark:bg-emerald-950/80 text-emerald-600 dark:text-emerald-400 flex items-center justify-center text-base shrink-0 shadow-xs">
+                        <i class="fa-solid fa-sliders"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-base sm:text-lg font-bold text-slate-800 dark:text-slate-100" data-i18n="uiCustomizerTitle">התאמת רכיבי ממשק</h3>
+                        <p class="text-[11px] text-gray-500 dark:text-slate-400" data-i18n="uiCustomizerDesc">סמן ב-✓ את הרכיבים שברצונך להציג באפליקציה</p>
+                    </div>
+                </div>
+                <button onclick="closeUiCustomizerModal()" class="w-8 h-8 rounded-full bg-gray-100 dark:bg-slate-700 text-gray-500 hover:text-gray-700 dark:text-slate-400 dark:hover:text-slate-200 flex items-center justify-center transition active:scale-95">
+                    <i class="fa-solid fa-xmark text-sm"></i>
+                </button>
+            </div>
+
+            <!-- Presets Bar (Quick 1-Click Modes) -->
+            <div class="grid grid-cols-2 gap-2 p-1 bg-gray-100/80 dark:bg-slate-900/50 rounded-2xl">
+                <button type="button" onclick="setUiFeaturesPreset('simple')" class="py-2 px-2.5 rounded-xl text-xs font-semibold transition flex items-center justify-center gap-1.5 bg-white dark:bg-slate-800 text-slate-800 dark:text-slate-100 shadow-xs hover:border-emerald-500 border border-transparent active:scale-95">
+                    <i class="fa-solid fa-feather text-emerald-600"></i>
+                    <span data-i18n="presetSimpleMode">מצב פשוט (ברירת מחדל)</span>
+                </button>
+                <button type="button" onclick="setUiFeaturesPreset('full')" class="py-2 px-2.5 rounded-xl text-xs font-semibold transition flex items-center justify-center gap-1.5 bg-white dark:bg-slate-800 text-slate-800 dark:text-slate-100 shadow-xs hover:border-indigo-500 border border-transparent active:scale-95">
+                    <i class="fa-solid fa-wand-magic-sparkles text-indigo-500"></i>
+                    <span data-i18n="presetFullMode">מצב מלא (כל הרכיבים)</span>
+                </button>
+            </div>
+
+            <!-- Checkboxes List (Scrollable) -->
+            <div class="flex flex-col gap-2 overflow-y-auto pr-0.5 max-h-[52vh]">
+                <!-- 1. Purchased Items List -->
+                <label class="flex items-start gap-3 p-3 rounded-2xl border border-gray-200/80 dark:border-slate-700/80 bg-gray-50/60 dark:bg-slate-700/30 hover:border-emerald-500 transition cursor-pointer select-none">
+                    <input type="checkbox" id="feature-chk-purchasedList" onchange="toggleUiFeature('purchasedList', this.checked)" class="w-5 h-5 accent-emerald-600 rounded mt-0.5 shrink-0 cursor-pointer">
+                    <div class="flex-1">
+                        <div class="flex items-center gap-1.5 font-medium text-slate-800 dark:text-slate-100 text-sm">
+                            <i class="fa-solid fa-circle-check text-emerald-600 text-xs"></i>
+                            <span data-i18n="featPurchasedListTitle">רשימת פריטים שנקנו</span>
+                        </div>
+                        <p class="text-[11px] text-gray-500 dark:text-slate-400 mt-0.5 leading-snug" data-i18n="featPurchasedListDesc">סל נפרד לפריטים שסומנו. כשכבוי: לחיצה על מוצר ברשימה מסירה אותו ישירות לקטלוג המוצרים הזמינים ללא שמירה בסל.</p>
+                    </div>
+                </label>
+
+                <!-- 2. Shopping Progress Bar -->
+                <label class="flex items-start gap-3 p-3 rounded-2xl border border-gray-200/80 dark:border-slate-700/80 bg-gray-50/60 dark:bg-slate-700/30 hover:border-emerald-500 transition cursor-pointer select-none">
+                    <input type="checkbox" id="feature-chk-progressBar" onchange="toggleUiFeature('progressBar', this.checked)" class="w-5 h-5 accent-emerald-600 rounded mt-0.5 shrink-0 cursor-pointer">
+                    <div class="flex-1">
+                        <div class="flex items-center gap-1.5 font-medium text-slate-800 dark:text-slate-100 text-sm">
+                            <i class="fa-solid fa-bars-progress text-indigo-500 text-xs"></i>
+                            <span data-i18n="featProgressBarTitle">מד התקדמות קנייה</span>
+                        </div>
+                        <p class="text-[11px] text-gray-500 dark:text-slate-400 mt-0.5 leading-snug" data-i18n="featProgressBarDesc">פס התקדמות קומפקטי ואחוזי השלמת קנייה בראש רשימת הקניות.</p>
+                    </div>
+                </label>
+
+                <!-- 3. Quantities (+/-) -->
+                <label class="flex items-start gap-3 p-3 rounded-2xl border border-gray-200/80 dark:border-slate-700/80 bg-gray-50/60 dark:bg-slate-700/30 hover:border-emerald-500 transition cursor-pointer select-none">
+                    <input type="checkbox" id="feature-chk-quantities" onchange="toggleUiFeature('quantities', this.checked)" class="w-5 h-5 accent-emerald-600 rounded mt-0.5 shrink-0 cursor-pointer">
+                    <div class="flex-1">
+                        <div class="flex items-center gap-1.5 font-medium text-slate-800 dark:text-slate-100 text-sm">
+                            <i class="fa-solid fa-plus-minus text-amber-500 text-xs"></i>
+                            <span data-i18n="featQuantitiesTitle">כפתורי שינוי כמויות (+/-)</span>
+                        </div>
+                        <p class="text-[11px] text-gray-500 dark:text-slate-400 mt-0.5 leading-snug" data-i18n="featQuantitiesDesc">כפתורי פלוס ומינוס לשינוי כמויות המוצרים ישירות מתוך הרשימה.</p>
+                    </div>
+                </label>
+
+                <!-- 4. Supermarket Aisle Grouping -->
+                <label class="flex items-start gap-3 p-3 rounded-2xl border border-gray-200/80 dark:border-slate-700/80 bg-gray-50/60 dark:bg-slate-700/30 hover:border-emerald-500 transition cursor-pointer select-none">
+                    <input type="checkbox" id="feature-chk-aisleGrouping" onchange="toggleUiFeature('aisleGrouping', this.checked)" class="w-5 h-5 accent-emerald-600 rounded mt-0.5 shrink-0 cursor-pointer">
+                    <div class="flex-1">
+                        <div class="flex items-center gap-1.5 font-medium text-slate-800 dark:text-slate-100 text-sm">
+                            <i class="fa-solid fa-layer-group text-blue-500 text-xs"></i>
+                            <span data-i18n="featAisleGroupingTitle">סידור לפי מחלקות סופרמרקט</span>
+                        </div>
+                        <p class="text-[11px] text-gray-500 dark:text-slate-400 mt-0.5 leading-snug" data-i18n="featAisleGroupingDesc">כפתור למיון וחלוקת רשימת הקניות לפי מחלקות ומעברים בסופר.</p>
+                    </div>
+                </label>
+
+                <!-- 5. Catalog Category Carousel -->
+                <label class="flex items-start gap-3 p-3 rounded-2xl border border-gray-200/80 dark:border-slate-700/80 bg-gray-50/60 dark:bg-slate-700/30 hover:border-emerald-500 transition cursor-pointer select-none">
+                    <input type="checkbox" id="feature-chk-categoryCarousel" onchange="toggleUiFeature('categoryCarousel', this.checked)" class="w-5 h-5 accent-emerald-600 rounded mt-0.5 shrink-0 cursor-pointer">
+                    <div class="flex-1">
+                        <div class="flex items-center gap-1.5 font-medium text-slate-800 dark:text-slate-100 text-sm">
+                            <i class="fa-solid fa-tags text-teal-500 text-xs"></i>
+                            <span data-i18n="featCategoryCarouselTitle">קרוסלת מחלקות בקטלוג</span>
+                        </div>
+                        <p class="text-[11px] text-gray-500 dark:text-slate-400 mt-0.5 leading-snug" data-i18n="featCategoryCarouselDesc">סרגל כפתורי סינון מהיר לפי מחלקות מעל קטלוג המוצרים הזמינים.</p>
+                    </div>
+                </label>
+
+                <!-- 6. Category Tags & Emojis -->
+                <label class="flex items-start gap-3 p-3 rounded-2xl border border-gray-200/80 dark:border-slate-700/80 bg-gray-50/60 dark:bg-slate-700/30 hover:border-emerald-500 transition cursor-pointer select-none">
+                    <input type="checkbox" id="feature-chk-categoryTags" onchange="toggleUiFeature('categoryTags', this.checked)" class="w-5 h-5 accent-emerald-600 rounded mt-0.5 shrink-0 cursor-pointer">
+                    <div class="flex-1">
+                        <div class="flex items-center gap-1.5 font-medium text-slate-800 dark:text-slate-100 text-sm">
+                            <i class="fa-solid fa-icons text-purple-500 text-xs"></i>
+                            <span data-i18n="featCategoryTagsTitle">תגיות מחלקה ואימוג'י במוצרים</span>
+                        </div>
+                        <p class="text-[11px] text-gray-500 dark:text-slate-400 mt-0.5 leading-snug" data-i18n="featCategoryTagsDesc">הצגת שם המחלקה והאייקון מתחת לשם המוצר בכרטיסי הרשימה.</p>
+                    </div>
+                </label>
+            </div>
+
+            <!-- Footer -->
+            <div class="pt-2 border-t border-gray-100 dark:border-slate-700 flex justify-end">
+                <button type="button" onclick="closeUiCustomizerModal()" class="w-full py-2.5 theme-bg-header text-white rounded-xl text-xs sm:text-sm font-semibold transition shadow-sm active:scale-95" data-i18n="closeBtn">
                     סגור
                 </button>
             </div>
@@ -903,6 +1034,138 @@
         </div>
     </div>
 
+    <!-- HELP & TUTORIAL MODAL -->
+    <div id="helpModal" class="hidden fixed inset-0 bg-black/60 backdrop-blur-sm z-[65] flex items-center justify-center p-3 sm:p-4" onclick="handleHelpBackdropClick(event)">
+        <div class="bg-white dark:bg-slate-800 rounded-2xl max-w-md w-full p-4 sm:p-5 shadow-2xl border border-gray-200 dark:border-slate-700 flex flex-col gap-3.5 max-h-[90vh]" onclick="event.stopPropagation()">
+            <!-- Modal Header -->
+            <div class="flex items-center justify-between pb-2.5 border-b border-gray-100 dark:border-slate-700">
+                <div class="flex items-center gap-2.5">
+                    <div class="w-9 h-9 rounded-xl bg-emerald-100 dark:bg-emerald-950 text-emerald-600 dark:text-emerald-400 flex items-center justify-center text-lg shrink-0">
+                        <i class="fa-solid fa-circle-question"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-base font-bold text-slate-800 dark:text-slate-100" data-i18n="helpModalTitle">מדריך לשימוש באפליקציה</h3>
+                        <p class="text-xs text-gray-500 dark:text-slate-400" data-i18n="helpModalSubtitle">טיפים והסברים שימושיים לקנייה קלה ומהירה</p>
+                    </div>
+                </div>
+                <button onclick="closeHelpModal()" class="text-gray-400 hover:text-gray-600 dark:hover:text-gray-200 p-1.5 text-lg transition">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+
+            <!-- Scrollable Help Cards List -->
+            <div class="flex flex-col gap-2.5 overflow-y-auto pr-0.5 max-h-[60vh] text-start">
+                
+                <!-- 1. Settings & Customization (First Tip) -->
+                <div class="p-3 rounded-xl bg-gray-50 dark:bg-slate-700/40 border border-gray-200/80 dark:border-slate-700 flex items-start gap-3">
+                    <span class="text-xl shrink-0 mt-0.5">⚙️</span>
+                    <div>
+                        <h4 class="text-xs sm:text-sm font-bold text-slate-800 dark:text-slate-100" data-i18n="helpSettingsTitle">התאמה אישית והגדרות</h4>
+                        <p class="text-xs text-gray-600 dark:text-slate-300 mt-0.5 leading-relaxed" data-i18n="helpSettingsDesc">
+                            בהגדרות ניתן לבצע שינויים בממשק, לבחור פונקציות פעילות, לבחור היכן תופיע תיבת הוספת מוצר, להציג מחירון משוער ועוד.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- 2. Add Products -->
+                <div class="p-3 rounded-xl bg-gray-50 dark:bg-slate-700/40 border border-gray-200/80 dark:border-slate-700 flex items-start gap-3">
+                    <span class="text-xl shrink-0 mt-0.5">🛒</span>
+                    <div>
+                        <h4 class="text-xs sm:text-sm font-bold text-slate-800 dark:text-slate-100" data-i18n="helpAddTitle">הוספת מוצרים לסל</h4>
+                        <p class="text-xs text-gray-600 dark:text-slate-300 mt-0.5 leading-relaxed" data-i18n="helpAddDesc">
+                            ניתן להקליד שם מוצר בתיבת החיפוש בראש הדף/כפתור +, או ללחוץ ישירות על כרטיס המוצר ברשימת הקטלוג למטה.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- 3. Custom Product -->
+                <div class="p-3 rounded-xl bg-gray-50 dark:bg-slate-700/40 border border-gray-200/80 dark:border-slate-700 flex items-start gap-3">
+                    <span class="text-xl shrink-0 mt-0.5">✏️</span>
+                    <div>
+                        <h4 class="text-xs sm:text-sm font-bold text-slate-800 dark:text-slate-100" data-i18n="helpCustomTitle">מוצר חדש ומותאם אישית</h4>
+                        <p class="text-xs text-gray-600 dark:text-slate-300 mt-0.5 leading-relaxed" data-i18n="helpCustomDesc">
+                            בהקלדת מוצר שאינו קיים בקטלוג, המערכת תבקש לבחור מחלקה ותשמור אותו גם לסבבים הבאים.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- 4. Sort Available Products -->
+                <div class="p-3 rounded-xl bg-gray-50 dark:bg-slate-700/40 border border-gray-200/80 dark:border-slate-700 flex items-start gap-3">
+                    <span class="text-xl shrink-0 mt-0.5">🔤</span>
+                    <div>
+                        <h4 class="text-xs sm:text-sm font-bold text-slate-800 dark:text-slate-100" data-i18n="helpSortTitle">אפשרויות סידור מוצרים זמינים</h4>
+                        <p class="text-xs text-gray-600 dark:text-slate-300 mt-0.5 leading-relaxed" data-i18n="helpSortDesc">
+                            ברשימת המוצרים הזמינים ניתן לסדר את הפריטים לפי תדירות שימוש, לפי א'-ב' או לפי משפחה.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- 5. Check off items -->
+                <div class="p-3 rounded-xl bg-gray-50 dark:bg-slate-700/40 border border-gray-200/80 dark:border-slate-700 flex items-start gap-3">
+                    <span class="text-xl shrink-0 mt-0.5">✅</span>
+                    <div>
+                        <h4 class="text-xs sm:text-sm font-bold text-slate-800 dark:text-slate-100" data-i18n="helpCheckTitle">סימון מוצר שנקנה</h4>
+                        <p class="text-xs text-gray-600 dark:text-slate-300 mt-0.5 leading-relaxed" data-i18n="helpCheckDesc">
+                            לחיצה על מוצר בסל מעבירה אותו לרשימת 'פריטים שנקנו'. לחיצה חוזרת עליו תחזיר אותו לסל הפעיל, לחיצה על 'הסר פריטים שנקנו' תחזיר אותו לרשימת המוצרים הזמינים.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- 6. Quantities & Aisles -->
+                <div class="p-3 rounded-xl bg-gray-50 dark:bg-slate-700/40 border border-gray-200/80 dark:border-slate-700 flex items-start gap-3">
+                    <span class="text-xl shrink-0 mt-0.5">🔢</span>
+                    <div>
+                        <h4 class="text-xs sm:text-sm font-bold text-slate-800 dark:text-slate-100" data-i18n="helpQtyTitle">כמויות וסידור לפי מחלקות</h4>
+                        <p class="text-xs text-gray-600 dark:text-slate-300 mt-0.5 leading-relaxed" data-i18n="helpQtyDesc">
+                            שינוי כמות מתבצע בעזרת כפתורי <b>+/-</b> לצד כל מוצר. כפתור <b>מחלקות</b> מסדר את המוצרים לפי מעברי הסופרמרקט לנוחות מירבית.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- 7. Templates -->
+                <div class="p-3 rounded-xl bg-gray-50 dark:bg-slate-700/40 border border-gray-200/80 dark:border-slate-700 flex items-start gap-3">
+                    <span class="text-xl shrink-0 mt-0.5">🔖</span>
+                    <div>
+                        <h4 class="text-xs sm:text-sm font-bold text-slate-800 dark:text-slate-100" data-i18n="helpTemplatesTitle">תבניות ורשימות קבועות</h4>
+                        <p class="text-xs text-gray-600 dark:text-slate-300 mt-0.5 leading-relaxed" data-i18n="helpTemplatesDesc">
+                            כפתור <b>תבניות</b> מאפשר לשמור את הסל הנוכחי לשימוש חוזר, או להטעין בלחיצה סלים מוכנים.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- 8. Undo -->
+                <div class="p-3 rounded-xl bg-gray-50 dark:bg-slate-700/40 border border-gray-200/80 dark:border-slate-700 flex items-start gap-3">
+                    <span class="text-xl shrink-0 mt-0.5">↩️</span>
+                    <div>
+                        <h4 class="text-xs sm:text-sm font-bold text-slate-800 dark:text-slate-100" data-i18n="helpUndoTitle">ביטול פעולה אחרונה (Undo)</h4>
+                        <p class="text-xs text-gray-600 dark:text-slate-300 mt-0.5 leading-relaxed" data-i18n="helpUndoDesc">
+                            במקרה של מחיקה או סימון בטעות, כפתור <b>בטל</b> בראש הדף יחזיר מיד את המצב לקדמותו.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- 9. Share -->
+                <div class="p-3 rounded-xl bg-gray-50 dark:bg-slate-700/40 border border-gray-200/80 dark:border-slate-700 flex items-start gap-3">
+                    <span class="text-xl shrink-0 mt-0.5">📤</span>
+                    <div>
+                        <h4 class="text-xs sm:text-sm font-bold text-slate-800 dark:text-slate-100" data-i18n="helpShareTitle">שיתוף הסל</h4>
+                        <p class="text-xs text-gray-600 dark:text-slate-300 mt-0.5 leading-relaxed" data-i18n="helpShareDesc">
+                            כפתור <b>שתף</b> מאפשר לשלוח את רשימת הקניות ישירות ב-WhatsApp, בהודעת SMS או להעתיק ללוח.
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Footer -->
+            <div class="pt-2 border-t border-gray-100 dark:border-slate-700 flex justify-end">
+                <button onclick="closeHelpModal()" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white py-2 rounded-xl text-xs sm:text-sm font-semibold transition shadow-sm active:scale-95" data-i18n="helpCloseBtn">
+                    הבנתי, תודה!
+                </button>
+            </div>
+        </div>
+    </div>
+
     <!-- QUICK ADD PRODUCT MODAL -->
     <div id="addProductModal" class="hidden fixed inset-0 bg-black/60 backdrop-blur-sm z-[55] flex items-end sm:items-center justify-center p-0 sm:p-4 transition-opacity duration-200" onclick="handleModalBackdropClick(event)">
         <div class="bg-white dark:bg-slate-800 rounded-t-3xl sm:rounded-2xl max-w-lg w-full p-5 sm:p-6 shadow-2xl border border-gray-200 dark:border-slate-700 flex flex-col gap-4 animate-in fade-in duration-200" onclick="event.stopPropagation()">
@@ -975,7 +1238,9 @@
                 addBtnTitle: "הוסף לרשימה",
                 list1Title: "מוצרים ברשימה",
                 list1Hint: "לחץ להסרה",
-                list1Empty: "הרשימה ריקה. הקלד מוצר או לחץ על מוצרים מהרשימה למטה כדי להוסיף!",
+                list1Empty: "הרשימה ריקה. הקלד מוצר או לחץ על מוצרים מהרשימה למטה כדי להוסיף.",
+                shoppingProgressStatus: "{purchased} מתוך {total}",
+                shoppingProgressAllDone: "כל המוצרים נקנו!",
                 list2Title: "מוצרים זמינים",
                 sortByUsage: "לפי שימוש תדיר",
                 sortByAlphabet: "לפי א'-ב'",
@@ -1043,11 +1308,37 @@
                 searchPositionSettingTitle: "מיקום שדה חיפוש",
                 searchPositionSettingDesc: "בחר כיצד להציג את שדה החיפוש וההוספה",
                 searchPositionTop: "בראש הדף",
-                searchPositionFab: "כפתור + צף",
+                searchPositionFab: "כפתור צף",
                 themeSettingTitle: "צבע",
                 themeSettingDesc: "בחר גוון צבע ראשי לממשק",
-                simpleModeTitle: "ממשק פשוט",
-                simpleModeDesc: "ממשק קלאסי ונקי ללא תוספות",
+                modeFull: "מלא",
+                modeSimple: "פשוט",
+                customizerCardTitle: "התאמת רכיבי ממשק",
+                customizerCardDesc: "סמן ב-✓ אילו רכיבים יוצגו באפליקציה",
+                simpleModeTitle: "ממשק פשוט והתאמת רכיבים",
+                simpleModeDesc: "קבע אילו רכיבים יוצגו ברשימה ובקטלוג",
+                openCustomizerBtn: "התאמת רכיבים (תיבות סימון ✓)...",
+                uiCustomizerTitle: "התאמת רכיבי ממשק",
+                uiCustomizerDesc: "סמן ב-✓ את הרכיבים שברצונך להציג באפליקציה",
+                presetSimpleMode: "מצב פשוט (ברירת מחדל)",
+                presetFullMode: "מצב מלא (כל הרכיבים)",
+                featPurchasedListTitle: "רשימת פריטים שנקנו",
+                featPurchasedListDesc: "סל נפרד לפריטים שסומנו. כשכבוי: לחיצה על מוצר ברשימה מסירה אותו ישירות לקטלוג המוצרים הזמינים ללא שמירה בסל.",
+                featProgressBarTitle: "מד התקדמות קנייה",
+                featProgressBarDesc: "פס התקדמות קומפקטי ואחוזי השלמת קנייה בראש רשימת הקניות.",
+                featQuantitiesTitle: "כפתורי שינוי כמויות (+/-)",
+                featQuantitiesDesc: "כפתורי פלוס ומינוס לשינוי כמויות המוצרים ישירות מתוך הרשימה.",
+                featAisleGroupingTitle: "סידור לפי מחלקות סופרמרקט",
+                featAisleGroupingDesc: "כפתור למיון וחלוקת רשימת הקניות לפי מחלקות ומעברים בסופר.",
+                featCategoryCarouselTitle: "קרוסלת מחלקות בקטלוג",
+                featCategoryCarouselDesc: "סרגל כפתורי סינון מהיר לפי מחלקות מעל קטלוג המוצרים הזמינים.",
+                featCategoryTagsTitle: "תגיות מחלקה ואימוג'י במוצרים",
+                featCategoryTagsDesc: "הצגת שם המחלקה והאייקון מתחת לשם המוצר בכרטיסי הרשימה.",
+                badgeSimpleMode: "פשוט",
+                badgeFullMode: "מלא",
+                badgeCustomMode: "מותאם ({n}/6)",
+                toastSimplePresetApplied: "הוחל מצב פשוט (ברירת מחדל נקייה)",
+                toastFullPresetApplied: "הוחל מצב מלא (כל הרכיבים)",
                 exportListLabel: "שתף",
                 exportListTitle: "שתף רשימה",
                 exportEmptyToast: "רשימת הקניות ריקה",
@@ -1064,7 +1355,7 @@
                 undoSuccessPurchased: "הפעולה בוטלה: '{name}' הוחזר לרשימה הפעילה",
                 undoSuccessClearPurchased: "הפעולה בוטלה: שוחזרו {count} פריטים שנקנו",
                 showPricesTitle: "הצג מחירים משוערים",
-                showPricesDesc: "מחיר משוער מעודכן ל-{date} (לק״ג / יח׳)",
+                showPricesDesc: "מחיר משוער מעודכן ל-{date}",
                 basketTotalEstimate: "סה״כ משוער לסל:",
                 purchasedTotalPaid: "שולם:",
                 remainingToBuy: "נותר לקנות:",
@@ -1094,7 +1385,29 @@
                 defaultTemplateBbq: "מנגל ועל האש",
                 defaultTemplateCleaning: "ניקיון ותחזוקת הבית",
                 defaultTemplateBreakfast: "בוקר בריא ומוזלי",
-                defaultTemplatePasta: "ערב איטלקי - פסטה ופיצה"
+                defaultTemplatePasta: "ערב איטלקי - פסטה ופיצה",
+                helpBtnTooltip: "מדריך ועזרה",
+                helpModalTitle: "מדריך לשימוש באפליקציה",
+                helpModalSubtitle: "טיפים והסברים שימושיים לקנייה קלה ומהירה",
+                helpCloseBtn: "הבנתי, תודה!",
+                helpSettingsTitle: "התאמה אישית והגדרות",
+                helpSettingsDesc: "בהגדרות ניתן לבצע שינויים בממשק, לבחור פונקציות פעילות, לבחור היכן תופיע תיבת הוספת מוצר, להציג מחירון משוער ועוד.",
+                helpAddTitle: "הוספת מוצרים לסל",
+                helpAddDesc: "ניתן להקליד שם מוצר בתיבת החיפוש בראש הדף/כפתור +, או ללחוץ ישירות על כרטיס המוצר ברשימת הקטלוג למטה.",
+                helpCustomTitle: "מוצר חדש ומותאם אישית",
+                helpCustomDesc: "בהקלדת מוצר שאינו קיים בקטלוג, המערכת תבקש לבחור מחלקה ותשמור אותו גם לסבבים הבאים.",
+                helpSortTitle: "אפשרויות סידור מוצרים זמינים",
+                helpSortDesc: "ברשימת המוצרים הזמינים ניתן לסדר את הפריטים לפי תדירות שימוש, לפי א'-ב' או לפי משפחה.",
+                helpCheckTitle: "סימון מוצר שנקנה",
+                helpCheckDesc: "לחיצה על מוצר בסל מעבירה אותו לרשימת 'פריטים שנקנו'. לחיצה חוזרת עליו תחזיר אותו לסל הפעיל, לחיצה על 'הסר פריטים שנקנו' תחזיר אותו לרשימת המוצרים הזמינים.",
+                helpQtyTitle: "כמויות וסידור לפי מחלקות",
+                helpQtyDesc: "שינוי כמות מתבצע בעזרת כפתורי +/- לצד כל מוצר. כפתור 'מחלקות' מסדר את המוצרים לפי מעברי הסופרמרקט לנוחות מירבית.",
+                helpTemplatesTitle: "תבניות ורשימות קבועות",
+                helpTemplatesDesc: "כפתור 'תבניות' מאפשר לשמור את הסל הנוכחי לשימוש חוזר, או להטעין בלחיצה סלים מוכנים.",
+                helpUndoTitle: "ביטול פעולה אחרונה (Undo)",
+                helpUndoDesc: "במקרה של מחיקה או סימון בטעות, כפתור 'בטל' בראש הדף יחזיר מיד את המצב לקדמותו.",
+                helpShareTitle: "שיתוף הסל",
+                helpShareDesc: "כפתור 'שתף' מאפשר לשלוח את רשימת הקניות ישירות ב-WhatsApp, בהודעת SMS או להעתיק ללוח."
             },
             en: {
                 appTitle: "Grocery List",
@@ -1107,6 +1420,8 @@
                 list1Title: "Products in list",
                 list1Hint: "Click to check off",
                 list1Empty: "Your list is empty. Add products from the search input, (+) button, or catalog!",
+                shoppingProgressStatus: "{purchased} of {total}",
+                shoppingProgressAllDone: "All items purchased!",
                 list2Title: "Available products",
                 sortByUsage: "By most used",
                 sortByAlphabet: "Alphabetical (A-Z)",
@@ -1170,11 +1485,37 @@
                 searchPositionSettingTitle: "Search & Add Bar Position",
                 searchPositionSettingDesc: "Choose where the add product input is displayed",
                 searchPositionTop: "Top of Page",
-                searchPositionFab: "Floating (+)",
+                searchPositionFab: "Floating button",
                 themeSettingTitle: "Theme Color",
                 themeSettingDesc: "Choose primary interface color",
-                simpleModeTitle: "Simple Mode",
-                simpleModeDesc: "Classic clean UI without extras",
+                modeFull: "Full",
+                modeSimple: "Simple",
+                customizerCardTitle: "UI Components Customizer",
+                customizerCardDesc: "Choose with ✓ which features to display",
+                simpleModeTitle: "Simple Mode & UI Customizer",
+                simpleModeDesc: "Choose which features and widgets to display",
+                openCustomizerBtn: "Customize Components (✓ checkboxes)...",
+                uiCustomizerTitle: "UI Components Customizer",
+                uiCustomizerDesc: "Select which features and widgets you want to show",
+                presetSimpleMode: "Reset to Simple Mode (Default)",
+                presetFullMode: "Full Mode (All Features)",
+                featPurchasedListTitle: "Purchased Items List",
+                featPurchasedListDesc: "Separate basket for checked items. When disabled: clicking an item removes it directly to the available catalog.",
+                featProgressBarTitle: "Shopping Progress Bar",
+                featProgressBarDesc: "Progress bar and completion percentage at the top of the shopping list.",
+                featQuantitiesTitle: "Quantity Buttons (+/-)",
+                featQuantitiesDesc: "Plus and minus controls to adjust item quantities.",
+                featAisleGroupingTitle: "Supermarket Aisle Grouping",
+                featAisleGroupingDesc: "Group and sort items by store aisles and departments.",
+                featCategoryCarouselTitle: "Catalog Category Carousel",
+                featCategoryCarouselDesc: "Category chips scrollbar above the available products catalog.",
+                featCategoryTagsTitle: "Category Tags & Emojis",
+                featCategoryTagsDesc: "Display category name and emoji under each product name.",
+                badgeSimpleMode: "Simple",
+                badgeFullMode: "Full",
+                badgeCustomMode: "Custom ({n}/6)",
+                toastSimplePresetApplied: "Applied Simple Mode (Clean Default)",
+                toastFullPresetApplied: "Applied Full Mode (All Features)",
                 exportListLabel: "Share",
                 exportListTitle: "Share List",
                 exportEmptyToast: "Shopping list is empty",
@@ -1191,7 +1532,7 @@
                 undoSuccessPurchased: "Undo: '{name}' returned to active list",
                 undoSuccessClearPurchased: "Undo: restored {count} checked items",
                 showPricesTitle: "Show Estimated Prices",
-                showPricesDesc: "Estimated prices updated as of {date} (per kg / unit)",
+                showPricesDesc: "Estimated prices updated as of {date}",
                 basketTotalEstimate: "Estimated Basket Total:",
                 purchasedTotalPaid: "Paid:",
                 remainingToBuy: "Remaining:",
@@ -1221,7 +1562,29 @@
                 defaultTemplateBbq: "BBQ & Picnic",
                 defaultTemplateCleaning: "Cleaning & Home Supplies",
                 defaultTemplateBreakfast: "Healthy Breakfast & Muesli",
-                defaultTemplatePasta: "Italian Pasta & Pizza Night"
+                defaultTemplatePasta: "Italian Pasta & Pizza Night",
+                helpBtnTooltip: "User Guide & Help",
+                helpModalTitle: "App User Guide",
+                helpModalSubtitle: "Useful tips for easy and fast grocery shopping",
+                helpCloseBtn: "Got it, thanks!",
+                helpSettingsTitle: "Settings & Customization",
+                helpSettingsDesc: "In Settings you can customize the UI, select active features, choose input placement, display estimated prices, etc.",
+                helpAddTitle: "Adding Items to Cart",
+                helpAddDesc: "Type product name in the search bar at the top / (+) button, or tap directly on any product card in the catalog below.",
+                helpCustomTitle: "Custom Products",
+                helpCustomDesc: "Typing a product not in the catalog prompts you to pick a department, saving it for future shopping.",
+                helpSortTitle: "Sorting Available Products",
+                helpSortDesc: "In the available products list, you can sort items by usage frequency, alphabetically (A-Z), or by family.",
+                helpCheckTitle: "Checking Off Items",
+                helpCheckDesc: "Tap an item in your cart to move it to 'Checked-off Items' (tapping it again restores it). Tapping 'Clear checked items' returns it to the available catalog list.",
+                helpQtyTitle: "Quantities & Aisle Grouping",
+                helpQtyDesc: "Adjust quantities using +/- buttons next to each product. Tap 'Aisles' to group items by supermarket aisle for smoother shopping.",
+                helpTemplatesTitle: "Templates & Saved Lists",
+                helpTemplatesDesc: "The 'Templates' button lets you save your cart for reuse, or load pre-made lists.",
+                helpUndoTitle: "Undo Last Action",
+                helpUndoDesc: "Made a mistake? Tap the 'Undo' button in the header to reverse your last action immediately.",
+                helpShareTitle: "Sharing Your Cart",
+                helpShareDesc: "Tap 'Share' to send your grocery list via WhatsApp, SMS, or copy it directly to your clipboard."
             },
             ru: {
                 appTitle: "Список покупок",
@@ -1234,6 +1597,8 @@
                 list1Title: "Товары в списке",
                 list1Hint: "Нажмите, чтобы отметить купленным",
                 list1Empty: "Список пуст. Введите товар для поиска, нажмите кнопку (+) или выберите из каталога!",
+                shoppingProgressStatus: "{purchased} из {total}",
+                shoppingProgressAllDone: "Все товары куплены!",
                 list2Title: "Доступные товары",
                 sortByUsage: "По использованию",
                 sortByAlphabet: "По алфавиту",
@@ -1297,11 +1662,37 @@
                 searchPositionSettingTitle: "Расположение поля добавления",
                 searchPositionSettingDesc: "Выберите, где отображать поле поиска и добавления",
                 searchPositionTop: "Вверху страницы",
-                searchPositionFab: "Плавающая (+)",
+                searchPositionFab: "Плавающая кнопка",
                 themeSettingTitle: "Цвет темы",
                 themeSettingDesc: "Выберите основной цвет интерфейса",
-                simpleModeTitle: "Простой интерфейс",
-                simpleModeDesc: "Классический чистый вид без дополнений",
+                modeFull: "Полный",
+                modeSimple: "Простой",
+                customizerCardTitle: "Настройка элементов UI",
+                customizerCardDesc: "Отметьте ✓ нужные элементы интерфейса",
+                simpleModeTitle: "Простой режим и настройка UI",
+                simpleModeDesc: "Выберите, какие элементы отображать в приложении",
+                openCustomizerBtn: "Настройка элементов (флажки ✓)...",
+                uiCustomizerTitle: "Настройка элементов интерфейса",
+                uiCustomizerDesc: "Выберите функции и элементы для отображения",
+                presetSimpleMode: "Сброс к простому режиму (по умолч.)",
+                presetFullMode: "Полный режим (все функции)",
+                featPurchasedListTitle: "Список купленных товаров",
+                featPurchasedListDesc: "Отдельная корзина для купленного. При отключении: клик по товару сразу возвращает его в каталог доступных.",
+                featProgressBarTitle: "Индикатор прогресса покупок",
+                featProgressBarDesc: "Полоса прогресса и процент завершения над списком покупок.",
+                featQuantitiesTitle: "Кнопки изменения количества (+/-)",
+                featQuantitiesDesc: "Кнопки плюс и минус для управления количеством товара.",
+                featAisleGroupingTitle: "Группировка по отделам супермаркета",
+                featAisleGroupingDesc: "Автоматическая сортировка товаров по отделам магазина.",
+                featCategoryCarouselTitle: "Карусель категорий в каталоге",
+                featCategoryCarouselDesc: "Панель быстрого фильтра по категориям над каталогом товаров.",
+                featCategoryTagsTitle: "Теги отделов и эмодзи",
+                featCategoryTagsDesc: "Отображение названия категории и иконки под товаром.",
+                badgeSimpleMode: "Простой",
+                badgeFullMode: "Полный",
+                badgeCustomMode: "Настроен ({n}/6)",
+                toastSimplePresetApplied: "Включен простой режим (по умолчанию)",
+                toastFullPresetApplied: "Включен полный режим (все функции)",
                 exportListLabel: "Поделиться",
                 exportListTitle: "Поделиться списком",
                 exportEmptyToast: "Список покупок пуст",
@@ -1318,7 +1709,7 @@
                 undoSuccessPurchased: "Отменено: '{name}' возвращен в активный список",
                 undoSuccessClearPurchased: "Отменено: восстановлено {count} купленных товаров",
                 showPricesTitle: "Ориентировочные цены",
-                showPricesDesc: "Ориентировочные цены обновлены на {date} (за кг / шт)",
+                showPricesDesc: "Ориентировочные цены обновлены на {date}",
                 basketTotalEstimate: "Примерная сумма корзины:",
                 purchasedTotalPaid: "Оплачено:",
                 remainingToBuy: "Осталось:",
@@ -1348,7 +1739,29 @@
                 defaultTemplateBbq: "Шашлыки / Пикник",
                 defaultTemplateCleaning: "Уборка и бытовая химия",
                 defaultTemplateBreakfast: "Здоровый завтрак и мюсли",
-                defaultTemplatePasta: "Итальянский ужин (Паста и пицца)"
+                defaultTemplatePasta: "Итальянский ужин (Паста и пицца)",
+                helpBtnTooltip: "Справка и руководство",
+                helpModalTitle: "Руководство пользователя",
+                helpModalSubtitle: "Полезные советы для удобных и быстрых покупок",
+                helpCloseBtn: "Понятно, спасибо!",
+                helpSettingsTitle: "Настройки и персонализация",
+                helpSettingsDesc: "В настройках можно настроить интерфейс, выбрать активные функции, расположение поля добавления, включить примерные цены и др.",
+                helpAddTitle: "Добавление товаров в корзину",
+                helpAddDesc: "Введите название в поле поиска вверху / кнопке (+), или нажмите на карточку товара в каталоге ниже.",
+                helpCustomTitle: "Собственные товары",
+                helpCustomDesc: "При вводе нового товара вам предложат выбрать отдел, и он сохранится в каталоге для будущих покупок.",
+                helpSortTitle: "Сортировка доступных товаров",
+                helpSortDesc: "В списке доступных товаров можно сортировать элементы по частоте использования, по алфавиту или по категории.",
+                helpCheckTitle: "Отметка купленных товаров",
+                helpCheckDesc: "Нажмите на товар в корзине, чтобы переместить его в 'Купленные'. Повторный клик вернет его в корзину, нажатие 'Удалить купленные товары' вернет его в каталог доступных товаров.",
+                helpQtyTitle: "Количество и отделы",
+                helpQtyDesc: "Изменяйте количество кнопками +/- рядом с товаром. Кнопка 'Отделы' группирует товары по отделам супермаркета.",
+                helpTemplatesTitle: "Шаблоны и готовые списки",
+                helpTemplatesDesc: "Кнопка 'Шаблоны' позволяет сохранить текущую корзину или загрузить готовые списки.",
+                helpUndoTitle: "Отмена действия (Undo)",
+                helpUndoDesc: "Ошиблись? Кнопка 'Отмена' в шапке мгновенно вернет предыдущее состояние.",
+                helpShareTitle: "Поделиться списком",
+                helpShareDesc: "Нажмите 'Поделиться', чтобы отправить список покупок через WhatsApp, SMS или скопировать в буфер."
             }
         };
 
@@ -1584,11 +1997,11 @@
             if (document.getElementById('toggleQuantitiesBtn')) document.getElementById('toggleQuantitiesBtn').title = t.toggleQuantitiesTitle;
             if (document.getElementById('exportListBtn')) document.getElementById('exportListBtn').title = t.exportListTitle;
             if (document.getElementById('savedListsBtn')) document.getElementById('savedListsBtn').title = t.savedListsBtnTitle || 'רשימות שמורות ותבניות';
-            if (document.getElementById('navSavedListsBtn')) document.getElementById('navSavedListsBtn').title = t.savedListsBtnTitle || 'רשימות שמורות ותבניות';
+            if (document.getElementById('helpBtnTooltip')) document.getElementById('helpBtnTooltip').title = t.helpBtnTooltip || 'מדריך ועזרה';
             if (document.getElementById('openAddModalFab')) document.getElementById('openAddModalFab').title = t.fabAddProductTitle;
 
             // Update prices subtitle with last updated date
-            const dateStr = (typeof productPricesLastUpdated !== 'undefined') ? productPricesLastUpdated : "19/10/2026";
+            const dateStr = (typeof productPricesLastUpdated !== 'undefined') ? productPricesLastUpdated : "10/2026";
             const subTitleEl = document.getElementById('showPricesSubtitle');
             if (subTitleEl && t.showPricesDesc) {
                 subTitleEl.innerText = t.showPricesDesc.replace('{date}', dateStr);
@@ -1599,6 +2012,8 @@
 
             // Update Category Filter options with localized names
             updateCategoryFilterOptions();
+            if (typeof updateUiModeBadge === 'function') updateUiModeBadge();
+            if (typeof updateHeaderModeToggle === 'function') updateHeaderModeToggle();
 
             localStorage.setItem('appLanguage', currentLanguage);
         }
@@ -1745,16 +2160,76 @@
             renderActiveList();
         }
 
-        // Simple Mode Management (Classic clean UI vs Feature-rich UI)
-        let isSimpleMode = JSON.parse(localStorage.getItem('isSimpleMode')) || false;
+        // Modular UI Features & Simple Mode Management
+        const DEFAULT_FEATURES_FULL = {
+            purchasedList: true,     // רשימת פריטים שנקנו (סל נפרד)
+            progressBar: true,       // מד התקדמות קנייה
+            quantities: true,        // כפתורי שינוי כמויות (+/-)
+            aisleGrouping: true,     // סידור לפי מחלקות
+            categoryCarousel: true,  // סרגל קרוסלת מחלקות בקטלוג
+            categoryTags: true       // תגיות מחלקה ואימוג'י במוצרים
+        };
 
-        function applySimpleMode() {
+        const DEFAULT_FEATURES_SIMPLE = {
+            purchasedList: false,    // כבוי: לחיצה על מוצר מסירה אותו ישירות לקטלוג הזמין
+            progressBar: false,      // כבוי: ללא מד התקדמות
+            quantities: false,       // כבוי: ללא כפתורי כמויות
+            aisleGrouping: false,    // כבוי: ללא סידור לפי מחלקות
+            categoryCarousel: false, // כבוי: ללא קרוסלת מחלקות
+            categoryTags: false      // כבוי: ללא תגיות מחלקה
+        };
+
+        let uiFeatures = Object.assign({}, DEFAULT_FEATURES_FULL);
+        let isSimpleMode = false;
+
+        try {
+            const savedFeatures = localStorage.getItem('uiFeatures');
+            if (savedFeatures) {
+                uiFeatures = Object.assign({}, DEFAULT_FEATURES_FULL, JSON.parse(savedFeatures));
+            } else {
+                const legacySimple = JSON.parse(localStorage.getItem('isSimpleMode'));
+                if (legacySimple === true) {
+                    uiFeatures = Object.assign({}, DEFAULT_FEATURES_SIMPLE);
+                }
+            }
+        } catch (e) {
+            console.warn("Failed to load uiFeatures:", e);
+            uiFeatures = Object.assign({}, DEFAULT_FEATURES_FULL);
+        }
+
+        function applyUiFeatures() {
+            if (!document.body) return;
+
+            // 1. Purchased list
+            document.body.classList.toggle('no-purchased-list', !uiFeatures.purchasedList);
+
+            // 2. Progress bar
+            document.body.classList.toggle('no-progress-bar', !uiFeatures.progressBar);
+
+            // 3. Quantities
+            document.body.classList.toggle('no-quantities', !uiFeatures.quantities);
+
+            // 4. Aisle grouping
+            document.body.classList.toggle('no-aisle-grouping', !uiFeatures.aisleGrouping);
+
+            // 5. Category carousel
+            document.body.classList.toggle('no-category-carousel', !uiFeatures.categoryCarousel);
+
+            // 6. Category tags
+            document.body.classList.toggle('no-category-tags', !uiFeatures.categoryTags);
+
+            // True Simple Mode iff all 6 are disabled
+            isSimpleMode = !uiFeatures.purchasedList && !uiFeatures.progressBar && !uiFeatures.quantities &&
+                           !uiFeatures.aisleGrouping && !uiFeatures.categoryCarousel && !uiFeatures.categoryTags;
+
+            document.body.classList.toggle('simple-mode', isSimpleMode);
+
+            // Update Simple Mode toggle button in Settings
             const dot = document.getElementById('simpleModeDot');
             const btn = document.getElementById('simpleModeBtn');
             const isRtl = (currentLanguage === 'he');
 
             if (isSimpleMode) {
-                document.body.classList.add('simple-mode');
                 if (btn) {
                     btn.classList.add('bg-emerald-600');
                     btn.classList.remove('bg-gray-300');
@@ -1763,7 +2238,6 @@
                     dot.style.transform = isRtl ? 'translateX(-24px)' : 'translateX(24px)';
                 }
             } else {
-                document.body.classList.remove('simple-mode');
                 if (btn) {
                     btn.classList.remove('bg-emerald-600');
                     btn.classList.add('bg-gray-300');
@@ -1772,15 +2246,122 @@
                     dot.style.transform = 'translateX(0px)';
                 }
             }
+
+            localStorage.setItem('uiFeatures', JSON.stringify(uiFeatures));
             localStorage.setItem('isSimpleMode', JSON.stringify(isSimpleMode));
+
+            updateHeaderModeToggle();
+            updateUiModeBadge();
+        }
+
+        function setUiModeFromHeader(mode) {
+            triggerHaptic(20);
+            if (mode === 'simple') {
+                setUiFeaturesPreset('simple');
+            } else if (mode === 'full') {
+                setUiFeaturesPreset('full');
+            }
+        }
+
+        function updateHeaderModeToggle() {
+            const btnFull = document.getElementById('headerModeBtnFull');
+            const btnSimple = document.getElementById('headerModeBtnSimple');
+            if (!btnFull || !btnSimple) return;
+
+            const activeFull = !isSimpleMode && Object.values(uiFeatures).every(v => v === true);
+            const activeSimple = isSimpleMode;
+
+            // Simple button
+            if (activeSimple) {
+                btnSimple.className = "px-2.5 py-0.5 rounded-lg text-xs font-bold transition-all shadow-sm bg-white text-emerald-800 dark:text-emerald-950";
+            } else {
+                btnSimple.className = "px-2.5 py-0.5 rounded-lg text-xs font-medium transition-all text-white/80 hover:text-white hover:bg-white/10";
+            }
+
+            // Full button
+            if (activeFull) {
+                btnFull.className = "px-2.5 py-0.5 rounded-lg text-xs font-bold transition-all shadow-sm bg-white text-emerald-800 dark:text-emerald-950";
+            } else {
+                btnFull.className = "px-2.5 py-0.5 rounded-lg text-xs font-medium transition-all text-white/80 hover:text-white hover:bg-white/10";
+            }
+        }
+
+        function applySimpleMode() {
+            applyUiFeatures();
         }
 
         function toggleSimpleMode() {
             triggerHaptic(15);
-            isSimpleMode = !isSimpleMode;
-            applySimpleMode();
+            if (isSimpleMode) {
+                setUiFeaturesPreset('full');
+            } else {
+                setUiFeaturesPreset('simple');
+            }
+        }
+
+        function setUiFeaturesPreset(preset) {
+            triggerHaptic(20);
+            if (preset === 'simple') {
+                uiFeatures = Object.assign({}, DEFAULT_FEATURES_SIMPLE);
+            } else if (preset === 'full') {
+                uiFeatures = Object.assign({}, DEFAULT_FEATURES_FULL);
+            }
+            syncUiCustomizerCheckboxes();
+            applyUiFeatures();
             applySearchBarMode();
             renderAll();
+        }
+
+        function toggleUiFeature(key, isChecked) {
+            triggerHaptic(15);
+            uiFeatures[key] = !!isChecked;
+            applyUiFeatures();
+            renderAll();
+        }
+
+        function syncUiCustomizerCheckboxes() {
+            for (const key in uiFeatures) {
+                const chk = document.getElementById(`feature-chk-${key}`);
+                if (chk) {
+                    chk.checked = !!uiFeatures[key];
+                }
+            }
+        }
+
+        function openUiCustomizerModal() {
+            triggerHaptic(10);
+            syncUiCustomizerCheckboxes();
+            const modal = document.getElementById('uiCustomizerModal');
+            if (modal) modal.classList.remove('hidden');
+        }
+
+        function closeUiCustomizerModal() {
+            triggerHaptic(10);
+            const modal = document.getElementById('uiCustomizerModal');
+            if (modal) modal.classList.add('hidden');
+        }
+
+        function updateUiModeBadge() {
+            const badge = document.getElementById('uiModeBadge');
+            if (!badge) return;
+            const t = translations[currentLanguage] || translations.he;
+
+            const totalCount = Object.keys(DEFAULT_FEATURES_FULL).length;
+            let enabledCount = 0;
+            for (const k in uiFeatures) {
+                if (uiFeatures[k]) enabledCount++;
+            }
+
+            if (enabledCount === 0) {
+                badge.innerText = t.badgeSimpleMode || "פשוט";
+                badge.className = "text-[10px] px-2 py-0.5 rounded-full font-bold bg-emerald-100 dark:bg-emerald-950/80 text-emerald-700 dark:text-emerald-300 border border-emerald-300/60 dark:border-emerald-800";
+            } else if (enabledCount === totalCount) {
+                badge.innerText = t.badgeFullMode || "מלא";
+                badge.className = "text-[10px] px-2 py-0.5 rounded-full font-bold bg-indigo-100 dark:bg-indigo-950/80 text-indigo-700 dark:text-indigo-300 border border-indigo-300/60 dark:border-indigo-800";
+            } else {
+                badge.innerText = (t.badgeCustomMode || "מותאם ({n}/6)").replace('{n}', enabledCount);
+                badge.className = "text-[10px] px-2 py-0.5 rounded-full font-bold bg-amber-100 dark:bg-amber-950/80 text-amber-700 dark:text-amber-300 border border-amber-300/60 dark:border-amber-800";
+            }
         }
 
         // Screen Wake Lock Management (Keep screen awake while shopping)
@@ -1847,8 +2428,11 @@
             applyWakeLock();
         }
 
-        // Estimated Prices Management
-        let isShowPricesEnabled = JSON.parse(localStorage.getItem('isShowPricesEnabled')) !== false;
+        // Estimated Prices Management (Default: false - ללא הצגת מחירים כברירת מחדל)
+        let isShowPricesEnabled = false;
+        if (localStorage.getItem('userExplicitlySetShowPrices') === 'true') {
+            isShowPricesEnabled = JSON.parse(localStorage.getItem('isShowPricesEnabled')) === true;
+        }
 
         function applyShowPrices() {
             const dot = document.getElementById('showPricesDot');
@@ -1872,12 +2456,16 @@
                     dot.style.transform = 'translateX(0px)';
                 }
             }
-            localStorage.setItem('isShowPricesEnabled', JSON.stringify(isShowPricesEnabled));
+            if (localStorage.getItem('userExplicitlySetShowPrices') === 'true') {
+                localStorage.setItem('isShowPricesEnabled', JSON.stringify(isShowPricesEnabled));
+            }
         }
 
         function toggleShowPrices() {
             triggerHaptic(15);
             isShowPricesEnabled = !isShowPricesEnabled;
+            localStorage.setItem('userExplicitlySetShowPrices', 'true');
+            localStorage.setItem('isShowPricesEnabled', JSON.stringify(isShowPricesEnabled));
             applyShowPrices();
             renderAll();
         }
@@ -1917,13 +2505,6 @@
         function applySearchBarMode() {
             const topContainer = document.getElementById('topSearchBarContainer');
             const fabContainer = document.getElementById('openAddModalFab');
-
-            // If simple mode is active, always force top search bar and hide FAB
-            if (isSimpleMode) {
-                if (topContainer) topContainer.classList.remove('hidden');
-                if (fabContainer && fabContainer.parentElement) fabContainer.parentElement.classList.add('hidden');
-                return;
-            }
 
             if (currentSearchBarMode === 'top') {
                 if (topContainer) topContainer.classList.remove('hidden');
@@ -2029,7 +2610,7 @@
             lines.push(`🛒 ${t.appTitle} (${totalCount} ${unit}):`);
             lines.push('');
 
-            if (isGroupedByAisle && !isSimpleMode) {
+            if (isGroupedByAisle && uiFeatures.aisleGrouping) {
                 // Group items by category / aisle
                 const grouped = {};
                 activeList.forEach(rawName => {
@@ -2046,13 +2627,13 @@
                 });
 
                 sortedCatKeys.forEach(cat => {
-                    const emoji = getCategoryEmoji(cat);
+                    const emoji = uiFeatures.categoryTags ? `${getCategoryEmoji(cat)} ` : '';
                     const catTitle = getLocalizedCategoryName(cat) || cat;
-                    lines.push(`${emoji} *${catTitle}* (${grouped[cat].length}):`);
+                    lines.push(`${emoji}*${catTitle}* (${grouped[cat].length}):`);
                     grouped[cat].forEach(rawName => {
                         const name = getLocalizedProductName(rawName);
                         const qty = activeQuantities[rawName] || 1;
-                        const qtyStr = (qty > 1 || showQuantities) ? ` (${qty} ${unit})` : '';
+                        const qtyStr = (uiFeatures.quantities && (qty > 1 || showQuantities)) ? ` (${qty} ${unit})` : '';
                         lines.push(`  • ${name}${qtyStr}`);
                     });
                     lines.push('');
@@ -2061,11 +2642,11 @@
                 // Flat list with category emoji beside each product
                 activeList.forEach(rawName => {
                     const cat = getProductCategory(rawName) || "כללי";
-                    const emoji = getCategoryEmoji(cat);
+                    const emoji = uiFeatures.categoryTags ? `${getCategoryEmoji(cat)} ` : '';
                     const name = getLocalizedProductName(rawName);
                     const qty = activeQuantities[rawName] || 1;
-                    const qtyStr = (qty > 1 || showQuantities) ? ` (${qty} ${unit})` : '';
-                    lines.push(`${emoji} ${name}${qtyStr}`);
+                    const qtyStr = (uiFeatures.quantities && (qty > 1 || showQuantities)) ? ` (${qty} ${unit})` : '';
+                    lines.push(`${emoji}${name}${qtyStr}`);
                 });
             }
 
@@ -2148,7 +2729,7 @@
             const div = document.createElement('div');
             div.id = `active-item-${rawName.replace(/[^a-zA-Z0-9\u0590-\u05FF]/g, '_')}`;
             div.className = "flex items-center justify-between theme-active-card rounded-xl px-3.5 py-2.5 shadow-sm transition cursor-pointer select-none group";
-            div.title = t.list1Hint;
+            div.title = uiFeatures.purchasedList ? t.list1Hint : (t.list1HintSimple || "לחץ להסרה מהרשימה והחזרה לקטלוג");
             
             // Strike-off & transition to purchased list
             div.onclick = (e) => {
@@ -2189,7 +2770,7 @@
                         ${isWeighted ? `<span class="text-[9px] font-normal text-gray-400 dark:text-slate-500">${priceUnitLabel}</span>` : ''}
                     </div>` : ''}
 
-                    ${(showQuantities && !isSimpleMode) ? `
+                    ${(showQuantities && uiFeatures.quantities) ? `
                     <div class="qty-control flex items-center bg-white dark:bg-slate-800 border border-emerald-200 dark:border-emerald-900/80 rounded-lg shadow-2xs overflow-hidden" onclick="event.stopPropagation()">
                         <button onclick="changeItemQuantity('${escapeHtml(rawName)}', -1, event)" class="w-6 h-6 flex items-center justify-center text-gray-500 dark:text-slate-400 hover:bg-emerald-50 dark:hover:bg-slate-700 active:bg-emerald-100 text-xs font-bold transition">
                             <i class="fa-solid fa-minus text-[10px]"></i>
@@ -2238,7 +2819,6 @@
                 </div>
                 <div class="flex items-center gap-2 shrink-0 text-xs text-gray-400">
                     ${(isShowPricesEnabled && itemPrice > 0) ? `<span class="text-[10px] font-normal text-gray-400 dark:text-slate-500 line-through">~${totalItemPrice.toFixed(2)} ₪</span>` : ''}
-                    ${(qty > 1) ? `<span class="text-[11px] font-semibold bg-gray-200 dark:bg-slate-700 px-1.5 py-0.5 rounded text-gray-600 dark:text-slate-300">${qty}</span>` : ''}
                     <i class="fa-solid fa-arrow-rotate-left opacity-0 group-hover:opacity-100 text-emerald-600 dark:text-emerald-400 transition-opacity text-xs" title="החזר לרשימה"></i>
                 </div>
             `;
@@ -2263,7 +2843,7 @@
 
             if (!wrapper) return;
 
-            if (purchasedList.length === 0) {
+            if (!uiFeatures.purchasedList || purchasedList.length === 0) {
                 wrapper.classList.add('hidden');
                 return;
             }
@@ -2296,12 +2876,26 @@
             });
 
             updatePurchasedUI();
+            updateShoppingProgress();
         }
 
-        // Mark item as purchased
+        // Mark item as purchased (or remove directly to catalog if purchasedList is disabled)
         function markItemAsPurchased(rawName, recordUndo = true) {
             const idx = activeList.indexOf(rawName);
             if (idx === -1) return;
+
+            if (!uiFeatures.purchasedList) {
+                activeList.splice(idx, 1);
+                if (recordUndo) {
+                    pushUndoAction({
+                        type: 'REMOVE_FROM_ACTIVE',
+                        productName: rawName,
+                        index: idx
+                    });
+                }
+                renderAll();
+                return;
+            }
 
             activeList.splice(idx, 1);
             if (!purchasedList.includes(rawName)) {
@@ -2400,6 +2994,56 @@
             }
         }
 
+        // Update Shopping Progress Bar (Option 1)
+        function updateShoppingProgress() {
+            const container = document.getElementById('shoppingProgressBarContainer');
+            const textEl = document.getElementById('shoppingProgressText');
+            const percentEl = document.getElementById('shoppingProgressPercent');
+            const fillEl = document.getElementById('shoppingProgressBarFill');
+            const iconEl = document.getElementById('shoppingProgressIcon');
+            if (!container || !fillEl) return;
+
+            // Completely hide when feature is disabled or list is empty
+            if (!uiFeatures.progressBar || !uiFeatures.purchasedList) {
+                container.classList.add('hidden');
+                return;
+            }
+
+            const activeCount = activeList.length;
+            const purchasedCount = purchasedList.length;
+            const totalCount = activeCount + purchasedCount;
+
+            // Completely hide when list is completely empty
+            if (totalCount === 0) {
+                container.classList.add('hidden');
+                return;
+            }
+
+            container.classList.remove('hidden');
+
+            const percent = Math.round((purchasedCount / totalCount) * 100);
+            fillEl.style.width = `${percent}%`;
+
+            const t = translations[currentLanguage] || translations.he;
+
+            if (percent === 100 && purchasedCount > 0) {
+                if (iconEl) iconEl.innerText = '🎉';
+                if (textEl) textEl.innerText = t.shoppingProgressAllDone || "כל המוצרים נקנו!";
+                if (percentEl) percentEl.innerText = "100%";
+                fillEl.style.backgroundColor = "#10b981";
+            } else {
+                if (iconEl) iconEl.innerText = '🛒';
+                const templateStr = t.shoppingProgressStatus || "{purchased} מתוך {total}";
+                if (textEl) {
+                    textEl.innerText = templateStr
+                        .replace('{purchased}', purchasedCount)
+                        .replace('{total}', totalCount);
+                }
+                if (percentEl) percentEl.innerText = `${percent}%`;
+                fillEl.style.backgroundColor = "var(--theme-primary)";
+            }
+        }
+
         // Render LIST 1: Active Items (with optional Aisle Grouping)
         function renderActiveList() {
             const container = document.getElementById('activeItemsContainer');
@@ -2409,21 +3053,16 @@
 
             if (activeList.length === 0) {
                 container.innerHTML = `
-                    <div class="text-center text-gray-400 dark:text-slate-500 py-3 px-3.5 bg-gray-50 dark:bg-slate-700/40 border border-dashed border-gray-200 dark:border-slate-700 rounded-xl flex flex-col items-center justify-center gap-2.5">
-                        <div class="flex items-center gap-2">
-                            <i class="fa-solid fa-basket-shopping text-lg text-gray-300 dark:text-slate-600 shrink-0"></i>
-                            <p class="text-xs sm:text-sm text-start">${t.list1Empty}</p>
-                        </div>
-                        <button onclick="openSavedListsModal()" class="text-xs font-semibold text-emerald-700 dark:text-emerald-300 bg-emerald-50 dark:bg-emerald-950/60 border border-emerald-300 dark:border-emerald-700/80 px-3 py-1.5 rounded-lg hover:bg-emerald-100 dark:hover:bg-emerald-900/60 transition flex items-center gap-1.5 active:scale-95 shadow-2xs">
-                            <i class="fa-solid fa-bookmark text-[11px] text-emerald-600 dark:text-emerald-400"></i>
-                            <span>${t.openSavedListsBtn || 'פתח תבניות'}</span>
-                        </button>
+                    <div class="text-center text-gray-400 dark:text-slate-500 py-2.5 px-3 bg-gray-50 dark:bg-slate-700/40 border border-dashed border-gray-200 dark:border-slate-700 rounded-xl flex items-center justify-center gap-2.5">
+                        <i class="fa-solid fa-basket-shopping text-xl text-gray-300 dark:text-slate-600 shrink-0"></i>
+                        <p class="text-xs sm:text-sm text-start">${t.list1Empty}</p>
                     </div>`;
                 updateBasketSummaryBar();
+                updateShoppingProgress();
                 return;
             }
 
-            if (!isGroupedByAisle || isSimpleMode) {
+            if (!isGroupedByAisle || !uiFeatures.aisleGrouping) {
                 // Flat active list view
                 activeList.forEach((rawName) => {
                     const el = createActiveItemElement(rawName, t);
@@ -2466,6 +3105,7 @@
             }
 
             updateBasketSummaryBar();
+            updateShoppingProgress();
         }
 
         // Render LIST 2: Available Catalog (Using Carousel selectedCategoryFilter & Search Filter)
@@ -2473,12 +3113,13 @@
             const container = document.getElementById('masterCatalogContainer');
             const filterQuery = (document.getElementById('catalogSearch').value || '').trim().toLowerCase();
             const sortMode = document.getElementById('sortOption').value;
-            const categoryFilter = (!isSimpleMode && selectedCategoryFilter) ? selectedCategoryFilter : "all";
+            const categoryFilter = (uiFeatures.categoryCarousel && selectedCategoryFilter) ? selectedCategoryFilter : "all";
             const t = translations[currentLanguage] || translations.he;
             container.innerHTML = '';
 
             let availableProducts = masterCatalog.filter(product => {
-                if (activeList.includes(product.name) || purchasedList.includes(product.name)) return false;
+                if (activeList.includes(product.name)) return false;
+                if (uiFeatures.purchasedList && purchasedList.includes(product.name)) return false;
                 
                 // Filter by Category
                 if (categoryFilter !== "all") {
@@ -2740,15 +3381,19 @@
                 isDefault: true,
                 date: "19/10/2026",
                 items: [
-                    { name: "חלב 3%", qty: 2 },
+                    { name: "חלב 3%", qty: 1 },
                     { name: "לחם", qty: 1 },
                     { name: "ביצים L", qty: 1 },
                     { name: "גבינה צהובה", qty: 1 },
+                    { name: "קוטג'", qty: 1 },
+                    { name: "גבינת סקי", qty: 1 },
                     { name: "עגבניות", qty: 1 },
                     { name: "מלפפונים", qty: 1 },
+                    { name: "פלפלים", qty: 1 },
                     { name: "בצל", qty: 1 },
-                    { name: "שמן זית", qty: 1 },
-                    { name: "קפה נמס", qty: 1 }
+                    { name: "לימון", qty: 1 },
+                    { name: "תפוחי עץ", qty: 1 },
+                    { name: "פיתות", qty: 1 }
                 ]
             },
             {
@@ -2840,13 +3485,19 @@
             savedTemplates = [...DEFAULT_TEMPLATES];
             localStorage.setItem('savedShoppingTemplates', JSON.stringify(savedTemplates));
         } else {
-            // Auto-merge newly added default templates if user hasn't explicitly deleted them
+            // Auto-merge newly added or updated default templates
             const deletedDefaultTemplates = JSON.parse(localStorage.getItem('deletedDefaultTemplates')) || [];
             let modified = false;
             DEFAULT_TEMPLATES.forEach(defTpl => {
-                if (!savedTemplates.some(t => t.id === defTpl.id) && !deletedDefaultTemplates.includes(defTpl.id)) {
+                const existingIndex = savedTemplates.findIndex(t => t.id === defTpl.id);
+                if (existingIndex === -1 && !deletedDefaultTemplates.includes(defTpl.id)) {
                     savedTemplates.push(defTpl);
                     modified = true;
+                } else if (existingIndex !== -1 && savedTemplates[existingIndex].isDefault) {
+                    if (JSON.stringify(savedTemplates[existingIndex].items) !== JSON.stringify(defTpl.items)) {
+                        savedTemplates[existingIndex].items = [...defTpl.items];
+                        modified = true;
+                    }
                 }
             });
             if (modified) {
@@ -2896,6 +3547,24 @@
         function handleSavedListsBackdropClick(event) {
             if (event.target.id === 'savedListsModal') {
                 closeSavedListsModal();
+            }
+        }
+
+        // Help & Tutorial Modal Handlers
+        function openHelpModal() {
+            triggerHaptic(15);
+            const modal = document.getElementById('helpModal');
+            if (modal) modal.classList.remove('hidden');
+        }
+
+        function closeHelpModal() {
+            const modal = document.getElementById('helpModal');
+            if (modal) modal.classList.add('hidden');
+        }
+
+        function handleHelpBackdropClick(event) {
+            if (event.target.id === 'helpModal') {
+                closeHelpModal();
             }
         }
 
@@ -3587,7 +4256,14 @@
                 closeConfirmClearListModal();
                 closeConfirmResetModal();
                 closeSavedListsModal();
+                closeHelpModal();
+                closeUiCustomizerModal();
             }
+        });
+
+        // Close UI Customizer modal when clicking outside on backdrop
+        document.getElementById('uiCustomizerModal')?.addEventListener('click', (e) => {
+            if (e.target.id === 'uiCustomizerModal') closeUiCustomizerModal();
         });
 
         // Register Service Worker for PWA with auto-update

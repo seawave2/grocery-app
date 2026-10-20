@@ -78,6 +78,7 @@ const productTranslations = {
     "גבינה צהובה 28%": { en: "Yellow Cheese 28%", ru: "Сыр твердый 28%" },
     "גבינה צהובה טבעונית": { en: "Vegan Yellow Cheese", ru: "Веганский сыр" },
     "גבינת שמנת": { en: "Cream Cheese", ru: "Сливочный сыр" },
+    "גבינת סקי": { en: "Ski Soft White Cheese", ru: "Творожный сыр Ски" },
     "גבעולי סלרי": { en: "Celery Stalks", ru: "Стебли сельдерея" },
     "גויאבה": { en: "Guava", ru: "Гуава" },
     "גזר": { en: "Carrot", ru: "Морковь" },
@@ -345,6 +346,7 @@ const productTranslations = {
     "קאווה / פרוסקו": { en: "Cava / Prosecco Sparkling Wine", ru: "Игристое вино (Кава / Просекко)" },
     "קבב": { en: "Kebabs", ru: "Кебаб" },
     "קוטג": { en: "Cottage Cheese", ru: "Зерненый творог" },
+    "קוטג'": { en: "Cottage Cheese", ru: "Зерненый творог" },
     "קוטג' 5%": { en: "Cottage Cheese 5%", ru: "Зерненый творог 5%" },
     "קולה": { en: "Cola", ru: "Кола" },
     "קולה זירו": { en: "Coca-Cola Zero", ru: "Кола Зеро" },
@@ -581,6 +583,7 @@ const productCategoryMap = {
     "גבינה צהובה 28%": "מוצרי חלב",
     "גבינה צהובה טבעונית": "תחליפי חלב",
     "גבינת שמנת": "מוצרי חלב",
+    "גבינת סקי": "מוצרי חלב",
     "גבעולי סלרי": "ירקות",
     "גויאבה": "פירות",
     "גזר": "ירקות",
@@ -848,6 +851,7 @@ const productCategoryMap = {
     "קאווה / פרוסקו": "אלכוהול",
     "קבב": "בשר ועוף",
     "קוטג": "מוצרי חלב",
+    "קוטג'": "מוצרי חלב",
     "קוטג' 5%": "מוצרי חלב",
     "קולה": "שתייה",
     "קולה זירו": "שתייה",
@@ -973,7 +977,7 @@ const productCategoryMap = {
 
 
 // Estimated product prices in NIS (₪) from list_categorized.xlsx
-const productPricesLastUpdated = "19/10/2026";
+const productPricesLastUpdated = "10/2026";
 const productPrices = {
     "אבוקדו": 14.9,
     "אבטיח": 4.9,
@@ -1319,6 +1323,7 @@ const productPrices = {
     "קאווה / פרוסקו": 34.9,
     "קבב": 39.9,
     "קוטג": 6.9,
+    "קוטג'": 6.9,
     "קוטג' 5%": 6.9,
     "קולה": 8.5,
     "קולה זירו": 8.5,
