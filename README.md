@@ -1,144 +1,139 @@
-# 🛒 Smart Grocery List App (רשימת קניות חכמה) `v1.5`
+# 🛒 Smart Grocery List App
 
-A modern, fast, lightweight, and highly customizable **Progressive Web App (PWA)** for managing your shopping and grocery lists effortlessly. Built with clean vanilla JavaScript, Tailwind CSS, FontAwesome icons, and complete offline capability.
+A modern, fast, lightweight, and fully customizable **Progressive Web App (PWA)** designed to make grocery shopping and list management effortless. Built with vanilla JavaScript, Tailwind CSS, FontAwesome icons, and complete offline capability.
 
 ---
 
-## ✨ Key Features & What's New in v1.5
+## 🌟 Overview & Key Architecture
 
-### 🎛️ Header Mode Switcher (כפתור מצב מלא / פשוט בכותרת)
-- **Top Navigation Segmented Switcher**: Conveniently located in the sticky top header right next to the Help button (`?`).
-- **Instant 1-Tap Switching**: Seamlessly toggle between **Full Mode (מלא)** and **Simple Mode (פשוט)** at any time while shopping.
-- **Silent & Unobtrusive**: Highlights the active mode directly on the pill button without annoying popup banners.
+The application is structured around a fast, intuitive **Two-List Architecture** designed for real-world supermarket shopping:
 
-### 🧩 Modular UI Components Customizer (התאמת רכיבי ממשק עם תיבות סימון ✓)
-- **Granular Feature Checkboxes (V)**: Tailor the interface to your exact personal preferences via Settings > General > "התאמת רכיבי ממשק":
-  1. **רשימת פריטים שנקנו (Purchased Items List)**: Dedicated collapsible basket for checked-off items. When unchecked, checking off an item directly removes it back to the available catalog without storing it in a purchased list.
-  2. **מד התקדמות קנייה (Shopping Progress Bar)**: Sleek completion progress tracker at the top of the shopping list.
-  3. **כפתורי שינוי כמויות +/- (Quantity Controls)**: Intuitive plus and minus buttons to control amounts directly on item cards.
-  4. **סידור לפי מחלקות סופרמרקט (Supermarket Aisle Grouping)**: Automatic grouping and sorting by store aisles and categories.
-  5. **קרוסלת מחלקות בקטלוג (Catalog Category Carousel)**: Horizontal scrolling chips bar to filter available items by category.
-  6. **תגיות מחלקה ואימוג'י במוצרים (Category Tags & Emojis)**: Category indicators and icons under product titles.
-- **1-Click Presets**:
-  - **שחזר למצב פשוט (ברירת מחדל)**: Sets all 6 features to unchecked for the cleanest, fastest minimalist experience.
-  - **מצב מלא (כל הרכיבים)**: Turns on all 6 features with a single tap.
-- **Live Status Badge**: Displays dynamic status in Settings: `פשוט`, `מלא`, or `מותאם (X/6)`.
+1. **Active Shopping List**: Displays items you currently plan to buy.
+   - **Full Mode**: Checking off an item marks it with a strike-through animation and smoothly transfers it into a collapsible "Checked-off Items" basket.
+   - **Simple Mode**: Checking off an item immediately removes it from the list and returns it directly to the available catalog below without accumulating a checked-off list.
+2. **Available Catalog**: A comprehensive database of 460+ popular grocery items.
+   - Filterable by department / aisle, searchable with real-time multilingual autocomplete, and sortable by frequency of use, alphabetical order, or category.
+   - Selecting any catalog item instantly adds it to your active shopping list.
 
-### ⚡ Two-List Smart Architecture & Direct Removal
-- **1. Active Shopping List**: Items currently needed.
-  - In **Simple Mode Default**: Clicking an item checks it off and immediately returns it to the available products catalog below **without passing through "פריטים שנקנו"**.
-  - In **Full Mode**: Checked-off items move gracefully into a collapsible "פריטים שנקנו" basket.
-- **2. Available Catalog**: Fast selection from a rich database of 460+ items sorted by frequency of use, alphabetical order, or aisle / family. Clean catalog header without unnecessary counters.
+---
 
-### 📊 Ultra-Compact Shopping Progress Bar (מד התקדמות קנייה קומפקטי)
-- Ultra-slim single-row progress bar (`🛒 3 מתוך 8 (38%)` with a smooth 6px rounded bar).
-- Automatically hidden when the shopping list is empty or when the progress bar feature is turned off.
-- Celebratory completion animation (`🎉 כל המוצרים נקנו!`) when all items are checked off.
+## ✨ Features
 
-### 🔖 Saved Lists & Pre-made Templates (רשימות שמורות ותבניות)
-- Save your active shopping cart under a custom name (or auto-generated date) for recurring use.
-- Quick access from the active list header with two loading modes:
-  - **➕ Add to Cart (הוסף לסל)**: Merges template items and quantities into the current cart.
-  - **🔄 Load as New (טען כחדשה)**: Replaces the current cart with the template list.
-- Delete saved lists with a single tap (🗑️).
-- Includes **6 built-in, curated templates**:
-  - *סל בסיסי שבועי* (Weekly Essentials - updated with fresh produce, cheese, pitas, and balanced quantities)
-  - *שבת ואירוח* (Shabbat & Hosting)
-  - *מנגל ועל האש* (BBQ & Picnic)
-  - *ניקיון ותחזוקת הבית* (Cleaning & Home Supplies)
-  - *בוקר בריא ומוזלי* (Healthy Breakfast & Muesli)
-  - *ערב איטלקי - פסטה ופיצה* (Italian Pasta & Pizza Night)
-- Full Undo (`Ctrl+Z`) support for all template actions.
+### 🎛️ Header Mode Switcher
+- **Segmented Control in Top Bar**: Easily accessible directly next to the Help icon in the sticky top navigation bar.
+- **Instant One-Tap Toggle**: Quickly switch between **Full Mode** (all features and badges enabled) and **Simple Mode** (clean, minimalist interface).
+- **Silent & Responsive**: Visually highlights the selected mode directly on the button with zero disruptive popup alerts.
 
-### 💰 Estimated Prices & Live Basket Calculator (מחירים משוערים וסיכום סל)
-- Realistic Israeli supermarket price database for 460+ products (updated in NIS ₪).
-- Accurate pricing per 1 kg for fruits, vegetables, and weighted goods.
-- Toggle on/off in Settings: "הצג מחירים משוערים" with dynamic date indicator (`10/2026`).
-- Real-time basket summary bar calculating the estimated total cost of active items and already purchased items.
-- Clean, unbolded micro-price badges placed thoughtfully to ensure product names always remain clearly visible.
+### 🧩 Modular UI Components Customizer
+- **Granular Feature Checkboxes**: Tailor the user interface to your exact workflow via Settings > General > "UI Components Customizer". You can independently enable or disable:
+  - **Purchased Items List**: Separate collapsible container for completed items (when disabled, checking off items removes them directly back to the available catalog).
+  - **Shopping Progress Bar**: Progress meter and percentage indicator at the top of the shopping list.
+  - **Quantity Controls**: Plus and minus buttons on list items to adjust quantities.
+  - **Aisle Grouping**: Automatic sorting and section dividers by supermarket aisles.
+  - **Catalog Category Carousel**: Horizontal scrollable category filter chips above the catalog.
+  - **Category Tags & Emojis**: Department labels and emojis displayed beneath item names.
+- **One-Click Presets**:
+  - **Reset to Simple Mode (Default)**: Unchecks all 6 modules for an ultra-clean, distraction-free interface.
+  - **Full Mode (All Features)**: Enables all 6 modules simultaneously.
+- **Dynamic Status Indicator**: Displays your active configuration badge (`Simple`, `Full`, or `Custom (X/6)`) in Settings.
 
-### 💡 Keep Screen Awake (מסך דולק תמיד)
-- Convenient toggle in Settings to prevent your phone screen from dimming or locking while navigating supermarket aisles.
-- Powered by the native **Screen Wake Lock API** (requires HTTPS like Netlify or GitHub Pages).
+### 📊 Ultra-Compact Shopping Progress Bar
+- Slim, single-row progress tracker displaying completed items and percentage (e.g., `🛒 3 of 8 (38%)` with a sleek 6px rounded bar).
+- Automatically hidden when the shopping list is empty or when the progress bar module is turned off.
+- Celebratory completion indicator when all items on your list are purchased.
 
-### 📤 Export & Share Shopping List (שיתוף מהיר)
-- Export and share your active shopping list with a single click via the **"שתף" (Share)** button in the list header.
-- Opens the native **mobile share sheet** (WhatsApp, Telegram, SMS, Email, Notes, etc.) on supported devices (HTTPS / Web Share API).
-- Automatically falls back to one-click **clipboard copy** on unsupported platforms.
-- Smart contextual formatting:
-  - **Grouped mode**: Organized by supermarket aisle/category with family headers and emoji icons.
-  - **Flat mode**: Each product listed with its dedicated colorful family emoji and item quantities.
+### 🔖 Saved Lists & Pre-made Templates
+- Save any current shopping basket under a custom name (or auto-generated timestamp) for recurring weekly or monthly routines.
+- Two loading options:
+  - **Add to Cart**: Merges saved template items and their quantities into the current cart.
+  - **Load as New**: Replaces the active shopping list with the saved template.
+- Includes **6 curated default templates**:
+  - *Weekly Essentials* (produce, dairy, bakery, and staples)
+  - *Shabbat & Hosting*
+  - *BBQ & Grilling*
+  - *Cleaning & Home Maintenance*
+  - *Healthy Breakfast & Muesli*
+  - *Italian Night (Pasta & Pizza)*
+- Quick template deletion with a single tap, plus full Undo support.
 
-### 🎨 Color Themes (Palette Customizer)
-- Personalize the app's look and feel with a palette of vibrant themes: **Emerald Green (Default), Classic Blue, Purple, Amber, Rose, and Teal**.
-- Selectable in Settings via clean, icon-based color swatches.
-- Dynamically updates header navigation, action buttons, active item tints, category chips, and floating buttons.
+### 💰 Estimated Prices & Live Basket Summary
+- Integrated price database for 460+ items in Israeli Shekels (NIS ₪).
+- Accurate pricing per kilogram for fruits, vegetables, and weighted goods.
+- Optional toggle in Settings with a dynamic last-updated date indicator.
+- Real-time basket summary bar calculating the estimated total cost of both active items and purchased items.
+- Non-intrusive micro-price badges placed to keep product titles readable and clear.
 
-### 🔤 Font Size & Typography Options
-- Three distinct text sizes: **Medium (בינוני)**, **Large (גדול)** (Default), and **Extra Large (גדול מאוד)**.
-- **Bold Text (הדגשת טקסט)**: Optional high-contrast toggle for thicker, highly legible typography across the app (enabled by default for maximum readability).
-- Responsive layout designed to scale without overflowing settings or modals.
+### 💡 Keep Screen Awake
+- Prevents your mobile display from dimming or locking while navigating supermarket aisles.
+- Powered by the native **Screen Wake Lock API** (active when served over HTTPS).
 
-### 🔍 Flexible Search & Add
+### 📤 Export & Multi-Platform Sharing
+- Share your active shopping list with a single click via the "Share" button in the list header.
+- Opens the native **mobile share sheet** (WhatsApp, Telegram, Messages, Email, Notes, etc.) on supported devices via the Web Share API.
+- Automatically falls back to one-click **clipboard copy** on unsupported browsers.
+- Automatically formats items neatly:
+  - *Grouped view*: Organized by store aisle with department titles and emojis.
+  - *Flat view*: Clean list with item emojis and quantities.
+
+### 🎨 Theme Color Palette
+- Choose from 6 interface accent themes: **Emerald Green (Default), Classic Blue, Purple, Amber, Rose, and Teal**.
+- Seamlessly updates top navigation, active buttons, category chips, and floating elements.
+
+### 🔤 Typography & Contrast Controls
+- Three selectable font sizes: **Medium**, **Large (Default)**, and **Extra Large**.
+- **Bold Text Mode**: High-contrast, bolder typography across the application for enhanced readability under bright supermarket lights.
+
+### 🔍 Flexible Search & Input Layout
 - Choose between a classic **Top Search Bar** or a mobile-friendly **Floating Action Button (+)** in Settings.
-- Live trilingual autocomplete search matching names across all supported languages.
-- Automatically prompts for category/family assignment when typing a new custom item.
+- Real-time trilingual autocomplete search matching names across all supported languages.
+- Prompts for department / category assignment when adding a custom, unlisted product.
 
-### ↩️ Full Multi-Level UNDO
-- Dedicated **Undo button** in the header.
-- Reverses accidental deletions, list clearing, additions, checking off items, or catalog changes.
-- Supports keyboard shortcut: `Ctrl + Z` / `Cmd + Z`.
+### ↩️ Multi-Level Undo
+- Header Undo button reverses accidental deletions, additions, checking off items, list clearing, or template loading.
+- Full keyboard shortcut support: `Ctrl + Z` / `Cmd + Z`.
 
-### 🌐 Trilingual Support (עברית | English | Русский)
-- Instant one-click language toggle across the entire application.
-- Full RTL (Right-to-Left) and LTR layout switching.
-- Seamless localization for all UI texts, categories, and 460+ products.
+### 🌐 Trilingual Localization & RTL/LTR
+- Instant language switching across the entire app: **Hebrew (עברית)**, **English**, and **Russian (Русский)**.
+- Full layout mirroring supporting Right-to-Left (RTL) for Hebrew and Left-to-Right (LTR) for English and Russian.
+- Complete localization for all 460+ items, categories, buttons, tooltips, and modal guides.
 
 ### 🌙 Dark Mode
-- Smooth light/dark theme transition with persistent user preference and RTL-aware toggle animation.
-
-### 📬 Direct Feedback
-- Clickable "Made by Seawave" footer in Settings to send instant feedback or suggestions directly via email.
+- Built-in Dark Theme with persistent preferences, styled contrast borders, and smooth transition animations.
 
 ### 📱 Installable Progressive Web App (PWA)
-- Works on **Android, iPhone, and Desktop**.
-- Install directly from browser ("Install App" / "Add to Home Screen") as a native-feeling standalone app.
-- **100% Offline Capable**: Powered by a Service Worker and local storage cache; requires no active internet or Wi-Fi while shopping in the supermarket.
+- Fully installable on **Android, iOS, macOS, Windows, and Linux** ("Install App" / "Add to Home Screen").
+- Operates standalone without browser address bar clutter.
+- **100% Offline Capable**: Cached by a dedicated Service Worker; requires no active mobile data or Wi-Fi inside supermarkets.
 
-### 💾 Zero-Cloud Privacy
-- All lists, custom products, and usage statistics are stored strictly on your local device (`localStorage`).
-- No account registration, tracking, or external database required.
-
----
-
-## 🚀 Live Demo & Deployment
-
-This project is fully static and requires **no build step or backend**. It can be deployed in seconds to:
-- **GitHub Pages**
-- **Netlify**
-- **Vercel**
-- Or served locally with any HTTP server (e.g. PowerShell `server.ps1`, Python `http.server`, Live Server, etc.)
-
-### Deploying to GitHub Pages:
-1. Fork or clone this repository.
-2. In your GitHub repository, go to **Settings** > **Pages**.
-3. Under **Branch**, select `main` (root) and click **Save**.
-4. Your grocery app will be live at `https://<your-username>.github.io/<repository-name>/`.
+### 🔒 Zero-Cloud Privacy
+- All lists, templates, custom products, and usage counters are stored strictly on your local device (`localStorage`).
+- No user accounts, logins, telemetry, or remote tracking.
 
 ---
 
-## 📁 Project Structure
+## 🚀 Deployment & Installation
+
+Because the application is built entirely with standard web technologies, it requires **no build step, compilers, or server-side runtimes**. It can be deployed in seconds to any static hosting provider:
+
+- **Netlify**: Drag and drop the release `.zip` directly into the Netlify dashboard.
+- **GitHub Pages**: Push the repository to GitHub and enable Pages in repository settings under the `main` branch.
+- **Vercel / Cloudflare Pages**: Connect the repository for instant static deployment.
+- **Local Network (Wi-Fi)**: Run the included `server.ps1` script (or Python `python -m http.server 8080`) to access the app across any device connected to your local Wi-Fi.
+
+---
+
+## 📁 Project Directory Structure
 
 ```text
-├── index.html            # Main application layout, styles, and core logic (v1.5)
-├── translations.js       # Comprehensive trilingual dictionary (Hebrew, English, Russian) & categories
-├── list_categorized.xlsx # Categorized product catalog with estimated Israeli market prices
-├── manifest.json         # PWA Web App Manifest (app name, icons, display mode)
-├── sw.js                 # Service Worker for offline caching and standalone execution (v1.5)
+├── index.html            # Main application layout, styles, and logic
+├── translations.js       # Trilingual dictionary (Hebrew, English, Russian) & product mappings
+├── list_categorized.xlsx # Product catalog spreadsheet with estimated market pricing
+├── manifest.json         # PWA Web App Manifest (display mode, name, theme colors)
+├── sw.js                 # Service Worker for offline execution and asset caching
 ├── icon-192.png          # 192x192 app launcher icon
 ├── icon-512.png          # 512x512 splash screen / store icon
-├── netlify.toml          # Optional Netlify configuration header rules
-├── server.ps1            # Lightweight high-performance local WiFi development server
+├── netlify.toml          # Netlify configuration and HTTP caching headers
+├── server.ps1            # High-performance local HTTP server script for development & Wi-Fi testing
 └── README.md             # Project documentation
 ```
 
@@ -147,17 +142,17 @@ This project is fully static and requires **no build step or backend**. It can b
 ## 🛠️ Technologies Used
 
 - **HTML5 & Vanilla JavaScript (ES6+)**
-- **Tailwind CSS** (via CDN with dynamic theme variables and dark mode support)
-- **FontAwesome 6** (Icons)
-- **SheetJS (xlsx)** (Client-side spreadsheet engine)
-- **Web Share API & Clipboard API**
-- **Screen Wake Lock API**
+- **Tailwind CSS** (via CDN with dynamic theme color variables and dark mode classes)
+- **FontAwesome 6** (Vector icons)
+- **SheetJS (xlsx)** (Client-side spreadsheet parsing)
+- **Web Share API & Clipboard API** (Native sharing)
+- **Screen Wake Lock API** (Screen management)
 - **Service Worker & Cache API** (Offline PWA)
 
 ---
 
 ## 📄 License & Credits
 
-© Made with ❤️ by **seawave**.  
+Created by **seawave**.  
 Feedback & Suggestions: [seawave2@gmail.com](mailto:seawave2@gmail.com?subject=Grocery%20List%20Feedback)  
 Licensed under the [MIT License](LICENSE).
