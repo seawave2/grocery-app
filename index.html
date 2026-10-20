@@ -331,12 +331,16 @@
             <i class="fa-solid fa-basket-shopping me-1"></i> <span data-i18n="appTitle">רשימת קניות</span>
         </h1>
         <div class="flex gap-2 items-center">
-            <button id="undoBtn" onclick="performUndo()" disabled class="theme-btn-header disabled:opacity-40 disabled:cursor-not-allowed text-white px-3 py-2 rounded-xl text-sm transition flex items-center gap-1.5 font-medium shadow-sm active:scale-95" title="בטל פעולה אחרונה (Ctrl+Z)">
-                <i class="fa-solid fa-rotate-left text-base"></i>
+            <button id="navSavedListsBtn" onclick="openSavedListsModal()" class="theme-btn-header text-white px-2.5 py-1.5 rounded-xl text-xs sm:text-sm transition flex items-center gap-1.5 font-medium shadow-sm active:scale-95" title="רשימות שמורות ותבניות">
+                <i class="fa-solid fa-bookmark text-xs text-amber-300"></i>
+                <span data-i18n="savedListsBtnLabel">תבניות</span>
+            </button>
+            <button id="undoBtn" onclick="performUndo()" disabled class="theme-btn-header disabled:opacity-40 disabled:cursor-not-allowed text-white px-3 py-1.5 rounded-xl text-xs sm:text-sm transition flex items-center gap-1.5 font-medium shadow-sm active:scale-95" title="בטל פעולה אחרונה (Ctrl+Z)">
+                <i class="fa-solid fa-rotate-left text-sm sm:text-base"></i>
                 <span data-i18n="undoBtn" class="hidden sm:inline">בטל</span>
             </button>
             <button onclick="openSettingsModal()" class="theme-btn-header text-white p-2 rounded-xl text-sm transition shadow-sm active:scale-95" id="settingsBtnTooltip" title="הגדרות">
-                <i class="fa-solid fa-gear text-lg"></i>
+                <i class="fa-solid fa-gear text-base sm:text-lg"></i>
             </button>
         </div>
     </header>
@@ -344,8 +348,8 @@
     <!-- Main Content Container -->
     <main class="w-full max-w-md md:max-w-2xl px-4 mt-4 pb-6 flex-1 flex flex-col gap-6">
 
-        <!-- Notification Banner -->
-        <div id="toastNotification" class="hidden p-3 rounded-xl text-sm font-medium transition-all shadow-sm"></div>
+        <!-- Notification Banner (Floating top z-[100]) -->
+        <div id="toastNotification" class="hidden fixed top-5 left-1/2 -translate-x-1/2 z-[100] max-w-sm w-11/12 p-3.5 rounded-2xl text-sm font-medium text-center shadow-xl transition-all pointer-events-auto"></div>
 
         <!-- Inline Top Search Bar (Visible when searchBarMode === 'top') -->
         <div id="topSearchBarContainer" class="relative">
@@ -376,7 +380,7 @@
 
             <!-- LIST 1: Active Shopping List -->
             <section class="bg-white dark:bg-slate-800 border border-emerald-200 dark:border-emerald-900/40 rounded-2xl p-4 shadow-sm">
-                <div class="flex items-center justify-between mb-3 border-b border-gray-100 dark:border-slate-700 pb-2.5">
+                <div class="flex flex-wrap items-center justify-between gap-2 mb-3 border-b border-gray-100 dark:border-slate-700 pb-2.5">
                     <div class="flex items-center gap-2">
                         <div class="w-8 h-8 rounded-lg bg-emerald-100 dark:bg-emerald-950 flex items-center justify-center text-emerald-600 dark:text-emerald-400 text-sm">
                             <i class="fa-solid fa-cart-shopping"></i>
@@ -386,28 +390,74 @@
                         </h2>
                     </div>
 
-                    <div class="flex items-center gap-2">
+                    <div class="flex items-center gap-1.5 flex-wrap">
+                        <!-- Saved Lists / Templates Button (Prominent Emerald Pill) -->
+                        <button id="savedListsBtn" onclick="openSavedListsModal()" class="text-xs px-2.5 py-1 rounded-lg border border-emerald-300 dark:border-emerald-700 bg-emerald-50 dark:bg-emerald-950/60 text-emerald-700 dark:text-emerald-300 hover:bg-emerald-100 dark:hover:bg-emerald-900/60 flex items-center gap-1.5 transition font-semibold shadow-2xs active:scale-95" title="רשימות שמורות ותבניות">
+                            <i class="fa-solid fa-bookmark text-[11px] text-emerald-600 dark:text-emerald-400"></i>
+                            <span data-i18n="savedListsBtnLabel">תבניות</span>
+                        </button>
                         <!-- Toggle Quantities Visibility Button -->
-                        <button id="toggleQuantitiesBtn" onclick="toggleShowQuantities()" class="text-xs px-2.5 py-1 rounded-lg border border-gray-200 dark:border-slate-700 text-gray-500 dark:text-slate-400 hover:bg-gray-100 dark:hover:bg-slate-700 flex items-center gap-1.5 transition font-medium" title="הצג/הסתר כמויות">
+                        <button id="toggleQuantitiesBtn" onclick="toggleShowQuantities()" class="text-xs px-2 py-1 rounded-lg border border-gray-200 dark:border-slate-700 text-gray-500 dark:text-slate-400 hover:bg-gray-100 dark:hover:bg-slate-700 flex items-center gap-1.5 transition font-medium" title="הצג/הסתר כמויות">
                             <i class="fa-solid fa-arrow-down-1-9 text-[11px]"></i>
-                            <span data-i18n="toggleQuantitiesLabel" class="hidden xs:inline">כמויות</span>
+                            <span data-i18n="toggleQuantitiesLabel" class="hidden sm:inline">כמויות</span>
                         </button>
                         <!-- Group by Category Pill Button -->
-                        <button id="toggleGroupingBtn" onclick="toggleActiveGrouping()" class="text-xs px-2.5 py-1 rounded-lg border border-gray-200 dark:border-slate-700 text-gray-500 dark:text-slate-400 hover:bg-gray-100 dark:hover:bg-slate-700 flex items-center gap-1.5 transition font-medium" title="קבץ לפי מחלקות">
+                        <button id="toggleGroupingBtn" onclick="toggleActiveGrouping()" class="text-xs px-2 py-1 rounded-lg border border-gray-200 dark:border-slate-700 text-gray-500 dark:text-slate-400 hover:bg-gray-100 dark:hover:bg-slate-700 flex items-center gap-1.5 transition font-medium" title="קבץ לפי מחלקות">
                             <i class="fa-solid fa-layer-group text-[11px]"></i>
-                            <span data-i18n="groupByCategoryLabel" class="hidden xs:inline">קבץ לפי מחלקות</span>
+                            <span data-i18n="groupByCategoryLabel" class="hidden sm:inline">מחלקות</span>
                         </button>
                         <!-- Export / Share Active List Button -->
-                        <button id="exportListBtn" onclick="exportShoppingList()" class="text-xs px-2.5 py-1 rounded-lg border border-gray-200 dark:border-slate-700 text-gray-500 dark:text-slate-400 hover:bg-gray-100 dark:hover:bg-slate-700 flex items-center gap-1.5 transition font-medium" title="שתף רשימה">
+                        <button id="exportListBtn" onclick="exportShoppingList()" class="text-xs px-2 py-1 rounded-lg border border-gray-200 dark:border-slate-700 text-gray-500 dark:text-slate-400 hover:bg-gray-100 dark:hover:bg-slate-700 flex items-center gap-1.5 transition font-medium" title="שתף רשימה">
                             <i class="fa-solid fa-arrow-up-from-bracket text-[11px]"></i>
-                            <span data-i18n="exportListLabel" class="hidden xs:inline">שתף</span>
+                            <span data-i18n="exportListLabel" class="hidden sm:inline">שתף</span>
                         </button>
-                        <span class="text-xs text-gray-400 dark:text-slate-400 hidden sm:inline" data-i18n="list1Hint">לחץ להסרה</span>
                     </div>
                 </div>
 
                 <div id="activeItemsContainer" class="flex flex-col gap-2">
                     <!-- Dynamic Active Items -->
+                </div>
+
+                <!-- Dynamic Basket Summary Bar (Estimated Total) -->
+                <div id="basketSummaryBar" class="hidden mt-2 p-2.5 bg-emerald-50/80 dark:bg-emerald-950/40 border border-emerald-200/90 dark:border-emerald-900/60 rounded-xl flex items-center justify-between text-xs">
+                    <div class="flex items-center gap-1.5 text-emerald-900 dark:text-emerald-200">
+                        <i class="fa-solid fa-receipt text-emerald-600 dark:text-emerald-400 text-xs"></i>
+                        <span data-i18n="basketTotalEstimate">סה״כ משוער לסל:</span>
+                        <span id="basketActiveTotalSum" class="font-normal text-xs text-emerald-700 dark:text-emerald-300">~0.00 ₪</span>
+                    </div>
+                    <div id="basketPurchasedTotalContainer" class="hidden text-[11px] text-gray-500 dark:text-slate-400 flex items-center gap-1">
+                        <span data-i18n="purchasedTotalPaid">שולם:</span>
+                        <span id="basketPurchasedTotalSum" class="font-normal text-[11px] text-emerald-600 dark:text-emerald-400">~0.00 ₪</span>
+                    </div>
+                </div>
+
+                <!-- Collapsible Purchased / Checked-off Items Bar (Default collapsed) -->
+                <div id="purchasedItemsWrapper" class="hidden mt-3 pt-2.5 border-t border-gray-100 dark:border-slate-700/80 flex flex-col gap-2">
+                    <!-- Thin Accordion Header Strip -->
+                    <div onclick="togglePurchasedCollapse()" class="flex items-center justify-between px-2.5 py-1.5 rounded-xl bg-gray-50 dark:bg-slate-700/50 hover:bg-gray-100 dark:hover:bg-slate-700 cursor-pointer transition select-none">
+                        <div class="flex items-center gap-2 text-xs font-semibold text-gray-500 dark:text-slate-400">
+                            <i class="fa-solid fa-circle-check text-emerald-600 dark:text-emerald-400 text-xs"></i>
+                            <span data-i18n="purchasedItemsTitle">פריטים שנקנו</span>
+                            <span class="text-[11px] font-normal text-gray-400 dark:text-slate-500">(<span id="purchasedCount">0</span>)</span>
+                        </div>
+                        <div class="flex items-center gap-1.5 text-xs text-gray-400 dark:text-slate-500">
+                            <span id="purchasedToggleHint" class="text-[10px] hidden xs:inline" data-i18n="purchasedExpandHint">הצג</span>
+                            <i id="purchasedChevron" class="fa-solid fa-chevron-down text-[10px] transition-transform duration-200"></i>
+                        </div>
+                    </div>
+
+                    <!-- Collapsible Container for Checked-off Item Cards -->
+                    <div id="purchasedItemsContainer" class="hidden flex flex-col gap-1.5 pt-1">
+                        <!-- Dynamic Purchased Items -->
+                    </div>
+
+                    <!-- Action Button: Remove All Purchased Items -->
+                    <div id="clearPurchasedBar" class="hidden pt-1.5 flex items-center justify-end">
+                        <button onclick="clearPurchasedItems()" class="text-xs px-2.5 py-1 rounded-lg bg-gray-100 hover:bg-red-50 dark:bg-slate-700 dark:hover:bg-red-950/40 text-gray-600 hover:text-red-600 dark:text-slate-300 dark:hover:text-red-400 border border-gray-200 hover:border-red-200 dark:border-slate-600 dark:hover:border-red-900/60 font-medium transition flex items-center gap-1.5 active:scale-95" title="הסר פריטים שנקנו מהרשימה">
+                            <i class="fa-solid fa-trash-can text-[11px]"></i>
+                            <span data-i18n="clearPurchasedBtn">הסר פריטים שנקנו</span>
+                        </button>
+                    </div>
                 </div>
             </section>
 
@@ -568,6 +618,33 @@
                         </button>
                     </div>
                 </div>
+
+                <hr class="border-gray-100 dark:border-slate-700">
+
+                <!-- Show Prices Toggle -->
+                <div class="flex items-center justify-between">
+                    <div>
+                        <p class="font-medium text-slate-800 dark:text-slate-100 text-sm" data-i18n="showPricesTitle">הצג מחירים משוערים</p>
+                        <p class="text-[11px] text-gray-500 dark:text-slate-400" id="showPricesSubtitle">מחיר משוער מעודכן ל-19/10/2026 (לק״ג / יח׳)</p>
+                    </div>
+                    <button id="showPricesBtn" onclick="toggleShowPrices()" class="w-11 h-5.5 bg-gray-300 rounded-full p-0.5 transition-colors duration-200 flex items-center">
+                        <div id="showPricesDot" class="w-4 h-4 bg-white rounded-full transition-transform duration-200"></div>
+                    </button>
+                </div>
+
+                <hr class="border-gray-100 dark:border-slate-700">
+
+                <!-- Saved Lists & Templates Action Row in Settings -->
+                <div class="flex items-center justify-between">
+                    <div>
+                        <p class="font-medium text-slate-800 dark:text-slate-100 text-sm" data-i18n="savedListsModalTitle">רשימות שמורות ותבניות</p>
+                        <p class="text-[11px] text-gray-500 dark:text-slate-400" data-i18n="savedListsModalDesc">שמור את הסל הנוכחי או טען רשימה קבועה</p>
+                    </div>
+                    <button onclick="closeSettingsModal(); openSavedListsModal();" class="shrink-0 bg-emerald-50 hover:bg-emerald-100 dark:bg-emerald-950/60 dark:hover:bg-emerald-900/60 text-emerald-700 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800/60 font-semibold px-2.5 py-1.5 rounded-lg text-xs transition flex items-center gap-1.5 active:scale-95">
+                        <i class="fa-solid fa-bookmark text-emerald-600 dark:text-emerald-400 text-xs"></i>
+                        <span data-i18n="openSavedListsBtn">פתח תבניות</span>
+                    </button>
+                </div>
             </div>
 
             <!-- Tab 2: Advanced Settings (מיקום שדה חיפוש, ממשק פשוט, ניקוי רשימה, איפוס מונים) -->
@@ -580,6 +657,19 @@
                     </div>
                     <button id="simpleModeBtn" onclick="toggleSimpleMode()" class="w-11 h-5.5 bg-gray-300 rounded-full p-0.5 transition-colors duration-200 flex items-center">
                         <div id="simpleModeDot" class="w-4 h-4 bg-white rounded-full transition-transform duration-200"></div>
+                    </button>
+                </div>
+
+                <hr class="border-gray-100 dark:border-slate-700">
+
+                <!-- Wake Lock (Keep Screen Awake) Toggle -->
+                <div class="flex items-center justify-between">
+                    <div>
+                        <p class="font-medium text-slate-800 dark:text-slate-100 text-sm" data-i18n="wakeLockTitle">מסך דולק תמיד</p>
+                        <p class="text-[11px] text-gray-500 dark:text-slate-400" data-i18n="wakeLockDesc">מניעת כיבוי או נעילת המסך בזמן קניות</p>
+                    </div>
+                    <button id="wakeLockBtn" onclick="toggleWakeLock()" class="w-11 h-5.5 bg-gray-300 rounded-full p-0.5 transition-colors duration-200 flex items-center">
+                        <div id="wakeLockDot" class="w-4 h-4 bg-white rounded-full transition-transform duration-200"></div>
                     </button>
                 </div>
 
@@ -634,6 +724,7 @@
                     <span>&copy; made by seawave</span>
                     <i class="fa-regular fa-envelope text-[10px] opacity-70 group-hover:opacity-100"></i>
                 </a>
+                <span class="text-[10px] font-mono text-emerald-600 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-950/60 px-2 py-0.5 rounded-md border border-emerald-200 dark:border-emerald-900/60">v1.4 (20/10/2026)</span>
                 <button onclick="closeSettingsModal()" class="bg-gray-100 dark:bg-slate-700 hover:bg-gray-200 dark:hover:bg-slate-600 text-slate-700 dark:text-slate-200 px-3.5 py-1.5 rounded-xl text-xs sm:text-sm font-medium transition" data-i18n="closeBtn">
                     סגור
                 </button>
@@ -756,6 +847,60 @@
                 title="הוסף מוצר חדש">
             <i class="fa-solid fa-plus text-2xl group-hover:rotate-90 transition-transform duration-200"></i>
         </button>
+    </div>
+
+    <!-- SAVED LISTS & TEMPLATES MODAL -->
+    <div id="savedListsModal" class="hidden fixed inset-0 bg-black/60 backdrop-blur-sm z-[65] flex items-center justify-center p-3 sm:p-4" onclick="handleSavedListsBackdropClick(event)">
+        <div class="bg-white dark:bg-slate-800 rounded-2xl max-w-md w-full p-4 sm:p-5 shadow-2xl border border-gray-200 dark:border-slate-700 flex flex-col gap-3.5 max-h-[90vh]" onclick="event.stopPropagation()">
+            <!-- Modal Header -->
+            <div class="flex items-center justify-between pb-2.5 border-b border-gray-100 dark:border-slate-700">
+                <div class="flex items-center gap-2.5">
+                    <div class="w-9 h-9 rounded-xl bg-emerald-100 dark:bg-emerald-950 text-emerald-600 dark:text-emerald-400 flex items-center justify-center text-base shrink-0">
+                        <i class="fa-solid fa-bookmark"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-base font-bold text-slate-800 dark:text-slate-100" data-i18n="savedListsModalTitle">רשימות שמורות ותבניות</h3>
+                        <p class="text-xs text-gray-500 dark:text-slate-400" data-i18n="savedListsModalDesc">שמור את הסל הנוכחי או טען רשימה קבועה</p>
+                    </div>
+                </div>
+                <button onclick="closeSavedListsModal()" class="text-gray-400 hover:text-gray-600 dark:hover:text-gray-200 p-1.5 text-lg transition">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+
+            <!-- Save Current Basket Section -->
+            <div class="p-3 bg-emerald-50/70 dark:bg-emerald-950/40 border border-emerald-200 dark:border-emerald-900/60 rounded-xl flex flex-col gap-2">
+                <div class="flex items-center justify-between">
+                    <span class="text-xs font-bold text-emerald-800 dark:text-emerald-300 flex items-center gap-1.5">
+                        <i class="fa-solid fa-floppy-disk text-xs"></i>
+                        <span data-i18n="saveCurrentBasketTitle">שמור את הסל הנוכחי כתבנית</span>
+                    </span>
+                    <span id="currentBasketCountBadge" class="text-[11px] font-semibold text-emerald-700 dark:text-emerald-400"></span>
+                </div>
+                <div class="flex gap-2">
+                    <input type="text" id="newTemplateNameInput" 
+                           placeholder="הזן שם לרשימה (למשל: קניות שבת)..." 
+                           class="flex-1 bg-white dark:bg-slate-800 border border-emerald-300 dark:border-emerald-800/80 rounded-xl px-3 py-1.5 text-xs text-slate-800 dark:text-slate-100 outline-none focus:ring-2 focus:ring-emerald-400 placeholder-gray-400"
+                           onkeydown="if(event.key === 'Enter') saveCurrentListAsTemplate()">
+                    <button onclick="saveCurrentListAsTemplate()" class="bg-emerald-600 hover:bg-emerald-700 text-white px-3 py-1.5 rounded-xl font-medium text-xs shadow transition shrink-0 flex items-center gap-1 active:scale-95" data-i18n="saveTemplateBtn">
+                        <i class="fa-solid fa-plus text-[10px]"></i>
+                        <span>שמור</span>
+                    </button>
+                </div>
+                <p id="saveBasketEmptyNotice" class="hidden text-[11px] text-amber-600 dark:text-amber-400" data-i18n="saveBasketEmptyNotice">הסל הנוכחי ריק. הוסף מוצרים לרשימה כדי לשמור אותה כתבנית.</p>
+            </div>
+
+            <!-- Saved Templates List Section -->
+            <div class="flex flex-col gap-2 flex-1 overflow-hidden min-h-[160px]">
+                <div class="flex items-center justify-between text-xs font-semibold text-slate-600 dark:text-slate-300 px-0.5">
+                    <span data-i18n="yourSavedTemplatesTitle">הרשימות השמורות שלך:</span>
+                    <span id="savedTemplatesCount" class="text-[11px] text-gray-400 font-normal"></span>
+                </div>
+                <div id="savedListsContainer" class="flex flex-col gap-2 overflow-y-auto pr-0.5 max-h-[42vh]">
+                    <!-- Dynamic Template Cards -->
+                </div>
+            </div>
+        </div>
     </div>
 
     <!-- QUICK ADD PRODUCT MODAL -->
@@ -908,7 +1053,48 @@
                 exportEmptyToast: "רשימת הקניות ריקה",
                 exportSuccessToast: "הרשימה הועתקה ללוח!",
                 settingsTabGeneral: "כללי",
-                settingsTabAdvanced: "מתקדם"
+                settingsTabAdvanced: "מתקדם",
+                wakeLockTitle: "מסך דולק תמיד",
+                wakeLockDesc: "מניעת כיבוי או נעילת המסך בזמן קניות",
+                wakeLockNotSupported: "פיצ'ר זה דורש חיבור מאובטח (HTTPS) ואינו נתמך ב-WiFi מקומי (HTTP). יעבוד חלק ב-Netlify!",
+                purchasedItemsTitle: "פריטים שנקנו",
+                purchasedExpandHint: "הצג",
+                purchasedCollapseHint: "הסתר",
+                clearPurchasedBtn: "הסר פריטים שנקנו",
+                undoSuccessPurchased: "הפעולה בוטלה: '{name}' הוחזר לרשימה הפעילה",
+                undoSuccessClearPurchased: "הפעולה בוטלה: שוחזרו {count} פריטים שנקנו",
+                showPricesTitle: "הצג מחירים משוערים",
+                showPricesDesc: "מחיר משוער מעודכן ל-{date} (לק״ג / יח׳)",
+                basketTotalEstimate: "סה״כ משוער לסל:",
+                purchasedTotalPaid: "שולם:",
+                remainingToBuy: "נותר לקנות:",
+                perKgUnit: "לק״ג",
+                savedListsBtnLabel: "תבניות",
+                openSavedListsBtn: "פתח תבניות",
+                savedListsBtnTitle: "רשימות שמורות ותבניות",
+                savedListsModalTitle: "רשימות שמורות ותבניות",
+                savedListsModalDesc: "שמור את הסל הנוכחי או טען רשימה קבועה",
+                saveCurrentBasketTitle: "שמור את הסל הנוכחי כתבנית",
+                saveTemplateBtn: "שמור",
+                saveTemplatePlaceholder: "הזן שם לרשימה (למשל: קניות שבת)...",
+                saveBasketEmptyNotice: "הסל הנוכחי ריק. הוסף מוצרים לרשימה כדי לשמור אותה כתבנית.",
+                yourSavedTemplatesTitle: "הרשימות השמורות שלך:",
+                emptySavedTemplatesNotice: "אין עדיין רשימות שמורות. הרכב סל קניות ולחץ על 'שמור' למעלה!",
+                addTemplateBtn: "הוסף לסל",
+                addTemplateTooltip: "הוסף פריטים אלו לסל הקיים",
+                loadAsNewTemplateBtn: "טען כחדשה",
+                loadAsNewTemplateTooltip: "החלף את הסל הנוכחי ברשימה זו",
+                deleteTemplateTooltip: "מחק תבנית זו",
+                templateSavedSuccess: "הרשימה '{name}' נשמרה בהצלחה!",
+                templateAddedToast: "נוספו {count} פריטים לרשימה",
+                templateLoadedNewToast: "הרשימה '{name}' נטענה בהצלחה",
+                templateDeletedToast: "הרשימה נמחקה בהצלחה",
+                defaultTemplateWeekly: "סל בסיסי שבועי",
+                defaultTemplateShabbat: "שבת ואירוח",
+                defaultTemplateBbq: "מנגל ועל האש",
+                defaultTemplateCleaning: "ניקיון ותחזוקת הבית",
+                defaultTemplateBreakfast: "בוקר בריא ומוזלי",
+                defaultTemplatePasta: "ערב איטלקי - פסטה ופיצה"
             },
             en: {
                 appTitle: "Grocery List",
@@ -919,7 +1105,7 @@
                 inputPlaceholder: "Type product name to add or search...",
                 addBtnTitle: "Add to list",
                 list1Title: "Products in list",
-                list1Hint: "Click to remove",
+                list1Hint: "Click to check off",
                 list1Empty: "Your list is empty. Add products from the search input, (+) button, or catalog!",
                 list2Title: "Available products",
                 sortByUsage: "By most used",
@@ -994,7 +1180,48 @@
                 exportEmptyToast: "Shopping list is empty",
                 exportSuccessToast: "List copied to clipboard!",
                 settingsTabGeneral: "General",
-                settingsTabAdvanced: "Advanced"
+                settingsTabAdvanced: "Advanced",
+                wakeLockTitle: "Keep Screen Awake",
+                wakeLockDesc: "Prevent screen from dimming or locking while shopping",
+                wakeLockNotSupported: "This feature requires a secure connection (HTTPS) and is not supported on local HTTP/WiFi. Works on Netlify!",
+                purchasedItemsTitle: "Checked-off Items",
+                purchasedExpandHint: "Show",
+                purchasedCollapseHint: "Hide",
+                clearPurchasedBtn: "Clear Checked Items",
+                undoSuccessPurchased: "Undo: '{name}' returned to active list",
+                undoSuccessClearPurchased: "Undo: restored {count} checked items",
+                showPricesTitle: "Show Estimated Prices",
+                showPricesDesc: "Estimated prices updated as of {date} (per kg / unit)",
+                basketTotalEstimate: "Estimated Basket Total:",
+                purchasedTotalPaid: "Paid:",
+                remainingToBuy: "Remaining:",
+                perKgUnit: "per kg",
+                savedListsBtnLabel: "Templates",
+                openSavedListsBtn: "Open Templates",
+                savedListsBtnTitle: "Saved Lists & Templates",
+                savedListsModalTitle: "Saved Lists & Templates",
+                savedListsModalDesc: "Save current cart or load a recurring list",
+                saveCurrentBasketTitle: "Save current cart as a template",
+                saveTemplateBtn: "Save",
+                saveTemplatePlaceholder: "Enter list name (e.g., Weekend Shopping)...",
+                saveBasketEmptyNotice: "Cart is empty. Add items to cart to save as template.",
+                yourSavedTemplatesTitle: "Your Saved Lists:",
+                emptySavedTemplatesNotice: "No saved lists yet. Build a shopping cart and click 'Save' above!",
+                addTemplateBtn: "Add to Cart",
+                addTemplateTooltip: "Add these items to your current cart",
+                loadAsNewTemplateBtn: "Load as New",
+                loadAsNewTemplateTooltip: "Replace current cart with this list",
+                deleteTemplateTooltip: "Delete this template",
+                templateSavedSuccess: "List '{name}' saved successfully!",
+                templateAddedToast: "Added {count} items to cart",
+                templateLoadedNewToast: "List '{name}' loaded successfully",
+                templateDeletedToast: "Template deleted successfully",
+                defaultTemplateWeekly: "Weekly Essentials",
+                defaultTemplateShabbat: "Shabbat & Hosting",
+                defaultTemplateBbq: "BBQ & Picnic",
+                defaultTemplateCleaning: "Cleaning & Home Supplies",
+                defaultTemplateBreakfast: "Healthy Breakfast & Muesli",
+                defaultTemplatePasta: "Italian Pasta & Pizza Night"
             },
             ru: {
                 appTitle: "Список покупок",
@@ -1005,7 +1232,7 @@
                 inputPlaceholder: "Введите название товара для добавления или поиска...",
                 addBtnTitle: "Добавить в список",
                 list1Title: "Товары в списке",
-                list1Hint: "Нажмите, чтобы удалить",
+                list1Hint: "Нажмите, чтобы отметить купленным",
                 list1Empty: "Список пуст. Введите товар для поиска, нажмите кнопку (+) или выберите из каталога!",
                 list2Title: "Доступные товары",
                 sortByUsage: "По использованию",
@@ -1080,7 +1307,48 @@
                 exportEmptyToast: "Список покупок пуст",
                 exportSuccessToast: "Список скопирован в буфер!",
                 settingsTabGeneral: "Основные",
-                settingsTabAdvanced: "Дополнительно"
+                settingsTabAdvanced: "Дополнительно",
+                wakeLockTitle: "Экран всегда включен",
+                wakeLockDesc: "Не выключать и не блокировать экран во время покупок",
+                wakeLockNotSupported: "Эта функция требует защищенного соединения (HTTPS) и недоступна в локальной сети HTTP. Будет работать на Netlify!",
+                purchasedItemsTitle: "Купленные товары",
+                purchasedExpandHint: "Показать",
+                purchasedCollapseHint: "Скрыть",
+                clearPurchasedBtn: "Удалить купленные",
+                undoSuccessPurchased: "Отменено: '{name}' возвращен в активный список",
+                undoSuccessClearPurchased: "Отменено: восстановлено {count} купленных товаров",
+                showPricesTitle: "Ориентировочные цены",
+                showPricesDesc: "Ориентировочные цены обновлены на {date} (за кг / шт)",
+                basketTotalEstimate: "Примерная сумма корзины:",
+                purchasedTotalPaid: "Оплачено:",
+                remainingToBuy: "Осталось:",
+                perKgUnit: "за кг",
+                savedListsBtnLabel: "Шаблоны",
+                openSavedListsBtn: "Открыть шаблоны",
+                savedListsBtnTitle: "Сохраненные списки и шаблоны",
+                savedListsModalTitle: "Сохраненные списки и шаблоны",
+                savedListsModalDesc: "Сохраните корзину или загрузите готовый список",
+                saveCurrentBasketTitle: "Сохранить корзину как шаблон",
+                saveTemplateBtn: "Сохранить",
+                saveTemplatePlaceholder: "Название списка (напр. Покупки на шаббат)...",
+                saveBasketEmptyNotice: "Корзина пуста. Добавьте товары, чтобы сохранить как шаблон.",
+                yourSavedTemplatesTitle: "Ваши сохраненные списки:",
+                emptySavedTemplatesNotice: "Пока нет сохраненных списков. Соберите корзину и нажмите 'Сохранить' выше!",
+                addTemplateBtn: "Добавить",
+                addTemplateTooltip: "Добавить эти товары в текущую корзину",
+                loadAsNewTemplateBtn: "Загрузить с нуля",
+                loadAsNewTemplateTooltip: "Заменить текущую корзину этим списком",
+                deleteTemplateTooltip: "Удалить этот шаблон",
+                templateSavedSuccess: "Список '{name}' успешно сохранен!",
+                templateAddedToast: "Добавлено {count} товаров в список",
+                templateLoadedNewToast: "Список '{name}' успешно загружен",
+                templateDeletedToast: "Шаблон успешно удален",
+                defaultTemplateWeekly: "Базовый еженедельный",
+                defaultTemplateShabbat: "Шаббат и угощения",
+                defaultTemplateBbq: "Шашлыки / Пикник",
+                defaultTemplateCleaning: "Уборка и бытовая химия",
+                defaultTemplateBreakfast: "Здоровый завтрак и мюсли",
+                defaultTemplatePasta: "Итальянский ужин (Паста и пицца)"
             }
         };
 
@@ -1285,6 +1553,9 @@
 
         // Active shopping list (starts empty by default)
         let activeList = JSON.parse(localStorage.getItem('activeList')) || [];
+        // Purchased items list (checked-off items)
+        let purchasedList = JSON.parse(localStorage.getItem('purchasedList')) || [];
+        let isPurchasedExpanded = false;
 
         // Apply visual language & RTL/LTR
         function applyLanguage() {
@@ -1312,7 +1583,16 @@
             if (document.getElementById('undoBtn')) document.getElementById('undoBtn').title = t.undoBtnTitle;
             if (document.getElementById('toggleQuantitiesBtn')) document.getElementById('toggleQuantitiesBtn').title = t.toggleQuantitiesTitle;
             if (document.getElementById('exportListBtn')) document.getElementById('exportListBtn').title = t.exportListTitle;
+            if (document.getElementById('savedListsBtn')) document.getElementById('savedListsBtn').title = t.savedListsBtnTitle || 'רשימות שמורות ותבניות';
+            if (document.getElementById('navSavedListsBtn')) document.getElementById('navSavedListsBtn').title = t.savedListsBtnTitle || 'רשימות שמורות ותבניות';
             if (document.getElementById('openAddModalFab')) document.getElementById('openAddModalFab').title = t.fabAddProductTitle;
+
+            // Update prices subtitle with last updated date
+            const dateStr = (typeof productPricesLastUpdated !== 'undefined') ? productPricesLastUpdated : "19/10/2026";
+            const subTitleEl = document.getElementById('showPricesSubtitle');
+            if (subTitleEl && t.showPricesDesc) {
+                subTitleEl.innerText = t.showPricesDesc.replace('{date}', dateStr);
+            }
 
             // Update language selector dropdown
             document.getElementById('languageSelect').value = currentLanguage;
@@ -1502,6 +1782,134 @@
             applySearchBarMode();
             renderAll();
         }
+
+        // Screen Wake Lock Management (Keep screen awake while shopping)
+        let isWakeLockEnabled = JSON.parse(localStorage.getItem('isWakeLockEnabled')) || false;
+        let wakeLockSentinel = null;
+
+        async function requestWakeLock() {
+            if ('wakeLock' in navigator) {
+                try {
+                    wakeLockSentinel = await navigator.wakeLock.request('screen');
+                    wakeLockSentinel.addEventListener('release', () => {
+                        wakeLockSentinel = null;
+                    });
+                } catch (err) {
+                    console.warn("Wake Lock request failed:", err);
+                }
+            }
+        }
+
+        function releaseWakeLock() {
+            if (wakeLockSentinel !== null) {
+                try {
+                    wakeLockSentinel.release();
+                    wakeLockSentinel = null;
+                } catch (e) {}
+            }
+        }
+
+        function applyWakeLock() {
+            const dot = document.getElementById('wakeLockDot');
+            const btn = document.getElementById('wakeLockBtn');
+            const isRtl = (currentLanguage === 'he');
+
+            if (isWakeLockEnabled) {
+                if (btn) {
+                    btn.classList.add('bg-emerald-600');
+                    btn.classList.remove('bg-gray-300');
+                }
+                if (dot) {
+                    dot.style.transform = isRtl ? 'translateX(-24px)' : 'translateX(24px)';
+                }
+                requestWakeLock();
+            } else {
+                if (btn) {
+                    btn.classList.remove('bg-emerald-600');
+                    btn.classList.add('bg-gray-300');
+                }
+                if (dot) {
+                    dot.style.transform = 'translateX(0px)';
+                }
+                releaseWakeLock();
+            }
+            localStorage.setItem('isWakeLockEnabled', JSON.stringify(isWakeLockEnabled));
+        }
+
+        function toggleWakeLock() {
+            triggerHaptic(15);
+            const t = translations[currentLanguage] || translations.he;
+            if (!('wakeLock' in navigator)) {
+                showToast(t.wakeLockNotSupported, "error");
+                return;
+            }
+            isWakeLockEnabled = !isWakeLockEnabled;
+            applyWakeLock();
+        }
+
+        // Estimated Prices Management
+        let isShowPricesEnabled = JSON.parse(localStorage.getItem('isShowPricesEnabled')) !== false;
+
+        function applyShowPrices() {
+            const dot = document.getElementById('showPricesDot');
+            const btn = document.getElementById('showPricesBtn');
+            const isRtl = (currentLanguage === 'he');
+
+            if (isShowPricesEnabled) {
+                if (btn) {
+                    btn.classList.add('bg-emerald-600');
+                    btn.classList.remove('bg-gray-300');
+                }
+                if (dot) {
+                    dot.style.transform = isRtl ? 'translateX(-24px)' : 'translateX(24px)';
+                }
+            } else {
+                if (btn) {
+                    btn.classList.remove('bg-emerald-600');
+                    btn.classList.add('bg-gray-300');
+                }
+                if (dot) {
+                    dot.style.transform = 'translateX(0px)';
+                }
+            }
+            localStorage.setItem('isShowPricesEnabled', JSON.stringify(isShowPricesEnabled));
+        }
+
+        function toggleShowPrices() {
+            triggerHaptic(15);
+            isShowPricesEnabled = !isShowPricesEnabled;
+            applyShowPrices();
+            renderAll();
+        }
+
+        function getProductPrice(name) {
+            const clean = cleanProductName(name);
+            if (typeof productPrices !== 'undefined' && productPrices[clean] !== undefined) {
+                return Number(productPrices[clean]);
+            }
+            if (typeof productPrices !== 'undefined') {
+                const lower = clean.toLowerCase();
+                for (const k in productPrices) {
+                    if (cleanProductName(k).toLowerCase() === lower) {
+                        return Number(productPrices[k]);
+                    }
+                }
+            }
+            const found = masterCatalog.find(p => cleanProductName(p.name) === clean);
+            return (found && found.price) ? Number(found.price) : 0;
+        }
+
+        function isProductWeighted(name) {
+            const cat = getProductCategory(name);
+            return (cat === "ירקות" || cat === "פירות" || cat === "בשר ועוף" || cat === "דגים ופירות ים" || cat === "פיצוחים ופירות יבשים" || cat === "אגוזים וזרעים");
+        }
+
+        // Re-acquire wake lock when user switches back to the tab
+        document.addEventListener('visibilitychange', () => {
+            if (document.visibilityState === 'visible' && isWakeLockEnabled) {
+                requestWakeLock();
+            }
+        });
 
         // Search Bar Mode Management ('top', 'fab')
         let currentSearchBarMode = localStorage.getItem('searchBarMode') || 'top';
@@ -1711,14 +2119,16 @@
         function saveData() {
             localStorage.setItem('masterCatalog', JSON.stringify(masterCatalog));
             localStorage.setItem('activeList', JSON.stringify(activeList));
+            localStorage.setItem('purchasedList', JSON.stringify(purchasedList));
             localStorage.setItem('activeQuantities', JSON.stringify(activeQuantities));
         }
 
-        // Render both lists
+        // Render both lists and purchased items
         function renderAll() {
             updateGroupingBtnUI();
             updateQuantitiesBtnUI();
             renderActiveList();
+            renderPurchasedList();
             renderCatalog();
             saveData();
         }
@@ -1730,15 +2140,19 @@
             const displayCategory = getLocalizedCategoryName(rawCategory);
             const emoji = getCategoryEmoji(rawCategory);
             const qty = activeQuantities[rawName] || 1;
+            const itemPrice = getProductPrice(rawName);
+            const isWeighted = isProductWeighted(rawName);
+            const totalItemPrice = itemPrice * qty;
+            const priceUnitLabel = (currentLanguage === 'ru') ? 'за кг' : ((currentLanguage === 'en') ? 'per kg' : 'לק״ג');
 
             const div = document.createElement('div');
             div.id = `active-item-${rawName.replace(/[^a-zA-Z0-9\u0590-\u05FF]/g, '_')}`;
             div.className = "flex items-center justify-between theme-active-card rounded-xl px-3.5 py-2.5 shadow-sm transition cursor-pointer select-none group";
             div.title = t.list1Hint;
             
-            // Strike-off & fade removal
+            // Strike-off & transition to purchased list
             div.onclick = (e) => {
-                // If clicked directly on quantity buttons, don't delete
+                // If clicked directly on quantity buttons, don't mark as purchased
                 if (e.target.closest('.qty-control')) return;
                 
                 triggerHaptic(20);
@@ -1753,8 +2167,8 @@
                 }
                 div.classList.add('item-purchased');
                 setTimeout(() => {
-                    removeFromActiveList(rawName);
-                }, 380);
+                    markItemAsPurchased(rawName);
+                }, 280);
             };
 
             div.innerHTML = `
@@ -1766,8 +2180,15 @@
                     </div>
                 </div>
 
-                <!-- Quantity Pill & Remove 'X' -->
+                <!-- Quantity Pill, Price & Check-off Indicator -->
                 <div class="flex items-center gap-2 shrink-0">
+                    ${(isShowPricesEnabled && itemPrice > 0) ? `
+                    <div class="flex flex-col items-end shrink-0 select-none" title="${isWeighted ? `${itemPrice.toFixed(2)} ₪ ${priceUnitLabel}` : `${itemPrice.toFixed(2)} ₪`}">
+                        <span class="text-[11px] font-normal text-emerald-700 dark:text-emerald-400">~${totalItemPrice.toFixed(2)} ₪</span>
+                        ${(qty > 1 && !isWeighted) ? `<span class="text-[9px] font-normal text-gray-400 dark:text-slate-500">${qty}×${itemPrice.toFixed(2)}</span>` : ''}
+                        ${isWeighted ? `<span class="text-[9px] font-normal text-gray-400 dark:text-slate-500">${priceUnitLabel}</span>` : ''}
+                    </div>` : ''}
+
                     ${(showQuantities && !isSimpleMode) ? `
                     <div class="qty-control flex items-center bg-white dark:bg-slate-800 border border-emerald-200 dark:border-emerald-900/80 rounded-lg shadow-2xs overflow-hidden" onclick="event.stopPropagation()">
                         <button onclick="changeItemQuantity('${escapeHtml(rawName)}', -1, event)" class="w-6 h-6 flex items-center justify-center text-gray-500 dark:text-slate-400 hover:bg-emerald-50 dark:hover:bg-slate-700 active:bg-emerald-100 text-xs font-bold transition">
@@ -1779,12 +2200,204 @@
                         </button>
                     </div>` : ''}
 
-                    <div class="text-gray-400 dark:text-slate-400 group-hover:text-red-500 dark:group-hover:text-red-400 p-1 transition shrink-0">
-                        <i class="fa-solid fa-xmark text-base"></i>
+                    <div class="text-gray-300 dark:text-slate-600 group-hover:text-emerald-500 p-1 transition shrink-0">
+                        <i class="fa-solid fa-check text-base"></i>
                     </div>
                 </div>
             `;
             return div;
+        }
+
+        // Render individual purchased item card
+        function createPurchasedItemElement(rawName, t) {
+            const displayName = getLocalizedProductName(rawName);
+            const rawCategory = getProductCategory(rawName);
+            const displayCategory = getLocalizedCategoryName(rawCategory);
+            const emoji = getCategoryEmoji(rawCategory);
+            const qty = activeQuantities[rawName] || 1;
+            const itemPrice = getProductPrice(rawName);
+            const totalItemPrice = itemPrice * qty;
+
+            const div = document.createElement('div');
+            div.className = "flex items-center justify-between bg-gray-50 dark:bg-slate-800/60 border border-gray-100 dark:border-slate-700/60 rounded-xl px-3 py-2 opacity-75 hover:opacity-100 transition cursor-pointer select-none group";
+            div.title = (currentLanguage === 'ru') ? 'Нажмите, чтобы вернуть в список' : ((currentLanguage === 'en') ? 'Click to restore to active list' : 'לחץ להחזרה לרשימה הפעילה');
+
+            // Click on purchased item restores it to active list
+            div.onclick = () => {
+                triggerHaptic(15);
+                unmarkPurchasedItem(rawName);
+            };
+
+            div.innerHTML = `
+                <div class="flex items-center gap-2.5 min-w-0">
+                    <i class="fa-solid fa-circle-check text-emerald-600 dark:text-emerald-400 text-base shrink-0"></i>
+                    <div class="flex flex-col min-w-0">
+                        <span class="text-slate-400 dark:text-slate-500 line-through font-medium truncate text-xs sm:text-sm">${escapeHtml(displayName)}</span>
+                        ${displayCategory ? `<span class="text-[10px] text-gray-400 dark:text-slate-500 truncate flex items-center gap-1"><span>${emoji}</span><span>${escapeHtml(displayCategory)}</span></span>` : ''}
+                    </div>
+                </div>
+                <div class="flex items-center gap-2 shrink-0 text-xs text-gray-400">
+                    ${(isShowPricesEnabled && itemPrice > 0) ? `<span class="text-[10px] font-normal text-gray-400 dark:text-slate-500 line-through">~${totalItemPrice.toFixed(2)} ₪</span>` : ''}
+                    ${(qty > 1) ? `<span class="text-[11px] font-semibold bg-gray-200 dark:bg-slate-700 px-1.5 py-0.5 rounded text-gray-600 dark:text-slate-300">${qty}</span>` : ''}
+                    <i class="fa-solid fa-arrow-rotate-left opacity-0 group-hover:opacity-100 text-emerald-600 dark:text-emerald-400 transition-opacity text-xs" title="החזר לרשימה"></i>
+                </div>
+            `;
+            return div;
+        }
+
+        // Toggle Purchased Collapsible Strip
+        function togglePurchasedCollapse() {
+            triggerHaptic(10);
+            isPurchasedExpanded = !isPurchasedExpanded;
+            updatePurchasedUI();
+        }
+
+        function updatePurchasedUI() {
+            const wrapper = document.getElementById('purchasedItemsWrapper');
+            const container = document.getElementById('purchasedItemsContainer');
+            const clearBar = document.getElementById('clearPurchasedBar');
+            const chevron = document.getElementById('purchasedChevron');
+            const hint = document.getElementById('purchasedToggleHint');
+            const countEl = document.getElementById('purchasedCount');
+            const t = translations[currentLanguage] || translations.he;
+
+            if (!wrapper) return;
+
+            if (purchasedList.length === 0) {
+                wrapper.classList.add('hidden');
+                return;
+            }
+
+            wrapper.classList.remove('hidden');
+            if (countEl) countEl.innerText = purchasedList.length;
+
+            if (isPurchasedExpanded) {
+                if (container) container.classList.remove('hidden');
+                if (clearBar) clearBar.classList.remove('hidden');
+                if (chevron) chevron.style.transform = 'rotate(180deg)';
+                if (hint) hint.innerText = t.purchasedCollapseHint || "הסתר";
+            } else {
+                if (container) container.classList.add('hidden');
+                if (clearBar) clearBar.classList.add('hidden');
+                if (chevron) chevron.style.transform = 'rotate(0deg)';
+                if (hint) hint.innerText = t.purchasedExpandHint || "הצג";
+            }
+        }
+
+        // Render Purchased Items List
+        function renderPurchasedList() {
+            const container = document.getElementById('purchasedItemsContainer');
+            if (!container) return;
+            const t = translations[currentLanguage] || translations.he;
+            container.innerHTML = '';
+
+            purchasedList.forEach(rawName => {
+                container.appendChild(createPurchasedItemElement(rawName, t));
+            });
+
+            updatePurchasedUI();
+        }
+
+        // Mark item as purchased
+        function markItemAsPurchased(rawName, recordUndo = true) {
+            const idx = activeList.indexOf(rawName);
+            if (idx === -1) return;
+
+            activeList.splice(idx, 1);
+            if (!purchasedList.includes(rawName)) {
+                purchasedList.unshift(rawName);
+            }
+
+            if (recordUndo) {
+                pushUndoAction({
+                    type: 'CHECK_OFF_ITEM',
+                    productName: rawName,
+                    previousIndex: idx
+                });
+            }
+
+            renderAll();
+        }
+
+        // Restore item from purchased list back to active list
+        function unmarkPurchasedItem(rawName, recordUndo = true) {
+            const pIdx = purchasedList.indexOf(rawName);
+            if (pIdx !== -1) {
+                purchasedList.splice(pIdx, 1);
+            }
+
+            if (!activeList.includes(rawName)) {
+                activeList.unshift(rawName);
+            }
+
+            if (recordUndo) {
+                pushUndoAction({
+                    type: 'UNCHECK_ITEM',
+                    productName: rawName
+                });
+            }
+
+            renderAll();
+        }
+
+        // Clear all purchased items permanently from list (returns them to catalog)
+        function clearPurchasedItems() {
+            if (purchasedList.length === 0) return;
+            triggerHaptic(15);
+            const clearedCount = purchasedList.length;
+            const savedPurchased = [...purchasedList];
+
+            pushUndoAction({
+                type: 'CLEAR_PURCHASED',
+                clearedItems: savedPurchased
+            });
+
+            purchasedList = [];
+            isPurchasedExpanded = false;
+            renderAll();
+
+            const t = translations[currentLanguage] || translations.he;
+            showToast((currentLanguage === 'ru') ? `Удалено ${clearedCount} купленных товаров` : ((currentLanguage === 'en') ? `Removed ${clearedCount} checked items` : `הוסרו ${clearedCount} פריטים שנקנו`), "success");
+        }
+
+        // Update Basket Total Summary Bar
+        function updateBasketSummaryBar() {
+            const summaryBar = document.getElementById('basketSummaryBar');
+            const activeSumEl = document.getElementById('basketActiveTotalSum');
+            const purchasedContainer = document.getElementById('basketPurchasedTotalContainer');
+            const purchasedSumEl = document.getElementById('basketPurchasedTotalSum');
+            if (!summaryBar) return;
+
+            if (!isShowPricesEnabled || (activeList.length === 0 && purchasedList.length === 0)) {
+                summaryBar.classList.add('hidden');
+                return;
+            }
+
+            let totalActiveSum = 0;
+            activeList.forEach(rawName => {
+                const p = getProductPrice(rawName);
+                const q = activeQuantities[rawName] || 1;
+                totalActiveSum += (p * q);
+            });
+
+            let totalPurchasedSum = 0;
+            purchasedList.forEach(rawName => {
+                const p = getProductPrice(rawName);
+                const q = activeQuantities[rawName] || 1;
+                totalPurchasedSum += (p * q);
+            });
+
+            summaryBar.classList.remove('hidden');
+            if (activeSumEl) activeSumEl.innerText = `~${totalActiveSum.toFixed(2)} ₪`;
+
+            if (purchasedContainer && purchasedSumEl) {
+                if (purchasedList.length > 0 && totalPurchasedSum > 0) {
+                    purchasedContainer.classList.remove('hidden');
+                    purchasedSumEl.innerText = `~${totalPurchasedSum.toFixed(2)} ₪`;
+                } else {
+                    purchasedContainer.classList.add('hidden');
+                }
+            }
         }
 
         // Render LIST 1: Active Items (with optional Aisle Grouping)
@@ -1796,10 +2409,17 @@
 
             if (activeList.length === 0) {
                 container.innerHTML = `
-                    <div class="text-center text-gray-400 dark:text-slate-500 py-2.5 px-3 bg-gray-50 dark:bg-slate-700/40 border border-dashed border-gray-200 dark:border-slate-700 rounded-xl flex items-center justify-center gap-2.5">
-                        <i class="fa-solid fa-basket-shopping text-xl text-gray-300 dark:text-slate-600 shrink-0"></i>
-                        <p class="text-xs sm:text-sm text-start">${t.list1Empty}</p>
+                    <div class="text-center text-gray-400 dark:text-slate-500 py-3 px-3.5 bg-gray-50 dark:bg-slate-700/40 border border-dashed border-gray-200 dark:border-slate-700 rounded-xl flex flex-col items-center justify-center gap-2.5">
+                        <div class="flex items-center gap-2">
+                            <i class="fa-solid fa-basket-shopping text-lg text-gray-300 dark:text-slate-600 shrink-0"></i>
+                            <p class="text-xs sm:text-sm text-start">${t.list1Empty}</p>
+                        </div>
+                        <button onclick="openSavedListsModal()" class="text-xs font-semibold text-emerald-700 dark:text-emerald-300 bg-emerald-50 dark:bg-emerald-950/60 border border-emerald-300 dark:border-emerald-700/80 px-3 py-1.5 rounded-lg hover:bg-emerald-100 dark:hover:bg-emerald-900/60 transition flex items-center gap-1.5 active:scale-95 shadow-2xs">
+                            <i class="fa-solid fa-bookmark text-[11px] text-emerald-600 dark:text-emerald-400"></i>
+                            <span>${t.openSavedListsBtn || 'פתח תבניות'}</span>
+                        </button>
                     </div>`;
+                updateBasketSummaryBar();
                 return;
             }
 
@@ -1844,6 +2464,8 @@
                     container.appendChild(sectionDiv);
                 });
             }
+
+            updateBasketSummaryBar();
         }
 
         // Render LIST 2: Available Catalog (Using Carousel selectedCategoryFilter & Search Filter)
@@ -1856,7 +2478,7 @@
             container.innerHTML = '';
 
             let availableProducts = masterCatalog.filter(product => {
-                if (activeList.includes(product.name)) return false;
+                if (activeList.includes(product.name) || purchasedList.includes(product.name)) return false;
                 
                 // Filter by Category
                 if (categoryFilter !== "all") {
@@ -1907,6 +2529,9 @@
                 const displayName = getLocalizedProductName(product.name);
                 const rawCategory = getProductCategory(product.name);
                 const displayCategory = getLocalizedCategoryName(rawCategory);
+                const itemPrice = getProductPrice(product.name);
+                const isWeighted = isProductWeighted(product.name);
+                const priceUnitLabel = (currentLanguage === 'ru') ? 'за кг' : ((currentLanguage === 'en') ? 'per kg' : 'לק״ג');
 
                 const itemDiv = document.createElement('div');
                 const emoji = getCategoryEmoji(rawCategory);
@@ -1914,15 +2539,21 @@
 
                 itemDiv.innerHTML = `
                     <div onclick="addProductToActiveList('${escapeHtml(product.name)}')" class="flex items-center justify-between flex-1 min-w-0 cursor-pointer select-none">
-                        <div class="flex flex-col min-w-0 text-start">
-                            <span class="truncate text-sm font-medium text-slate-700 dark:text-slate-200 group-hover:text-emerald-800 dark:group-hover:text-emerald-300">${escapeHtml(displayName)}</span>
-                            ${displayCategory ? `<span class="product-cat-tag truncate text-[11px] text-gray-400 dark:text-slate-400 font-normal mt-0.5 flex items-center gap-1"><span>${emoji}</span><span>${escapeHtml(displayCategory)}</span></span>` : ''}
+                        <div class="flex flex-col min-w-0 text-start flex-1 pe-1">
+                            <span class="truncate text-xs sm:text-sm font-medium text-slate-700 dark:text-slate-200 group-hover:text-emerald-800 dark:group-hover:text-emerald-300">${escapeHtml(displayName)}</span>
+                            <div class="flex items-center gap-1.5 mt-0.5 flex-wrap">
+                                ${(isShowPricesEnabled && itemPrice > 0) ? `
+                                <span class="text-[10px] font-normal text-emerald-700 dark:text-emerald-400 opacity-90 whitespace-nowrap">
+                                    ~${itemPrice.toFixed(2)} ₪${isWeighted ? ` ${priceUnitLabel}` : ''}
+                                </span>` : ''}
+                                ${displayCategory ? `<span class="product-cat-tag truncate text-[10px] text-gray-400 dark:text-slate-400 font-normal flex items-center gap-0.5"><span>${emoji}</span><span>${escapeHtml(displayCategory)}</span></span>` : ''}
+                            </div>
                         </div>
-                        <div class="flex items-center gap-1 shrink-0 px-1">
-                            <i class="fa-solid fa-plus text-gray-400 group-hover:text-emerald-600 dark:group-hover:text-emerald-400 text-xs ms-1"></i>
+                        <div class="flex items-center shrink-0 px-0.5">
+                            <i class="fa-solid fa-plus text-gray-400 group-hover:text-emerald-600 dark:group-hover:text-emerald-400 text-xs"></i>
                         </div>
                     </div>
-                    <button onclick="requestDeleteProduct('${escapeHtml(product.name)}')" class="text-gray-300 dark:text-slate-500 hover:text-red-500 dark:hover:text-red-400 p-1 ms-1 rounded hover:bg-red-50 dark:hover:bg-red-950/40 transition shrink-0" title="${t.deleteProductTooltip || 'מחק'}">
+                    <button onclick="requestDeleteProduct('${escapeHtml(product.name)}')" class="text-gray-300 dark:text-slate-500 hover:text-red-500 dark:hover:text-red-400 p-1 ms-0.5 rounded hover:bg-red-50 dark:hover:bg-red-950/40 transition shrink-0" title="${t.deleteProductTooltip || 'מחק'}">
                         <i class="fa-solid fa-trash-can text-xs"></i>
                     </button>
                 `;
@@ -1989,8 +2620,9 @@
                     break;
                 }
                 case 'CLEAR_ACTIVE_LIST': {
-                    // Undo clearing list: restore previous list
+                    // Undo clearing list: restore previous list and purchased items
                     activeList = [...action.previousList];
+                    purchasedList = action.previousPurchased ? [...action.previousPurchased] : [];
                     renderAll();
                     showToast(t.undoSuccessClear || "Undo: List restored", "success");
                     break;
@@ -2011,6 +2643,50 @@
                     renderAll();
                     const disp = getLocalizedProductName(action.product.name);
                     showToast((t.undoSuccessDelete || "Undo: restored").replace('{name}', disp), "success");
+                    break;
+                }
+                case 'CHECK_OFF_ITEM': {
+                    // Undo marking as purchased: remove from purchasedList and restore to activeList
+                    purchasedList = purchasedList.filter(item => item !== action.productName);
+                    if (!activeList.includes(action.productName)) {
+                        const targetIdx = (typeof action.previousIndex === 'number' && action.previousIndex <= activeList.length) ? action.previousIndex : 0;
+                        activeList.splice(targetIdx, 0, action.productName);
+                    }
+                    renderAll();
+                    const disp = getLocalizedProductName(action.productName);
+                    showToast((t.undoSuccessPurchased || "Undo: restored to active list").replace('{name}', disp), "success");
+                    break;
+                }
+                case 'UNCHECK_ITEM': {
+                    // Undo restoring item: move it back to purchasedList
+                    activeList = activeList.filter(item => item !== action.productName);
+                    if (!purchasedList.includes(action.productName)) {
+                        purchasedList.unshift(action.productName);
+                    }
+                    renderAll();
+                    break;
+                }
+                case 'CLEAR_PURCHASED': {
+                    // Undo clearing purchased items: restore purchasedList
+                    purchasedList = [...action.clearedItems];
+                    isPurchasedExpanded = true;
+                    renderAll();
+                    showToast((t.undoSuccessClearPurchased || "Undo: restored checked items").replace('{count}', purchasedList.length), "success");
+                    break;
+                }
+                case 'LOAD_TEMPLATE_ADD': {
+                    activeList = [...action.previousActive];
+                    activeQuantities = { ...action.previousQuantities };
+                    renderAll();
+                    showToast("בוטלה הוספת התבנית לרשימה", "success");
+                    break;
+                }
+                case 'LOAD_TEMPLATE_REPLACE': {
+                    activeList = [...action.previousActive];
+                    purchasedList = [...action.previousPurchased];
+                    activeQuantities = { ...action.previousQuantities };
+                    renderAll();
+                    showToast("שוחזרה הרשימה שהייתה לפני טעינת התבנית", "success");
                     break;
                 }
             }
@@ -2054,6 +2730,384 @@
             }, 2000);
         }
 
+        // ==========================================
+        // SAVED LISTS & TEMPLATES MANAGEMENT
+        // ==========================================
+        const DEFAULT_TEMPLATES = [
+            {
+                id: 'tpl_weekly_default',
+                name: "סל בסיסי שבועי",
+                isDefault: true,
+                date: "19/10/2026",
+                items: [
+                    { name: "חלב 3%", qty: 2 },
+                    { name: "לחם", qty: 1 },
+                    { name: "ביצים L", qty: 1 },
+                    { name: "גבינה צהובה", qty: 1 },
+                    { name: "עגבניות", qty: 1 },
+                    { name: "מלפפונים", qty: 1 },
+                    { name: "בצל", qty: 1 },
+                    { name: "שמן זית", qty: 1 },
+                    { name: "קפה נמס", qty: 1 }
+                ]
+            },
+            {
+                id: 'tpl_shabbat_default',
+                name: "שבת ואירוח",
+                isDefault: true,
+                date: "19/10/2026",
+                items: [
+                    { name: "חלה", qty: 2 },
+                    { name: "יין אדום", qty: 1 },
+                    { name: "מיץ ענבים", qty: 1 },
+                    { name: "כרעיים עוף", qty: 2 },
+                    { name: "תפוחי אדמה", qty: 1 },
+                    { name: "אורז", qty: 1 },
+                    { name: "חומוס", qty: 1 },
+                    { name: "טחינה", qty: 1 }
+                ]
+            },
+            {
+                id: 'tpl_bbq_default',
+                name: "מנגל ועל האש",
+                isDefault: true,
+                date: "19/10/2026",
+                items: [
+                    { name: "פיתות", qty: 2 },
+                    { name: "חומוס", qty: 1 },
+                    { name: "טחינה", qty: 1 },
+                    { name: "כנפיים עוף", qty: 2 },
+                    { name: "בשר טחון", qty: 1 },
+                    { name: "חמוצים", qty: 1 },
+                    { name: "קולה זירו", qty: 3 },
+                    { name: "כוסות חד פעמיות", qty: 1 },
+                    { name: "מגבונים", qty: 1 }
+                ]
+            },
+            {
+                id: 'tpl_cleaning_default',
+                name: "ניקיון ותחזוקת הבית",
+                isDefault: true,
+                date: "19/10/2026",
+                items: [
+                    { name: "נוזל כלים", qty: 1 },
+                    { name: "נייר טואלט", qty: 1 },
+                    { name: "נייר סופג", qty: 1 },
+                    { name: "אקונומיקה", qty: 1 },
+                    { name: "נוזל כביסה", qty: 1 },
+                    { name: "מרכך כביסה", qty: 1 },
+                    { name: "שקיות אשפה", qty: 1 },
+                    { name: "מגבוני רצפה", qty: 1 },
+                    { name: "סבון ידיים", qty: 1 }
+                ]
+            },
+            {
+                id: 'tpl_breakfast_default',
+                name: "בוקר בריא ומוזלי",
+                isDefault: true,
+                date: "19/10/2026",
+                items: [
+                    { name: "יוגורט", qty: 2 },
+                    { name: "גרנולה", qty: 1 },
+                    { name: "בננות", qty: 1 },
+                    { name: "תפוחי עץ", qty: 1 },
+                    { name: "אוכמניות", qty: 1 },
+                    { name: "אגוזי מלך", qty: 1 },
+                    { name: "דבש", qty: 1 },
+                    { name: "שיבולת שועל", qty: 1 }
+                ]
+            },
+            {
+                id: 'tpl_pasta_default',
+                name: "ערב איטלקי - פסטה ופיצה",
+                isDefault: true,
+                date: "19/10/2026",
+                items: [
+                    { name: "פסטה", qty: 2 },
+                    { name: "רסק עגבניות", qty: 2 },
+                    { name: "שום", qty: 1 },
+                    { name: "שמן זית", qty: 1 },
+                    { name: "בזיליקום", qty: 1 },
+                    { name: "פטריות", qty: 1 },
+                    { name: "מוצרלה", qty: 1 },
+                    { name: "פרמזן", qty: 1 }
+                ]
+            }
+        ];
+
+        let savedTemplates = JSON.parse(localStorage.getItem('savedShoppingTemplates'));
+        if (!savedTemplates) {
+            savedTemplates = [...DEFAULT_TEMPLATES];
+            localStorage.setItem('savedShoppingTemplates', JSON.stringify(savedTemplates));
+        } else {
+            // Auto-merge newly added default templates if user hasn't explicitly deleted them
+            const deletedDefaultTemplates = JSON.parse(localStorage.getItem('deletedDefaultTemplates')) || [];
+            let modified = false;
+            DEFAULT_TEMPLATES.forEach(defTpl => {
+                if (!savedTemplates.some(t => t.id === defTpl.id) && !deletedDefaultTemplates.includes(defTpl.id)) {
+                    savedTemplates.push(defTpl);
+                    modified = true;
+                }
+            });
+            if (modified) {
+                localStorage.setItem('savedShoppingTemplates', JSON.stringify(savedTemplates));
+            }
+        }
+
+        function saveTemplatesData() {
+            localStorage.setItem('savedShoppingTemplates', JSON.stringify(savedTemplates));
+        }
+
+        function openSavedListsModal() {
+            triggerHaptic(15);
+            const modal = document.getElementById('savedListsModal');
+            const input = document.getElementById('newTemplateNameInput');
+            const emptyNotice = document.getElementById('saveBasketEmptyNotice');
+            const countBadge = document.getElementById('currentBasketCountBadge');
+            const t = translations[currentLanguage] || translations.he;
+
+            if (input) {
+                input.value = '';
+                if (t.saveTemplatePlaceholder) input.placeholder = t.saveTemplatePlaceholder;
+            }
+
+            const basketCount = activeList.length;
+            if (countBadge) {
+                countBadge.innerText = (basketCount > 0) ? `(${basketCount} ${t.itemsUnit || 'פריטים'})` : '(0)';
+            }
+
+            if (emptyNotice) {
+                if (basketCount === 0) {
+                    emptyNotice.classList.remove('hidden');
+                } else {
+                    emptyNotice.classList.add('hidden');
+                }
+            }
+
+            renderSavedTemplates();
+            if (modal) modal.classList.remove('hidden');
+        }
+
+        function closeSavedListsModal() {
+            const modal = document.getElementById('savedListsModal');
+            if (modal) modal.classList.add('hidden');
+        }
+
+        function handleSavedListsBackdropClick(event) {
+            if (event.target.id === 'savedListsModal') {
+                closeSavedListsModal();
+            }
+        }
+
+        function saveCurrentListAsTemplate() {
+            triggerHaptic(15);
+            const t = translations[currentLanguage] || translations.he;
+            if (activeList.length === 0) {
+                showToast(t.exportEmptyToast || "רשימת הקניות ריקה", "error");
+                return;
+            }
+
+            const input = document.getElementById('newTemplateNameInput');
+            let name = input ? input.value.trim() : '';
+            if (!name) {
+                const now = new Date();
+                const dateStr = now.toLocaleDateString(currentLanguage === 'ru' ? 'ru-RU' : (currentLanguage === 'en' ? 'en-US' : 'he-IL'));
+                name = (currentLanguage === 'ru' ? `Список ${dateStr}` : (currentLanguage === 'en' ? `List ${dateStr}` : `רשימה ${dateStr}`));
+            }
+
+            const newTemplate = {
+                id: 'tpl_' + Date.now(),
+                name: name,
+                date: new Date().toLocaleDateString(currentLanguage === 'ru' ? 'ru-RU' : (currentLanguage === 'en' ? 'en-US' : 'he-IL')),
+                items: activeList.map(item => ({
+                    name: item,
+                    qty: activeQuantities[item] || 1
+                }))
+            };
+
+            savedTemplates.unshift(newTemplate);
+            saveTemplatesData();
+            if (input) input.value = '';
+
+            showToast((t.templateSavedSuccess || "הרשימה '{name}' נשמרה בהצלחה!").replace('{name}', name), "success");
+            renderSavedTemplates();
+        }
+
+        function addTemplateToActive(templateId) {
+            triggerHaptic(20);
+            const template = savedTemplates.find(t => t.id === templateId);
+            if (!template || !template.items || template.items.length === 0) return;
+
+            const t = translations[currentLanguage] || translations.he;
+            pushUndoAction({
+                type: 'LOAD_TEMPLATE_ADD',
+                previousActive: [...activeList],
+                previousQuantities: { ...activeQuantities }
+            });
+
+            template.items.forEach(it => {
+                const pName = it.name;
+                const pQty = Number(it.qty) || 1;
+                // Ensure catalog knows it
+                if (!masterCatalog.some(p => p.name === pName)) {
+                    masterCatalog.push({ name: pName, category: getProductCategory(pName) || "כללי", usage: 1 });
+                }
+                if (!activeList.includes(pName)) {
+                    activeList.push(pName);
+                    activeQuantities[pName] = pQty;
+                } else {
+                    activeQuantities[pName] = (activeQuantities[pName] || 1) + pQty;
+                }
+                // If in purchased, unmark it
+                purchasedList = purchasedList.filter(x => x !== pName);
+            });
+
+            closeSavedListsModal();
+            renderAll();
+            showToast((t.templateAddedToast || "נוספו פריטים").replace('{count}', template.items.length), "success");
+        }
+
+        function loadTemplateAsNew(templateId) {
+            triggerHaptic(20);
+            const template = savedTemplates.find(t => t.id === templateId);
+            if (!template || !template.items || template.items.length === 0) return;
+
+            const t = translations[currentLanguage] || translations.he;
+            pushUndoAction({
+                type: 'LOAD_TEMPLATE_REPLACE',
+                previousActive: [...activeList],
+                previousPurchased: [...purchasedList],
+                previousQuantities: { ...activeQuantities }
+            });
+
+            activeList = [];
+            activeQuantities = {};
+            purchasedList = [];
+
+            template.items.forEach(it => {
+                const pName = it.name;
+                const pQty = Number(it.qty) || 1;
+                if (!masterCatalog.some(p => p.name === pName)) {
+                    masterCatalog.push({ name: pName, category: getProductCategory(pName) || "כללי", usage: 1 });
+                }
+                activeList.push(pName);
+                activeQuantities[pName] = pQty;
+            });
+
+            const defaultTemplateKeys = {
+                tpl_weekly_default: 'defaultTemplateWeekly',
+                tpl_shabbat_default: 'defaultTemplateShabbat',
+                tpl_bbq_default: 'defaultTemplateBbq',
+                tpl_cleaning_default: 'defaultTemplateCleaning',
+                tpl_breakfast_default: 'defaultTemplateBreakfast',
+                tpl_pasta_default: 'defaultTemplatePasta'
+            };
+            const tplTitle = (defaultTemplateKeys[template.id] && t[defaultTemplateKeys[template.id]]) ? t[defaultTemplateKeys[template.id]] : template.name;
+
+            closeSavedListsModal();
+            renderAll();
+            showToast((t.templateLoadedNewToast || "הרשימה '{name}' נטענה בהצלחה").replace('{name}', tplTitle), "success");
+        }
+
+        function deleteSavedTemplate(templateId) {
+            triggerHaptic(15);
+            const idx = savedTemplates.findIndex(t => t.id === templateId);
+            if (idx === -1) return;
+
+            const tpl = savedTemplates[idx];
+            if (tpl && tpl.isDefault) {
+                const deletedDefaults = JSON.parse(localStorage.getItem('deletedDefaultTemplates')) || [];
+                if (!deletedDefaults.includes(tpl.id)) {
+                    deletedDefaults.push(tpl.id);
+                    localStorage.setItem('deletedDefaultTemplates', JSON.stringify(deletedDefaults));
+                }
+            }
+
+            savedTemplates.splice(idx, 1);
+            saveTemplatesData();
+
+            const t = translations[currentLanguage] || translations.he;
+            showToast(t.templateDeletedToast || "הרשימה נמחקה בהצלחה", "success");
+            renderSavedTemplates();
+        }
+
+        function renderSavedTemplates() {
+            const container = document.getElementById('savedListsContainer');
+            const countEl = document.getElementById('savedTemplatesCount');
+            const t = translations[currentLanguage] || translations.he;
+            if (!container) return;
+
+            if (countEl) countEl.innerText = `(${savedTemplates.length})`;
+            container.innerHTML = '';
+
+            if (savedTemplates.length === 0) {
+                container.innerHTML = `
+                    <div class="text-center text-gray-400 dark:text-slate-500 py-6 px-3 bg-gray-50 dark:bg-slate-700/30 rounded-xl border border-dashed border-gray-200 dark:border-slate-700 text-xs">
+                        ${t.emptySavedTemplatesNotice || "אין עדיין רשימות שמורות. הרכב סל קניות ולחץ על 'שמור' למעלה!"}
+                    </div>
+                `;
+                return;
+            }
+
+            const defaultTemplateKeys = {
+                tpl_weekly_default: 'defaultTemplateWeekly',
+                tpl_shabbat_default: 'defaultTemplateShabbat',
+                tpl_bbq_default: 'defaultTemplateBbq',
+                tpl_cleaning_default: 'defaultTemplateCleaning',
+                tpl_breakfast_default: 'defaultTemplateBreakfast',
+                tpl_pasta_default: 'defaultTemplatePasta'
+            };
+
+            savedTemplates.forEach(tpl => {
+                const card = document.createElement('div');
+                card.className = "p-3 rounded-xl border border-gray-200 dark:border-slate-700 bg-gray-50 dark:bg-slate-700/50 flex flex-col gap-2 hover:border-emerald-300 dark:hover:border-emerald-700 transition";
+
+                // Localize default template titles if needed
+                let displayName = tpl.name;
+                if (defaultTemplateKeys[tpl.id] && t[defaultTemplateKeys[tpl.id]]) {
+                    displayName = t[defaultTemplateKeys[tpl.id]];
+                }
+
+                // Preview items string (first 4 items)
+                const previewNames = (tpl.items || []).slice(0, 4).map(it => {
+                    const disp = getLocalizedProductName(it.name);
+                    return (it.qty > 1) ? `${disp} (${it.qty})` : disp;
+                }).join(', ');
+                const moreCount = (tpl.items || []).length - 4;
+                const moreText = (currentLanguage === 'ru') ? `+ еще ${moreCount}` : ((currentLanguage === 'en') ? `+ ${moreCount} more` : `+ עוד ${moreCount}`);
+                const previewText = moreCount > 0 ? `${previewNames} ${moreText}` : previewNames;
+
+                card.innerHTML = `
+                    <div class="flex items-start justify-between gap-2">
+                        <div class="min-w-0 flex-1 text-start">
+                            <div class="flex items-center gap-1.5 flex-wrap">
+                                <span class="font-bold text-xs sm:text-sm text-slate-800 dark:text-slate-100 truncate">${escapeHtml(displayName)}</span>
+                                <span class="text-[10px] text-emerald-700 dark:text-emerald-400 font-medium bg-emerald-100/70 dark:bg-emerald-950/60 px-1.5 py-0.5 rounded">${tpl.items.length} ${t.itemsUnit || 'פריטים'}</span>
+                            </div>
+                            <p class="text-[10px] text-gray-400 dark:text-slate-500 mt-0.5 truncate">${escapeHtml(tpl.date || '')}</p>
+                        </div>
+                        <button onclick="deleteSavedTemplate('${tpl.id}')" class="text-gray-300 dark:text-slate-500 hover:text-red-500 dark:hover:text-red-400 p-1 rounded hover:bg-red-50 dark:hover:bg-red-950/40 transition shrink-0" title="${t.deleteTemplateTooltip || 'מחק תבנית'}">
+                            <i class="fa-solid fa-trash-can text-xs"></i>
+                        </button>
+                    </div>
+
+                    <p class="text-[11px] text-gray-600 dark:text-slate-300 truncate text-start">${escapeHtml(previewText)}</p>
+
+                    <div class="flex gap-2 pt-1 border-t border-gray-100 dark:border-slate-700/80">
+                        <button onclick="addTemplateToActive('${tpl.id}')" class="flex-1 bg-white dark:bg-slate-800 hover:bg-emerald-50 dark:hover:bg-slate-700 text-emerald-700 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800/60 py-1.5 rounded-lg text-xs font-semibold flex items-center justify-center gap-1 shadow-2xs transition active:scale-95" title="${t.addTemplateTooltip || 'הוסף לסל הנוכחי'}">
+                            <i class="fa-solid fa-plus text-[10px]"></i>
+                            <span>${t.addTemplateBtn || 'הוסף לסל'}</span>
+                        </button>
+                        <button onclick="loadTemplateAsNew('${tpl.id}')" class="flex-1 bg-emerald-600 hover:bg-emerald-700 text-white py-1.5 rounded-lg text-xs font-semibold flex items-center justify-center gap-1 shadow-sm transition active:scale-95" title="${t.loadAsNewTemplateTooltip || 'טען כרשימה חדשה'}">
+                            <i class="fa-solid fa-rotate text-[10px]"></i>
+                            <span>${t.loadAsNewTemplateBtn || 'טען כחדשה'}</span>
+                        </button>
+                    </div>
+                `;
+                container.appendChild(card);
+            });
+        }
+
         function addProductToActiveList(name, category = null, recordUndo = true) {
             triggerHaptic(15);
             // Check for Easter Egg ("ברוש")
@@ -2062,6 +3116,8 @@
             }
 
             if (!activeList.includes(name)) {
+                // If it was in purchasedList, remove it
+                purchasedList = purchasedList.filter(item => item !== name);
                 activeList.unshift(name);
 
                 let isNewProduct = false;
@@ -2240,13 +3296,16 @@
         }
 
         function executeClearActiveList() {
-            if (activeList.length > 0) {
+            if (activeList.length > 0 || purchasedList.length > 0) {
                 pushUndoAction({
                     type: 'CLEAR_ACTIVE_LIST',
-                    previousList: [...activeList]
+                    previousList: [...activeList],
+                    previousPurchased: [...purchasedList]
                 });
             }
             activeList = [];
+            purchasedList = [];
+            isPurchasedExpanded = false;
             renderAll();
             closeConfirmClearListModal();
             closeSettingsModal();
@@ -2308,8 +3367,9 @@
             // Remove from masterCatalog
             masterCatalog = masterCatalog.filter(p => cleanProductName(p.name) !== targetClean);
 
-            // Also remove from activeList if present
+            // Also remove from activeList and purchasedList if present
             activeList = activeList.filter(name => cleanProductName(name) !== targetClean);
+            purchasedList = purchasedList.filter(name => cleanProductName(name) !== targetClean);
 
             saveData();
             renderAll();
@@ -2402,7 +3462,7 @@
                             <span class="font-medium text-slate-800 dark:text-slate-100 truncate">${highlightedName}</span>
                             ${displayCategory ? `<span class="text-xs text-gray-400 dark:text-slate-400 truncate">(${escapeHtml(displayCategory)})</span>` : ''}
                         </div>
-                        ${activeList.includes(prod.name) ? `<span class="text-[11px] bg-emerald-100 dark:bg-emerald-900/60 text-emerald-800 dark:text-emerald-300 px-2 py-0.5 rounded-md shrink-0 font-medium">${t.alreadyInListBadge}</span>` : ''}
+                        ${activeList.includes(prod.name) ? `<span class="text-[11px] bg-emerald-100 dark:bg-emerald-900/60 text-emerald-800 dark:text-emerald-300 px-2 py-0.5 rounded-md shrink-0 font-medium">${t.alreadyInListBadge}</span>` : (purchasedList.includes(prod.name) ? `<span class="text-[11px] bg-gray-100 dark:bg-slate-700 text-gray-500 dark:text-slate-400 px-2 py-0.5 rounded-md shrink-0 font-medium">✓ ${t.purchasedItemsTitle || 'נקנה'}</span>` : '')}
                     </div>
                 `}).join('');
 
@@ -2475,14 +3535,17 @@
             }
         }
 
+        let toastTimeoutId = null;
         function showToast(message, type = "success") {
             const toast = document.getElementById('toastNotification');
+            if (!toast) return;
             toast.innerText = message;
-            toast.className = `mb-4 p-3 rounded-lg text-sm font-medium transition-all ${type === 'success' ? 'bg-emerald-100 dark:bg-emerald-950 text-emerald-800 dark:text-emerald-300 border border-emerald-300 dark:border-emerald-800' : 'bg-red-100 dark:bg-red-950 text-red-800 dark:text-red-300 border border-red-300 dark:border-red-800'}`;
+            toast.className = `fixed top-5 left-1/2 -translate-x-1/2 z-[100] max-w-sm w-11/12 p-3.5 rounded-2xl text-sm font-medium text-center shadow-2xl transition-all border pointer-events-auto ${type === 'success' ? 'bg-emerald-600 text-white border-emerald-500 shadow-emerald-950/20' : 'bg-rose-600 text-white border-rose-500 shadow-rose-950/20'}`;
             toast.classList.remove('hidden');
-            setTimeout(() => {
+            if (toastTimeoutId) clearTimeout(toastTimeoutId);
+            toastTimeoutId = setTimeout(() => {
                 toast.classList.add('hidden');
-            }, 4000);
+            }, 2500);
         }
 
         function escapeHtml(text) {
@@ -2491,13 +3554,15 @@
             });
         }
 
-        // Initialize UI, Language, Font Size, Bold Text, Theme Color, Simple Mode, Search Bar Mode & Dark Mode
+        // Initialize UI, Language, Font Size, Bold Text, Theme Color, Simple Mode, Search Bar Mode, Wake Lock, Show Prices & Dark Mode
         applyDarkMode();
         applyFontSize();
         applyBoldText();
         applyThemeColor();
         applySimpleMode();
         applySearchBarMode();
+        applyWakeLock();
+        applyShowPrices();
         applyLanguage();
         renderAll();
 
@@ -2521,13 +3586,26 @@
                 closeConfirmDeleteProductModal();
                 closeConfirmClearListModal();
                 closeConfirmResetModal();
+                closeSavedListsModal();
             }
         });
 
-        // Register Service Worker for PWA
+        // Register Service Worker for PWA with auto-update
         if ('serviceWorker' in navigator) {
             window.addEventListener('load', () => {
-                navigator.serviceWorker.register('./sw.js').catch((err) => {
+                navigator.serviceWorker.register('./sw.js').then((reg) => {
+                    reg.onupdatefound = () => {
+                        const installingWorker = reg.installing;
+                        if (installingWorker) {
+                            installingWorker.onstatechange = () => {
+                                if (installingWorker.state === 'installed' && navigator.serviceWorker.controller) {
+                                    console.log('New app version installed; auto-reloading');
+                                    window.location.reload();
+                                }
+                            };
+                        }
+                    };
+                }).catch((err) => {
                     console.log('SW registration error:', err);
                 });
             });

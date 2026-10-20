@@ -10,6 +10,36 @@ A modern, fast, lightweight, and customizable **Progressive Web App (PWA)** for 
   - **1. Active Shopping List**: Items currently needed. Click anywhere on an item card to check it off with a strike-through and smooth removal.
   - **2. Available Catalog**: Fast selection from a rich database of 460+ items sorted by frequency of use, alphabetical order, or aisle / family. Clean catalog header without unnecessary counters.
 
+- **🔖 Saved Lists & Pre-made Templates (רשימות שמורות ותבניות)**:
+  - Save your active shopping cart under a custom name (or auto-generated date) for recurring use.
+  - Quick access from the active list header with two loading modes:
+    - **➕ Add to Cart (הוסף לסל)**: Merges template items and quantities into the current cart.
+    - **🔄 Load as New (טען כחדשה)**: Replaces the current cart with the template list.
+  - Delete saved lists with a single tap (🗑️).
+  - Includes **6 built-in, curated templates**:
+    - *סל בסיסי שבועי* (Weekly Essentials)
+    - *שבת ואירוח* (Shabbat & Hosting)
+    - *מנגל ועל האש* (BBQ & Picnic)
+    - *ניקיון ותחזוקת הבית* (Cleaning & Home Supplies)
+    - *בוקר בריא ומוזלי* (Healthy Breakfast & Muesli)
+    - *ערב איטלקי - פסטה ופיצה* (Italian Pasta & Pizza Night)
+  - Full Undo (`Ctrl+Z`) support for all template actions.
+
+- **💰 Estimated Prices & Live Basket Calculator (מחירים משוערים וסיכום סל)**:
+  - Realistic Israeli supermarket price database for 460+ products (updated in NIS ₪).
+  - Accurate pricing per 1 kg for fruits, vegetables, and weighted goods.
+  - Toggle on/off in Settings: "הצג מחירים משוערים" with dynamic last-updated date indicator.
+  - Real-time basket summary bar calculating the estimated total cost of active items and already purchased items.
+  - Clean, unbolded micro-price badges placed thoughtfully to ensure product names always remain clearly visible.
+
+- **💡 Keep Screen Awake (מסך דולק תמיד)**:
+  - Convenient toggle in Settings to prevent your phone screen from dimming or locking while navigating supermarket aisles.
+  - Powered by the native **Screen Wake Lock API** (requires HTTPS like Netlify or GitHub Pages).
+
+- **✅ Collapsible Purchased Items (פריטים שנקנו)**:
+  - Checked-off items smoothly move into a collapsible accordion section.
+  - Dedicated button to clear all purchased items with full multi-level Undo support.
+
 - **📤 Export & Share Shopping List**:
   - Export and share your active shopping list with a single click via the **"שתף" (Share)** button in the list header.
   - Opens the native **mobile share sheet** (WhatsApp, Telegram, SMS, Email, Notes, etc.) on supported devices (HTTPS / Web Share API).
@@ -88,14 +118,15 @@ This project is fully static and requires **no build step or backend**. It can b
 ## 📁 Project Structure
 
 ```text
-├── index.html         # Main application layout, styles, and core logic
-├── translations.js    # Comprehensive trilingual dictionary (Hebrew, English, Russian) & categories
-├── manifest.json      # PWA Web App Manifest (app name, icons, display mode)
-├── sw.js              # Service Worker for offline caching and standalone execution
-├── icon-192.png       # 192x192 app launcher icon
-├── icon-512.png       # 512x512 splash screen / store icon
-├── netlify.toml       # Optional Netlify configuration header rules
-└── README.md          # Project documentation
+├── index.html            # Main application layout, styles, and core logic
+├── translations.js       # Comprehensive trilingual dictionary (Hebrew, English, Russian) & categories
+├── list_categorized.xlsx # Categorized product catalog with estimated Israeli market prices
+├── manifest.json         # PWA Web App Manifest (app name, icons, display mode)
+├── sw.js                 # Service Worker for offline caching and standalone execution
+├── icon-192.png          # 192x192 app launcher icon
+├── icon-512.png          # 512x512 splash screen / store icon
+├── netlify.toml          # Optional Netlify configuration header rules
+└── README.md             # Project documentation
 ```
 
 ---
