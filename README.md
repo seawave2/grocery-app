@@ -150,33 +150,7 @@ The application is structured around a fast, intuitive **Two-List Architecture**
 
 ---
 
-## 🚀 Deployment & Installation
 
-Because the application is built entirely with standard web technologies, it requires **no build step, compilers, or server-side runtimes**. It can be deployed in seconds to any static hosting provider:
-
-- **Netlify**: Drag and drop the release `.zip` directly into the Netlify dashboard.
-- **GitHub Pages**: Push the repository to GitHub and enable Pages in repository settings under the `main` branch.
-- **Vercel / Cloudflare Pages**: Connect the repository for instant static deployment.
-- **Local Network (Wi-Fi)**: Run the included `server.ps1` script to access the app across any device connected to your local Wi-Fi.
-
----
-
-## 📁 Project Directory Structure
-
-```text
-├── index.html            # Main application layout, styles, and logic
-├── translations.js       # Trilingual dictionary (Hebrew, English, Russian), categories & pricing
-├── list_categorized.xlsx # Product catalog spreadsheet with estimated market pricing
-├── manifest.json         # PWA Web App Manifest (display mode, name, theme colors)
-├── sw.js                 # Service Worker for offline execution and asset caching
-├── icon-192.png          # 192x192 app launcher icon
-├── icon-512.png          # 512x512 splash screen / store icon
-├── netlify.toml          # Netlify configuration and HTTP caching headers
-├── server.ps1            # High-performance local HTTP server script for development & Wi-Fi testing
-└── README.md             # Project documentation
-```
-
----
 
 ## 🛠️ Technologies Used
 
