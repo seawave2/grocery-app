@@ -1,6 +1,6 @@
 {
-  "name": "רשימת קניות",
-  "short_name": "קניות",
+  "name": "GroceryFlow",
+  "short_name": "GroceryFlow",
   "start_url": "./index.html",
   "scope": "./",
   "display": "standalone",
