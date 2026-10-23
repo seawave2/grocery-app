@@ -213,17 +213,20 @@
             gap: 1px !important;
             padding: 2px !important;
         }
-        html.font-size-xlarge #headerModeToggle button {
-            padding: 2px 6px !important;
-            font-size: 0.75rem !important;
-        }
-        html.font-size-xlarge #undoBtn {
-            padding: 0.35rem 0.5rem !important;
-        }
         html.font-size-xlarge #helpBtnTooltip,
+        html.font-size-xlarge #supermarketModeBtn,
         html.font-size-xlarge #settingsBtnTooltip,
-        html.font-size-xlarge #supermarketModeBtn {
-            padding: 0.4rem !important;
+        html.font-size-xlarge #undoBtn {
+            width: 48px !important;
+            height: 48px !important;
+            padding: 2px !important;
+        }
+        html.font-size-xlarge #headerModeToggle button {
+            padding: 2px 4px !important;
+            font-size: 0.7rem !important;
+        }
+        html.font-size-xlarge header span[data-i18n] {
+            font-size: 10px !important;
         }
 
         /* ==========================================================================
@@ -462,6 +465,7 @@
         body.no-list-actions #listActionsToolbar {
             display: none !important;
         }
+
     </style>
 </head>
 <body class="min-h-screen pb-4 flex flex-col items-center bg-slate-50 dark:bg-slate-900 text-slate-800 dark:text-slate-100 transition-colors duration-200 simple-mode no-purchased-list no-progress-bar no-list-actions no-category-carousel no-category-tags">
@@ -473,48 +477,53 @@
         </div>
     </div>
 
+
     <!-- Top Navigation Bar (Sticky with Blur Effect) -->
-    <header class="sticky top-0 z-40 w-full theme-bg-header backdrop-blur-md text-white shadow-md py-2.5 sm:py-3.5 px-2.5 sm:px-4 flex justify-between items-center gap-1 sm:gap-2 max-w-md md:max-w-2xl transition-all">
-        <!-- Right Section: Help Button & Mode Switcher (to the left of ?) -->
-        <div class="flex items-center gap-1 sm:gap-2 shrink-0">
-            <button onclick="openHelpModal()" class="theme-btn-header text-white p-1.5 sm:p-2 rounded-xl text-sm transition shadow-sm active:scale-95 shrink-0" id="helpBtnTooltip" title="מדריך ועזרה">
+    <header class="sticky top-0 z-40 w-full theme-bg-header backdrop-blur-md text-white shadow-md py-2 sm:py-2.5 px-2 sm:px-3 flex justify-between items-center gap-1 sm:gap-2 max-w-md md:max-w-2xl transition-all">
+        <!-- Right Section: Help Button & Mode Switcher (Symmetrical width) -->
+        <div class="w-[138px] sm:w-[150px] flex items-center justify-between shrink-0">
+            <button onclick="openHelpModal()" class="theme-btn-header text-white w-[42px] h-[42px] sm:w-[46px] sm:h-[46px] rounded-xl transition shadow-sm active:scale-95 shrink-0 flex flex-col items-center justify-center gap-0.5" id="helpBtnTooltip" title="מדריך ועזרה">
                 <i class="fa-solid fa-circle-question text-base sm:text-lg"></i>
+                <span data-i18n="navHelp" class="text-[10px] sm:text-[11px] leading-tight font-medium select-none">עזרה</span>
             </button>
-            <!-- Header Mode Switcher (מלא / פשוט) -->
-            <div id="headerModeToggle" class="inline-flex items-center p-0.5 bg-black/20 hover:bg-black/25 dark:bg-black/35 rounded-xl border border-white/20 select-none shadow-xs transition shrink-0" title="בחר מצב ממשק">
-                <button type="button" id="headerModeBtnFull" onclick="setUiModeFromHeader('full')" class="px-1.5 sm:px-2.5 py-0.5 rounded-lg text-xs font-medium transition-all text-white/80 hover:text-white hover:bg-white/10 flex items-center justify-center">
-                    <span data-i18n="modeFull">מלא</span>
-                </button>
-                <button type="button" id="headerModeBtnSimple" onclick="setUiModeFromHeader('simple')" class="px-1.5 sm:px-2.5 py-0.5 rounded-lg text-xs font-bold transition-all shadow-sm bg-white text-emerald-800 dark:text-emerald-950 flex items-center justify-center">
-                    <span data-i18n="modeSimple">פשוט</span>
-                </button>
+            <!-- Header Mode Switcher (מלא / פשוט עם תצוגה מתחת) -->
+            <div class="w-[90px] sm:w-[98px] flex flex-col items-center justify-center gap-0.5 shrink-0">
+                <div id="headerModeToggle" class="w-full inline-flex items-center p-0.5 bg-black/20 hover:bg-black/25 dark:bg-black/35 rounded-xl border border-white/20 select-none shadow-xs transition h-[26px] sm:h-[28px]" title="בחר מצב ממשק">
+                    <button type="button" id="headerModeBtnFull" onclick="setUiModeFromHeader('full')" class="flex-1 h-full rounded-lg text-[10.5px] sm:text-xs font-medium transition-all text-white/80 hover:text-white hover:bg-white/10 flex items-center justify-center">
+                        <span data-i18n="modeFull">מלא</span>
+                    </button>
+                    <button type="button" id="headerModeBtnSimple" onclick="setUiModeFromHeader('simple')" class="flex-1 h-full rounded-lg text-[10.5px] sm:text-xs font-bold transition-all shadow-sm bg-white text-emerald-800 dark:text-emerald-950 flex items-center justify-center">
+                        <span data-i18n="modeSimple">פשוט</span>
+                    </button>
+                </div>
+                <span data-i18n="navView" class="text-[10px] sm:text-[11px] leading-tight font-medium text-white/90 select-none">תצוגה</span>
             </div>
         </div>
 
-        <!-- Center Section: Logo Only (Flex-centered) -->
+        <!-- Center Section: Logo (Same size as buttons, 100% Mathematically Centered) -->
         <div class="flex-1 flex items-center justify-center min-w-0 px-1 text-center">
-            <div class="flex items-center justify-center">
-                <img src="icon-192.png" alt="GroceryFlow" class="w-8 h-8 sm:w-9 sm:h-9 rounded-xl shadow-xs object-cover border border-white/20 select-none">
-            </div>
+            <img src="icon-192.png" alt="GroceryFlow" class="w-[42px] h-[42px] sm:w-[46px] sm:h-[46px] rounded-xl shadow-xs object-cover border border-white/20 select-none" title="GroceryFlow">
         </div>
 
-        <!-- Left Section: Supermarket Mode, Settings & Undo Buttons -->
-        <div class="flex gap-1 sm:gap-2 items-center shrink-0">
-            <button id="supermarketModeBtn" onclick="toggleSupermarketMode()" class="theme-btn-header text-white p-1.5 sm:p-2 rounded-xl text-sm transition shadow-sm active:scale-95" title="מצב סופר (הסתר קטלוג)">
+        <!-- Left Section: Supermarket Mode, Settings & Undo Buttons (Symmetrical width) -->
+        <div class="w-[138px] sm:w-[150px] flex items-center justify-between shrink-0">
+            <button id="supermarketModeBtn" onclick="toggleSupermarketMode()" class="theme-btn-header text-white w-[42px] h-[42px] sm:w-[46px] sm:h-[46px] rounded-xl transition shadow-sm active:scale-95 flex flex-col items-center justify-center gap-0.5 shrink-0" title="מצב סופר (הסתר קטלוג)">
                 <i class="fa-solid fa-store text-base sm:text-lg"></i>
+                <span data-i18n="navSupermarket" class="text-[10px] sm:text-[11px] leading-tight font-medium select-none whitespace-nowrap">מצב</span>
             </button>
-            <button onclick="openSettingsModal()" class="theme-btn-header text-white p-1.5 sm:p-2 rounded-xl text-sm transition shadow-sm active:scale-95" id="settingsBtnTooltip" title="הגדרות">
+            <button onclick="openSettingsModal()" class="theme-btn-header text-white w-[42px] h-[42px] sm:w-[46px] sm:h-[46px] rounded-xl transition shadow-sm active:scale-95 flex flex-col items-center justify-center gap-0.5 shrink-0" id="settingsBtnTooltip" title="הגדרות">
                 <i class="fa-solid fa-gear text-base sm:text-lg"></i>
+                <span data-i18n="navSettings" class="text-[10px] sm:text-[11px] leading-tight font-medium select-none">הגדרות</span>
             </button>
-            <button id="undoBtn" onclick="performUndo()" disabled class="theme-btn-header disabled:opacity-40 disabled:cursor-not-allowed text-white px-2 sm:px-3 py-1.5 rounded-xl text-xs sm:text-sm transition flex items-center gap-1.5 font-medium shadow-sm active:scale-95" title="בטל פעולה אחרונה (Ctrl+Z)">
-                <i class="fa-solid fa-rotate-left text-sm sm:text-base"></i>
-                <span data-i18n="undoBtn" class="hidden sm:inline">בטל</span>
+            <button id="undoBtn" onclick="performUndo()" disabled class="theme-btn-header disabled:opacity-40 disabled:cursor-not-allowed text-white w-[42px] h-[42px] sm:w-[46px] sm:h-[46px] rounded-xl transition shadow-sm active:scale-95 flex flex-col items-center justify-center gap-0.5 shrink-0" title="בטל פעולה אחרונה (Ctrl+Z)">
+                <i class="fa-solid fa-rotate-left text-base sm:text-lg"></i>
+                <span data-i18n="undoBtn" class="text-[10px] sm:text-[11px] leading-tight font-medium select-none">בטל</span>
             </button>
         </div>
     </header>
 
     <!-- Main Content Container -->
-    <main class="w-full max-w-md md:max-w-2xl px-4 mt-4 pb-6 flex-1 flex flex-col gap-6">
+    <main class="w-full max-w-md md:max-w-2xl px-4 mt-3 pb-6 flex-1 flex flex-col gap-3.5">
 
         <!-- Notification Banner (Floating top z-[100]) -->
         <div id="toastNotification" class="hidden fixed top-5 left-1/2 -translate-x-1/2 z-[100] max-w-sm w-11/12 p-3.5 rounded-2xl text-sm font-medium text-center shadow-xl transition-all pointer-events-auto"></div>
@@ -544,7 +553,7 @@
         </div>
 
         <!-- TWO LISTS CONTAINER -->
-        <div class="flex-1 flex flex-col gap-7">
+        <div class="flex-1 flex flex-col gap-4">
 
             <!-- LIST 1: Active Shopping List -->
             <section class="bg-white dark:bg-slate-800 border border-emerald-200 dark:border-emerald-900/40 rounded-2xl p-4 shadow-sm">
@@ -1678,6 +1687,12 @@
                 toastDeleteProductSuccess: "המוצר נמחק בהצלחה מהרשימה הזמינה",
                 toastImportSuccess: "ייבוא הושלם! נוספו {count} מוצרים חדשים לקטלוג.",
                 toastImportError: "שגיאה בייבוא הקובץ. וודא שזהו קובץ אקסל תקין.",
+                navHelp: "עזרה",
+                navView: "תצוגה",
+                viewModeTooltipFull: "תצוגה: מצב מלא (לחץ למעבר לפשוט)",
+                viewModeTooltipSimple: "תצוגה: מצב פשוט (לחץ למעבר למלא)",
+                navSupermarket: "מצב",
+                navSettings: "הגדרות",
                 undoBtn: "בטל",
                 undoBtnTitle: "בטל פעולה אחרונה (Ctrl+Z)",
                 undoSuccessAdd: "הפעולה בוטלה: '{name}' הוסר מהרשימה",
@@ -1914,6 +1929,12 @@
                 toastListCleared: "Active shopping list cleared successfully",
                 toastResetSuccess: "Usage counters successfully reset to 0",
                 toastDeleteProductSuccess: "Product deleted from catalog successfully",
+                navHelp: "Help",
+                navView: "View",
+                viewModeTooltipFull: "View: Full mode active (click for Simple)",
+                viewModeTooltipSimple: "View: Simple mode active (click for Full)",
+                navSupermarket: "Mode",
+                navSettings: "Settings",
                 undoBtn: "Undo",
                 undoBtnTitle: "Undo last operation (Ctrl+Z)",
                 undoSuccessAdd: "Undo: '{name}' removed from list",
@@ -2156,6 +2177,12 @@
                 toastListCleared: "Активный список покупок успешно очищен",
                 toastResetSuccess: "Счетчики использования успешно сброшены на 0",
                 toastDeleteProductSuccess: "Товар успешно удален из каталога",
+                navHelp: "Помощь",
+                navView: "Вид",
+                viewModeTooltipFull: "Вид: Полный режим (нажмите для простого)",
+                viewModeTooltipSimple: "Вид: Простой режим (нажмите для полного)",
+                navSupermarket: "Режим",
+                navSettings: "Настройки",
                 undoBtn: "Отмена",
                 undoBtnTitle: "Отменить последнее действие (Ctrl+Z)",
                 undoSuccessAdd: "Отменено: '{name}' удален из списка",
@@ -2484,7 +2511,8 @@
             "מוצרי נייר ובית": "🧻",
             "כלי בית": "🍽️",
             "כללי ורכב": "🚗",
-            "כללי": "🛒"
+            "חיות מחמד": "🐾",
+            "מעדניה רוסית": "🪆"
         };
 
         function getCategoryEmoji(cat) {
@@ -2496,6 +2524,25 @@
             // bakery & bread
             { regex: /לחם|פית[הו]|בייגל|באגט|חלה|לחמני|לאפ[הו]/i, emoji: '🍞' },
             { regex: /טורטי[הו]/i, emoji: '🫓' },
+            // russian delicacies
+            { regex: /פלמני|ורניקי/i, emoji: '🥟' },
+            { regex: /סירניקי/i, emoji: '🥞' },
+            { regex: /טוורוג|סירק/i, emoji: '🧀' },
+            { regex: /סגושצ[']?ונקה|חלב מרוכז|סמטנה/i, emoji: '🥛' },
+            { regex: /שפרוט|מטיאס|סקומבריה/i, emoji: '🐟' },
+            { regex: /דוקטורסקי/i, emoji: '🥩' },
+            { regex: /קוויאר|איקרה/i, emoji: '🍣' },
+            { regex: /קבאס/i, emoji: '🍺' },
+            { regex: /בורודינסקי/i, emoji: '🍞' },
+            { regex: /וולוגדה/i, emoji: '🧈' },
+            { regex: /אליונקה/i, emoji: '🍫' },
+            { regex: /שליו/i, emoji: '🥚' },
+            { regex: /חלווה|פסטילא/i, emoji: '🍬' },
+            { regex: /מורס/i, emoji: '🧃' },
+            { regex: /פריאניק/i, emoji: '🍪' },
+            { regex: /סושיקי|בובליק/i, emoji: '🥨' },
+            { regex: /חריין/i, emoji: '🥫' },
+            { regex: /מלוחים קלות/i, emoji: '🥒' },
             { regex: /קרואסון|רוגלך|מאפ|בורקס|בצק|סיגר/i, emoji: '🥐' },
             { regex: /עוגי|פתי בר|ביסקוויט|קרקר|טוסט/i, emoji: '🍪' },
             { regex: /ופל/i, emoji: '🍪' },
@@ -2509,7 +2556,7 @@
             { regex: /חלב(?!.*שוקו)/i, emoji: '🥛' },
             { regex: /חמאה|חמאת/i, emoji: '🧈' },
             { regex: /גבינ|צהובה|בולגרית|מוצרלה|פרמזן|קוטג|סקי|לאבנה|בורטה|גיל|אשל|לבן|חלומי|ריקוטה|פטה/i, emoji: '🧀' },
-            { regex: /יוגורט|מעדן|מלאבי|אקטימל/i, emoji: '🍦' },
+            { regex: /יוגורט|מעדן(?!.*חתול)|מלאבי|אקטימל/i, emoji: '🍦' },
             { regex: /שמנת|קרם קוקוס/i, emoji: '🥛' },
 
             // fruits
@@ -2593,6 +2640,8 @@
             { regex: /חד פעמי|צלחות|כוסות|סכום|קשיות/i, emoji: '🍽️' },
             { regex: /כביסה|מייבש/i, emoji: '🧺' },
             { regex: /אקונומיקה|כלים|רצפה|סנו|מגב|סמרטוט|סקוטש|פותח סתימות|מסיר|חלונות|מדיח/i, emoji: '🧹' },
+            { regex: /איסוף צרכים|צרכים/i, emoji: '🦮' },
+            { regex: /עצם|עצמות/i, emoji: '🦴' },
             { regex: /שקיות אשפה|שקיות/i, emoji: '🗑️' },
             { regex: /סוללות/i, emoji: '🔋' },
             { regex: /רכב/i, emoji: '🚗' },
@@ -2992,16 +3041,16 @@
 
             // Simple button
             if (activeSimple) {
-                btnSimple.className = "px-1.5 sm:px-2.5 py-0.5 rounded-lg text-xs font-bold transition-all shadow-sm bg-white text-emerald-800 dark:text-emerald-950 flex items-center justify-center";
+                btnSimple.className = "flex-1 h-full rounded-lg text-[11px] sm:text-xs font-bold transition-all shadow-sm bg-white text-emerald-800 dark:text-emerald-950 flex items-center justify-center";
             } else {
-                btnSimple.className = "px-1.5 sm:px-2.5 py-0.5 rounded-lg text-xs font-medium transition-all text-white/80 hover:text-white hover:bg-white/10 flex items-center justify-center";
+                btnSimple.className = "flex-1 h-full rounded-lg text-[11px] sm:text-xs font-medium transition-all text-white/80 hover:text-white hover:bg-white/10 flex items-center justify-center";
             }
 
             // Full button
             if (activeFull) {
-                btnFull.className = "px-1.5 sm:px-2.5 py-0.5 rounded-lg text-xs font-bold transition-all shadow-sm bg-white text-emerald-800 dark:text-emerald-950 flex items-center justify-center";
+                btnFull.className = "flex-1 h-full rounded-lg text-[11px] sm:text-xs font-bold transition-all shadow-sm bg-white text-emerald-800 dark:text-emerald-950 flex items-center justify-center";
             } else {
-                btnFull.className = "px-1.5 sm:px-2.5 py-0.5 rounded-lg text-xs font-medium transition-all text-white/80 hover:text-white hover:bg-white/10 flex items-center justify-center";
+                btnFull.className = "flex-1 h-full rounded-lg text-[11px] sm:text-xs font-medium transition-all text-white/80 hover:text-white hover:bg-white/10 flex items-center justify-center";
             }
         }
 
@@ -3023,7 +3072,7 @@
 
             if (isSupermarketMode) {
                 if (btn) {
-                    btn.className = "bg-white text-emerald-800 dark:text-emerald-950 p-1.5 sm:p-2 rounded-xl text-sm transition shadow-md active:scale-95 font-bold ring-2 ring-emerald-300 dark:ring-emerald-600";
+                    btn.className = "bg-white text-emerald-800 dark:text-emerald-950 w-[42px] h-[42px] sm:w-[46px] sm:h-[46px] rounded-xl transition shadow-md active:scale-95 font-bold ring-2 ring-emerald-300 dark:ring-emerald-600 flex flex-col items-center justify-center gap-0.5 shrink-0";
                     btn.title = t.supermarketModeBtnTitleActive || "מצב סופר פעיל (לחץ להצגת הקטלוג)";
                 }
                 if (catalogSec) {
@@ -3034,7 +3083,7 @@
                 }
             } else {
                 if (btn) {
-                    btn.className = "theme-btn-header text-white p-1.5 sm:p-2 rounded-xl text-sm transition shadow-sm active:scale-95";
+                    btn.className = "theme-btn-header text-white w-[42px] h-[42px] sm:w-[46px] sm:h-[46px] rounded-xl transition shadow-sm active:scale-95 flex flex-col items-center justify-center gap-0.5 shrink-0";
                     btn.title = t.supermarketModeBtnTitle || "מצב סופר (הסתר קטלוג)";
                 }
                 if (catalogSec) {

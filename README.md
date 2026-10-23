@@ -11,7 +11,7 @@ The application is structured around a fast, intuitive **Two-List Architecture**
 1. **Active Shopping List**: Displays items you currently plan to buy.
    - **Full Mode**: Checking off an item marks it with a strike-through animation and smoothly transfers it into a collapsible "Checked-off Items" basket.
    - **Simple Mode**: Checking off an item immediately removes it from the list and returns it directly to the available catalog below without accumulating a checked-off list.
-2. **Available Catalog**: A comprehensive database of 525+ popular grocery items.
+2. **Available Catalog**: A comprehensive database of 557+ popular grocery items across all major supermarket aisles, including dedicated departments for **Pet Supplies** (חיות מחמד 🐾) and authentic **Russian Delicatessen** (מעדניה רוסית 🪆).
    - Filterable by department / aisle, searchable with real-time multilingual autocomplete, and sortable by frequency of use, alphabetical order, or category.
    - Selecting any catalog item instantly adds it to your active shopping list.
 
@@ -20,14 +20,14 @@ The application is structured around a fast, intuitive **Two-List Architecture**
 ## ✨ Features
 
 ### 🏪 Supermarket Focus Mode
-- **One-Tap In-Store Focus**: Dedicated storefront button (`🏪`) in the top navigation bar instantly hides the entire 525-product catalog, categories, search, and sort controls.
+- **One-Tap In-Store Focus**: Dedicated storefront button (`מצב` / `🏪`) in the top navigation bar instantly hides the entire 557-product catalog, categories, search, and sort controls.
 - **Enlarged Touch Targets**: Shopping list cards expand to a spacious layout with generous padding, making them effortless to tap with one thumb while walking through supermarket aisles.
 - **High-Visibility Typography**: Item names scale up to a bold, prominent size (`1.25rem / 20px Bold`) with enlarged checkmark circles (`1.55rem / 25px`) for instant reading from shopping cart phone mounts or arm's length.
 - **Quick Exit Banner**: A slim indicator at the bottom of the list confirms Supermarket Mode is active and provides a single-tap "Show Catalog" button to return to catalog browsing anytime.
 - **Persistent State**: Preserved automatically in local storage across browser reloads.
 
 ### 🍞 Dedicated Product Emojis
-- **Item-Specific Visual Icons**: Over 85% of catalog products feature tailored, specific emojis (e.g., 🍞 bread, 🥖 baguette, 🫓 pita, 🥛 milk, 🥚 eggs, 🧈 butter, 🧀 cheese, 🍅 tomatoes, 🥒 cucumbers, 🥕 carrots, 🧅 onions, 🥔 potatoes, 🍎 apples, 🍌 bananas, 🍗 chicken, 🥩 beef, 🐟 fish, ☕ coffee, 🍵 tea, 🍫 chocolate, 🍿 snacks, 🧼 soap, 🧻 paper towels, 🍼 baby supplies, 🐶 dog food, 🐱 cat food) rather than only generic department icons.
+- **Item-Specific Visual Icons**: Over 85% of catalog products feature tailored, specific emojis (e.g., 🍞 bread, 🥖 baguette, 🫓 pita, 🥛 milk, 🥚 eggs, 🧈 butter, 🧀 cheese, 🍅 tomatoes, 🥒 cucumbers, 🥕 carrots, 🧅 onions, 🥔 potatoes, 🍎 apples, 🍌 bananas, 🍗 chicken, 🥩 beef, 🐟 fish, ☕ coffee, 🍵 tea, 🍫 chocolate, 🍿 snacks, 🧼 soap, 🧻 paper towels, 🍼 baby supplies, 🐶 dog food, 🐱 cat food, 🥟 pelmeni / vareniki, 🥫 condensed milk / sprats, 🫖 kvass) rather than only generic department icons.
 - **Omnipresent Integration**: Product emojis appear seamlessly across active list cards, purchased items, the master catalog, autocomplete search suggestions, list import previews, price editing modals, and native WhatsApp sharing.
 
 ### 💾 Data Backup & Restore
@@ -36,10 +36,12 @@ The application is structured around a fast, intuitive **Two-List Architecture**
 - **Safe Import & Restore**: Validate and load any backup file on a new device or browser, with confirmation protection before overwriting and seamless automatic refresh.
 - **Zero Cloud Required**: All data operations remain strictly local to your device for total privacy.
 
-### 🎛️ Balanced Header & Mode Switcher
-- **Ergonomic Top Navigation Bar**: Features a balanced layout with Help (`?`) and the Mode Switcher grouped on the right (in RTL), the custom **GroceryFlow** logo centered, and Supermarket Mode (`🏪`), Settings (`⚙️`), and Undo (`↩️`) grouped on the left.
-- **Header Mode Switcher**: Compact segmented toggle allows instant switching between **Full Mode** (all feature badges and modules active) and **Simple Mode** (clean, minimalist interface).
+### 🎛️ Balanced Header & Uniform Action Buttons
+- **Ergonomic Top Navigation Bar**: Features a symmetrically balanced layout with Help (`?`) and the View Switcher (`תצוגה`) grouped on the right (in RTL), the custom edge-to-edge **GroceryFlow** logo centered, and Supermarket Mode (`מצב` 🏪), Settings (`⚙️`), and Undo (`↩️`) grouped on the left.
+- **Uniform Button Dimensions & Clear Sub-Labels**: All header buttons share uniform touch dimensions with compact labels underneath for immediate clarity: Help (*עזרה*), View (*תצוגה*), Mode (*מצב*), Settings (*הגדרות*), and Undo (*בטל*).
+- **Header View Switcher**: Compact segmented toggle allows instant switching between **Full Mode** (all feature badges and modules active) and **Simple Mode** (clean, minimalist interface).
 - **Default on First Install**: The application launches in **Simple Mode** by default on fresh installations, providing a clean, frictionless start.
+- **Optimized Vertical Spacing**: Streamlined spacing between the top search bar, active shopping list, and catalog maximizes visible screen real estate for your groceries.
 
 ### ✏️ Item Notes & Catalog Product Editing
 - **Dedicated Pencil Action Button**: Each item card in the catalog includes an edit button (`✏️`) next to the delete trash can.
@@ -90,12 +92,12 @@ The application is structured around a fast, intuitive **Two-List Architecture**
 
 ### 📋 Smart Text & Message Import (Paste)
 - **Instant Shopping List Parsing**: Paste any freeform text or WhatsApp message directly via the "Paste" (`הדבק`) button on the active shopping list bar.
-- **Intelligent Recognition**: Automatically identifies items from the 525+ product database, extracts quantities (e.g., `3 חלב`, `2 bread`, `1 kg tomatoes`), resolves plural and singular forms, and filters out conversational filler.
+- **Intelligent Recognition**: Automatically identifies items from the 557+ product database, extracts quantities (e.g., `3 חלב`, `2 bread`, `1 kg tomatoes`), resolves plural and singular forms, and filters out conversational filler.
 - **Interactive Review Modal**: Preview recognized products, toggle individual items with checkboxes, adjust quantities with stepper buttons (`-` / `+`), and optionally add unrecognized items as custom products before adding them all to your active shopping list in a single click.
 - **Full Undo Support**: Easily reverse any batch import operation with a single tap of the Undo (`בטל`) button or `Ctrl+Z`.
 
 ### 💰 Estimated Prices & Live Basket Summary
-- Integrated price database for 525+ items in Israeli Shekels (NIS ₪) with accurate pricing per kilogram for fruits, vegetables, and weighted goods.
+- Integrated price database for 557+ items in Israeli Shekels (NIS ₪) with accurate pricing per kilogram for fruits, vegetables, and weighted goods.
 - Default database prices are benchmarked to average retail shelf prices in leading supermarket chains, with basic staples reflecting officially regulated consumer prices.
 - Optional toggle in Settings with a dynamic last-updated date indicator and BETA badge.
 - Real-time basket summary bar calculating the estimated total cost of both active items and purchased items.
@@ -134,7 +136,7 @@ The application is structured around a fast, intuitive **Two-List Architecture**
 ### 🌐 Trilingual Localization & RTL/LTR
 - Instant language switching across the entire app: **Hebrew (עברית)**, **English**, and **Russian (Русский)** with 100% feature and tooltip parity.
 - Full layout mirroring supporting Right-to-Left (RTL) for Hebrew and Left-to-Right (LTR) for English and Russian.
-- Complete localization for all 525+ items, categories, buttons, tooltips, and modal guides.
+- Complete localization for all 557+ items, categories, buttons, tooltips, and modal guides.
 
 ### 🌙 Dark Mode
 - Built-in Dark Theme with persistent preferences, styled contrast borders, and smooth transition animations.
