@@ -1,9 +1,10 @@
-const CACHE_NAME = 'grocery-list-v17';
+const CACHE_NAME = 'grocery-list-v18';
 const ASSETS = [
   './',
   './index.html',
   './translations.js',
   './manifest.json',
+  './logo-header.png',
   './icon-192.png',
   './icon-512.png'
 ];

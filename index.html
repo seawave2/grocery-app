@@ -150,25 +150,25 @@
             background-color: rgba(52, 211, 153, 0.3);
         }
 
-        /* Font Size Modes */
+        /* Font Size Modes (+10% enlargement across all screen typography) */
         html.font-size-medium {
-            font-size: 15px;
-        }
-        html.font-size-large {
             font-size: 16.5px;
         }
+        html.font-size-large {
+            font-size: 18.15px;
+        }
         html.font-size-xlarge {
-            font-size: 17.5px;
+            font-size: 19.25px;
         }
         @media (min-width: 640px) {
             html.font-size-medium {
-                font-size: 15.5px;
-            }
-            html.font-size-large {
                 font-size: 17px;
             }
+            html.font-size-large {
+                font-size: 18.7px;
+            }
             html.font-size-xlarge {
-                font-size: 19px;
+                font-size: 20.9px;
             }
         }
 
@@ -200,13 +200,13 @@
         /* Header title stays fixed at Extra Large size across all font size modes */
         header h1,
         header h1 span[data-i18n="appTitle"] {
-            font-size: 20px !important;
+            font-size: 22px !important;
             line-height: 1.25 !important;
         }
         @media (min-width: 640px) {
             header h1,
             header h1 span[data-i18n="appTitle"] {
-                font-size: 22px !important;
+                font-size: 24.2px !important;
             }
         }
         html.font-size-xlarge #headerModeToggle {
@@ -226,7 +226,7 @@
             font-size: 0.7rem !important;
         }
         html.font-size-xlarge header span[data-i18n] {
-            font-size: 10px !important;
+            font-size: 11px !important;
         }
 
         /* ==========================================================================
@@ -308,6 +308,35 @@
 
         body.supermarket-mode #purchasedItemsContainer span[class*="text-[10px]"] {
             font-size: 0.8rem !important;
+        }
+
+                /* Available Products (Catalog) 30% Font Enlargement across all font-size modes */
+        #masterCatalogContainer .catalog-item-name {
+            font-size: 0.89rem !important; /* +30% over original baseline (12.375px -> 16.15px) */
+            line-height: 1.25 !important;
+        }
+        @media (min-width: 640px) {
+            #masterCatalogContainer .catalog-item-name {
+                font-size: 1.04rem !important; /* +30% over original baseline (14.4px -> 18.9px) */
+            }
+        }
+        #masterCatalogContainer .catalog-item-sub,
+        #masterCatalogContainer .product-cat-tag,
+        #masterCatalogContainer .item-note {
+            font-size: 0.71rem !important;
+        }
+        html.font-size-xlarge #masterCatalogContainer .catalog-item-name {
+            font-size: 0.95rem !important;
+        }
+        @media (min-width: 640px) {
+            html.font-size-xlarge #masterCatalogContainer .catalog-item-name {
+                font-size: 1.11rem !important;
+            }
+        }
+        html.font-size-xlarge #masterCatalogContainer .catalog-item-sub,
+        html.font-size-xlarge #masterCatalogContainer .product-cat-tag,
+        html.font-size-xlarge #masterCatalogContainer .item-note {
+            font-size: 0.77rem !important;
         }
 
         html.font-size-xlarge main {
@@ -484,7 +513,7 @@
         <div class="w-[138px] sm:w-[150px] flex items-center justify-between shrink-0">
             <button onclick="openHelpModal()" class="theme-btn-header text-white w-[42px] h-[42px] sm:w-[46px] sm:h-[46px] rounded-xl transition shadow-sm active:scale-95 shrink-0 flex flex-col items-center justify-center gap-0.5" id="helpBtnTooltip" title="מדריך ועזרה">
                 <i class="fa-solid fa-circle-question text-base sm:text-lg"></i>
-                <span data-i18n="navHelp" class="text-[10px] sm:text-[11px] leading-tight font-medium select-none">עזרה</span>
+                <span data-i18n="navHelp" class="text-[11px] sm:text-[12px] leading-tight font-medium select-none">עזרה</span>
             </button>
             <!-- Header Mode Switcher (מלא / פשוט עם תצוגה מתחת) -->
             <div class="w-[90px] sm:w-[98px] flex flex-col items-center justify-center gap-0.5 shrink-0">
@@ -496,28 +525,28 @@
                         <span data-i18n="modeSimple">פשוט</span>
                     </button>
                 </div>
-                <span data-i18n="navView" class="text-[10px] sm:text-[11px] leading-tight font-medium text-white/90 select-none">תצוגה</span>
+                <span data-i18n="navView" class="text-[11px] sm:text-[12px] leading-tight font-medium text-white/90 select-none">תצוגה</span>
             </div>
         </div>
 
         <!-- Center Section: Logo (Same size as buttons, 100% Mathematically Centered) -->
         <div class="flex-1 flex items-center justify-center min-w-0 px-1 text-center">
-            <img src="icon-192.png" alt="GroceryFlow" class="w-[42px] h-[42px] sm:w-[46px] sm:h-[46px] rounded-xl shadow-xs object-cover border border-white/20 select-none" title="GroceryFlow">
+            <img src="logo-header.png" alt="GroceryFlow" class="w-[42px] h-[42px] sm:w-[46px] sm:h-[46px] rounded-xl shadow-xs object-cover border border-white/20 select-none" title="GroceryFlow">
         </div>
 
         <!-- Left Section: Supermarket Mode, Settings & Undo Buttons (Symmetrical width) -->
         <div class="w-[138px] sm:w-[150px] flex items-center justify-between shrink-0">
             <button id="supermarketModeBtn" onclick="toggleSupermarketMode()" class="theme-btn-header text-white w-[42px] h-[42px] sm:w-[46px] sm:h-[46px] rounded-xl transition shadow-sm active:scale-95 flex flex-col items-center justify-center gap-0.5 shrink-0" title="מצב סופר (הסתר קטלוג)">
                 <i class="fa-solid fa-store text-base sm:text-lg"></i>
-                <span data-i18n="navSupermarket" class="text-[10px] sm:text-[11px] leading-tight font-medium select-none whitespace-nowrap">מצב</span>
+                <span data-i18n="navSupermarket" class="text-[11px] sm:text-[12px] leading-tight font-medium select-none whitespace-nowrap">מצב</span>
             </button>
             <button onclick="openSettingsModal()" class="theme-btn-header text-white w-[42px] h-[42px] sm:w-[46px] sm:h-[46px] rounded-xl transition shadow-sm active:scale-95 flex flex-col items-center justify-center gap-0.5 shrink-0" id="settingsBtnTooltip" title="הגדרות">
                 <i class="fa-solid fa-gear text-base sm:text-lg"></i>
-                <span data-i18n="navSettings" class="text-[10px] sm:text-[11px] leading-tight font-medium select-none">הגדרות</span>
+                <span data-i18n="navSettings" class="text-[11px] sm:text-[12px] leading-tight font-medium select-none">הגדרות</span>
             </button>
             <button id="undoBtn" onclick="performUndo()" disabled class="theme-btn-header disabled:opacity-40 disabled:cursor-not-allowed text-white w-[42px] h-[42px] sm:w-[46px] sm:h-[46px] rounded-xl transition shadow-sm active:scale-95 flex flex-col items-center justify-center gap-0.5 shrink-0" title="בטל פעולה אחרונה (Ctrl+Z)">
                 <i class="fa-solid fa-rotate-left text-base sm:text-lg"></i>
-                <span data-i18n="undoBtn" class="text-[10px] sm:text-[11px] leading-tight font-medium select-none">בטל</span>
+                <span data-i18n="undoBtn" class="text-[11px] sm:text-[12px] leading-tight font-medium select-none">בטל</span>
             </button>
         </div>
     </header>
@@ -569,29 +598,29 @@
 
                     <div id="listActionsToolbar" class="flex items-center gap-1 flex-nowrap overflow-x-auto no-scrollbar py-0.5">
                         <!-- Saved Lists / Templates Button (Neutral Button) -->
-                        <button id="savedListsBtn" onclick="openSavedListsModal()" class="text-[10px] sm:text-xs px-1.5 sm:px-2 py-0.5 sm:py-1 rounded-lg border border-gray-200 dark:border-slate-700 text-gray-500 dark:text-slate-400 hover:bg-gray-100 dark:hover:bg-slate-700 flex items-center justify-center gap-1 transition font-medium active:scale-95 whitespace-nowrap shrink-0" title="רשימות שמורות ותבניות">
-                            <i class="fa-solid fa-bookmark text-[10px] sm:text-[11px]"></i>
-                            <span data-i18n="savedListsBtnLabel" class="text-[10px] sm:text-[11px] leading-none">תבניות</span>
+                        <button id="savedListsBtn" onclick="openSavedListsModal()" class="text-[11px] sm:text-xs px-1.5 sm:px-2 py-0.5 sm:py-1 rounded-lg border border-gray-200 dark:border-slate-700 text-gray-500 dark:text-slate-400 hover:bg-gray-100 dark:hover:bg-slate-700 flex items-center justify-center gap-1 transition font-medium active:scale-95 whitespace-nowrap shrink-0" title="רשימות שמורות ותבניות">
+                            <i class="fa-solid fa-bookmark text-[11px] sm:text-[12px]"></i>
+                            <span data-i18n="savedListsBtnLabel" class="text-[11px] sm:text-[12px] leading-none">תבניות</span>
                         </button>
                         <!-- Import Text / Paste Button (Small subtle button) -->
-                        <button id="importTextBtn" onclick="openImportTextModal()" class="text-[10px] sm:text-xs px-1.5 sm:px-2 py-0.5 sm:py-1 rounded-lg border border-gray-200 dark:border-slate-700 text-gray-500 dark:text-slate-400 hover:bg-gray-100 dark:hover:bg-slate-700 flex items-center justify-center gap-1 transition font-medium active:scale-95 whitespace-nowrap shrink-0" title="ייבוא רשימה מטקסט חופשי או הודעה">
-                            <i class="fa-solid fa-paste text-[10px] sm:text-[11px]"></i>
-                            <span data-i18n="importTextBtnLabel" class="text-[10px] sm:text-[11px] leading-none">הדבק</span>
+                        <button id="importTextBtn" onclick="openImportTextModal()" class="text-[11px] sm:text-xs px-1.5 sm:px-2 py-0.5 sm:py-1 rounded-lg border border-gray-200 dark:border-slate-700 text-gray-500 dark:text-slate-400 hover:bg-gray-100 dark:hover:bg-slate-700 flex items-center justify-center gap-1 transition font-medium active:scale-95 whitespace-nowrap shrink-0" title="ייבוא רשימה מטקסט חופשי או הודעה">
+                            <i class="fa-solid fa-paste text-[11px] sm:text-[12px]"></i>
+                            <span data-i18n="importTextBtnLabel" class="text-[11px] sm:text-[12px] leading-none">הדבק</span>
                         </button>
                         <!-- Toggle Quantities Visibility Button -->
-                        <button id="toggleQuantitiesBtn" onclick="toggleShowQuantities()" class="text-[10px] sm:text-xs px-1.5 sm:px-2 py-0.5 sm:py-1 rounded-lg border border-gray-200 dark:border-slate-700 text-gray-500 dark:text-slate-400 hover:bg-gray-100 dark:hover:bg-slate-700 flex items-center justify-center gap-1 transition font-medium active:scale-95 whitespace-nowrap shrink-0" title="הצג/הסתר כמויות">
-                            <i class="fa-solid fa-arrow-down-1-9 text-[10px] sm:text-[11px]"></i>
-                            <span data-i18n="toggleQuantitiesLabel" class="text-[10px] sm:text-[11px] leading-none">כמויות</span>
+                        <button id="toggleQuantitiesBtn" onclick="toggleShowQuantities()" class="text-[11px] sm:text-xs px-1.5 sm:px-2 py-0.5 sm:py-1 rounded-lg border border-gray-200 dark:border-slate-700 text-gray-500 dark:text-slate-400 hover:bg-gray-100 dark:hover:bg-slate-700 flex items-center justify-center gap-1 transition font-medium active:scale-95 whitespace-nowrap shrink-0" title="הצג/הסתר כמויות">
+                            <i class="fa-solid fa-arrow-down-1-9 text-[11px] sm:text-[12px]"></i>
+                            <span data-i18n="toggleQuantitiesLabel" class="text-[11px] sm:text-[12px] leading-none">כמויות</span>
                         </button>
                         <!-- Group by Category Pill Button -->
-                        <button id="toggleGroupingBtn" onclick="toggleActiveGrouping()" class="text-[10px] sm:text-xs px-1.5 sm:px-2 py-0.5 sm:py-1 rounded-lg border border-gray-200 dark:border-slate-700 text-gray-500 dark:text-slate-400 hover:bg-gray-100 dark:hover:bg-slate-700 flex items-center justify-center gap-1 transition font-medium active:scale-95 whitespace-nowrap shrink-0" title="מחלקות">
-                            <i class="fa-solid fa-layer-group text-[10px] sm:text-[11px]"></i>
-                            <span data-i18n="groupByCategoryLabel" class="text-[10px] sm:text-[11px] leading-none">מחלקות</span>
+                        <button id="toggleGroupingBtn" onclick="toggleActiveGrouping()" class="text-[11px] sm:text-xs px-1.5 sm:px-2 py-0.5 sm:py-1 rounded-lg border border-gray-200 dark:border-slate-700 text-gray-500 dark:text-slate-400 hover:bg-gray-100 dark:hover:bg-slate-700 flex items-center justify-center gap-1 transition font-medium active:scale-95 whitespace-nowrap shrink-0" title="מחלקות">
+                            <i class="fa-solid fa-layer-group text-[11px] sm:text-[12px]"></i>
+                            <span data-i18n="groupByCategoryLabel" class="text-[11px] sm:text-[12px] leading-none">מחלקות</span>
                         </button>
                         <!-- Export / Share Active List Button -->
-                        <button id="exportListBtn" onclick="exportShoppingList()" class="text-[10px] sm:text-xs px-1.5 sm:px-2 py-0.5 sm:py-1 rounded-lg border border-gray-200 dark:border-slate-700 text-gray-500 dark:text-slate-400 hover:bg-gray-100 dark:hover:bg-slate-700 flex items-center justify-center gap-1 transition font-medium active:scale-95 whitespace-nowrap shrink-0" title="שתף רשימה">
-                            <i class="fa-solid fa-arrow-up-from-bracket text-[10px] sm:text-[11px]"></i>
-                            <span data-i18n="exportListLabel" class="text-[10px] sm:text-[11px] leading-none">שתף</span>
+                        <button id="exportListBtn" onclick="exportShoppingList()" class="text-[11px] sm:text-xs px-1.5 sm:px-2 py-0.5 sm:py-1 rounded-lg border border-gray-200 dark:border-slate-700 text-gray-500 dark:text-slate-400 hover:bg-gray-100 dark:hover:bg-slate-700 flex items-center justify-center gap-1 transition font-medium active:scale-95 whitespace-nowrap shrink-0" title="שתף רשימה">
+                            <i class="fa-solid fa-arrow-up-from-bracket text-[11px] sm:text-[12px]"></i>
+                            <span data-i18n="exportListLabel" class="text-[11px] sm:text-[12px] leading-none">שתף</span>
                         </button>
                     </div>
                 </div>
@@ -945,7 +974,7 @@
                     <span>&copy; made by seawave</span>
                     <i class="fa-regular fa-envelope text-[10px] opacity-70 group-hover:opacity-100"></i>
                 </a>
-                <span id="appVersionDisplay" class="text-[11px] text-gray-400 dark:text-slate-500 font-normal tracking-wide">v1.7</span>
+                <span id="appVersionDisplay" class="text-[11px] text-gray-400 dark:text-slate-500 font-normal tracking-wide">v1.8</span>
                 <button onclick="closeSettingsModal()" class="bg-gray-100 dark:bg-slate-700 hover:bg-gray-200 dark:hover:bg-slate-600 text-slate-700 dark:text-slate-200 px-3.5 py-1.5 rounded-xl text-xs sm:text-sm font-medium transition" data-i18n="closeBtn">
                     סגור
                 </button>
@@ -1096,6 +1125,72 @@
                     כן, אפס מוצרים
                 </button>
                 <button onclick="closeConfirmResetModal()" class="flex-1 bg-gray-100 dark:bg-slate-700 hover:bg-gray-200 dark:hover:bg-slate-600 text-slate-700 dark:text-slate-200 py-2.5 rounded-xl font-medium text-sm transition" data-i18n="confirmCancelBtn">
+                    ביטול
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- PRODUCT ACTIONS MENU MODAL (ON LONG PRESS) -->
+    <div id="productActionsModal" class="hidden fixed inset-0 bg-black/60 backdrop-blur-sm z-[70] flex items-center justify-center p-4" onclick="handleProductActionsBackdropClick(event)">
+        <div class="bg-white dark:bg-slate-800 rounded-2xl max-w-sm w-full p-5 shadow-2xl border border-gray-200 dark:border-slate-700 flex flex-col gap-3.5">
+            <!-- Product Header -->
+            <div class="flex items-center gap-3 pb-3 border-b border-gray-100 dark:border-slate-700 text-start">
+                <span id="productActionsEmoji" class="text-3xl shrink-0 p-2 bg-emerald-50 dark:bg-emerald-950/50 rounded-xl border border-emerald-100 dark:border-emerald-900/60">🍎</span>
+                <div class="flex-1 min-w-0">
+                    <h3 id="productActionsTitle" class="text-base font-bold text-slate-800 dark:text-slate-100 truncate">שם המוצר</h3>
+                    <div class="flex items-center gap-2 mt-0.5 text-xs text-gray-500 dark:text-slate-400">
+                        <span id="productActionsCategory">מחלקה</span>
+                        <span id="productActionsPrice" class="text-emerald-600 dark:text-emerald-400 font-semibold"></span>
+                    </div>
+                </div>
+                <button type="button" onclick="closeProductActionsModal()" class="text-gray-400 hover:text-gray-600 dark:hover:text-gray-200 p-1.5 text-lg transition shrink-0">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+
+            <!-- Action Buttons List -->
+            <div class="flex flex-col gap-2">
+                <!-- 1. Edit Product & Note -->
+                <button type="button" onclick="triggerActionEditProduct()" class="w-full flex items-center gap-3 p-3 rounded-xl border border-gray-200 dark:border-slate-700 bg-gray-50 dark:bg-slate-700/50 hover:bg-emerald-50 dark:hover:bg-emerald-950/50 hover:border-emerald-300 dark:hover:border-emerald-700 transition active:scale-[0.98] text-start group">
+                    <div class="w-9 h-9 rounded-lg bg-emerald-100 dark:bg-emerald-950/80 text-emerald-600 dark:text-emerald-400 flex items-center justify-center shrink-0 text-sm">
+                        <i class="fa-solid fa-pen"></i>
+                    </div>
+                    <div class="flex-1 min-w-0">
+                        <span class="block text-xs sm:text-sm font-bold text-slate-800 dark:text-slate-100 group-hover:text-emerald-700 dark:group-hover:text-emerald-300" data-i18n="actionMenuEdit">עריכת מוצר והערות</span>
+                        <span class="block text-[11px] text-gray-500 dark:text-slate-400" data-i18n="actionMenuEditSub">שינוי שם, שיוך מחלקה או הוספת הערה</span>
+                    </div>
+                    <i class="fa-solid fa-chevron-left text-xs text-gray-400 group-hover:text-emerald-600 transition rtl:rotate-0 ltr:rotate-180"></i>
+                </button>
+
+                <!-- 2. Edit Price (Shown if prices enabled) -->
+                <button type="button" id="actionMenuPriceBtn" onclick="triggerActionEditPrice()" class="w-full flex items-center gap-3 p-3 rounded-xl border border-gray-200 dark:border-slate-700 bg-gray-50 dark:bg-slate-700/50 hover:bg-emerald-50 dark:hover:bg-emerald-950/50 hover:border-emerald-300 dark:hover:border-emerald-700 transition active:scale-[0.98] text-start group">
+                    <div class="w-9 h-9 rounded-lg bg-blue-100 dark:bg-blue-950/80 text-blue-600 dark:text-blue-400 flex items-center justify-center shrink-0 text-sm">
+                        <i class="fa-solid fa-tag"></i>
+                    </div>
+                    <div class="flex-1 min-w-0">
+                        <span class="block text-xs sm:text-sm font-bold text-slate-800 dark:text-slate-100 group-hover:text-blue-700 dark:group-hover:text-blue-300" data-i18n="actionMenuPrice">עדכון מחיר</span>
+                        <span class="block text-[11px] text-gray-500 dark:text-slate-400" data-i18n="actionMenuPriceSub">הגדרת מחיר מותאם אישית לפריט</span>
+                    </div>
+                    <i class="fa-solid fa-chevron-left text-xs text-gray-400 group-hover:text-blue-600 transition rtl:rotate-0 ltr:rotate-180"></i>
+                </button>
+
+                <!-- 3. Delete Product from Catalog -->
+                <button type="button" onclick="triggerActionDeleteProduct()" class="w-full flex items-center gap-3 p-3 rounded-xl border border-red-200 dark:border-red-900/50 bg-red-50/50 dark:bg-red-950/30 hover:bg-red-50 dark:hover:bg-red-950/60 hover:border-red-300 dark:hover:border-red-700 transition active:scale-[0.98] text-start group">
+                    <div class="w-9 h-9 rounded-lg bg-red-100 dark:bg-red-950/80 text-red-600 dark:text-red-400 flex items-center justify-center shrink-0 text-sm">
+                        <i class="fa-solid fa-trash-can"></i>
+                    </div>
+                    <div class="flex-1 min-w-0">
+                        <span class="block text-xs sm:text-sm font-bold text-red-700 dark:text-red-300" data-i18n="actionMenuDelete">מחיקה מהקטלוג</span>
+                        <span class="block text-[11px] text-red-600/70 dark:text-red-400/70" data-i18n="actionMenuDeleteSub">הסרת המוצר מרשימת המוצרים הזמינים</span>
+                    </div>
+                    <i class="fa-solid fa-chevron-left text-xs text-red-400 transition rtl:rotate-0 ltr:rotate-180"></i>
+                </button>
+            </div>
+
+            <!-- Cancel Button -->
+            <div class="pt-1">
+                <button type="button" onclick="closeProductActionsModal()" class="w-full py-2 bg-gray-100 dark:bg-slate-700 hover:bg-gray-200 dark:hover:bg-slate-600 text-slate-700 dark:text-slate-200 rounded-xl text-xs sm:text-sm font-semibold transition active:scale-95" data-i18n="confirmCancelBtn">
                     ביטול
                 </button>
             </div>
@@ -1464,9 +1559,9 @@
                 <div class="p-3 rounded-xl bg-gray-50 dark:bg-slate-700/40 border border-gray-200/80 dark:border-slate-700 flex items-start gap-3">
                     <span class="text-xl shrink-0 mt-0.5">✏️</span>
                     <div>
-                        <h4 class="text-xs sm:text-sm font-bold text-slate-800 dark:text-slate-100" data-i18n="helpCustomTitle">מוצר חדש ומותאם אישית</h4>
+                        <h4 class="text-xs sm:text-sm font-bold text-slate-800 dark:text-slate-100" data-i18n="helpCustomTitle">עריכה, מחיקה ומוצר מותאם אישית</h4>
                         <p class="text-xs text-gray-600 dark:text-slate-300 mt-0.5 leading-relaxed" data-i18n="helpCustomDesc">
-                            בלחיצה ארוכה על אייקון ✏️ בקטלוג ניתן לערוך מוצר קיים ולהוסיף לו הערה. בהקלדת מוצר שאינו קיים בקטלוג, המערכת תבקש לבחור מחלקה ותשמור אותו גם לסבבים הבאים.
+                            בלחיצה ארוכה (חצי שנייה) על כרטיס המוצר בקטלוג נפתח תפריט פעולות לעריכת השם, המחלקה, הערת קנייה או מחיקה. בהקלדת מוצר שאינו קיים, המערכת תבקש לבחור מחלקה ותשמור אותו לסבבים הבאים.
                         </p>
                     </div>
                 </div>
@@ -1554,7 +1649,7 @@
                     <div>
                         <h4 class="text-xs sm:text-sm font-bold text-slate-800 dark:text-slate-100" data-i18n="helpPriceTitle">עריכת מחירים</h4>
                         <p class="text-xs text-gray-600 dark:text-slate-300 mt-0.5 leading-relaxed" data-i18n="helpPriceDesc">
-                            לחיצה ארוכה על אייקון התג 🏷️ ליד המוצר מאפשרת לעדכן את המחיר לפי בחירתך, לחשב סה״כ מדויק לסל או לאפס למחיר המשוער במאגר. מחירי ברירת המחדל במאגר מבוססים על מחירי מדף ממוצעים ברשתות השיווק המובילות, כאשר מוצרי יסוד מוזנים לפי המחיר המפוקח הרשמי לצרכן.
+                            בלחיצה ארוכה על כרטיס המוצר בקטלוג ניתן לבחור 'עדכון מחיר' ולהגדיר מחיר מותאם אישית לפריט, לחשב סה״כ מדויק לסל או לאפס למחיר המשוער במאגר. מחירי ברירת המחדל במאגר מבוססים על מחירי מדף ממוצעים ברשתות השיווק המובילות, כאשר מוצרי יסוד מוזנים לפי המחיר המפוקח הרשמי לצרכן.
                         </p>
                     </div>
                 </div>
@@ -1666,6 +1761,13 @@
                 confirmYesBtn: "כן, אפס מוצרים",
                 confirmCancelBtn: "ביטול",
                 confirmDeleteProductTitle: "מחיקת מוצר מהרשימה",
+                actionMenuTitle: "פעולות למוצר",
+                actionMenuEdit: "עריכת מוצר והערות",
+                actionMenuEditSub: "שינוי שם, שיוך מחלקה או הוספת הערה",
+                actionMenuPrice: "עדכון מחיר",
+                actionMenuPriceSub: "הגדרת מחיר מותאם אישית לפריט",
+                actionMenuDelete: "מחיקה מהקטלוג",
+                actionMenuDeleteSub: "הסרת המוצר מרשימת המוצרים הזמינים",
                 confirmDeleteProductDesc: "האם אתה בטוח שברצונך למחוק לצמיתות את המוצר",
                 confirmDeleteYesBtn: "כן, מחק מוצר",
                 deleteProductTooltip: "מחק מוצר זה מהרשימה לצמיתות",
@@ -1802,8 +1904,8 @@
                 helpSettingsDesc: "בהגדרות ניתן לבצע שינויים בממשק, לבחור פונקציות פעילות, לבחור היכן תופיע תיבת הוספת מוצר, להציג מחירון משוער ועוד.",
                 helpAddTitle: "הוספת מוצרים לסל",
                 helpAddDesc: "ניתן להקליד שם מוצר בתיבת החיפוש בראש הדף/כפתור +, או ללחוץ ישירות על כרטיס המוצר ברשימת הקטלוג למטה.",
-                helpCustomTitle: "מוצר חדש ומותאם אישית",
-                helpCustomDesc: "בלחיצה ארוכה על אייקון ✏️ בקטלוג ניתן לערוך מוצר קיים ולהוסיף לו הערה. בהקלדת מוצר שאינו קיים בקטלוג, המערכת תבקש לבחור מחלקה ותשמור אותו גם לסבבים הבאים.",
+                helpCustomTitle: "עריכה, מחיקה ומוצר מותאם אישית",
+                helpCustomDesc: "בלחיצה ארוכה (חצי שנייה) על כרטיס המוצר בקטלוג נפתח תפריט פעולות לעריכת השם, המחלקה, הערת קנייה או מחיקה. בהקלדת מוצר שאינו קיים, המערכת תבקש לבחור מחלקה ותשמור אותו לסבבים הבאים.",
                 helpSortTitle: "אפשרויות סידור מוצרים זמינים",
                 helpSortDesc: "ברשימת המוצרים הזמינים ניתן לסדר את הפריטים לפי תדירות שימוש, לפי א'-ב' או לפי משפחה.",
                 helpCheckTitle: "סימון מוצר שנקנה",
@@ -1852,7 +1954,7 @@
                 toastDeleteLongPressHint: "יש ללחוץ לחיצה ארוכה למחיקה",
                 deleteProductLongPressTooltip: "לחיצה ארוכה למחיקה מהקטלוג",
                 helpPriceTitle: "עריכת מחירים",
-                helpPriceDesc: "לחיצה ארוכה על אייקון התג 🏷️ ליד המוצר מאפשרת לעדכן את המחיר לפי בחירתך, לחשב סה״כ מדויק לסל או לאפס למחיר המשוער במאגר. מחירי ברירת המחדל במאגר מבוססים על מחירי מדף ממוצעים ברשתות השיווק המובילות, כאשר מוצרי יסוד מוזנים לפי המחיר המפוקח הרשמי לצרכן.",
+                helpPriceDesc: "בלחיצה ארוכה על כרטיס המוצר בקטלוג ניתן לבחור 'עדכון מחיר' ולהגדיר מחיר מותאם אישית לפריט, לחשב סה״כ מדויק לסל או לאפס למחיר המשוער במאגר. מחירי ברירת המחדל מבוססים על מחירי מדף ממוצעים ברשתות המובילות, כאשר מוצרי יסוד מוזנים לפי המחיר המפוקח הרשמי.",
                 editProductLongPressTooltip: "לחיצה ארוכה לעריכת מוצר",
                 toastEditLongPressHint: "יש ללחוץ לחיצה ארוכה לעריכה",
                 editProductModalTitle: "עריכת מוצר",
@@ -1912,6 +2014,13 @@
                 confirmYesBtn: "Yes, reset counters",
                 confirmCancelBtn: "Cancel",
                 confirmDeleteProductTitle: "Delete Product from Catalog",
+                actionMenuTitle: "Product Actions",
+                actionMenuEdit: "Edit Product & Notes",
+                actionMenuEditSub: "Change name, aisle, or add a note",
+                actionMenuPrice: "Update Price",
+                actionMenuPriceSub: "Set custom price for this product",
+                actionMenuDelete: "Delete from Catalog",
+                actionMenuDeleteSub: "Remove permanently from available items",
                 confirmDeleteProductDesc: "Are you sure you want to permanently delete",
                 confirmDeleteYesBtn: "Yes, delete product",
                 deleteProductTooltip: "Permanently delete this product from catalog",
@@ -2044,8 +2153,8 @@
                 helpSettingsDesc: "In Settings you can customize the UI, select active features, choose input placement, display estimated prices, etc.",
                 helpAddTitle: "Adding Items to Cart",
                 helpAddDesc: "Type product name in the search bar at the top / (+) button, or tap directly on any product card in the catalog below.",
-                helpCustomTitle: "Custom Products",
-                helpCustomDesc: "A long-press on the ✏️ icon in the catalog allows editing an existing product and adding a note to it. Typing a product not in the catalog prompts you to pick a department, saving it for future shopping.",
+                helpCustomTitle: "Editing, Deleting & Custom Products",
+                helpCustomDesc: "A long-press (half a second) on any catalog product card opens an action menu to edit its name, department, shopping note, or delete it. Typing an unlisted item prompts you to pick a department, saving it for future shopping.",
                 helpSortTitle: "Sorting Available Products",
                 helpSortDesc: "In the available products list, you can sort items by usage frequency, alphabetically (A-Z), or by family.",
                 helpCheckTitle: "Checking Off Items",
@@ -2094,7 +2203,7 @@
                 toastDeleteLongPressHint: "Press and hold to delete",
                 deleteProductLongPressTooltip: "Long press to delete from catalog",
                 helpPriceTitle: "Price Editing",
-                helpPriceDesc: "Long-press on the price tag icon 🏷️ next to the product to customize its price, calculate accurate basket totals, or reset to estimated database pricing. Default database prices are based on average retail shelf prices in leading supermarket chains, with basic staples reflecting officially regulated consumer prices.",
+                helpPriceDesc: "A long-press on a product card opens the action menu where you can choose 'Update Price' to set a custom price, calculate accurate basket totals, or reset to estimated database pricing. Default prices reflect average supermarket shelf prices, with regulated staples matching official prices.",
                 importExcel: "Import Excel",
                 importExcelTitle: "Import from Excel",
                 importExcelDesc: "Import product catalog from Excel file (.xlsx / .xls)",
@@ -2160,6 +2269,13 @@
                 confirmYesBtn: "Да, сбросить счетчики",
                 confirmCancelBtn: "Отмена",
                 confirmDeleteProductTitle: "Удаление товара из списка",
+                actionMenuTitle: "Действия с товаром",
+                actionMenuEdit: "Редактировать товар и заметки",
+                actionMenuEditSub: "Изменить название, отдел или заметку",
+                actionMenuPrice: "Изменить цену",
+                actionMenuPriceSub: "Установить свою цену для товара",
+                actionMenuDelete: "Удалить из каталога",
+                actionMenuDeleteSub: "Навсегда удалить из списка доступных",
                 confirmDeleteProductDesc: "Вы уверены, что хотите навсегда удалить товар",
                 confirmDeleteYesBtn: "Да, удалить товар",
                 deleteProductTooltip: "Навсегда удалить этот товар из каталога",
@@ -2292,8 +2408,8 @@
                 helpSettingsDesc: "В настройках можно настроить интерфейс, выбрать активные функции, расположение поля добавления, включить примерные цены и др.",
                 helpAddTitle: "Добавление товаров в корзину",
                 helpAddDesc: "Введите название в поле поиска вверху / кнопке (+), или нажмите на карточку товара в каталоге ниже.",
-                helpCustomTitle: "Собственные товары",
-                helpCustomDesc: "Долгое нажатие на иконку ✏️ в каталоге позволяет редактировать товар и добавить к нему заметку. При вводе нового товара вам предложат выбрать отдел, и он сохранится в каталоге для будущих покупок.",
+                helpCustomTitle: "Редактирование, удаление и новые товары",
+                helpCustomDesc: "Долгое нажатие (полсекунды) на карточку товара в каталоге открывает меню действий для редактирования названия, отдела, заметки или удаления. При вводе нового товара вам предложат выбрать отдел, сохранив его для будущих покупок.",
                 helpSortTitle: "Сортировка доступных товаров",
                 helpSortDesc: "В списке доступных товаров можно сортировать элементы по частоте использования, по алфавиту или по категории.",
                 helpCheckTitle: "Отметка купленных товаров",
@@ -2342,7 +2458,7 @@
                 toastDeleteLongPressHint: "Удерживайте нажатие для удаления",
                 deleteProductLongPressTooltip: "Удерживайте для удаления из каталога",
                 helpPriceTitle: "Редактирование цен",
-                helpPriceDesc: "Долгое нажатие на иконку ценника 🏷️ рядом с товаром позволяет изменить цену, рассчитать точную стоимость корзины или сбросить её к ориентировочной цене из базы. Базовые цены основаны на средних ценах в ведущих торговых сетях, а основные товары отражают официальные регулируемые потребительские цены.",
+                helpPriceDesc: "Долгое нажатие на карточку товара в каталоге открывает меню действий, где можно выбрать «Изменить цену», чтобы задать свою цену, точно рассчитать сумму или сбросить к расчетной цене. Базовые цены основаны на средних ценах супермаркетов.",
                 importExcel: "Импорт Excel",
                 importExcelTitle: "Импорт из Excel",
                 importExcelDesc: "Импорт каталога товаров из файла Excel (.xlsx / .xls)",
@@ -2961,7 +3077,7 @@
                 } else {
                     // Fresh install default: SIMPLE MODE
                     uiFeatures = Object.assign({}, DEFAULT_FEATURES_SIMPLE);
-                }
+                    }
             }
         } catch (e) {
             console.warn("Failed to load uiFeatures:", e);
@@ -3119,8 +3235,17 @@
             triggerHaptic(20);
             if (preset === 'simple') {
                 uiFeatures = Object.assign({}, DEFAULT_FEATURES_SIMPLE);
+                showQuantities = false;
+                isGroupedByAisle = false;
+                localStorage.setItem('showQuantities', JSON.stringify(false));
+                localStorage.setItem('isGroupedByAisle', JSON.stringify(false));
             } else if (preset === 'full') {
                 uiFeatures = Object.assign({}, DEFAULT_FEATURES_FULL);
+                // When switching to Full Mode, start with 5 action buttons in OFF state (neutral gray, not green)
+                showQuantities = false;
+                isGroupedByAisle = false;
+                localStorage.setItem('showQuantities', JSON.stringify(false));
+                localStorage.setItem('isGroupedByAisle', JSON.stringify(false));
             }
             syncUiCustomizerCheckboxes();
             applyUiFeatures();
@@ -3418,7 +3543,7 @@
             e.stopPropagation();
             if (!priceLongPressFired) {
                 const t = translations[currentLanguage] || translations.he;
-                showToast(t.toastLongPressHint || "יש ללחוץ לחיצה ארוכה לעריכת מחיר", "info");
+                showToast(t.toastLongPressHint || "יש ללחוץ לחיצה ארוכה לעריכת מחיר", "long-press-hint");
             }
         }
 
@@ -3481,7 +3606,7 @@
             e.stopPropagation();
             if (!deleteLongPressFired) {
                 const t = translations[currentLanguage] || translations.he;
-                showToast(t.toastDeleteLongPressHint || "יש ללחוץ לחיצה ארוכה למחיקה", "info");
+                showToast(t.toastDeleteLongPressHint || "יש ללחוץ לחיצה ארוכה למחיקה", "long-press-hint");
             }
         }
 
@@ -3544,7 +3669,7 @@
             e.stopPropagation();
             if (!editProductLongPressFired) {
                 const t = translations[currentLanguage] || translations.he;
-                showToast(t.toastEditLongPressHint || "יש ללחוץ לחיצה ארוכה לעריכה", "info");
+                showToast(t.toastEditLongPressHint || "יש ללחוץ לחיצה ארוכה לעריכה", "long-press-hint");
             }
         }
 
@@ -3622,6 +3747,7 @@
         function handleEditProductBackdropClick(event) {
             if (event.target.id === 'editProductModal') {
                 closeEditProductModal();
+                closeProductActionsModal();
             }
         }
 
@@ -3869,10 +3995,10 @@
 
         // Quantities state for active items (item name -> count)
         let activeQuantities = JSON.parse(localStorage.getItem('activeQuantities')) || {};
-        // Grouping mode state for List 1 (active by default)
-        let isGroupedByAisle = JSON.parse(localStorage.getItem('isGroupedByAisle')) ?? true;
-        // Visibility state for quantity counters in active list
-        let showQuantities = JSON.parse(localStorage.getItem('showQuantities')) ?? true;
+        // Grouping mode state for List 1 (off by default)
+        let isGroupedByAisle = JSON.parse(localStorage.getItem('isGroupedByAisle')) ?? false;
+        // Visibility state for quantity counters in active list (off by default)
+        let showQuantities = JSON.parse(localStorage.getItem('showQuantities')) ?? false;
 
         // Mobile Haptic Feedback helper
         function triggerHaptic(duration = 15) {
@@ -3895,9 +4021,9 @@
             const btn = document.getElementById('toggleQuantitiesBtn');
             if (!btn) return;
             if (showQuantities) {
-                btn.className = "text-[10px] sm:text-xs px-1.5 sm:px-2 py-0.5 sm:py-1 rounded-lg border border-emerald-500 bg-emerald-50 dark:bg-emerald-950/60 text-emerald-700 dark:text-emerald-300 font-semibold flex items-center justify-center gap-1 transition shadow-2xs active:scale-95 whitespace-nowrap shrink-0";
+                btn.className = "text-[11px] sm:text-xs px-1.5 sm:px-2 py-0.5 sm:py-1 rounded-lg border border-emerald-500 bg-emerald-50 dark:bg-emerald-950/60 text-emerald-700 dark:text-emerald-300 font-semibold flex items-center justify-center gap-1 transition shadow-2xs active:scale-95 whitespace-nowrap shrink-0";
             } else {
-                btn.className = "text-[10px] sm:text-xs px-1.5 sm:px-2 py-0.5 sm:py-1 rounded-lg border border-gray-200 dark:border-slate-700 text-gray-500 dark:text-slate-400 hover:bg-gray-100 dark:hover:bg-slate-700 flex items-center justify-center gap-1 transition font-medium active:scale-95 whitespace-nowrap shrink-0";
+                btn.className = "text-[11px] sm:text-xs px-1.5 sm:px-2 py-0.5 sm:py-1 rounded-lg border border-gray-200 dark:border-slate-700 text-gray-500 dark:text-slate-400 hover:bg-gray-100 dark:hover:bg-slate-700 flex items-center justify-center gap-1 transition font-medium active:scale-95 whitespace-nowrap shrink-0";
             }
         }
 
@@ -4079,6 +4205,8 @@
                 // If clicked directly on quantity buttons or price long-press button, don't mark as purchased
                 if (e.target.closest('.qty-control') || e.target.closest('.price-longpress-btn')) return;
                 
+                // Ignore click if it was a momentum scroll braking gesture
+                if (isMomentumScrollingActive()) return;
                 triggerHaptic(20);
                 const titleEl = div.querySelector('.item-title');
                 const checkEl = div.querySelector('.check-icon');
@@ -4530,68 +4658,218 @@
                 const isWeighted = isProductWeighted(product.name);
                 const priceUnitLabel = (currentLanguage === 'ru') ? 'за кг' : ((currentLanguage === 'en') ? 'per kg' : 'לק״ג');
                 const itemNote = getItemNote(product.name);
+                const emoji = getProductEmoji(product.name, rawCategory);
 
                 const itemDiv = document.createElement('div');
-                const emoji = getProductEmoji(product.name, rawCategory);
-                itemDiv.className = "flex items-center justify-between p-2.5 sm:p-3 rounded-xl border border-gray-200 dark:border-slate-700 bg-gray-50 dark:bg-slate-700/60 hover:bg-emerald-50 dark:hover:bg-emerald-950/50 hover:border-emerald-300 dark:hover:border-emerald-700 transition shadow-sm group active:scale-[0.98]";
+                itemDiv.onpointerdown = (e) => handleCatalogCardPointerDown(e, product.name, itemDiv);
+                itemDiv.onpointerup = (e) => handleCatalogCardPointerUp(e, product.name);
+                itemDiv.onpointermove = (e) => handleCatalogCardPointerMove(e);
+                itemDiv.onpointercancel = () => handleCatalogCardPointerCancel();
+                itemDiv.onpointerleave = () => handleCatalogCardPointerCancel();
+                itemDiv.oncontextmenu = (e) => handleCatalogCardContextMenu(e, product.name);
+
+                itemDiv.className = "flex flex-col justify-between p-2.5 sm:p-3 rounded-xl border border-gray-200 dark:border-slate-700 bg-gray-50 dark:bg-slate-700/60 hover:border-gray-300 dark:hover:border-slate-600 transition shadow-sm select-none cursor-pointer active:scale-[0.98]";
 
                 itemDiv.innerHTML = `
-                    <div onclick="addProductToActiveList('${escapeHtml(product.name)}')" class="flex items-center justify-between flex-1 min-w-0 cursor-pointer select-none">
-                        <div class="flex flex-col min-w-0 text-start flex-1 pe-1">
-                            <span class="truncate text-xs sm:text-sm font-medium text-slate-700 dark:text-slate-200 group-hover:text-emerald-800 dark:group-hover:text-emerald-300">${escapeHtml(displayName)}</span>
-                            ${itemNote ? `<span class="item-note text-[10px] text-gray-500 dark:text-slate-400 italic flex items-center gap-0.5 truncate"><i class="fa-regular fa-comment-dots text-[9px] text-emerald-600 dark:text-emerald-400 shrink-0"></i><span class="truncate">${escapeHtml(itemNote)}</span></span>` : ''}
-                            <div class="flex items-center gap-1.5 mt-0.5 flex-wrap">
-                                ${(isShowPricesEnabled && itemPrice > 0) ? `
-                                <span class="text-[10px] font-normal text-emerald-700 dark:text-emerald-400 opacity-90 whitespace-nowrap">
-                                    ${isCustom ? '' : '~'}${itemPrice.toFixed(2)} ₪${isWeighted ? ` ${priceUnitLabel}` : ''}
-                                </span>` : ''}
-                                ${displayCategory ? `<span class="product-cat-tag truncate text-[10px] text-gray-400 dark:text-slate-400 font-normal flex items-center gap-0.5"><span>${emoji}</span><span>${escapeHtml(displayCategory)}</span></span>` : ''}
-                            </div>
-                        </div>
+                    <div class="flex flex-col min-w-0 text-start w-full">
+                        <span class="catalog-item-name font-semibold text-slate-700 dark:text-slate-200 line-clamp-2 leading-tight">${escapeHtml(displayName)}</span>
+                        ${itemNote ? `<span class="item-note text-gray-500 dark:text-slate-400 italic flex items-center gap-0.5 mt-0.5 truncate"><i class="fa-regular fa-comment-dots text-[10px] text-emerald-600 dark:text-emerald-400 shrink-0"></i><span class="truncate">${escapeHtml(itemNote)}</span></span>` : ''}
                     </div>
-                    <div class="flex items-center shrink-0 ms-0.5">
-                        ${(isShowPricesEnabled) ? `
-                        <button type="button" 
-                                onpointerdown="handlePriceLongPressStart(event, '${escapeHtml(product.name)}', this)"
-                                onpointerup="handlePriceLongPressEnd(event)"
-                                onpointerleave="handlePriceLongPressCancel(event)"
-                                onpointercancel="handlePriceLongPressCancel(event)"
-                                onclick="handlePriceClick(event)"
-                                oncontextmenu="handlePriceContextMenu(event, '${escapeHtml(product.name)}')"
-                                class="price-longpress-btn p-1 rounded hover:bg-emerald-50 dark:hover:bg-emerald-950/40 transition shrink-0 select-none ${isCustom ? 'text-emerald-600 dark:text-emerald-400' : 'text-gray-300 dark:text-slate-500 hover:text-emerald-600 dark:hover:text-emerald-400'}" 
-                                style="touch-action: none; -webkit-touch-callout: none;"
-                                title="${t.editPriceLongPressTooltip || 'לחיצה ארוכה לעריכת מחיר'}">
-                            <i class="fa-solid fa-tag text-[11px] pointer-events-none"></i>
-                        </button>
-                        ` : ''}
-                        <button type="button" 
-                                onpointerdown="handleEditProductLongPressStart(event, '${escapeHtml(product.name)}', this)"
-                                onpointerup="handleEditProductLongPressEnd(event)"
-                                onpointerleave="handleEditProductLongPressCancel(event)"
-                                onpointercancel="handleEditProductLongPressCancel(event)"
-                                onclick="handleEditProductClick(event)"
-                                oncontextmenu="handleEditProductContextMenu(event, '${escapeHtml(product.name)}')"
-                                class="edit-product-longpress-btn text-gray-300 dark:text-slate-500 hover:text-emerald-600 dark:hover:text-emerald-400 p-1 rounded hover:bg-emerald-50 dark:hover:bg-emerald-950/40 transition shrink-0 select-none ${itemNote ? 'text-emerald-600 dark:text-emerald-400' : ''}" 
-                                style="touch-action: none; -webkit-touch-callout: none;"
-                                title="${t.editProductLongPressTooltip || 'לחיצה ארוכה לעריכת מוצר'}">
-                            <i class="fa-solid fa-pen text-[11px] pointer-events-none"></i>
-                        </button>
-                        <button type="button" 
-                                onpointerdown="handleDeleteLongPressStart(event, '${escapeHtml(product.name)}', this)"
-                                onpointerup="handleDeleteLongPressEnd(event)"
-                                onpointerleave="handleDeleteLongPressCancel(event)"
-                                onpointercancel="handleDeleteLongPressCancel(event)"
-                                onclick="handleDeleteClick(event)"
-                                oncontextmenu="handleDeleteContextMenu(event, '${escapeHtml(product.name)}')"
-                                class="delete-longpress-btn text-gray-300 dark:text-slate-500 hover:text-red-500 dark:hover:text-red-400 p-1 rounded hover:bg-red-50 dark:hover:bg-red-950/40 transition shrink-0 select-none" 
-                                style="touch-action: none; -webkit-touch-callout: none;"
-                                title="${t.deleteProductLongPressTooltip || 'לחיצה ארוכה למחיקה מהקטלוג'}">
-                            <i class="fa-solid fa-trash-can text-xs pointer-events-none"></i>
-                        </button>
+
+                    <div class="flex items-center justify-between gap-1 mt-1.5 pt-1 border-t border-gray-100/80 dark:border-slate-700/60 w-full catalog-item-sub">
+                        ${displayCategory ? `<span class="product-cat-tag truncate text-gray-400 dark:text-slate-400 font-normal flex items-center gap-1 min-w-0"><span>${emoji}</span><span class="truncate">${escapeHtml(displayCategory)}</span></span>` : '<span></span>'}
+                        ${(isShowPricesEnabled && itemPrice > 0) ? `
+                        <span class="font-semibold text-emerald-700 dark:text-emerald-400 opacity-90 whitespace-nowrap shrink-0">
+                            ${isCustom ? '' : '~'}${itemPrice.toFixed(2)} ₪${isWeighted ? ` ${priceUnitLabel}` : ''}
+                        </span>` : ''}
                     </div>
                 `;
                 container.appendChild(itemDiv);
             });
+        }
+
+                // Momentum Scroll Detection & Accidental Click Prevention
+        let lastScrollTimestamp = 0;
+        let isScrollingActive = false;
+        let scrollEndTimer = null;
+
+        window.addEventListener('scroll', () => {
+            lastScrollTimestamp = Date.now();
+            isScrollingActive = true;
+            if (scrollEndTimer) clearTimeout(scrollEndTimer);
+            scrollEndTimer = setTimeout(() => {
+                isScrollingActive = false;
+            }, 120);
+        }, { passive: true });
+
+        function isMomentumScrollingActive() {
+            return (Date.now() - lastScrollTimestamp < 120) || isScrollingActive;
+        }
+
+        // Catalog Card Long-Press & Action Modal Handlers
+        let catalogCardLongPressTimer = null;
+        let catalogCardLongPressFired = false;
+        let catalogCardTouchStartX = 0;
+        let catalogCardTouchStartY = 0;
+        let catalogCardTouchStartScrollY = 0;
+        let wasScrollingOnPointerDown = false;
+        let activeCatalogCardElement = null;
+        let selectedActionProductRawName = null;
+
+        function handleCatalogCardPointerDown(e, rawProductName, cardEl) {
+            if (e.button && e.button !== 0) return;
+            catalogCardLongPressFired = false;
+            activeCatalogCardElement = cardEl;
+            catalogCardTouchStartX = e.clientX;
+            catalogCardTouchStartY = e.clientY;
+            catalogCardTouchStartScrollY = window.scrollY;
+
+            // If the page was scrolling in the last 120ms or is actively in inertial scroll,
+            // this touch down is a braking/halting gesture, not an intentional tap.
+            wasScrollingOnPointerDown = isMomentumScrollingActive();
+
+            if (cardEl && !wasScrollingOnPointerDown) {
+                cardEl.classList.add('scale-[0.98]');
+            }
+
+            if (catalogCardLongPressTimer) clearTimeout(catalogCardLongPressTimer);
+            if (!wasScrollingOnPointerDown) {
+                catalogCardLongPressTimer = setTimeout(() => {
+                    catalogCardLongPressFired = true;
+                    if (activeCatalogCardElement) {
+                        activeCatalogCardElement.classList.remove('scale-[0.98]');
+                        activeCatalogCardElement = null;
+                    }
+                    triggerHaptic(40);
+                    openProductActionsModal(rawProductName);
+                }, 500);
+            }
+        }
+
+        function handleCatalogCardPointerMove(e) {
+            if (catalogCardLongPressTimer || activeCatalogCardElement) {
+                const deltaX = Math.abs(e.clientX - catalogCardTouchStartX);
+                const deltaY = Math.abs(e.clientY - catalogCardTouchStartY);
+                const scrollDelta = Math.abs(window.scrollY - catalogCardTouchStartScrollY);
+                if (deltaX > 10 || deltaY > 10 || scrollDelta > 5) {
+                    handleCatalogCardPointerCancel();
+                }
+            }
+        }
+
+        function handleCatalogCardPointerUp(e, rawProductName) {
+            if (activeCatalogCardElement) {
+                activeCatalogCardElement.classList.remove('scale-[0.98]');
+                activeCatalogCardElement = null;
+            }
+            if (catalogCardLongPressTimer) {
+                clearTimeout(catalogCardLongPressTimer);
+                catalogCardLongPressTimer = null;
+            }
+
+            const scrollDelta = Math.abs(window.scrollY - catalogCardTouchStartScrollY);
+            const isScrollHalt = wasScrollingOnPointerDown || (scrollDelta > 5) || isMomentumScrollingActive();
+
+            if (!catalogCardLongPressFired && !isScrollHalt) {
+                addProductToActiveList(rawProductName);
+            }
+            wasScrollingOnPointerDown = false;
+        }
+
+        function handleCatalogCardPointerCancel() {
+            if (activeCatalogCardElement) {
+                activeCatalogCardElement.classList.remove('scale-[0.98]');
+                activeCatalogCardElement = null;
+            }
+            if (catalogCardLongPressTimer) {
+                clearTimeout(catalogCardLongPressTimer);
+                catalogCardLongPressTimer = null;
+            }
+            wasScrollingOnPointerDown = false;
+        }
+
+        function handleCatalogCardContextMenu(e, rawProductName) {
+            e.preventDefault();
+            e.stopPropagation();
+            handleCatalogCardPointerCancel();
+            openProductActionsModal(rawProductName);
+        }
+
+        function openProductActionsModal(rawName) {
+            selectedActionProductRawName = rawName;
+            const modal = document.getElementById('productActionsModal');
+            if (!modal) return;
+
+            const displayName = getLocalizedProductName(rawName);
+            const rawCategory = getProductCategory(rawName);
+            const displayCategory = getLocalizedCategoryName(rawCategory);
+            const emoji = getProductEmoji(rawName, rawCategory);
+            const price = getProductPrice(rawName);
+            const isCustom = hasUserCustomPrice(rawName);
+            const isWeighted = isProductWeighted(rawName);
+            const priceUnitLabel = (currentLanguage === 'ru') ? 'за кг' : ((currentLanguage === 'en') ? 'per kg' : 'לק״ג');
+
+            const emojiEl = document.getElementById('productActionsEmoji');
+            if (emojiEl) emojiEl.innerText = emoji;
+
+            const titleEl = document.getElementById('productActionsTitle');
+            if (titleEl) titleEl.innerText = displayName;
+
+            const catEl = document.getElementById('productActionsCategory');
+            if (catEl) catEl.innerText = displayCategory || '';
+
+            const priceEl = document.getElementById('productActionsPrice');
+            if (priceEl) {
+                if (isShowPricesEnabled && price > 0) {
+                    priceEl.innerText = `• ${isCustom ? '' : '~'}${price.toFixed(2)} ₪${isWeighted ? ` ${priceUnitLabel}` : ''}`;
+                    priceEl.classList.remove('hidden');
+                } else {
+                    priceEl.classList.add('hidden');
+                }
+            }
+
+            const priceBtn = document.getElementById('actionMenuPriceBtn');
+            if (priceBtn) {
+                priceBtn.classList.toggle('hidden', !isShowPricesEnabled);
+            }
+
+            modal.classList.remove('hidden');
+        }
+
+        function closeProductActionsModal() {
+            const modal = document.getElementById('productActionsModal');
+            if (modal) modal.classList.add('hidden');
+            selectedActionProductRawName = null;
+        }
+
+        function handleProductActionsBackdropClick(e) {
+            if (e.target.id === 'productActionsModal') {
+                closeProductActionsModal();
+            }
+        }
+
+        function triggerActionEditProduct() {
+            const name = selectedActionProductRawName;
+            closeProductActionsModal();
+            if (name) {
+                openEditProductModal(name);
+            }
+        }
+
+        function triggerActionEditPrice() {
+            const name = selectedActionProductRawName;
+            closeProductActionsModal();
+            if (name) {
+                openEditPriceModal(name);
+            }
+        }
+
+        function triggerActionDeleteProduct() {
+            const name = selectedActionProductRawName;
+            closeProductActionsModal();
+            if (name) {
+                requestDeleteProduct(name);
+            }
         }
 
         // UNDO History Stack
@@ -5119,6 +5397,69 @@
             showToast((t.templateLoadedNewToast || "הרשימה '{name}' נטענה בהצלחה").replace('{name}', tplTitle), "success");
         }
 
+                // Saved Template Delete Long-Press Handlers (Requires holding 500ms on the trash can icon)
+        let deleteTemplateLongPressTimer = null;
+        let deleteTemplateLongPressFired = false;
+        let activeDeleteTemplateButton = null;
+
+        function handleDeleteTemplateLongPressStart(e, tplId, btnEl) {
+            e.stopPropagation();
+            deleteTemplateLongPressFired = false;
+            activeDeleteTemplateButton = btnEl;
+            if (btnEl) {
+                btnEl.classList.add('scale-125', 'text-red-600', 'dark:text-red-400');
+            }
+            if (deleteTemplateLongPressTimer) clearTimeout(deleteTemplateLongPressTimer);
+            deleteTemplateLongPressTimer = setTimeout(() => {
+                deleteTemplateLongPressFired = true;
+                if (activeDeleteTemplateButton) {
+                    activeDeleteTemplateButton.classList.remove('scale-125', 'text-red-600', 'dark:text-red-400');
+                    activeDeleteTemplateButton = null;
+                }
+                triggerHaptic(40);
+                deleteSavedTemplate(tplId);
+            }, 500);
+        }
+
+        function handleDeleteTemplateLongPressEnd(e) {
+            e.stopPropagation();
+            if (activeDeleteTemplateButton) {
+                activeDeleteTemplateButton.classList.remove('scale-125', 'text-red-600', 'dark:text-red-400');
+                activeDeleteTemplateButton = null;
+            }
+            if (deleteTemplateLongPressTimer) {
+                clearTimeout(deleteTemplateLongPressTimer);
+                deleteTemplateLongPressTimer = null;
+            }
+        }
+
+        function handleDeleteTemplateLongPressCancel(e) {
+            if (e) e.stopPropagation();
+            if (activeDeleteTemplateButton) {
+                activeDeleteTemplateButton.classList.remove('scale-125', 'text-red-600', 'dark:text-red-400');
+                activeDeleteTemplateButton = null;
+            }
+            if (deleteTemplateLongPressTimer) {
+                clearTimeout(deleteTemplateLongPressTimer);
+                deleteTemplateLongPressTimer = null;
+            }
+        }
+
+        function handleDeleteTemplateClick(e) {
+            e.stopPropagation();
+            if (!deleteTemplateLongPressFired) {
+                const t = translations[currentLanguage] || translations.he;
+                showToast(t.toastDeleteLongPressHint || "יש ללחוץ לחיצה ארוכה למחיקה", "long-press-hint");
+            }
+        }
+
+        function handleDeleteTemplateContextMenu(e, tplId) {
+            e.preventDefault();
+            e.stopPropagation();
+            handleDeleteTemplateLongPressCancel();
+            deleteSavedTemplate(tplId);
+        }
+
         function deleteSavedTemplate(templateId) {
             triggerHaptic(15);
             const idx = savedTemplates.findIndex(t => t.id === templateId);
@@ -5196,8 +5537,16 @@
                             </div>
                             <p class="text-[10px] text-gray-400 dark:text-slate-500 mt-0.5 truncate">${escapeHtml(tpl.date || '')}</p>
                         </div>
-                        <button onclick="deleteSavedTemplate('${tpl.id}')" class="text-gray-300 dark:text-slate-500 hover:text-red-500 dark:hover:text-red-400 p-1 rounded hover:bg-red-50 dark:hover:bg-red-950/40 transition shrink-0" title="${t.deleteTemplateTooltip || 'מחק תבנית'}">
-                            <i class="fa-solid fa-trash-can text-xs"></i>
+                        <button type="button"
+                                onpointerdown="handleDeleteTemplateLongPressStart(event, '${tpl.id}', this)"
+                                onpointerup="handleDeleteTemplateLongPressEnd(event)"
+                                onpointerleave="handleDeleteTemplateLongPressCancel(event)"
+                                onpointercancel="handleDeleteTemplateLongPressCancel(event)"
+                                oncontextmenu="handleDeleteTemplateContextMenu(event, '${tpl.id}')"
+                                onclick="handleDeleteTemplateClick(event)"
+                                class="delete-template-longpress-btn text-gray-300 dark:text-slate-500 hover:text-red-500 dark:hover:text-red-400 p-1 rounded hover:bg-red-50 dark:hover:bg-red-950/40 transition shrink-0 select-none cursor-pointer" 
+                                title="${t.deleteProductLongPressTooltip || 'לחיצה ארוכה למחיקה'}">
+                            <i class="fa-solid fa-trash-can text-xs pointer-events-none"></i>
                         </button>
                     </div>
 
@@ -6468,14 +6817,14 @@
 
         let toastTimeoutId = null;
         function showToast(message, type = "success") {
+            // Strictly enforce: No toast balloons except when a long-press is required but a short tap is performed (trash can, pencil, price tag)
+            if (type !== 'long-press-hint') return;
+
             const toast = document.getElementById('toastNotification');
             if (!toast) return;
             toast.innerText = message;
 
-            let colorClasses = "bg-emerald-50/95 dark:bg-slate-800/95 text-emerald-800 dark:text-emerald-200 border-emerald-300/80 dark:border-emerald-700/80 shadow-emerald-950/10";
-            if (type === 'error') {
-                colorClasses = "bg-rose-50/95 dark:bg-slate-800/95 text-rose-800 dark:text-rose-200 border-rose-300/80 dark:border-rose-700/80 shadow-rose-950/10";
-            }
+            const colorClasses = "bg-amber-50/95 dark:bg-slate-800/95 text-amber-900 dark:text-amber-200 border-amber-300/80 dark:border-amber-700/80 shadow-amber-950/10";
 
             toast.className = `fixed top-5 left-1/2 -translate-x-1/2 z-[100] max-w-sm w-11/12 py-3 px-5 rounded-2xl text-sm sm:text-base font-semibold text-center shadow-lg backdrop-blur-sm transition-all border pointer-events-auto ${colorClasses}`;
             toast.classList.remove('hidden');

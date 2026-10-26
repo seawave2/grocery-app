@@ -1,4 +1,4 @@
-# 🛒 GroceryFlow (v1.7)
+# 🛒 GroceryFlow (v1.8)
 
 A modern, fast, lightweight, and fully customizable **Progressive Web App (PWA)** designed to make grocery shopping and list management effortless. Built with vanilla JavaScript, Tailwind CSS, FontAwesome icons, and complete offline capability.
 
@@ -44,13 +44,13 @@ The application is structured around a fast, intuitive **Two-List Architecture**
 - **Optimized Vertical Spacing**: Streamlined spacing between the top search bar, active shopping list, and catalog maximizes visible screen real estate for your groceries.
 
 ### ✏️ Item Notes & Catalog Product Editing
-- **Dedicated Pencil Action Button**: Each item card in the catalog includes an edit button (`✏️`) next to the delete trash can.
-- **Long-Press Protection**: Requires a 500ms press-and-hold (with visual scale animation and haptic feedback) to open the editor, preventing accidental clicks. A short tap provides a helpful guidance toast.
+- **Clutter-Free Full-Width Cards & Long-Press Action Menu**: Catalog product cards are clean and free of inline button clutter. A single tap adds an item to the shopping list, while pressing and holding any card for 500ms (with haptic feedback) opens a clean Action Menu to edit the product name, aisle assignment, custom notes, price, or delete the product from the catalog.
+- **Accidental Click Protection & Full Name Visibility**: Removing inline buttons frees 100% of card width for product names, enabling long names to display clearly across two lines without truncation or accidental clicks while scrolling.
 - **Comprehensive Product Editor**:
   - **Product Name**: Rename items or fix typos.
   - **Category / Aisle**: Reassign items to any store aisle via a clean dropdown.
   - **Item Notes**: Add custom shopping remarks (e.g., *"Thinly sliced"*, *"Firm only"*, *"On sale only"*).
-- **Subtle Visual Feedback**: Products with active custom notes highlight their pencil icon in emerald green and display the note as an elegant italic subtitle with a `💬` icon under the product name in both the active shopping list and catalog.
+- **Subtle Visual Feedback**: Products with active custom notes display the note as an elegant italic subtitle with a `💬` icon under the product name in both the active shopping list and catalog.
 - **Native Sharing Integration**: Custom notes are automatically included when sharing lists to WhatsApp or copying to the clipboard (e.g., `• 🧀 Yellow Cheese (1 pcs) — Thinly sliced`).
 - **Complete Undo Integration**: Any product edit or rename can be reverted immediately via Undo (`Ctrl+Z`).
 
@@ -88,7 +88,7 @@ The application is structured around a fast, intuitive **Two-List Architecture**
   - *Cleaning & Home Maintenance*
   - *Healthy Breakfast & Muesli*
   - *Italian Night (Pasta & Pizza)*
-- Quick template deletion with a single tap, plus full Undo support.
+- **Long-Press Template Deletion Safeguard**: Deleting a saved template requires holding the trash icon for a full long press (with active haptic feedback and red progress fill), completely preventing accidental routine deletions. Full Undo support is included.
 
 ### 📋 Smart Text & Message Import (Paste)
 - **Instant Shopping List Parsing**: Paste any freeform text or WhatsApp message directly via the "Paste" (`הדבק`) button on the active shopping list bar.
@@ -101,7 +101,7 @@ The application is structured around a fast, intuitive **Two-List Architecture**
 - Default database prices are benchmarked to average retail shelf prices in leading supermarket chains, with basic staples reflecting officially regulated consumer prices.
 - Optional toggle in Settings with a dynamic last-updated date indicator and BETA badge.
 - Real-time basket summary bar calculating the estimated total cost of both active items and purchased items.
-- Dedicated `🏷️` price tag icon on items with long-press support to set or edit custom item prices independently.
+- Dedicated price management via the card's long-press Action Menu to set or edit custom item prices independently.
 
 ### 💡 Keep Screen Awake
 - Prevents your mobile display from dimming or locking while navigating supermarket aisles.
@@ -121,6 +121,10 @@ The application is structured around a fast, intuitive **Two-List Architecture**
 
 ### 🔤 Typography & Contrast Controls
 - Three selectable font sizes: **Medium**, **Large (Default)**, and **Extra Large**.
+- **+10% Global Screen Typography Enlargement**: All interface typography—including active shopping list items, purchased items, header buttons, search fields, progress bar, templates, and settings modals—has been enlarged by 10% across all font size modes (Medium, Large, and Extra Large) for effortless readability.
+- **+30% Available Catalog Typography**: Product names in the available catalog are enlarged by 30% to maximize legibility without overflowing the 2-column grid layout.
+- **Scroll Momentum Braking Protection**: Tapping the screen to halt rapid scrolling in the catalog smoothly brakes momentum without triggering accidental item selections.
+- **Visual Selection Stability**: Catalog cards consistently retain their clean, neutral gray background upon item addition, eliminating distracting color shifts.
 - **Responsive Mobile Safeguards**: Fluid responsive layout and modal constraints ensuring seamless display with zero screen overflow, even on compact mobile screens with Extra Large font enabled.
 - **Bold Text Mode**: High-contrast, bolder typography across the application for enhanced readability under bright supermarket lights.
 
@@ -151,8 +155,6 @@ The application is structured around a fast, intuitive **Two-List Architecture**
 - No user accounts, logins, telemetry, or remote tracking.
 
 ---
-
-
 
 ## 🛠️ Technologies Used
 
