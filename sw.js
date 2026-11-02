@@ -1,8 +1,9 @@
-const CACHE_NAME = 'grocery-list-v20';
+const CACHE_NAME = 'grocery-list-v24';
 const ASSETS = [
   './',
   './index.html',
   './translations.js',
+  './regional_catalogs.js',
   './manifest.json',
   './logo-header.png',
   './icon-192.png',
@@ -47,16 +48,18 @@ self.addEventListener('fetch', (event) => {
     return;
   }
 
-  // Stale-While-Revalidate for other static assets
+  // Stale-While-Revalidate for all local assets
   event.respondWith(
     caches.match(event.request).then((cachedResponse) => {
-      const fetchPromise = fetch(event.request).then((networkResponse) => {
-        if (networkResponse && networkResponse.status === 200) {
-          const clone = networkResponse.clone();
-          caches.open(CACHE_NAME).then((cache) => cache.put(event.request, clone));
-        }
-        return networkResponse;
-      }).catch(() => cachedResponse);
+      const fetchPromise = fetch(event.request)
+        .then((networkResponse) => {
+          if (networkResponse && networkResponse.status === 200) {
+            const clone = networkResponse.clone();
+            caches.open(CACHE_NAME).then((cache) => cache.put(event.request, clone));
+          }
+          return networkResponse;
+        })
+        .catch(() => cachedResponse);
 
       return cachedResponse || fetchPromise;
     })

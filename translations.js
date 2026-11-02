@@ -1,6 +1,60 @@
 // Comprehensive Octalingual Dictionary (Hebrew, English, Russian, Arabic, Spanish, French, Portuguese, German)
 // Generated from catalog list (556 items)
 const productTranslations = {
+    "ידיות": {
+        "en": "Handles / Knobs",
+        "ru": "Ручки",
+        "ar": "مقابض",
+        "es": "Tiradores / Manijas",
+        "fr": "Poignées",
+        "pt": "Puxadores",
+        "de": "Griffe"
+    },
+    "כרוב סיני (נאפה)": {
+        "en": "Napa Cabbage (Chinese Cabbage)",
+        "ru": "Пекинская капуста",
+        "ar": "ملفوف صيني (نابا)",
+        "es": "Col china (Napa)",
+        "fr": "Chou chinois (Napa)",
+        "pt": "Acelga chinesa (Napa)",
+        "de": "Chinakohl (Napa)"
+    },
+    "כרוב סיני נאפה": {
+        "en": "Napa Cabbage (Chinese Cabbage)",
+        "ru": "Пекинская капуста",
+        "ar": "ملفوف صيني (نابا)",
+        "es": "Col china (Napa)",
+        "fr": "Chou chinois (Napa)",
+        "pt": "Acelga chinesa (Napa)",
+        "de": "Chinakohl (Napa)"
+    },
+    "כרוב סיני": {
+        "en": "Napa Cabbage (Chinese Cabbage)",
+        "ru": "Пекинская капуста",
+        "ar": "ملفوف صيني (نابا)",
+        "es": "Col china (Napa)",
+        "fr": "Chou chinois (Napa)",
+        "pt": "Acelga chinesa (Napa)",
+        "de": "Chinakohl (Napa)"
+    },
+    "גזר בייבי (חבילת 400 גרם)": {
+        "en": "Baby Carrots (400g pack)",
+        "ru": "Мини-морковь бэби (400 г)",
+        "ar": "جزر صغير (عبوة 400 جم)",
+        "es": "Zanahorias baby (paquete 400g)",
+        "fr": "Carottes miniatures (sachet 400g)",
+        "pt": "Cenouras baby (pacote 400g)",
+        "de": "Babykarotten (400g Packung)"
+    },
+    "גזר בייבי": {
+        "en": "Baby Carrots",
+        "ru": "Мини-морковь бэби",
+        "ar": "جزر صغير",
+        "es": "Zanahorias baby",
+        "fr": "Carottes miniatures",
+        "pt": "Cenouras baby",
+        "de": "Babykarotten"
+    },
     "אבוקדו": {
         "en": "Avocado",
         "ru": "Авокадо",
@@ -3880,7 +3934,7 @@ const productTranslations = {
         "pt": "Rugelach",
         "de": "Rugelach"
     },
-    "רוטב ברביקيو": {
+    "רוטב ברביקיו": {
         "en": "Barbecue Sauce",
         "ru": "Соус барбекю",
         "ar": "صلصة باربيكيو",
@@ -4006,7 +4060,7 @@ const productTranslations = {
         "pt": "Coco ralado",
         "de": "Kokosraspeln"
     },
-    "שווארמה הודو": {
+    "שווארמה הודו": {
         "en": "Turkey Shawarma",
         "ru": "Шаурма из индейки",
         "ar": "شاورما حبش",
@@ -5004,10 +5058,4284 @@ const productTranslations = {
         "fr": "Smétana (crème aigre russe)",
         "pt": "Smetana (creme azedo russo)",
         "de": "Smetana (russischer Sauerrahm)"
+    },
+    "אבוקדו האס": {
+        "en": "Hass Avocado",
+        "ru": "Авокадо Хасс",
+        "ar": "هاس الأفوكادو",
+        "es": "Aguacate Hass",
+        "fr": "Hass Avocat",
+        "pt": "Abacate Hass",
+        "de": "Hass-Avocado"
+    },
+    "עגבניות רומא": {
+        "en": "Roma Tomatoes",
+        "ru": "Помидоры Рома",
+        "ar": "طماطم روما",
+        "es": "Tomates Roma",
+        "fr": "Tomates Roma",
+        "pt": "Tomates Roma",
+        "de": "Roma-Tomaten"
+    },
+    "עגבניות שרי באשכול": {
+        "en": "Cherry Tomatoes on the Vine",
+        "ru": "Помидоры черри на ветке",
+        "ar": "الطماطم الكرزية على الكرمة",
+        "es": "Tomates Cherry en rama",
+        "fr": "Tomates cerises sur vigne",
+        "pt": "Tomates cereja na videira",
+        "de": "Kirschtomaten am Rebstock"
+    },
+    "מלפפון אנגלי": {
+        "en": "English Cucumber",
+        "ru": "Длинноплодный огурец",
+        "ar": "خيار إنجليزي",
+        "es": "pepino ingles",
+        "fr": "Concombre anglais",
+        "pt": "Pepino Inglês",
+        "de": "Englische Gurke"
+    },
+    "בצל אדום": {
+        "en": "Red Onion",
+        "ru": "Красный лук",
+        "ar": "بصل أحمر",
+        "es": "Cebolla Roja",
+        "fr": "Oignon rouge",
+        "pt": "Cebola Vermelha",
+        "de": "Rote Zwiebel"
+    },
+    "בייבי תרד אורגני": {
+        "en": "Organic Baby Spinach",
+        "ru": "Органический бэби-шпинат",
+        "ar": "السبانخ العضوية",
+        "es": "Espinacas tiernas orgánicas",
+        "fr": "Bébés épinards biologiques",
+        "pt": "Espinafre Bebê Orgânico",
+        "de": "Bio-Babyspinat"
+    },
+    "חסה אייסברג": {
+        "en": "Iceberg Lettuce",
+        "ru": "Салат Айсберг",
+        "ar": "خس ايسبرغ",
+        "es": "Lechuga Iceberg",
+        "fr": "Laitue Iceberg",
+        "pt": "Alface Iceberg",
+        "de": "Eisbergsalat"
+    },
+    "לבבות חסה רומית (חבילת 3)": {
+        "en": "Romaine Lettuce Hearts (3 pack)",
+        "ru": "Сердцевины салата Ромэн",
+        "ar": "قلوب الخس الروماني (3 عبوات)",
+        "es": "Corazones de lechuga romana (paquete de 3)",
+        "fr": "Coeurs de laitue romaine (paquet de 3)",
+        "pt": "Corações de alface romana (pacote com 3)",
+        "de": "Römersalatherzen (3er Pack)"
+    },
+    "ברוקולי טרי": {
+        "en": "Fresh Broccoli Crowns",
+        "ru": "Свежая брокколи",
+        "ar": "تيجان البروكلي الطازجة",
+        "es": "Coronas de brócoli fresco",
+        "fr": "Couronnes de brocoli frais",
+        "pt": "Coroas de brócolis fresco",
+        "de": "Frische Brokkoli-Kronen"
+    },
+    "פלפל מתוק ירוק": {
+        "en": "Green Bell Pepper",
+        "ru": "Зеленый болгарский перец",
+        "ar": "فلفل أخضر حلو",
+        "es": "Pimiento verde",
+        "fr": "Poivron vert",
+        "pt": "Pimentão Verde",
+        "de": "Grüner Paprika"
+    },
+    "פלפלים מתוקים צבעוניים (חבילת 3)": {
+        "en": "Bell Peppers (3 pack tri-color)",
+        "ru": "Сладкий перец светофор (3 шт)",
+        "ar": "فلفل بيل (3 عبوات ثلاثية الألوان)",
+        "es": "Pimientos morrones (paquete de 3 tricolores)",
+        "fr": "Poivrons (paquet de 3 tricolores)",
+        "pt": "Pimentões (3 embalagens tricolores)",
+        "de": "Paprika (3er-Pack dreifarbig)"
+    },
+    "תפוחי אדמה ראסט (שק 2.25 קילו)": {
+        "en": "Russet Baking Potatoes (5 lb bag)",
+        "ru": "Картофель Рассет для запекания",
+        "ar": "بطاطس خبز روسيت (كيس 5 رطل)",
+        "es": "Papas para hornear Russet (bolsa de 5 lb)",
+        "fr": "Pommes de terre au four Russet (sac de 5 lb)",
+        "pt": "Batatas para assar Russet (saco de 5 libras)",
+        "de": "Rotbraune Backkartoffeln (5-Pfund-Beutel)"
+    },
+    "בטטות יאם": {
+        "en": "Sweet Potatoes / Yams",
+        "ru": "Батат сладкий картофель",
+        "ar": "البطاطا الحلوة / اليام",
+        "es": "Batatas / Ñame",
+        "fr": "Patates douces / Ignames",
+        "pt": "Batata Doce / Inhame",
+        "de": "Süßkartoffeln / Yamswurzeln"
+    },
+    "תירס מתוק טרי": {
+        "en": "Fresh Sweet Corn on the Cob",
+        "ru": "Свежая сладкая кукуруза",
+        "ar": "ذرة حلوة طازجة على قطعة خبز",
+        "es": "Mazorca de maíz dulce fresco",
+        "fr": "Épi de maïs sucré frais",
+        "pt": "Espiga de milho doce fresco",
+        "de": "Frischer Zuckermaiskolben"
+    },
+    "קישוא ירוק זוצ'יני": {
+        "en": "Zucchini Squash",
+        "ru": "Кабачок цукини",
+        "ar": "كوسة الاسكواش",
+        "es": "Calabacín",
+        "fr": "Courge Courgette",
+        "pt": "Abóbora Abobrinha",
+        "de": "Zucchinikürbis"
+    },
+    "גבעולי סלרי פריכים": {
+        "en": "Celery Hearts Bunch",
+        "ru": "Стебли сельдерея",
+        "ar": "باقة قلوب الكرفس",
+        "es": "Manojo de corazones de apio",
+        "fr": "Bouquet de coeurs de céleri",
+        "pt": "Bando de corações de aipo",
+        "de": "Sellerie-Herzen-Bündel"
+    },
+    "פטריות שמפיניון חתוכות": {
+        "en": "Sliced White Mushrooms (8 oz)",
+        "ru": "Шампиньоны нарезанные",
+        "ar": "شرائح الفطر الأبيض (8 أونصة)",
+        "es": "Champiñones Blancos Rebanados (8 oz)",
+        "fr": "Champignons blancs tranchés (8 oz)",
+        "pt": "Cogumelos Brancos Fatiados (8 onças)",
+        "de": "Geschnittene weiße Pilze (8 oz)"
+    },
+    "אספרגוס ירוק": {
+        "en": "Fresh Green Asparagus Bunch",
+        "ru": "Свежая спаржа",
+        "ar": "حزمة من الهليون الأخضر الطازج",
+        "es": "Manojo de espárragos verdes frescos",
+        "fr": "Bouquet d'asperges vertes fraîches",
+        "pt": "Cacho de Espargos Verdes Frescos",
+        "de": "Frischer grüner Spargelbund"
+    },
+    "שעועית ירוקה טרייה": {
+        "en": "Fresh Green Beans",
+        "ru": "Свежая стручковая фасоль",
+        "ar": "الفاصوليا الخضراء الطازجة",
+        "es": "Judías verdes frescas",
+        "fr": "Haricots Verts Frais",
+        "pt": "Feijão Verde Fresco",
+        "de": "Frische grüne Bohnen"
+    },
+    "בננות צהובות (לפי משקל)": {
+        "en": "Bananas",
+        "ru": "Бананы",
+        "ar": "الموز",
+        "es": "Plátanos",
+        "fr": "Bananes",
+        "pt": "Bananas",
+        "de": "Bananen"
+    },
+    "תפוחי האניקריספ": {
+        "en": "Honeycrisp Apples",
+        "ru": "Яблоки Ханикрисп",
+        "ar": "التفاح بالعسل",
+        "es": "Manzanas crujientes",
+        "fr": "Pommes Honey Crisp",
+        "pt": "Maçãs Honeycrisp",
+        "de": "Honeycrisp-Äpfel"
+    },
+    "תפוחי גאלה": {
+        "en": "Gala Apples (3 lb bag)",
+        "ru": "Яблоки Гала",
+        "ar": "تفاح غالا (كيس 3 رطل)",
+        "es": "Manzanas Gala (bolsa de 3 lb)",
+        "fr": "Pommes Gala (sac de 3 lb)",
+        "pt": "Maçãs Gala (saco de 3 libras)",
+        "de": "Gala-Äpfel (3-Pfund-Beutel)"
+    },
+    "תפוחי גרני סמית'": {
+        "en": "Granny Smith Green Apples",
+        "ru": "Яблоки Гренни Смит",
+        "ar": "الجدة سميث التفاح الأخضر",
+        "es": "Manzanas verdes Granny Smith",
+        "fr": "Pommes vertes Granny Smith",
+        "pt": "Maçãs Verdes Vovó Smith",
+        "de": "Granny Smith grüne Äpfel"
+    },
+    "תפוזי נבל מתוקים": {
+        "en": "Navel Oranges",
+        "ru": "Апельсины Навел",
+        "ar": "البرتقال السرة",
+        "es": "Naranjas Ombligo",
+        "fr": "Oranges nombril",
+        "pt": "Laranjas de umbigo",
+        "de": "Nabelorangen"
+    },
+    "קלמנטינות חלפיניו / קיוטיז (שק)": {
+        "en": "Clementines / Cuties (3 lb bag)",
+        "ru": "Мандарины Клементины",
+        "ar": "كلمنتينا / كيوتيز (حقيبة 3 رطل)",
+        "es": "Clementinas / Cuties (bolsa de 3 lb)",
+        "fr": "Clémentines / Cuties (sac de 3 livres)",
+        "pt": "Clementinas / Cuties (saco de 3 libras)",
+        "de": "Clementinen / Cuties (3-Pfund-Beutel)"
+    },
+    "לימונים צהובים": {
+        "en": "Lemons",
+        "ru": "Лимоны",
+        "ar": "ليمون",
+        "es": "limones",
+        "fr": "Citrons",
+        "pt": "Limões",
+        "de": "Zitronen"
+    },
+    "ליים ירוק": {
+        "en": "Limes",
+        "ru": "Лаймы",
+        "ar": "الليمون الحامض",
+        "es": "limas",
+        "fr": "citrons verts",
+        "pt": "Limas",
+        "de": "Limetten"
+    },
+    "תות שדה טרי (חבילת 450 גרם)": {
+        "en": "Fresh Strawberries (1 lb clamshell)",
+        "ru": "Свежая клубника",
+        "ar": "الفراولة الطازجة (1 رطل صدفي)",
+        "es": "Fresas frescas (1 libra con forma de almeja)",
+        "fr": "Fraises fraîches (coquille de 1 lb)",
+        "pt": "Morangos frescos (concha de 1 lb)",
+        "de": "Frische Erdbeeren (1 Pfund Muschelschale)"
+    },
+    "אוכמניות טריות (חבילה)": {
+        "en": "Fresh Blueberries (pint)",
+        "ru": "Свежая голубика",
+        "ar": "التوت الطازج (باينت)",
+        "es": "Arándanos frescos (pinta)",
+        "fr": "Bleuets frais (pinte)",
+        "pt": "Mirtilos frescos (litro)",
+        "de": "Frische Blaubeeren (Pint)"
+    },
+    "פטל אדום טרי": {
+        "en": "Fresh Red Raspberries (6 oz)",
+        "ru": "Свежая малина",
+        "ar": "توت أحمر طازج (6 أونصة)",
+        "es": "Frambuesas Rojas Frescas (6 oz)",
+        "fr": "Framboises rouges fraîches (6 oz)",
+        "pt": "Framboesas Vermelhas Frescas (6 onças)",
+        "de": "Frische rote Himbeeren (6 oz)"
+    },
+    "ענבים אדומים ללא חרצנים": {
+        "en": "Seedless Red Grapes",
+        "ru": "Красный виноград без косточек",
+        "ar": "العنب الأحمر بدون بذور",
+        "es": "Uvas rojas sin semillas",
+        "fr": "Raisins rouges sans pépins",
+        "pt": "Uvas Vermelhas Sem Sementes",
+        "de": "Kernlose rote Trauben"
+    },
+    "ענבים ירוקים ללא חרצנים": {
+        "en": "Seedless Green Grapes",
+        "ru": "Зеленый виноград без косточек",
+        "ar": "العنب الأخضر بدون بذور",
+        "es": "Uvas verdes sin semillas",
+        "fr": "Raisins verts sans pépins",
+        "pt": "Uvas verdes sem sementes",
+        "de": "Kernlose grüne Trauben"
+    },
+    "אבטיח ללא גרעינים (מיני)": {
+        "en": "Mini Seedless Watermelon",
+        "ru": "Мини-арбуз без косточек",
+        "ar": "بطيخ صغير بدون بذور",
+        "es": "Mini Sandía Sin Semillas",
+        "fr": "Mini pastèque sans pépins",
+        "pt": "Mini melancia sem sementes",
+        "de": "Mini-Wassermelone ohne Kerne"
+    },
+    "מלון קנטלופ": {
+        "en": "Cantaloupe Melon",
+        "ru": "Дыня Канталупа",
+        "ar": "الشمام البطيخ",
+        "es": "Melón Melón",
+        "fr": "Melon Cantaloup",
+        "pt": "Melão Melão",
+        "de": "Cantaloupe-Melone"
+    },
+    "אננס שלם טרי": {
+        "en": "Whole Golden Pineapple",
+        "ru": "Ананас свежий целый",
+        "ar": "أناناس ذهبي كامل",
+        "es": "Piña Dorada Entera",
+        "fr": "Ananas doré entier",
+        "pt": "Abacaxi Dourado Inteiro",
+        "de": "Ganze goldene Ananas"
+    },
+    "מנגו טומי אטקינס": {
+        "en": "Mango",
+        "ru": "Манго",
+        "ar": "مانجو",
+        "es": "Mango",
+        "fr": "Mangue",
+        "pt": "Manga",
+        "de": "Mango"
+    },
+    "אגסי ברטלט": {
+        "en": "Bartlett Pears",
+        "ru": "Груши Бартлетт",
+        "ar": "بارتليت بيرز",
+        "es": "Peras Bartlett",
+        "fr": "Poires Bartlett",
+        "pt": "Peras Bartlett",
+        "de": "Bartlett-Birnen"
+    },
+    "חלב מלא גאלון (3.8 ליטר)": {
+        "en": "Whole Milk (1 Gallon)",
+        "ru": "Молоко цельное (1 галлон)",
+        "ar": "حليب كامل الدسم (1 جالون)",
+        "es": "Leche Entera (1 Galón)",
+        "fr": "Lait entier (1 gallon)",
+        "pt": "Leite integral (1 galão)",
+        "de": "Vollmilch (1 Gallone)"
+    },
+    "חלב 2% גאלון": {
+        "en": "2% Reduced Fat Milk (1 Gallon)",
+        "ru": "Молоко 2% (1 галлон)",
+        "ar": "حليب قليل الدسم 2% (1 جالون)",
+        "es": "Leche 2% Reducida en Grasa (1 Galón)",
+        "fr": "Lait réduit en gras à 2 % (1 gallon)",
+        "pt": "Leite com 2% de gordura reduzida (1 galão)",
+        "de": "2 % fettreduzierte Milch (1 Gallone)"
+    },
+    "חלב שקדים ללא סוכר": {
+        "en": "Almond Breeze Unsweetened Almond Milk",
+        "ru": "Миндальное молоко без сахара",
+        "ar": "نسيم اللوز حليب اللوز غير المحلى",
+        "es": "Almond Breeze Leche de almendras sin azúcar",
+        "fr": "Lait d'amande non sucré Almond Breeze",
+        "pt": "Leite de amêndoa sem açúcar Almond Breeze",
+        "de": "Almond Breeze Ungesüßte Mandelmilch"
+    },
+    "חלב שיבולת שועל אואטלי": {
+        "en": "Oatly Oat Milk",
+        "ru": "Овсяное молоко Oatly",
+        "ar": "حليب الشوفان",
+        "es": "Leche De Avena Avena",
+        "fr": "Lait d'avoine",
+        "pt": "Leite de Aveia",
+        "de": "Haferflocken-Hafermilch"
+    },
+    "האלף אנד האלף (קרם לקפה)": {
+        "en": "Half and Half Coffee Cream",
+        "ru": "Сливки для кофе Half and Half",
+        "ar": "نصف ونصف كريمة القهوة",
+        "es": "Crema Mitad y Mitad de Café",
+        "fr": "Crème à café moitié-moitié",
+        "pt": "Creme de café meio a meio",
+        "de": "Halb und halb Kaffeesahne"
+    },
+    "שמנת מתוקה כבדה (Heaving Cream)": {
+        "en": "Heavy Whipping Cream (1 Pint)",
+        "ru": "Жирные сливки для взбивания",
+        "ar": "كريمة خفق ثقيلة (1 باينت)",
+        "es": "Crema batida espesa (1 pinta)",
+        "fr": "Crème fouettée épaisse (1 pinte)",
+        "pt": "Creme de chantilly pesado (1 litro)",
+        "de": "Schwere Schlagsahne (1 Pint)"
+    },
+    "גבינת שמנת פילדלפיה": {
+        "en": "Philadelphia Cream Cheese (8 oz block)",
+        "ru": "Сливочный сыр Филадельфия",
+        "ar": "جبنة فيلادلفيا كريمية (كتلة 8 أونصة)",
+        "es": "Queso crema Philadelphia (bloque de 8 oz)",
+        "fr": "Fromage à la crème Philadelphia (bloc de 8 oz)",
+        "pt": "Queijo Creme Filadélfia (bloco de 8 onças)",
+        "de": "Philadelphia-Frischkäse (8-Unzen-Block)"
+    },
+    "גבינת צ'דר חדה (בלוק)": {
+        "en": "Sharp Cheddar Cheese Block (8 oz)",
+        "ru": "Сыр Чеддер выдержанный блочный",
+        "ar": "كتلة جبنة شيدر حادة (8 أونصة)",
+        "es": "Bloque de queso cheddar fuerte (8 oz)",
+        "fr": "Bloc de fromage cheddar fort (8 oz)",
+        "pt": "Bloco de queijo cheddar afiado (8 onças)",
+        "de": "Scharfer Cheddar-Käseblock (8 oz)"
+    },
+    "גבינת צ'דר מגוררת שקית": {
+        "en": "Shredded Cheddar Cheese (8 oz)",
+        "ru": "Тертый сыр Чеддер",
+        "ar": "جبنة شيدر مبشورة (8 أونصة)",
+        "es": "Queso Cheddar rallado (8 oz)",
+        "fr": "Fromage cheddar râpé (8 oz)",
+        "pt": "Queijo Cheddar ralado (8 onças)",
+        "de": "Geriebener Cheddar-Käse (8 oz)"
+    },
+    "גבינת מונטריי ג'ק מגוררת": {
+        "en": "Monterey Jack Shredded Cheese",
+        "ru": "Сыр Монтерей Джек тертый",
+        "ar": "جبنة مونتيري جاك المبشورة",
+        "es": "Queso Monterey Jack Rallado",
+        "fr": "Fromage râpé Monterey Jack",
+        "pt": "Queijo ralado Monterey Jack",
+        "de": "Monterey Jack geriebener Käse"
+    },
+    "פרוסות גבינה אמריקאית (קראפט)": {
+        "en": "Kraft American Cheese Singles (16 slices)",
+        "ru": "Сыр плавленый американский Kraft",
+        "ar": "جبنة كرافت أمريكية سنجل (16 شريحة)",
+        "es": "Singles de queso americano Kraft (16 rebanadas)",
+        "fr": "Fromage américain Kraft Singles (16 tranches)",
+        "pt": "Kraft American Cheese Singles (16 fatias)",
+        "de": "Kraft American Cheese Singles (16 Scheiben)"
+    },
+    "מקלות גבינת מוצרלה לנשנוש": {
+        "en": "Mozzarella String Cheese (12 pack)",
+        "ru": "Сырные палочки моцарелла",
+        "ar": "جبنة موزاريلا (12 علبة)",
+        "es": "Queso mozzarella en hebras (paquete de 12)",
+        "fr": "Fromage ficelle mozzarella (paquet de 12)",
+        "pt": "Queijo mussarela (pacote com 12)",
+        "de": "Mozzarella-Streifenkäse (12er-Pack)"
+    },
+    "חמאה אמריקאית לא מלוחה (4 מקלות)": {
+        "en": "Unsalted Butter (4 sticks / 1 lb)",
+        "ru": "Масло сливочное несоленое (4 бруска)",
+        "ar": "زبدة غير مملحة (4 أعواد / 1 رطل)",
+        "es": "Mantequilla sin sal (4 barras / 1 libra)",
+        "fr": "Beurre non salé (4 bâtonnets / 1 lb)",
+        "pt": "Manteiga sem sal (4 palitos / 1 lb)",
+        "de": "Ungesalzene Butter (4 Stangen / 1 Pfund)"
+    },
+    "חמאה אמריקאית מלוחה (4 מקלות)": {
+        "en": "Salted Butter (4 sticks / 1 lb)",
+        "ru": "Масло сливочное соленое (4 бруска)",
+        "ar": "زبدة مملحة (4 أعواد / 1 رطل)",
+        "es": "Mantequilla salada (4 barras / 1 libra)",
+        "fr": "Beurre salé (4 bâtonnets / 1 lb)",
+        "pt": "Manteiga com sal (4 palitos / 1 lb)",
+        "de": "Gesalzene Butter (4 Stück / 1 Pfund)"
+    },
+    "ביצים גדולות Grade A (תריסר)": {
+        "en": "Large Grade A White Eggs (Dozen)",
+        "ru": "Яйца куриные крупные (12 шт)",
+        "ar": "بيض أبيض درجة كبيرة (درزن)",
+        "es": "Huevos blancos grandes de grado A (docena)",
+        "fr": "Gros œufs blancs de qualité A (douzaine)",
+        "pt": "Ovos brancos grandes de grau A (dúzia)",
+        "de": "Große weiße Eier der Güteklasse A (Dutzend)"
+    },
+    "יוגורט יווני צ'ובאני וניל": {
+        "en": "Chobani Greek Yogurt Vanilla",
+        "ru": "Греческий йогурт Chobani ванильный",
+        "ar": "شوباني زبادي يوناني بالفانيليا",
+        "es": "Chobani Yogur Griego Vainilla",
+        "fr": "Chobani Yaourt Grec Vanille",
+        "pt": "Iogurte Grego Chobani Baunilha",
+        "de": "Chobani Griechischer Joghurt Vanille"
+    },
+    "שמנת חמוצה דייזי": {
+        "en": "Daisy Pure Natural Sour Cream (16 oz)",
+        "ru": "Сметана Daisy натуральная",
+        "ar": "ديزي كريم حامض طبيعي نقي (16 أونصة)",
+        "es": "Crema agria natural pura Daisy (16 oz)",
+        "fr": "Crème sure naturelle pure Daisy (16 oz)",
+        "pt": "Creme de leite natural Daisy Pure (16 onças)",
+        "de": "Daisy Pure Natural Sour Cream (16 oz)"
+    },
+    "קוטג' 4% שומן": {
+        "en": "4% Small Curd Cottage Cheese (16 oz)",
+        "ru": "Зерненый творог Коттедж 4%",
+        "ar": "4% جبن قريش صغير الحجم (16 أونصة)",
+        "es": "4% de requesón pequeño (16 oz)",
+        "fr": "Fromage cottage à petit caillé 4 % (16 oz)",
+        "pt": "4% de requeijão pequeno (16 onças)",
+        "de": "4 % kleiner Quark-Hüttenkäse (16 oz)"
+    },
+    "גבינת פרמזן מגוררת בקופסה": {
+        "en": "Grated Parmesan Cheese (8 oz shaker)",
+        "ru": "Сыр Пармезан тертый",
+        "ar": "جبنة بارميزان مبشورة (شاكر 8 أونصة)",
+        "es": "Queso parmesano rallado (coctelera de 8 oz)",
+        "fr": "Parmesan râpé (shaker de 8 oz)",
+        "pt": "Queijo parmesão ralado (shaker de 8 onças)",
+        "de": "Geriebener Parmesankäse (8-Unzen-Shaker)"
+    },
+    "בשר בקר טחון 80/20 (450 גרם)": {
+        "en": "Ground Beef 80/20 Ground Chuck (1 lb)",
+        "ru": "Фарш говяжий 80/20",
+        "ar": "لحم بقر مفروم 80/20 ظرف مطحون (1 رطل)",
+        "es": "Carne Molida 80/20 Chuck Molida (1 lb)",
+        "fr": "Bœuf haché 80/20 Mandrin haché (1 lb)",
+        "pt": "Carne moída 80/20 Mandril moído (1 lb)",
+        "de": "Rinderhackfleisch 80/20 Hackfutter (1 Pfund)"
+    },
+    "סטייק ריב-איי אנגוס": {
+        "en": "USDA Choice Angus Ribeye Steak",
+        "ru": "Стейк Рибай Ангус",
+        "ar": "وزارة الزراعة الأمريكية اختيار شريحة لحم أنجوس ريب آي",
+        "es": "Filete Angus Ribeye Choice del USDA",
+        "fr": "Bifteck de faux-filet Angus Choice de l'USDA",
+        "pt": "Bife Angus Ribeye escolhido pelo USDA",
+        "de": "USDA Choice Angus Ribeye Steak"
+    },
+    "חזה עוף ללא עצם ועור (משפחתי)": {
+        "en": "Boneless Skinless Chicken Breasts",
+        "ru": "Куриное филе грудки без кожи",
+        "ar": "صدور الدجاج الخالية من العظم والجلد",
+        "es": "Pechugas De Pollo Deshuesadas Y Sin Piel",
+        "fr": "Poitrines de poulet désossées et sans peau",
+        "pt": "Peitos de frango desossados e sem pele",
+        "de": "Hähnchenbrust ohne Knochen und ohne Haut"
+    },
+    "שוקיים עוף טריים": {
+        "en": "Chicken Drumsticks (Value Pack)",
+        "ru": "Куриные голени",
+        "ar": "أفخاذ الدجاج (عبوة اقتصادية)",
+        "es": "Muslos de pollo (paquete económico)",
+        "fr": "Pilons de poulet (Pack économique)",
+        "pt": "Coxinhas de frango (pacote econômico)",
+        "de": "Hähnchenkeulen (Vorteilspaket)"
+    },
+    "עוף שלם צלוי מוכן (רוטיסרי)": {
+        "en": "Rotisserie Whole Chicken (Hot & Fresh)",
+        "ru": "Курица гриль гриль ротиссери",
+        "ar": "دجاج مشوي كامل (ساخن وطازج)",
+        "es": "Pollo entero asado (caliente y fresco)",
+        "fr": "Poulet entier rôti (chaud et frais)",
+        "pt": "Frango Inteiro Assado (Quente e Fresco)",
+        "de": "Ganzes Hähnchen vom Drehspieß (scharf und frisch)"
+    },
+    "בייקון מעושן עץ תפוחים": {
+        "en": "Thick Cut Applewood Smoked Bacon",
+        "ru": "Бекон копченый толстой нарезки",
+        "ar": "قطع لحم الخنزير المقدد المدخن من خشب التفاح",
+        "es": "Tocino ahumado de madera de manzano de corte grueso",
+        "fr": "Bacon fumé au bois de pommier coupé en épaisseur",
+        "pt": "Bacon defumado de macieira com corte grosso",
+        "de": "Dick geschnittener geräucherter Apfelholzspeck"
+    },
+    "נקניקיות בקר של אוסקר מאייר": {
+        "en": "Oscar Mayer Beef Franks / Hot Dogs",
+        "ru": "Сосиски говяжьи Oscar Mayer",
+        "ar": "أوسكار ماير بيف فرانكس / هوت دوج",
+        "es": "Oscar Mayer Beef Franks / Perritos calientes",
+        "fr": "Franks de bœuf / Hot Dogs Oscar Mayer",
+        "pt": "Frangos de carne Oscar Mayer / Cachorro-quente",
+        "de": "Oscar Mayer Beef Franks / Hot Dogs"
+    },
+    "פסטרמה הודו מעושנת מעדנייה": {
+        "en": "Oven Roasted Deli Turkey Breast",
+        "ru": "Индейка запеченная нарезка деликатес",
+        "ar": "صدر ديك رومي مشوي بالفرن",
+        "es": "Pechuga De Pavo Deli Asada Al Horno",
+        "fr": "Poitrine de dinde de charcuterie rôtie au four",
+        "pt": "Peito de Peru Deli Assado no Forno",
+        "de": "Im Ofen geröstete Deli-Putenbrust"
+    },
+    "פילה סלמון אטלנטי טרי": {
+        "en": "Fresh Atlantic Salmon Fillet",
+        "ru": "Свежее филе атлантического лосося",
+        "ar": "فيليه سمك السلمون الأطلسي الطازج",
+        "es": "Filete De Salmón Del Atlántico Fresco",
+        "fr": "Filet de saumon frais de l'Atlantique",
+        "pt": "Filé de Salmão Fresco do Atlântico",
+        "de": "Frisches Atlantisches Lachsfilet"
+    },
+    "שרימפס קפוא מקולף ומבושל": {
+        "en": "Frozen Cooked Peeled Shrimp (1 lb)",
+        "ru": "Креветки очищенные варено-мороженые",
+        "ar": "جمبري مقشر مطبوخ ومجمد (1 رطل)",
+        "es": "Camarones Pelados Cocidos Congelados (1 libra)",
+        "fr": "Crevettes décortiquées cuites surgelées (1 lb)",
+        "pt": "Camarão Descascado Cozido Congelado (1 lb)",
+        "de": "Gefrorene, gekochte, geschälte Garnelen (1 Pfund)"
+    },
+    "טונה סטארקיסט בשימורים במים": {
+        "en": "StarKist Chunk Light Tuna in Water",
+        "ru": "Тунец консервированный в воде StarKist",
+        "ar": "ستاركيست قطعة تونة خفيفة في الماء",
+        "es": "Atún Light en trozos StarKist en agua",
+        "fr": "Thon pâle en morceaux StarKist dans l'eau",
+        "pt": "StarKist Chunk Light Atum em Água",
+        "de": "StarKist Chunk Light Thunfisch im Wasser"
+    },
+    "לחם לבן פרוס וונדר ברד": {
+        "en": "Wonder Classic White Sliced Bread",
+        "ru": "Хлеб белый нарезной Wonder Bread",
+        "ar": "ووندر كلاسيك شرائح الخبز الأبيض",
+        "es": "Pan de molde blanco Wonder Classic",
+        "fr": "Pain tranché blanc classique Wonder",
+        "pt": "Pão Fatiado Branco Clássico Wonder",
+        "de": "Wonder Classic Weißbrot in Scheiben geschnitten"
+    },
+    "לחם חיטה מלאה פרוס סאראלי": {
+        "en": "Sara Lee 100% Whole Wheat Bread",
+        "ru": "Хлеб цельнозерновой 100% Sara Lee",
+        "ar": "سارة لي 100% خبز القمح الكامل",
+        "es": "Sara Lee Pan 100% Integral",
+        "fr": "Pain 100 % blé entier Sara Lee",
+        "pt": "Sara Lee Pão 100% Trigo Integral",
+        "de": "Sara Lee 100 % Vollkornbrot"
+    },
+    "בייגל הכל (Everything) חבילת 6": {
+        "en": "Thomas' Everything Bagels (6 pack)",
+        "ru": "Бейглы Thomas Эврисинг (6 шт)",
+        "ar": "خبز توماس كل شيء (6 عبوات)",
+        "es": "Bagels todo de Thomas (paquete de 6)",
+        "fr": "Bagels tout de Thomas (paquet de 6)",
+        "pt": "Thomas' Everything Bagels (pacote com 6)",
+        "de": "Thomas' Everything Bagels (6er Pack)"
+    },
+    "בייגל רגיל חבילת 6": {
+        "en": "Thomas' Plain Bagels (6 pack)",
+        "ru": "Бейглы классические (6 шт)",
+        "ar": "كعك توماس السادة (6 عبوات)",
+        "es": "Bagels sencillos de Thomas (paquete de 6)",
+        "fr": "Bagels nature de Thomas (paquet de 6)",
+        "pt": "Bagels Simples Thomas (pacote com 6)",
+        "de": "Thomas' Plain Bagels (6er Pack)"
+    },
+    "מאפינס אנגליים (חבילת 6)": {
+        "en": "Thomas' Original English Muffins (6 ct)",
+        "ru": "Английские маффины Thomas (6 шт)",
+        "ar": "فطائر توماس الإنجليزية الأصلية (6 قيراط)",
+        "es": "Muffins ingleses originales de Thomas (6 unidades)",
+        "fr": "Muffins anglais originaux de Thomas (6 ct)",
+        "pt": "Muffins ingleses originais de Thomas (6 ct)",
+        "de": "Thomas' Original English Muffins (6 ct)"
+    },
+    "לחמניות המבורגר בריוש (חבילת 8)": {
+        "en": "Brioche Hamburger Buns (8 pack)",
+        "ru": "Булочки для бургеров бриошь (8 шт)",
+        "ar": "خبز بريوش همبرغر (8 عبوات)",
+        "es": "Bollos de hamburguesa Brioche (paquete de 8)",
+        "fr": "Pains briochés à hamburger (paquet de 8)",
+        "pt": "Pães de hambúrguer brioche (pacote com 8)",
+        "de": "Brioche-Hamburgerbrötchen (8er-Pack)"
+    },
+    "לחמניות לנקניקיות הוט דוג": {
+        "en": "Hot Dog Buns (8 pack)",
+        "ru": "Булочки для хот-догов (8 шт)",
+        "ar": "كعك هوت دوج (8 عبوات)",
+        "es": "Panes para hot dog (paquete de 8)",
+        "fr": "Petits pains à hot dog (paquet de 8)",
+        "pt": "Pães de cachorro-quente (pacote com 8)",
+        "de": "Hot-Dog-Brötchen (8er-Pack)"
+    },
+    "לחם מחמצת סן פרנסיסקו": {
+        "en": "San Francisco Style Sourdough Loaf",
+        "ru": "Хлеб на закваске Сан-Франциско",
+        "ar": "رغيف العجين المخمر على طريقة سان فرانسيسكو",
+        "es": "Pan de masa madre estilo San Francisco",
+        "fr": "Pain au levain à la San Francisco",
+        "pt": "Pão de massa fermentada estilo São Francisco",
+        "de": "Sauerteigbrot nach San Francisco-Art"
+    },
+    "טורטיות קמח רכות (חבילת 10)": {
+        "en": "Mission Soft Flour Tortillas (10 ct)",
+        "ru": "Тортильи пшеничные мягкие (10 шт)",
+        "ar": "مهمة تورتيلا الدقيق الناعم (10 قيراط)",
+        "es": "Tortillas de harina suave Mission (10 unidades)",
+        "fr": "Tortillas à la farine molle Mission (10 ct)",
+        "pt": "Tortilhas de farinha macia Mission (10 ct)",
+        "de": "Mission Tortillas aus weichem Mehl (10 ct)"
+    },
+    "קרואסונים חמאה למאפה": {
+        "en": "Fresh Baked Butter Croissants (4 pack)",
+        "ru": "Круассаны сливочные (4 шт)",
+        "ar": "كرواسون بالزبدة الطازجة (عبوة من 4 قطع)",
+        "es": "Croissants de mantequilla recién horneados (paquete de 4)",
+        "fr": "Croissants au beurre frais (paquet de 4)",
+        "pt": "Croissants de Manteiga Fresca Assada (4 unidades)",
+        "de": "Frisch gebackene Buttercroissants (4er-Pack)"
+    },
+    "שיבולת שועל קוואקר רולר": {
+        "en": "Quaker Old Fashioned Rolled Oats (42 oz)",
+        "ru": "Овсяные хлопья Quaker Олд Фэшн",
+        "ar": "شوفان كويكر الملفوف ذو الطراز القديم (42 أونصة)",
+        "es": "Avena arrollada a la antigua usanza Quaker (42 oz)",
+        "fr": "Flocons d'avoine à l'ancienne Quaker (42 oz)",
+        "pt": "Aveia em flocos à moda antiga Quaker (42 onças)",
+        "de": "Quaker Old Fashioned Haferflocken (42 oz)"
+    },
+    "דגני בוקר צ'יריוס מקוריים": {
+        "en": "General Mills Cheerios Cereal",
+        "ru": "Сухой завтрак Cheerios оригинальный",
+        "ar": "جنرال ميلز تشيريوس الحبوب",
+        "es": "Cereales Cheerios de General Mills",
+        "fr": "Céréales Cheerios de General Mills",
+        "pt": "Cereal General Mills Cheerios",
+        "de": "General Mills Cheerios Cerealien"
+    },
+    "צ'יריוס דבש ושקדים": {
+        "en": "Honey Nut Cheerios Cereal",
+        "ru": "Сухой завтрак Honey Nut Cheerios",
+        "ar": "حبوب العسل والجوز تشيريوس",
+        "es": "Cereal Cheerios con Miel y Nueces",
+        "fr": "Céréales Cheerios au miel et aux noix",
+        "pt": "Cereal Cheerios com Nozes e Mel",
+        "de": "Honig-Nuss-Cheerios-Müsli"
+    },
+    "פרוסטד פלייקס קורנפלקס ממותק": {
+        "en": "Kellogg's Frosted Flakes Cereal",
+        "ru": "Хлопья кукурузные сахарные Frosted Flakes",
+        "ar": "رقائق الحبوب المتجمدة من كيلوجز",
+        "es": "Cereal Frosted Flakes de Kellogg's",
+        "fr": "Céréales en flocons givrés de Kellogg's",
+        "pt": "Cereal Kellogg's Frosted Flakes",
+        "de": "Kellogg's Frosted Flakes Cerealien"
+    },
+    "סינמון טוסט קראנץ'": {
+        "en": "Cinnamon Toast Crunch Cereal",
+        "ru": "Сухой завтрак Cinnamon Toast Crunch",
+        "ar": "الحبوب المحمصة بالقرفة",
+        "es": "Cereal crujiente tostado con canela",
+        "fr": "Céréales croquantes à la cannelle",
+        "pt": "Cereal Crocante De Torrada De Canela",
+        "de": "Zimt-Toast-Crunch-Müsli"
+    },
+    "תערובת לפנקייק וואפלים דודה ג'מימה": {
+        "en": "Pearl Milling Pancake & Waffle Mix",
+        "ru": "Смесь для панкейков и вафель",
+        "ar": "فطيرة طحن اللؤلؤ ومزيج الوافل",
+        "es": "Mezcla para panqueques y gofres con molienda de perlas",
+        "fr": "Mélange à crêpes et gaufres Pearl Milling",
+        "pt": "Mistura de panqueca e waffle com moagem de pérolas",
+        "de": "Pearl Milling Pfannkuchen- und Waffelmischung"
+    },
+    "סירופ מייפל טהור 100%": {
+        "en": "100% Pure Vermont Maple Syrup (12 oz)",
+        "ru": "Натуральный кленовый сироп 100%",
+        "ar": "شراب قيقب فيرمونت نقي 100% (12 أونصة)",
+        "es": "Jarabe de arce de Vermont 100% puro (12 oz)",
+        "fr": "Sirop d'érable du Vermont 100 % pur (12 oz)",
+        "pt": "Xarope de bordo de Vermont 100% puro (12 onças)",
+        "de": "100 % reiner Vermont-Ahornsirup (12 oz)"
+    },
+    "סירופ פנקייק קלאסי דודה ג'מימה": {
+        "en": "Original Pancake & Waffle Syrup",
+        "ru": "Сироп для блинчиков оригинальный",
+        "ar": "شراب البان كيك والوافل الأصلي",
+        "es": "Sirope original para panqueques y gofres",
+        "fr": "Sirop original pour crêpes et gaufres",
+        "pt": "Xarope Original para Panqueca e Waffle",
+        "de": "Original Pfannkuchen- und Waffelsirup"
+    },
+    "פופ-טארטס תות שדה (חבילת 8)": {
+        "en": "Pop-Tarts Frosted Strawberry (8 count)",
+        "ru": "Печенье с начинкой Pop-Tarts клубника",
+        "ar": "بوب تارت بالفراولة المتجمدة (8 قطع)",
+        "es": "Fresa helada Pop-Tarts (8 unidades)",
+        "fr": "Pop-Tarts Fraises Givrées (8 unités)",
+        "pt": "Pop-Tarts Morango Fosco (8 contagens)",
+        "de": "Pop-Tarts Frosted Strawberry (8 Stück)"
+    },
+    "חמאת בוטנים קרמית סקיפי / ג'יף": {
+        "en": "Jif Creamy Peanut Butter (16 oz)",
+        "ru": "Арахисовая паста Jif кремовая",
+        "ar": "جيف زبدة الفول السوداني الكريمية (16 أونصة)",
+        "es": "Mantequilla de maní cremosa Jif (16 oz)",
+        "fr": "Beurre de cacahuète crémeux Jif (16 oz)",
+        "pt": "Manteiga de amendoim cremosa Jif (16 onças)",
+        "de": "Jif Cremige Erdnussbutter (16 oz)"
+    },
+    "חמאת בוטנים עם שברי בוטנים (קראנץ')": {
+        "en": "Skippy Super Chunk Peanut Butter",
+        "ru": "Арахисовая паста с кусочками орехов",
+        "ar": "سكيبي سوبر تشانك زبدة الفول السوداني",
+        "es": "Mantequilla de maní en trozos súper Skippy",
+        "fr": "Beurre de cacahuète Super Chunk Skippy",
+        "pt": "Manteiga de amendoim Skippy Super Pedaço",
+        "de": "Skippy Super Chunk Erdnussbutter"
+    },
+    "ריבת תותים סמאקרס": {
+        "en": "Smucker's Strawberry Jam (18 oz)",
+        "ru": "Клубничный джем Smucker's",
+        "ar": "سموكر مربى الفراولة (18 أونصة)",
+        "es": "Mermelada de fresa Smucker (18 oz)",
+        "fr": "Confiture de fraises Smucker's (18 oz)",
+        "pt": "Geléia de Morango Smucker (18 onças)",
+        "de": "Smucker's Erdbeermarmelade (18 oz)"
+    },
+    "מאק אנד צ'יז קראפט בקופסה": {
+        "en": "Kraft Original Macaroni & Cheese Dinner",
+        "ru": "Макароны с сыром Kraft Mac & Cheese",
+        "ar": "عشاء كرافت أوريجينال معكرونة وجبنة",
+        "es": "Cena de macarrones con queso Kraft Original",
+        "fr": "Dîner macaroni au fromage Kraft Original",
+        "pt": "Jantar Kraft Original com Macarrão e Queijo",
+        "de": "Kraft Original Makkaroni-Käse-Abendessen"
+    },
+    "מרק עגבניות מרוכז קמפבלס": {
+        "en": "Campbell's Condensed Tomato Soup (Can)",
+        "ru": "Суп томатный концентрированный Campbell's",
+        "ar": "حساء الطماطم المكثف كامبل (علبة)",
+        "es": "Sopa de tomate condensada Campbell (lata)",
+        "fr": "Soupe aux tomates condensée Campbell's (boîte)",
+        "pt": "Sopa Condensada de Tomate Campbell (Lata)",
+        "de": "Campbell's Kondensierte Tomatensuppe (Dose)"
+    },
+    "מרק פטריות קרמי קמפבלס": {
+        "en": "Campbell's Cream of Mushroom Soup",
+        "ru": "Крем-суп грибной Campbell's",
+        "ar": "شوربة كريمة الفطر من كامبل",
+        "es": "Crema de champiñones Campbell's",
+        "fr": "Soupe à la crème de champignons Campbell's",
+        "pt": "Sopa Creme de Cogumelos Campbell's",
+        "de": "Campbell's Pilzcremesuppe"
+    },
+    "קטשופ היינץ (בקבוק לחיץ)": {
+        "en": "Heinz Tomato Ketchup (20 oz)",
+        "ru": "Кетчуп Heinz томатный",
+        "ar": "هاينز كاتشب الطماطم (20 أونصة)",
+        "es": "Salsa de tomate Heinz (20 oz)",
+        "fr": "Ketchup aux tomates Heinz (20 oz)",
+        "pt": "Ketchup de tomate Heinz (20 onças)",
+        "de": "Heinz Tomatenketchup (20 oz)"
+    },
+    "חרדל צהוב קלאסי פרנצ'ס": {
+        "en": "French's Classic Yellow Mustard (14 oz)",
+        "ru": "Горчица желтая классическая French's",
+        "ar": "الخردل الأصفر الكلاسيكي الفرنسي (14 أونصة)",
+        "es": "Mostaza amarilla clásica francesa (14 oz)",
+        "fr": "Moutarde jaune classique française (14 oz)",
+        "pt": "Mostarda Amarela Clássica Francesa (14 onças)",
+        "de": "French's Classic Gelber Senf (14 oz)"
+    },
+    "מיונז הלמנס אמיתי": {
+        "en": "Hellmann's Real Mayonnaise (30 oz)",
+        "ru": "Майонез настоящий Hellmann's",
+        "ar": "هيلمانز مايونيز حقيقي (30 أونصة)",
+        "es": "Mayonesa real Hellmann's (30 oz)",
+        "fr": "Vraie mayonnaise Hellmann's (30 oz)",
+        "pt": "Maionese Real Hellmann's (30 onças)",
+        "de": "Hellmanns echte Mayonnaise (30 oz)"
+    },
+    "רוטב ראנץ' היידן וואלי": {
+        "en": "Hidden Valley Original Ranch Dressing (16 oz)",
+        "ru": "Соус Ранч Hidden Valley оригинальный",
+        "ar": "صلصة الرانش الأصلية من هيدين فالي (16 أونصة)",
+        "es": "Aderezo ranchero original de Hidden Valley (16 oz)",
+        "fr": "Vinaigrette ranch originale Hidden Valley (16 oz)",
+        "pt": "Molho Ranch Original Hidden Valley (16 onças)",
+        "de": "Hidden Valley Original Ranch Dressing (16 oz)"
+    },
+    "רוטב ברביקיו סוויט בייבי ריי": {
+        "en": "Sweet Baby Ray's BBQ Sauce (18 oz)",
+        "ru": "Соус Барбекю Sweet Baby Ray's",
+        "ar": "صلصة الشواء سويت بيبي راي (18 أونصة)",
+        "es": "Salsa BBQ Sweet Baby Ray's (18 oz)",
+        "fr": "Sauce barbecue Sweet Baby Ray's (18 oz)",
+        "pt": "Molho de churrasco Sweet Baby Ray (18 onças)",
+        "de": "Sweet Baby Ray's BBQ Sauce (18 oz)"
+    },
+    "פסטה ספגטי ברילה": {
+        "en": "Barilla Spaghetti (1 lb box)",
+        "ru": "Паста спагетти Barilla",
+        "ar": "باريلا سباجيتي (صندوق 1 رطل)",
+        "es": "Espagueti Barilla (caja de 1 libra)",
+        "fr": "Spaghetti Barilla (boîte de 1 lb)",
+        "pt": "Espaguete Barilla (caixa de 1 lb)",
+        "de": "Barilla Spaghetti (1-Pfund-Box)"
+    },
+    "רוטב מרינרה לפסטה ראוס": {
+        "en": "Rao's Homemade Marinara Sauce (24 oz)",
+        "ru": "Соус томатный Маринара Rao's",
+        "ar": "صلصة المارينارا محلية الصنع من راو (24 أونصة)",
+        "es": "Salsa marinara casera de Rao (24 oz)",
+        "fr": "Sauce marinara maison de Rao (24 oz)",
+        "pt": "Molho Marinara Caseiro Rao (24 onças)",
+        "de": "Raos hausgemachte Marinara-Sauce (24 oz)"
+    },
+    "רוטב לפסטה פריגו מסורתי": {
+        "en": "Prego Traditional Pasta Sauce (24 oz)",
+        "ru": "Томатный соус для пасты Prego",
+        "ar": "صلصة المعكرونة التقليدية بريجو (24 أونصة)",
+        "es": "Salsa para pasta tradicional Prego (24 oz)",
+        "fr": "Sauce pour pâtes traditionnelle Prego (24 oz)",
+        "pt": "Molho de Massa Tradicional Prego (24 onças)",
+        "de": "Prego Traditionelle Pastasauce (24 oz)"
+    },
+    "אורז יסמין תאילנדי (שק 2.25 קילו)": {
+        "en": "Jasmine Long Grain Rice (5 lb bag)",
+        "ru": "Рис Жасмин длиннозерный",
+        "ar": "أرز الياسمين طويل الحبة (كيس 5 رطل)",
+        "es": "Arroz jazmín de grano largo (bolsa de 5 lb)",
+        "fr": "Riz à grains longs au jasmin (sac de 5 lb)",
+        "pt": "Arroz de grão longo de jasmim (saco de 5 lb)",
+        "de": "Jasmin-Langkornreis (5-Pfund-Beutel)"
+    },
+    "שעועית שחורה בשימורים גויה": {
+        "en": "Goya Black Beans (15.5 oz can)",
+        "ru": "Черная фасоль консервированная Goya",
+        "ar": "غويا الفاصوليا السوداء (علبة 15.5 أوقية)",
+        "es": "Frijoles Negros Goya (lata de 15.5 oz)",
+        "fr": "Haricots noirs Goya (boîte de 15,5 oz)",
+        "pt": "Feijão Preto Goya (lata de 15,5 onças)",
+        "de": "Schwarze Goya-Bohnen (15,5 oz Dose)"
+    },
+    "תירס מתוק בשימורים גרין ג'איינט": {
+        "en": "Green Giant Sweet Corn Can",
+        "ru": "Сладкая кукуруза консервированная",
+        "ar": "العملاق الأخضر علبة ذرة حلوة",
+        "es": "Lata de maíz dulce gigante verde",
+        "fr": "Boîte de maïs sucré géant vert",
+        "pt": "Lata de milho doce gigante verde",
+        "de": "Grüne Riesen-Zuckermaisdose"
+    },
+    "שמן זית כתית מעולה פומפיין": {
+        "en": "Pompeian Extra Virgin Olive Oil (16 oz)",
+        "ru": "Оливковое масло первого отжима Pompeian",
+        "ar": "زيت زيتون بكر ممتاز بومبيان (16 أونصة)",
+        "es": "Aceite de oliva virgen extra pompeyano (16 oz)",
+        "fr": "Huile d'olive extra vierge pompéienne (16 oz)",
+        "pt": "Azeite Extra Virgem Pompeia (16 onças)",
+        "de": "Pompejanisches Natives Olivenöl Extra (16 oz)"
+    },
+    "שמן קנולה קריסקו לבישול": {
+        "en": "Crisco Pure Canola Oil (48 oz)",
+        "ru": "Рапсовое масло Crisco",
+        "ar": "زيت الكانولا النقي من كريسكو (48 أونصة)",
+        "es": "Aceite de canola puro Crisco (48 oz)",
+        "fr": "Huile de canola pure Crisco (48 oz)",
+        "pt": "Óleo de canola puro Crisco (48 onças)",
+        "de": "Crisco reines Rapsöl (48 oz)"
+    },
+    "קמח לבן לכל מטרה גולד מדל": {
+        "en": "Gold Medal All Purpose Flour (5 lb bag)",
+        "ru": "Мука пшеничная универсальная Gold Medal",
+        "ar": "دقيق الميدالية الذهبية لجميع الأغراض (كيس 5 رطل)",
+        "es": "Harina multiuso Gold Medal (bolsa de 5 lb)",
+        "fr": "Farine tout usage Gold Medal (sac de 5 lb)",
+        "pt": "Farinha multiuso Medalha de Ouro (saco de 5 lb)",
+        "de": "Goldmedaille Allzweckmehl (5-Pfund-Beutel)"
+    },
+    "סוכר לבן דומינו (שק 1.8 קילו)": {
+        "en": "Domino Pure Cane Granulated Sugar (4 lb)",
+        "ru": "Сахар тростниковый белый Domino",
+        "ar": "دومينو سكر قصب نقي (4 رطل)",
+        "es": "Azúcar granulada de caña pura Domino (4 lb)",
+        "fr": "Sucre granulé de canne pure Domino (4 lb)",
+        "pt": "Açúcar granulado de cana puro Domino (4 lb)",
+        "de": "Domino reiner Rohrzucker (4 Pfund)"
+    },
+    "סוכר חום כהה דומינו": {
+        "en": "Domino Dark Brown Sugar",
+        "ru": "Сахар темно-коричневый Domino",
+        "ar": "دومينو سكر بني غامق",
+        "es": "Dominó Azúcar Moreno Oscuro",
+        "fr": "Cassonade foncée Domino",
+        "pt": "Dominó Açúcar Mascavo Escuro",
+        "de": "Domino dunkelbrauner Zucker"
+    },
+    "סודה לשתייה ארם אנד האמר": {
+        "en": "Arm & Hammer Pure Baking Soda",
+        "ru": "Сода пищевая Arm & Hammer",
+        "ar": "آرم آند هامر صودا الخبز النقية",
+        "es": "Bicarbonato de sodio puro Arm & Hammer",
+        "fr": "Bicarbonate de soude pur Arm & Hammer",
+        "pt": "Bicarbonato de sódio puro Arm & Hammer",
+        "de": "Reines Backpulver von Arm & Hammer"
+    },
+    "מלח ים מועשר ביוד מורטון": {
+        "en": "Morton Iodized Table Salt (26 oz)",
+        "ru": "Соль поваренная йодированная Morton",
+        "ar": "مورتون ملح الطعام المعالج باليود (26 أونصة)",
+        "es": "Sal de mesa yodada Morton (26 oz)",
+        "fr": "Sel de table iodé Morton (26 oz)",
+        "pt": "Sal de mesa iodado Morton (26 onças)",
+        "de": "Morton jodiertes Speisesalz (26 oz)"
+    },
+    "צ'יפס תפוחי אדמה קלאסי לייז": {
+        "en": "Lay's Classic Potato Chips (Party Size)",
+        "ru": "Чипсы картофельные Lay's Классические",
+        "ar": "رقائق البطاطس الكلاسيكية من ليز (حجم الحفلة)",
+        "es": "Patatas fritas clásicas de Lay (tamaño fiesta)",
+        "fr": "Chips de pommes de terre classiques Lay's (format fête)",
+        "pt": "Batatas fritas clássicas da Lay's (tamanho de festa)",
+        "de": "Lay's klassische Kartoffelchips (Partygröße)"
+    },
+    "דוריטוס בטעם נאצ'ו צ'יז": {
+        "en": "Doritos Nacho Cheese Flavored Tortilla Chips",
+        "ru": "Чипсы кукурузные Doritos Начо Сыр",
+        "ar": "رقائق تورتيلا بنكهة جبنة الناتشو دوريتوس",
+        "es": "Doritos Nachos Chips De Tortilla Sabor Queso",
+        "fr": "Chips tortilla aromatisées au fromage Nacho Doritos",
+        "pt": "Chips de tortilha com sabor de queijo Doritos Nacho",
+        "de": "Doritos Tortillachips mit Nachokäsegeschmack"
+    },
+    "חטיף גבינה צ'יטוס קראנץ'": {
+        "en": "Cheetos Crunchy Cheese Snacks",
+        "ru": "Кукурузные палочки с сыром Cheetos",
+        "ar": "وجبات خفيفة من الجبن المقرمش شيتوس",
+        "es": "Bocadillos de queso crujiente Cheetos",
+        "fr": "Collations au fromage croquant Cheetos",
+        "pt": "Salgadinhos de Queijo Crocante Cheetos",
+        "de": "Knusprige Cheetos-Käse-Snacks"
+    },
+    "קרקרים מלוחים ריץ קלאסיק": {
+        "en": "Ritz Original Crackers (Family Size)",
+        "ru": "Крекеры соленые Ritz Оригинальные",
+        "ar": "مقرمشات ريتز الأصلية (حجم عائلي)",
+        "es": "Galletas saladas originales Ritz (tamaño familiar)",
+        "fr": "Craquelins Ritz Original (format familial)",
+        "pt": "Biscoitos Ritz Original (tamanho família)",
+        "de": "Ritz Original Cracker (Familiengröße)"
+    },
+    "עוגיות אוריאו מקוריות": {
+        "en": "Oreo Chocolate Sandwich Cookies",
+        "ru": "Печенье с кремом Oreo Оригинальное",
+        "ar": "كوكيز ساندويتش شوكولاتة الأوريو",
+        "es": "Galletas tipo sándwich de chocolate Oreo",
+        "fr": "Biscuits sandwich au chocolat Oreo",
+        "pt": "Biscoitos Sanduíche De Chocolate Oreo",
+        "de": "Oreo-Schokoladen-Sandwich-Kekse"
+    },
+    "עוגיות שוקולד צ'יפס צ'יפס אהוי": {
+        "en": "Chips Ahoy! Real Chocolate Chip Cookies",
+        "ru": "Печенье с каплями шоколада Chips Ahoy",
+        "ar": "رقائق أهوي! كوكيز رقائق الشوكولاتة الحقيقية",
+        "es": "¡Chips a la vista! Galletas con chispas de chocolate reales",
+        "fr": "Chips Ahoy! De vrais biscuits aux pépites de chocolat",
+        "pt": "Chips Ahoy! Biscoitos de chocolate reais",
+        "de": "Chips Ahoi! Echte Schokoladenkekse"
+    },
+    "קרקרים גרהאם קראקרס": {
+        "en": "Honey Maid Graham Crackers",
+        "ru": "Крекеры медовые Грэм Honey Maid",
+        "ar": "العسل خادمة غراهام المفرقعات",
+        "es": "Galletas Graham Honey Maid",
+        "fr": "Biscuits Graham Honey Maid",
+        "pt": "Biscoitos Graham Honey Maid",
+        "de": "Honey Maid Graham Cracker"
+    },
+    "מרשמלו ג'ט-פאפט לסמורס": {
+        "en": "Kraft Jet-Puffed Marshmallows (12 oz)",
+        "ru": "Зефир маршмеллоу для костра Kraft",
+        "ar": "حلوى الخطمي المنتفخة من كرافت (12 أونصة)",
+        "es": "Malvaviscos inflados Kraft Jet (12 oz)",
+        "fr": "Guimauves Kraft Jet-Puffed (12 oz)",
+        "pt": "Marshmallows Kraft Jet-Puffed (12 onças)",
+        "de": "Kraft Jet-Puffed Marshmallows (12 oz)"
+    },
+    "שוקולד הרשי חלב": {
+        "en": "Hershey's Milk Chocolate Bar (6 pack)",
+        "ru": "Шоколад молочный Hershey's (6 плиток)",
+        "ar": "شوكولاتة هيرشي بالحليب (6 عبوات)",
+        "es": "Barra de chocolate con leche Hershey's (paquete de 6)",
+        "fr": "Barre de chocolat au lait Hershey's (paquet de 6)",
+        "pt": "Barra de chocolate ao leite Hershey's (pacote com 6)",
+        "de": "Hershey's Milchschokoladenriegel (6er-Pack)"
+    },
+    "שוקולד אם אנד אם בוטנים": {
+        "en": "M&M's Peanut Chocolate Candy (Sharing Size)",
+        "ru": "Драже M&M's с арахисом",
+        "ar": "حلوى الشوكولاتة بالفول السوداني إم آند إمز (حجم المشاركة)",
+        "es": "Caramelo de chocolate y maní de M&M (tamaño para compartir)",
+        "fr": "Bonbons au chocolat et aux cacahuètes M&M's (format à partager)",
+        "pt": "Doce de chocolate com amendoim M&M's (tamanho para compartilhar)",
+        "de": "M&M's Erdnuss-Schokolade (Teilegröße)"
+    },
+    "פופקורן חמאה למיקרוגל אורוויל": {
+        "en": "Orville Redenbacher's Movie Theater Butter Popcorn",
+        "ru": "Попкорн для микроволновки с маслом",
+        "ar": "أورفيل ريدنباخر مسرح السينما زبدة الفشار",
+        "es": "Palomitas de maíz con mantequilla de cine de Orville Redenbacher",
+        "fr": "Maïs soufflé au beurre de cinéma d'Orville Redenbacher",
+        "pt": "Pipoca de manteiga para cinema de Orville Redenbacher",
+        "de": "Orville Redenbachers Kino-Butterpopcorn"
+    },
+    "בייגלה מקלות סניידרס אוף האנובר": {
+        "en": "Snyder's of Hanover Pretzel Sticks",
+        "ru": "Крендельки соленые соломка Snyder's",
+        "ar": "سنايدر من هانوفر بريتزل العصي",
+        "es": "Palitos de pretzel de Snyder's of Hanover",
+        "fr": "Bâtonnets de bretzel Snyder's de Hanovre",
+        "pt": "Snyder's de Hanover Pretzel Sticks",
+        "de": "Snyder's of Hanover Pretzel Sticks"
+    },
+    "קוקה קולה פחיות (מארז 12)": {
+        "en": "Coca-Cola Original Taste (12 pack cans)",
+        "ru": "Кока-Кола (упаковка 12 банок)",
+        "ar": "كوكا كولا المذاق الأصلي (12 علبة)",
+        "es": "Coca-Cola Sabor Original (paquete de 12 latas)",
+        "fr": "Coca-Cola Original Taste (paquet de 12 canettes)",
+        "pt": "Coca-Cola Original Taste (latas de 12 embalagens)",
+        "de": "Coca-Cola Original Taste (12er-Pack Dosen)"
+    },
+    "דיאט קוק פחיות (מארז 12)": {
+        "en": "Diet Coke (12 pack cans)",
+        "ru": "Диетическая Кока-Кола (12 банок)",
+        "ar": "كوكا كولا دايت (12 علبة)",
+        "es": "Coca-Cola Light (paquete de 12 latas)",
+        "fr": "Coca light (paquet de 12 canettes)",
+        "pt": "Coca Diet (12 latas)",
+        "de": "Diät-Cola (12er-Packung Dosen)"
+    },
+    "משקה דוקטור פפר (מארז 12)": {
+        "en": "Dr Pepper Soda (12 pack cans)",
+        "ru": "Газированный напиток Dr Pepper (12 шт)",
+        "ar": "دكتور بيبر صودا (12 علبة)",
+        "es": "Dr Pepper Soda (paquete de 12 latas)",
+        "fr": "Dr Pepper Soda (paquet de 12 canettes)",
+        "pt": "Refrigerante Dr Pepper (12 latas)",
+        "de": "Dr Pepper Soda (12er-Pack Dosen)"
+    },
+    "מיץ תפוזים סחוט טרופיקנה (בקבוק)": {
+        "en": "Tropicana Pure Premium 100% Orange Juice",
+        "ru": "Апельсиновый сок прямого отжима Tropicana",
+        "ar": "عصير تروبيكانا بيور 100% برتقال",
+        "es": "Tropicana Pure Premium Jugo 100% Naranja",
+        "fr": "Jus d'orange 100 % Pure Premium Tropicana",
+        "pt": "Suco Tropicana Pure Premium 100% Laranja",
+        "de": "Tropicana Pure Premium 100 % Orangensaft"
+    },
+    "תה קר סנאפל אפרסק": {
+        "en": "Snapple Peach Tea (6 pack bottles)",
+        "ru": "Холодный чай с персиком Snapple (6 шт)",
+        "ar": "شاي سنابل بالخوخ (6 عبوات)",
+        "es": "Té Snapple Peach (paquete de 6 botellas)",
+        "fr": "Thé Snapple à la pêche (paquet de 6 bouteilles)",
+        "pt": "Chá Snapple de Pêssego (6 garrafas)",
+        "de": "Snapple-Pfirsich-Tee (6er-Packung Flaschen)"
+    },
+    "שישיית מים מינרליים פולנד ספרינג": {
+        "en": "Poland Spring 100% Natural Spring Water (24 pk)",
+        "ru": "Природная родниковая вода Poland Spring (24 шт)",
+        "ar": "مياه ينابيع بولندا سبرينج طبيعية 100% (24 عبوة)",
+        "es": "Manantial de Polonia Agua de manantial 100 % natural (paquete de 24)",
+        "fr": "Eau de source 100 % naturelle de Pologne (paquet de 24)",
+        "pt": "Polônia Primavera 100% Água de nascente natural (24 unidades)",
+        "de": "Poland Spring 100 % natürliches Quellwasser (24 Stück)"
+    },
+    "קפה טחון פולג'רס קלאסיק רוסט": {
+        "en": "Folgers Classic Roast Ground Coffee (30 oz)",
+        "ru": "Кофе молотый Folgers Классик Рост",
+        "ar": "قهوة فولجرز الكلاسيكية المطحونة المحمصة (30 أونصة)",
+        "es": "Café molido tostado clásico Folgers (30 oz)",
+        "fr": "Café moulu torréfié classique Folgers (30 oz)",
+        "pt": "Café moído torrado clássico Folgers (30 onças)",
+        "de": "Folgers Classic gerösteter gemahlener Kaffee (30 oz)"
+    },
+    "פולי קפה סטארבקס פייק פלייס": {
+        "en": "Starbucks Pike Place Roast Whole Bean Coffee",
+        "ru": "Кофе в зернах Starbucks Pike Place",
+        "ar": "ستاربكس بايك بليس قهوة حبوب كاملة مشوية",
+        "es": "Café en grano entero tostado Pike Place de Starbucks",
+        "fr": "Café en grains torréfié Starbucks Pike Place",
+        "pt": "Café em grão integral torrado Starbucks Pike Place",
+        "de": "Starbucks Pike Place Röstkaffee aus ganzen Bohnen"
+    },
+    "פיצה פפרוני קפואה דיג'ורנו": {
+        "en": "DiGiorno Rising Crust Pepperoni Frozen Pizza",
+        "ru": "Пицца пепперони замороженная DiGiorno",
+        "ar": "بيتزا ديجيورنو رايزينج كرست بيبروني المجمدة",
+        "es": "Pizza congelada de pepperoni con corteza levantada DiGiorno",
+        "fr": "Pizza surgelée au pepperoni à croûte levée DiGiorno",
+        "pt": "Pizza Congelada de Pepperoni com Crosta Crescente DiGiorno",
+        "de": "DiGiorno Peperoni-Tiefkühlpizza mit aufgehender Kruste"
+    },
+    "כופתאות תפוחי אדמה טייטר טוטס אוריידה": {
+        "en": "Ore-Ida Tater Tots Frozen Potatoes (32 oz)",
+        "ru": "Картофельные крокеты Тейтер Тотс Ore-Ida",
+        "ar": "أوري-إيدا تاتر توتس، بطاطس مجمدة (32 أونصة)",
+        "es": "Patatas congeladas Ore-Ida Tater Tots (32 oz)",
+        "fr": "Pommes de terre surgelées Ore-Ida Tater Tots (32 oz)",
+        "pt": "Ore-Ida Tater Tots Batatas Congeladas (32 onças)",
+        "de": "Ore-Ida Tater Tots gefrorene Kartoffeln (32 oz)"
+    },
+    "צ'יפס תפוחי אדמה קפוא גולדן פרייז": {
+        "en": "Ore-Ida Golden French Fries Frozen",
+        "ru": "Картофель фри замороженный Ore-Ida",
+        "ar": "أوري-إيدا بطاطا مقلية ذهبية مجمدة",
+        "es": "Papas fritas doradas Ore-Ida congeladas",
+        "fr": "Frites dorées Ore-Ida surgelées",
+        "pt": "Batatas fritas douradas Ore-Ida congeladas",
+        "de": "Ore-Ida Goldene Pommes Frites gefroren"
+    },
+    "וופלים קפואים אגו של קלוגס": {
+        "en": "Kellogg's Eggo Homestyle Frozen Waffles (10 ct)",
+        "ru": "Вафли замороженные Eggo Домашние",
+        "ar": "كيلوجز إيجو هوم ستايل فطائر الوافل المجمدة (10 قيراط)",
+        "es": "Waffles congelados estilo casero Eggo de Kellogg's (10 unidades)",
+        "fr": "Gaufres glacées Eggo Homestyle de Kellogg's (10 ct)",
+        "pt": "Kellogg's Eggo Homestyle Frozen Waffles (10 ct)",
+        "de": "Kellogg's Eggo Homestyle Frozen Waffles (10 ct)"
+    },
+    "גלידת בן אנד ג'ריס בצק עוגיות": {
+        "en": "Ben & Jerry's Chocolate Chip Cookie Dough Ice Cream",
+        "ru": "Мороженое Ben & Jerry's с кусочками теста",
+        "ar": "آيس كريم عجينة الكوكيز بقطع الشوكولاتة من بن آند جيري",
+        "es": "Helado de masa para galletas con chispas de chocolate de Ben & Jerry's",
+        "fr": "Crème glacée à la pâte à biscuits aux pépites de chocolat Ben & Jerry's",
+        "pt": "Sorvete de massa de biscoito com gotas de chocolate Ben & Jerry's",
+        "de": "Ben & Jerry's Chocolate Chip Cookie Dough-Eiscreme"
+    },
+    "אפונה ירוקה מתוקה קפואה": {
+        "en": "Birds Eye Sweet Green Peas Frozen (16 oz)",
+        "ru": "Зеленый горошек замороженный Birds Eye",
+        "ar": "عين الطيور بازلاء خضراء حلوة مجمدة (16 أونصة)",
+        "es": "Birds Eye Guisantes verdes dulces congelados (16 oz)",
+        "fr": "Pois verts sucrés Birds Eye surgelés (16 oz)",
+        "pt": "Birds Eye Ervilhas Verdes Doces Congeladas (16 onças)",
+        "de": "Birds Eye süße grüne Erbsen gefroren (16 oz)"
+    },
+    "נייר סופג באונטי (מארז 6 גלילי ענק)": {
+        "en": "Bounty Select-A-Size Paper Towels (6 Double Rolls)",
+        "ru": "Бумажные полотенца Bounty (6 рулонов)",
+        "ar": "مناشف ورقية باونتي سيليكت A-Size (6 لفات مزدوجة)",
+        "es": "Toallas de papel Bounty Select-A-Size (6 rollos dobles)",
+        "fr": "Essuie-tout Bounty Select-A-Size (6 rouleaux doubles)",
+        "pt": "Toalhas de papel Bounty Select-A-Size (6 rolos duplos)",
+        "de": "Bounty Select-A-Size-Papierhandtücher (6 Doppelrollen)"
+    },
+    "נייר טואלט צ'ארמין אולטרה סופט (12 גלילים)": {
+        "en": "Charmin Ultra Soft Toilet Paper (12 Mega Rolls)",
+        "ru": "Туалетная бумага Charmin Ultra Soft (12 шт)",
+        "ar": "ورق تواليت شارمن فائق النعومة (12 ميجا رول)",
+        "es": "Papel higiénico Charmin ultra suave (12 megarollos)",
+        "fr": "Papier toilette ultra doux Charmin (12 méga rouleaux)",
+        "pt": "Papel Higiênico Charmin Ultra Suave (12 Mega Rolos)",
+        "de": "Charmin Ultra Soft Toilettenpapier (12 Megarollen)"
+    },
+    "שקיות אשפה הפיטי 13 גאלון (40 יח')": {
+        "en": "Hefty Ultra Strong 13 Gallon Trash Bags (40 ct)",
+        "ru": "Мешки для мусора Hefty 13 галлонов (40 шт)",
+        "ar": "أكياس قمامة ضخمة للغاية سعة 13 جالونًا (40 قطعة)",
+        "es": "Bolsas de basura Hefty ultrafuertes de 13 galones (40 unidades)",
+        "fr": "Sacs poubelles lourds ultra résistants de 13 gallons (40 unités)",
+        "pt": "Sacos de lixo robustos e ultrafortes de 13 galões (40 ct)",
+        "de": "Hefty Ultra Strong 13 Gallonen Müllbeutel (40 ct)"
+    },
+    "שקיות זיפלוק לסנדוויץ' (90 יח')": {
+        "en": "Ziploc Sandwich Bags (90 count)",
+        "ru": "Пакеты с замком Ziploc для сэндвичей (90 шт)",
+        "ar": "أكياس ساندويتش زيبلوك (90 قطعة)",
+        "es": "Bolsas Ziploc para sándwiches (90 unidades)",
+        "fr": "Sacs à sandwich Ziploc (90 unités)",
+        "pt": "Sacos para sanduíches Ziploc (contagem de 90)",
+        "de": "Ziploc-Sandwichbeutel (90 Stück)"
+    },
+    "שקיות זיפלוק גאלון להקפאה (30 יח')": {
+        "en": "Ziploc Freezer Bags Gallon Size (30 count)",
+        "ru": "Пакеты для заморозки Ziploc 1 галлон (30 шт)",
+        "ar": "أكياس الفريزر زيبلوك، حجم جالون (30 قطعة)",
+        "es": "Bolsas Ziploc para congelador tamaño galón (30 unidades)",
+        "fr": "Sacs de congélation Ziploc, format gallon (30 unités)",
+        "pt": "Sacos Ziploc para freezer tamanho galão (30 contagens)",
+        "de": "Ziploc-Gefrierbeutel, Gallonengröße (30 Stück)"
+    },
+    "רדיד אלומיניום ריינולדס ראפ (75 רגל)": {
+        "en": "Reynolds Wrap Aluminum Foil (75 sq ft)",
+        "ru": "Фольга алюминиевая Reynolds Wrap",
+        "ar": "غلاف رينولدز بورق الألمنيوم (75 قدم مربع)",
+        "es": "Papel de aluminio Reynolds Wrap (75 pies cuadrados)",
+        "fr": "Feuille d'aluminium Reynolds Wrap (75 pieds carrés)",
+        "pt": "Folha de alumínio Reynolds Wrap (75 pés quadrados)",
+        "de": "Reynolds Wrap Aluminiumfolie (75 Quadratfuß)"
+    },
+    "צלחות נייר מתכלות דיקסי (45 יח')": {
+        "en": "Dixie Ultra Paper Plates (45 count)",
+        "ru": "Тарелки бумажные Dixie Ultra (45 шт)",
+        "ar": "أطباق ورقية ديكسي ألترا (عدد 45)",
+        "es": "Platos de papel Dixie Ultra (45 unidades)",
+        "fr": "Assiettes en papier Dixie Ultra (45 pièces)",
+        "pt": "Pratos de papel Dixie Ultra (contagem de 45)",
+        "de": "Dixie Ultra Pappteller (45 Stück)"
+    },
+    "כוסות פלסטיק אדומות סולו קאפ (50 יח')": {
+        "en": "Solo Red Plastic Cups 18 oz (50 count)",
+        "ru": "Пластиковые стаканчики красные Solo (50 шт)",
+        "ar": "أكواب بلاستيكية حمراء منفردة، 18 أونصة (50 قطعة)",
+        "es": "Vasos de plástico Solo Red de 18 oz (50 unidades)",
+        "fr": "Gobelets en plastique rouge Solo 18 oz (50 unités)",
+        "pt": "Copos de plástico vermelhos Solo de 18 onças (50 contagens)",
+        "de": "Solo Rote Plastikbecher 18 oz (50 Stück)"
+    },
+    "קפסולות כביסה טייד פודס (42 יח')": {
+        "en": "Tide PODS Laundry Detergent Pacs (42 count)",
+        "ru": "Капсулы для стирки Tide PODS (42 шт)",
+        "ar": "عبوات منظفات الغسيل تايد PODS (42 قطعة)",
+        "es": "Paquetes de detergente para ropa Tide PODS (42 unidades)",
+        "fr": "Tide PODS Détergent à lessive Pacs (42 unités)",
+        "pt": "Pacotes de detergente para a roupa Tide PODS (42 contagens)",
+        "de": "Tide PODS Waschmittelpackungen (42 Stück)"
+    },
+    "נוזל כביסה טייד מקורי (2.7 ליטר)": {
+        "en": "Tide Liquid Laundry Detergent Original (92 oz)",
+        "ru": "Гель для стирки Tide жидкий Оригинал",
+        "ar": "منظف الغسيل السائل تايد الأصلي (92 أونصة)",
+        "es": "Detergente líquido para ropa Tide original (92 oz)",
+        "fr": "Détergent à lessive liquide Tide original (92 oz)",
+        "pt": "Detergente líquido para roupas Tide original (92 onças)",
+        "de": "Tide Flüssigwaschmittel Original (92 oz)"
+    },
+    "מרכך כביסה דאוני קול פלאטר (120 שטיפות)": {
+        "en": "Downy Ultra Liquid Fabric Conditioner (51 oz)",
+        "ru": "Кондиционер для белья Downy Ultra",
+        "ar": "منعم الأقمشة داوني السائل الفائق (51 أونصة)",
+        "es": "Acondicionador de telas ultra líquido Downy (51 oz)",
+        "fr": "Après-shampooing ultra liquide Downy (51 oz)",
+        "pt": "Condicionador de tecido ultra líquido Downy (51 onças)",
+        "de": "Downy Ultra Liquid Weichspüler (51 oz)"
+    },
+    "דפי בישום למייבש באונס (160 דפים)": {
+        "en": "Bounce Dryer Sheets Outdoor Fresh (160 count)",
+        "ru": "Салфетки для сушильной машины Bounce",
+        "ar": "أوراق التجفيف المرتدة في الهواء الطلق (160 قطعة)",
+        "es": "Bounce Hojas para secadora Outdoor Fresh (160 unidades)",
+        "fr": "Feuilles de séchage Bounce Outdoor Fresh (160 pièces)",
+        "pt": "Folhas de secagem Bounce Outdoor Fresh (160 contagens)",
+        "de": "Bounce Dryer Sheets Outdoor Fresh (160 Stück)"
+    },
+    "נוזל כלים דון פלטינום (700 מ\"ל)": {
+        "en": "Dawn Ultra Platinum Dishwashing Liquid (24 oz)",
+        "ru": "Средство для мытья посуды Dawn Platinum",
+        "ar": "سائل غسيل الأطباق داون الترا بلاتينيوم (24 أونصة)",
+        "es": "Líquido para lavar platos Dawn Ultra Platinum (24 oz)",
+        "fr": "Liquide vaisselle Dawn Ultra Platinum (24 oz)",
+        "pt": "Líquido para lavar louça Dawn Ultra Platinum (24 onças)",
+        "de": "Dawn Ultra Platinum Geschirrspülmittel (24 oz)"
+    },
+    "טבליות למדיח קסקייד פלטינום (36 יח')": {
+        "en": "Cascade Platinum Dishwasher ActionPacs (36 ct)",
+        "ru": "Капсулы для посудомоечной машины Cascade",
+        "ar": "غسالة أطباق كاسكيد بلاتينيوم أكشن باكس (36 قطعة)",
+        "es": "ActionPacs para lavavajillas Cascade Platinum (36 unidades)",
+        "fr": "ActionPacs pour lave-vaisselle Cascade Platinum (36 unités)",
+        "pt": "ActionPacs para máquina de lavar louça Cascade Platinum (36 ct)",
+        "de": "Cascade Platinum Geschirrspüler ActionPacs (36 ct)"
+    },
+    "אקונומיקה מרוכזת קלורוקס": {
+        "en": "Clorox Regular Concentrated Bleach (81 oz)",
+        "ru": "Отбеливатель хлорный Clorox",
+        "ar": "كلوروكس مبيض مركز عادي (81 أونصة)",
+        "es": "Blanqueador concentrado normal Clorox (81 oz)",
+        "fr": "Eau de Javel concentrée régulière Clorox (81 oz)",
+        "pt": "Alvejante concentrado regular Clorox (81 onças)",
+        "de": "Clorox Normales konzentriertes Bleichmittel (81 oz)"
+    },
+    "מגבוני חיטוי ליזול (חבילת 3 כ-80 דפים)": {
+        "en": "Lysol Disinfecting Wipes (3 pack x 80 wipes)",
+        "ru": "Влажные дезинфицирующие салфетки Lysol",
+        "ar": "مناديل مطهرة ليسول (3 عبوات × 80 منديل)",
+        "es": "Toallitas desinfectantes Lysol (paquete de 3 x 80 toallitas)",
+        "fr": "Lingettes désinfectantes Lysol (paquet de 3 x 80 lingettes)",
+        "pt": "Toalhetes desinfetantes Lysol (3 pacotes x 80 toalhetes)",
+        "de": "Lysol-Desinfektionstücher (3er-Pack x 80 Tücher)"
+    },
+    "מנקה חלונות ווינדקס": {
+        "en": "Windex Original Glass and Window Spray (23 oz)",
+        "ru": "Спрей для мытья стекол Windex",
+        "ar": "Windex بخاخ الزجاج والنافذة الأصلي (23 أونصة)",
+        "es": "Windex Original Vidrio y Ventana Spray (23 oz)",
+        "fr": "Windex Original Spray pour vitres et fenêtres (23 oz)",
+        "pt": "Windex Original Vidro e Spray de Janela (23 onças)",
+        "de": "Windex Original Glas- und Fensterspray (23 oz)"
+    },
+    "מטליות סוויפר לחות לרצפה (24 יח')": {
+        "en": "Swiffer Sweeper Wet Mopping Pad Refills (24 ct)",
+        "ru": "Влажные насадки для швабры Swiffer (24 шт)",
+        "ar": "عبوات إعادة تعبئة وسادة الممسحة الرطبة سويفر سويبر (24 قيراط)",
+        "es": "Recambios de almohadillas para fregar húmedo Swiffer Sweeper (24 unidades)",
+        "fr": "Recharges de tampons de nettoyage humide Swiffer Sweeper (24 unités)",
+        "pt": "Recargas de esfregão úmido Swiffer Sweeper (24 ct)",
+        "de": "Swiffer Sweeper Nasswischpad-Nachfüllungen (24 ct)"
+    },
+    "משכך כאבים טיילנול פורטה 500 מ\"ג (100 קפליות)": {
+        "en": "Tylenol Extra Strength Acetaminophen 500mg (100 ct)",
+        "ru": "Обезболивающее Тайленол Экстра Сила (100 капсул)",
+        "ar": "تايلينول أسيتامينوفين بقوة إضافية 500 ملغ (100 قيراط)",
+        "es": "Tylenol Acetaminofén extra fuerte 500 mg (100 unidades)",
+        "fr": "Tylenol Extra Fort Acétaminophène 500 mg (100 ct)",
+        "pt": "Tylenol Acetaminofeno Extra Forte 500 mg (100 ct)",
+        "de": "Tylenol Extra Strength Acetaminophen 500 mg (100 ct)"
+    },
+    "משכך כאבים אדוויל ג'ל 200 מ\"ג (100 יח')": {
+        "en": "Advil Liqui-Gels Ibuprofen 200mg (100 ct)",
+        "ru": "Обезболивающее Ибупрофен Адвил Ликви-Гель",
+        "ar": "أدفيل ليكوي جل ايبوبروفين 200 ملغ (100 قيراط)",
+        "es": "Advil Liqui-Gels Ibuprofeno 200 mg (100 unidades)",
+        "fr": "Advil Liqui-Gels Ibuprofène 200 mg (100 ct)",
+        "pt": "Advil Liqui-Gels Ibuprofeno 200mg (100 ct)",
+        "de": "Advil Liqui-Gels Ibuprofen 200 mg (100 ct)"
+    },
+    "תרחיף בטן פפטו ביסמול": {
+        "en": "Pepto Bismol 5 Symptom Relief Liquid (16 oz)",
+        "ru": "Суспензия для желудка Пепто-Бисмол",
+        "ar": "سائل بيبتو بيسمول 5 لتخفيف الأعراض (16 أونصة)",
+        "es": "Pepto Bismol 5 Líquido para aliviar los síntomas (16 oz)",
+        "fr": "Liquide de soulagement des symptômes Pepto Bismol 5 (16 oz)",
+        "pt": "Pepto Bismol 5 Líquido de alívio de sintomas (16 onças)",
+        "de": "Pepto Bismol 5 Symptomlinderungsflüssigkeit (16 oz)"
+    },
+    "פלסטרים גמישים בנד-אייד (80 יח')": {
+        "en": "Band-Aid Brand Flexible Fabric Adhesive Bandages (80 ct)",
+        "ru": "Пластыри бактерицидные эластичные Band-Aid",
+        "ar": "ضمادات لاصقة من القماش المرن ماركة Band-Aid (80 قيراط)",
+        "es": "Vendas adhesivas de tela flexible de la marca Band-Aid (80 unidades)",
+        "fr": "Pansements adhésifs en tissu flexible de marque Band-Aid (80 ct)",
+        "pt": "Bandagens adesivas de tecido flexível da marca Band-Aid (80 ct)",
+        "de": "Flexible Gewebe-Klebebandagen der Marke Band-Aid (80 ct)"
+    },
+    "משחת שיניים קולגייט טוטאל מנטה (2 שפופרות)": {
+        "en": "Colgate Total Whitening Toothpaste (2 pack)",
+        "ru": "Зубная паста Colgate Total Отбеливающая",
+        "ar": "معجون أسنان كولجيت للتبييض الكامل (عبوتين)",
+        "es": "Pasta de dientes blanqueadora total Colgate (paquete de 2)",
+        "fr": "Dentifrice blanchissant total Colgate (paquet de 2)",
+        "pt": "Pasta de dente branqueadora total Colgate (2 unidades)",
+        "de": "Colgate Total Whitening Zahnpasta (2er Pack)"
+    },
+    "משחת שיניים קרסט 3D וויט": {
+        "en": "Crest 3D White Radiant Mint Toothpaste",
+        "ru": "Зубная паста Crest 3D White Мятная",
+        "ar": "معجون أسنان كريست 3D وايت راديانت مينت",
+        "es": "Pasta de dientes Crest 3D White Radiant Mint",
+        "fr": "Dentifrice Crest 3D White Radiant Menthe",
+        "pt": "Pasta de dente Crest 3D White Radiant Mint",
+        "de": "Crest 3D White Radiant Mint Zahnpasta"
+    },
+    "שטיפת פה ליסטרין קול מינט (1 ליטר)": {
+        "en": "Listerine Cool Mint Antiseptic Mouthwash (1 L)",
+        "ru": "Ополаскиватель для рта Listerine Cool Mint",
+        "ar": "غسول الفم المطهر بالنعناع البارد من ليسترين (1 لتر)",
+        "es": "Listerine Enjuague Bucal Antiséptico Menta Fría (1 L)",
+        "fr": "Rince-bouche antiseptique Listerine Cool Mint (1 L)",
+        "pt": "Listerine Cool Mint Colutório Antisséptico (1 L)",
+        "de": "Listerine Cool Mint Antiseptisches Mundwasser (1 L)"
+    },
+    "שמפו נגד קשקשים הד אנד שולדרס (800 מ\"ל)": {
+        "en": "Head & Shoulders Classic Clean Shampoo (28 oz)",
+        "ru": "Шампунь против перхоти Head & Shoulders",
+        "ar": "شامبو هيد آند شولدرز النظيف الكلاسيكي (28 أونصة)",
+        "es": "Champú limpio clásico Head & Shoulders (28 oz)",
+        "fr": "Shampooing propre classique Head & Shoulders (28 oz)",
+        "pt": "Shampoo de limpeza clássico para cabeça e ombros (28 onças)",
+        "de": "Head & Shoulders Classic Clean Shampoo (28 oz)"
+    },
+    "תחליב רחצה מזין דאב (900 מ\"ל)": {
+        "en": "Dove Deep Moisture Nourishing Body Wash (30 oz)",
+        "ru": "Гель для душа питательный Dove Глубокое увлажнение",
+        "ar": "غسول الجسم المغذي للرطوبة العميقة من دوف (30 أونصة)",
+        "es": "Jabón corporal nutritivo de humedad profunda Dove (30 oz)",
+        "fr": "Nettoyant pour le corps nourrissant Dove Deep Moisture (30 oz)",
+        "pt": "Sabonete corporal nutritivo Dove Deep Moisture (30 onças)",
+        "de": "Dove Deep Moisture Nährendes Duschgel (30 oz)"
+    },
+    "דאודורנט סטיק אולד ספייס לגבר": {
+        "en": "Old Spice High Endurance Deodorant (Pure Sport)",
+        "ru": "Дезодорант стик мужской Old Spice High Endurance",
+        "ar": "مزيل العرق عالي التحمل من أولد سبايس (بيور سبورت)",
+        "es": "Desodorante Old Spice Alta Resistencia (Pure Sport)",
+        "fr": "Déodorant haute endurance Old Spice (Pure Sport)",
+        "pt": "Desodorante de alta resistência Old Spice (Pure Sport)",
+        "de": "Old Spice High Endurance Deodorant (Pure Sport)"
+    },
+    "סכיני גילוח ג'ילט פיוז'ן 5 (4 ראשים)": {
+        "en": "Gillette Fusion5 Razor Blade Refills (4 ct)",
+        "ru": "Сменные кассеты для бритья Gillette Fusion5 (4 шт)",
+        "ar": "عبوات شفرات الحلاقة جيليت فيوجن 5 (4 قيراط)",
+        "es": "Recambios para cuchillas de afeitar Gillette Fusion5 (4 unidades)",
+        "fr": "Recharges de lames de rasoir Gillette Fusion5 (4 ct)",
+        "pt": "Recargas de lâmina de barbear Gillette Fusion5 (4 ct)",
+        "de": "Gillette Fusion5 Rasierklingen-Nachfüllungen (4 ct)"
+    },
+    "קיסמי אוזניים צמר גפן קיו-טיפס (500 יח')": {
+        "en": "Q-tips Cotton Swabs (500 count)",
+        "ru": "Ватные палочки косметические Q-tips (500 шт)",
+        "ar": "مسحات قطنية من كيو تيبس (عدد 500)",
+        "es": "Hisopos de algodón Q-tips (500 unidades)",
+        "fr": "Cotons-tiges Q-tips (500 unités)",
+        "pt": "Cotonetes Q-tips (contagem de 500)",
+        "de": "Q-Tips Wattestäbchen (500 Stück)"
+    },
+    "עגבניות אשכול הולנדיות": {
+        "en": "Dutch Vine Tomatoes (Tomates Grappe)",
+        "ru": "Помидоры на ветке голландские",
+        "ar": "طماطم الكرمة الهولندية (طماطم العنب)",
+        "es": "Tomates en rama holandeses (Tomates Grappe)",
+        "fr": "Tomates de vigne hollandaises (Tomates Grappe)",
+        "pt": "Tomates de videira holandeses (Tomates Grappe)",
+        "de": "Holländische Strauchtomaten (Tomates Grappe)"
+    },
+    "עגבניות שרי מתוקות": {
+        "en": "Sweet Cherry Tomatoes (250g)",
+        "ru": "Сладкие помидоры черри",
+        "ar": "طماطم كرزية حلوة (250 جرام)",
+        "es": "Tomates Cherry Dulces (250g)",
+        "fr": "Tomates cerises douces (250g)",
+        "pt": "Tomate Cereja Doce (250g)",
+        "de": "Süße Kirschtomaten (250g)"
+    },
+    "מלפפון אירופי ירוק": {
+        "en": "European Long Cucumber",
+        "ru": "Европейский длинноплодный огурец",
+        "ar": "خيار أوروبي طويل",
+        "es": "Pepino largo europeo",
+        "fr": "Concombre long européen",
+        "pt": "Pepino Longo Europeu",
+        "de": "Europäische lange Gurke"
+    },
+    "קישואים ירוקים (קורז'ט)": {
+        "en": "Green Courgettes / Zucchini",
+        "ru": "Кабачки цукини свежие",
+        "ar": "الكوسة الخضراء / الكوسا",
+        "es": "Calabacines Verdes / Calabacines",
+        "fr": "Courgettes vertes / Courgettes",
+        "pt": "Abobrinha Verde / Abobrinha",
+        "de": "Grüne Zucchini / Zucchini"
+    },
+    "חצילים טריים": {
+        "en": "Fresh Aubergines / Eggplant",
+        "ru": "Баклажаны свежие",
+        "ar": "باذنجان طازج / باذنجان",
+        "es": "Berenjenas Frescas / Berenjenas",
+        "fr": "Aubergines Fraîches / Aubergines",
+        "pt": "Beringelas / Berinjelas Frescas",
+        "de": "Frische Auberginen / Auberginen"
+    },
+    "גזר אירופי שטוף": {
+        "en": "Washed Carrots (1kg bag)",
+        "ru": "Морковь мытая (пакет 1 кг)",
+        "ar": "جزر مغسول (كيس 1 كيلو)",
+        "es": "Zanahorias lavadas (bolsa de 1kg)",
+        "fr": "Carottes lavées (sac de 1kg)",
+        "pt": "Cenouras lavadas (saco de 1kg)",
+        "de": "Gewaschene Karotten (1 kg Beutel)"
+    },
+    "בצל צהוב אירופי (רשת 1 ק\"ג)": {
+        "en": "Yellow Onions (1kg net bag)",
+        "ru": "Лук репчатый желтый (сетка 1 кг)",
+        "ar": "بصل أصفر (كيس صافي 1 كيلو)",
+        "es": "Cebollas Amarillas (bolsa de 1kg neto)",
+        "fr": "Oignons jaunes (sac net de 1 kg)",
+        "pt": "Cebola Amarela (saco líquido de 1kg)",
+        "de": "Gelbe Zwiebeln (1kg Nettobeutel)"
+    },
+    "בצל אדום מתוק": {
+        "en": "Sweet Red Onions",
+        "ru": "Лук репчатый красный сладкий",
+        "ar": "البصل الأحمر الحلو",
+        "es": "Cebollas Rojas Dulces",
+        "fr": "Oignons rouges doux",
+        "pt": "Cebola Vermelha Doce",
+        "de": "Süße rote Zwiebeln"
+    },
+    "שאלוט צרפתי מסורתי": {
+        "en": "Traditional French Shallots (250g)",
+        "ru": "Французский лук-шалот",
+        "ar": "الكراث الفرنسي التقليدي (250 جرام)",
+        "es": "Chalotes franceses tradicionales (250 g)",
+        "fr": "Échalotes françaises traditionnelles (250g)",
+        "pt": "Chalotas Francesas Tradicionais (250g)",
+        "de": "Traditionelle französische Schalotten (250g)"
+    },
+    "שום לבן אירופי": {
+        "en": "White Garlic (3 bulb net)",
+        "ru": "Чеснок белый (3 головки)",
+        "ar": "الثوم الأبيض (شبكة 3 بصيلات)",
+        "es": "Ajo Blanco (3 bulbos netos)",
+        "fr": "Ail blanc (filet de 3 bulbes)",
+        "pt": "Alho Branco (rede de 3 bulbos)",
+        "de": "Weißer Knoblauch (3 Zwiebeln netto)"
+    },
+    "כרשה טרייה (פוארו)": {
+        "en": "Fresh Leeks (Poireaux)",
+        "ru": "Лук-порей свежий",
+        "ar": "الكراث الطازج (بوارو)",
+        "es": "Puerros frescos (Poireaux)",
+        "fr": "Poireaux frais (Poireaux)",
+        "pt": "Alho-poró fresco (Poireaux)",
+        "de": "Frischer Lauch (Poireaux)"
+    },
+    "סלט עלים צרפתי (מאש / רוקט)": {
+        "en": "French Mixed Salad Greens (Mâche & Roquette)",
+        "ru": "Салатный микс маш и руккола",
+        "ar": "سلطة خضراء فرنسية مشكلة (ماتشي و روكيت)",
+        "es": "Ensalada Verde Francesa Mixta (Mâche Y Roquette)",
+        "fr": "Salade verte mélangée française (Mâche & Roquette)",
+        "pt": "Salada Mista Francesa de Verduras (Mâche & Roquette)",
+        "de": "Französischer gemischter Salat (Mâche & Roquette)"
+    },
+    "חסה בטביה / עגולה": {
+        "en": "Batavia Round Lettuce Head",
+        "ru": "Салат Батавия кочанный",
+        "ar": "رأس خس باتافيا مستدير",
+        "es": "Lechuga Redonda Batavia",
+        "fr": "Tête de laitue ronde Batavia",
+        "pt": "Cabeça redonda de alface Batávia",
+        "de": "Runder Batavia-Salatkopf"
+    },
+    "עלי תרד טריים (שקית)": {
+        "en": "Fresh Baby Spinach (Épinards frais)",
+        "ru": "Свежие листья шпината",
+        "ar": "السبانخ الطازجة (Épinards frais)",
+        "es": "Espinacas tiernas frescas (Épinards frais)",
+        "fr": "Épinards frais (Épinards frais)",
+        "pt": "Espinafre Fresco (Épinards frais)",
+        "de": "Frischer Babyspinat (Épinards frais)"
+    },
+    "ברוקולי אירופי": {
+        "en": "Fresh Broccoli (500g)",
+        "ru": "Брокколи свежая (500 г)",
+        "ar": "بروكلي طازج (500 جرام)",
+        "es": "Brócoli Fresco (500g)",
+        "fr": "Brocoli frais (500g)",
+        "pt": "Brócolis Fresco (500g)",
+        "de": "Frischer Brokkoli (500g)"
+    },
+    "כרובית לבנה": {
+        "en": "White Cauliflower Head",
+        "ru": "Цветная капуста кочан",
+        "ar": "رأس قرنبيط أبيض",
+        "es": "Cabeza de coliflor blanca",
+        "fr": "Tête de chou-fleur blanc",
+        "pt": "Cabeça de couve-flor branca",
+        "de": "Weißer Blumenkohlkopf"
+    },
+    "תפוחי אדמה שרלוט לבישול (2.5 ק\"ג)": {
+        "en": "Charlotte Potatoes for Steaming (2.5kg bag)",
+        "ru": "Картофель Шарлотт для варки (2.5 кг)",
+        "ar": "بطاطس شارلوت للتبخير (كيس 2.5 كجم)",
+        "es": "Patatas Charlotte para cocinar al vapor (bolsa de 2,5 kg)",
+        "fr": "Pommes de terre Charlotte à la vapeur (sac de 2,5 kg)",
+        "pt": "Batatas Charlotte para cozinhar no vapor (saco de 2,5kg)",
+        "de": "Charlotte-Kartoffeln zum Dämpfen (2,5-kg-Beutel)"
+    },
+    "פטריות שמפיניון פריזאיות": {
+        "en": "Champignons de Paris (Button Mushrooms 250g)",
+        "ru": "Шампиньоны парижские белые",
+        "ar": "شامبينيون دي باريس (فطر 250 جرام)",
+        "es": "Champiñones de París (Champiñones 250g)",
+        "fr": "Champignons de Paris (Champignons de Paris 250g)",
+        "pt": "Champignons de Paris (Cogumelos Botão 250g)",
+        "de": "Champignons de Paris (Champignons 250g)"
+    },
+    "אספרגוס ירוק אירופי": {
+        "en": "Fresh Green Asparagus Bunch",
+        "ru": "Спаржа зеленая свежая",
+        "ar": "حزمة من الهليون الأخضر الطازج",
+        "es": "Manojo de espárragos verdes frescos",
+        "fr": "Bouquet d'asperges vertes fraîches",
+        "pt": "Cacho de Espargos Verdes Frescos",
+        "de": "Frischer grüner Spargelbund"
+    },
+    "פלפלים צבעוניים (רשת 3 יח')": {
+        "en": "Tricolor Bell Peppers (3 pack net)",
+        "ru": "Сладкий перец светофор (3 шт)",
+        "ar": "فلفل بيل ثلاثي الألوان (3 عبوات صافية)",
+        "es": "Pimientos morrones tricolores (paquete de 3 netos)",
+        "fr": "Poivrons tricolores (paquet de 3 net)",
+        "pt": "Pimentões Tricolores (3 embalagens líquidas)",
+        "de": "Dreifarbige Paprika (3er-Pack netto)"
+    },
+    "שעועית ירוקה עדינה (אריקו וורט)": {
+        "en": "Fine French Green Beans (Haricots Verts)",
+        "ru": "Стручковая фасоль тонкая",
+        "ar": "الفاصوليا الخضراء الفرنسية الجميلة (الفاصوليا الخضراء)",
+        "es": "Judías verdes francesas finas (Haricots Verts)",
+        "fr": "Haricots Verts Fins Français (Haricots Verts)",
+        "pt": "Feijão verde francês fino (Haricots Verts)",
+        "de": "Feine französische grüne Bohnen (Haricots Verts)"
+    },
+    "בננות פיירטרייד": {
+        "en": "Fairtrade Cavendish Bananas",
+        "ru": "Бананы органические Фэйртрейд",
+        "ar": "التجارة العادلة كافنديش الموز",
+        "es": "Plátanos Cavendish de Comercio Justo",
+        "fr": "Bananes Cavendish du commerce équitable",
+        "pt": "Bananas Cavendish de Comércio Justo",
+        "de": "Fairtrade-Cavendish-Bananen"
+    },
+    "תפוחי גולדן דלישס צרפתיים": {
+        "en": "French Golden Delicious Apples (1kg)",
+        "ru": "Яблоки Голден Делишес (1 кг)",
+        "ar": "التفاح الذهبي الفرنسي اللذيذ (1 كجم)",
+        "es": "Manzanas Golden Delicious Francesas (1kg)",
+        "fr": "Pommes Golden Delicious françaises (1kg)",
+        "pt": "Maçãs Douradas Francesas Deliciosas (1kg)",
+        "de": "Französische Golden Delicious Äpfel (1kg)"
+    },
+    "תפוחי רויאל גאלה": {
+        "en": "Royal Gala Apples",
+        "ru": "Яблоки Роял Гала",
+        "ar": "التفاح الملكي",
+        "es": "Manzanas Gala Real",
+        "fr": "Pommes Royal Gala",
+        "pt": "Maçãs de Gala Real",
+        "de": "Königliche Gala-Äpfel"
+    },
+    "אגסי קונפרנס אירופיים": {
+        "en": "Conference Pears",
+        "ru": "Груши Конференция",
+        "ar": "مؤتمر الكمثرى",
+        "es": "Peras de conferencia",
+        "fr": "Poires Conférence",
+        "pt": "Peras de Conferência",
+        "de": "Konferenzbirnen"
+    },
+    "תפוזים לסחיטה (רשת 2 ק\"ג)": {
+        "en": "Juicing Oranges (2kg net)",
+        "ru": "Апельсины для сока (сетка 2 кг)",
+        "ar": "عصير برتقال (صافي 2 كجم)",
+        "es": "Exprimido de Naranjas (2kg netos)",
+        "fr": "Jus d'oranges (2 kg net)",
+        "pt": "Suco de laranja (2kg líquido)",
+        "de": "Orangen entsaften (2kg netto)"
+    },
+    "קלמנטינות מנדרינות מספרד": {
+        "en": "Spanish Clementines",
+        "ru": "Испанские мандарины клементины",
+        "ar": "كليمنتينا الاسبانية",
+        "es": "Clementinas españolas",
+        "fr": "Clémentines espagnoles",
+        "pt": "Clementinas espanholas",
+        "de": "Spanische Clementinen"
+    },
+    "לימונים צהובים (רשת 500 גרם)": {
+        "en": "Yellow Lemons (500g net)",
+        "ru": "Лимоны желтые (500 г)",
+        "ar": "ليمون أصفر (صافي 500 جرام)",
+        "es": "Limones Amarillos (500g netos)",
+        "fr": "Citrons jaunes (500g net)",
+        "pt": "Limões Amarelos (500g líquidos)",
+        "de": "Gelbe Zitronen (500g netto)"
+    },
+    "תות שדה אירופי (סלסילת 500 גרם)": {
+        "en": "Fresh Strawberries (500g punnet)",
+        "ru": "Клубника свежая (500 г)",
+        "ar": "الفراولة الطازجة (500 جرام)",
+        "es": "Fresas Frescas (canasta de 500g)",
+        "fr": "Fraises fraîches (barquette 500g)",
+        "pt": "Morangos Frescos (500g punnet)",
+        "de": "Frische Erdbeeren (500g Körbchen)"
+    },
+    "פטל אדום טרי (125 גרם)": {
+        "en": "Fresh Raspberries (125g)",
+        "ru": "Малина свежая (125 г)",
+        "ar": "توت بري طازج (125 جرام)",
+        "es": "Frambuesas Frescas (125g)",
+        "fr": "Framboises Fraîches (125g)",
+        "pt": "Framboesas Frescas (125g)",
+        "de": "Frische Himbeeren (125g)"
+    },
+    "אוכמניות טריות (125 גרם)": {
+        "en": "Fresh Blueberries (125g)",
+        "ru": "Голубика свежая (125 г)",
+        "ar": "توت أزرق طازج (125 جم)",
+        "es": "Arándanos frescos (125g)",
+        "fr": "Myrtilles fraîches (125g)",
+        "pt": "Mirtilos Frescos (125g)",
+        "de": "Frische Blaubeeren (125g)"
+    },
+    "ענבים לבנים איטלקיים (איטליה)": {
+        "en": "Italian White Grapes (Uva Italia)",
+        "ru": "Белый виноград Италия",
+        "ar": "العنب الأبيض الإيطالي (أوفا إيطاليا)",
+        "es": "Uvas blancas italianas (Uva Italia)",
+        "fr": "Raisins blancs italiens (Uva Italia)",
+        "pt": "Uvas Brancas Italianas (Uva Italia)",
+        "de": "Italienische weiße Trauben (Uva Italia)"
+    },
+    "מלון קנטלופ שרנטה צרפתי": {
+        "en": "Charentais French Melon",
+        "ru": "Французская дыня Шаранте",
+        "ar": "Charentais البطيخ الفرنسي",
+        "es": "Melón francés Charentais",
+        "fr": "Melon Charentais Français",
+        "pt": "Melão Francês Charentais",
+        "de": "Französische Charentais-Melone"
+    },
+    "אבטיח אירופי": {
+        "en": "Mini Seedless Watermelon",
+        "ru": "Арбуз мини бессемянный",
+        "ar": "بطيخ صغير بدون بذور",
+        "es": "Mini Sandía Sin Semillas",
+        "fr": "Mini pastèque sans pépins",
+        "pt": "Mini melancia sem sementes",
+        "de": "Mini-Wassermelone ohne Kerne"
+    },
+    "אפרסקים צהובים / נקטרינות": {
+        "en": "Yellow Peaches / Nectarines (1kg)",
+        "ru": "Персики / нектарины желтые (1 кг)",
+        "ar": "الخوخ الأصفر / النكتارين (1 كجم)",
+        "es": "Melocotones Amarillos / Nectarinas (1kg)",
+        "fr": "Pêches Jaunes / Nectarines (1kg)",
+        "pt": "Pêssegos/Nectarinas Amarelos (1kg)",
+        "de": "Gelbe Pfirsiche/Nektarinen (1kg)"
+    },
+    "קיווי ירוק מובחר": {
+        "en": "Green Kiwifruit (Tray of 4)",
+        "ru": "Киви зеленый (упаковка 4 шт)",
+        "ar": "فاكهة الكيوي الخضراء (صينية بها 4)",
+        "es": "Kiwi Verde (Bandeja de 4)",
+        "fr": "Kiwi Vert (Barquette de 4)",
+        "pt": "Kiwis Verdes (Bandeja com 4)",
+        "de": "Grüne Kiwis (4er-Tablett)"
+    },
+    "חלב חצי שמן טרי 1.5% (בקבוק 1 ליטר)": {
+        "en": "Fresh Semi-Skimmed Milk 1.5% (1L)",
+        "ru": "Молоко пастеризованное 1.5% (1 л)",
+        "ar": "حليب طازج نصف دسم 1.5% (1لتر)",
+        "es": "Leche Fresca Semidesnatada 1,5% (1L)",
+        "fr": "Lait Frais Demi-Écrémé 1,5% (1L)",
+        "pt": "Leite Fresco Meio Gordo 1,5% (1L)",
+        "de": "Frische teilentrahmte Milch 1,5 % (1L)"
+    },
+    "חלב מלא טרי 3.5% (בקבוק 1 ליטר)": {
+        "en": "Fresh Whole Milk 3.5% (1L)",
+        "ru": "Молоко цельное свежее 3.5% (1 л)",
+        "ar": "حليب طازج كامل الدسم 3.5% (1 لتر)",
+        "es": "Leche Entera Fresca 3,5% (1L)",
+        "fr": "Lait entier frais 3,5% (1L)",
+        "pt": "Leite Integral Fresco 3,5% (1L)",
+        "de": "Frische Vollmilch 3,5 % (1L)"
+    },
+    "חמאת נורמנדי חצי מלוחה (Beurre Demi-Sel 250g)": {
+        "en": "Normandy Salted Butter with Sea Salt Crystals",
+        "ru": "Сливочное масло полусоленое из Нормандии",
+        "ar": "زبدة نورماندي المملحة مع بلورات ملح البحر",
+        "es": "Mantequilla salada de Normandía con cristales de sal marina",
+        "fr": "Beurre Salé de Normandie aux Cristaux de Sel Marin",
+        "pt": "Manteiga Salgada da Normandia com Cristais de Sal Marinho",
+        "de": "Gesalzene Butter aus der Normandie mit Meersalzkristallen"
+    },
+    "חמאה צרפתית מתוקה רגילה (250 גרם)": {
+        "en": "French Sweet Cream Unsalted Butter (250g)",
+        "ru": "Сливочное масло несоленое классическое (250 г)",
+        "ar": "كريمة حلوة فرنسية زبدة غير مملحة (250 جرام)",
+        "es": "Crema Dulce Francesa Mantequilla Sin Sal (250g)",
+        "fr": "Crème Douce Française Beurre Non Salé (250g)",
+        "pt": "Manteiga sem sal com creme doce francês (250g)",
+        "de": "Französische süße Sahne, ungesalzene Butter (250 g)"
+    },
+    "קרם פרש צרפתי סמיך 30% (Crème Fraîche)": {
+        "en": "Thick French Crème Fraîche 30% (200g)",
+        "ru": "Французская густая крем-фреш (сметана 30%)",
+        "ar": "كريمة فرنسية سميكة 30% (200 جرام)",
+        "es": "Crème Fraîche francesa espesa 30% (200 g)",
+        "fr": "Crème fraîche française épaisse 30% (200g)",
+        "pt": "Creme Fraîche Francês Grosso 30% (200g)",
+        "de": "Dicke französische Crème Fraîche 30 % (200 g)"
+    },
+    "יוגורט טבעי אירופי (רביעייה)": {
+        "en": "Natural Plain Yogurt (Pack of 4)",
+        "ru": "Йогурт натуральный классический (4 шт)",
+        "ar": "زبادي طبيعي عادي (عبوة من 4 قطع)",
+        "es": "Yogur natural natural (paquete de 4)",
+        "fr": "Yaourt nature nature (paquet de 4)",
+        "pt": "Iogurte Natural Natural (Pacote de 4)",
+        "de": "Naturjoghurt Natur (4er Pack)"
+    },
+    "יוגורט יווני מקורי": {
+        "en": "Authentic Greek Yogurt Fage Total 5% (500g)",
+        "ru": "Греческий йогурт натуральный 5% Fage",
+        "ar": "زبادي يوناني أصلي إجمالي 5% (500 جرام)",
+        "es": "Auténtico yogur griego Fage Total 5% (500 g)",
+        "fr": "Authentique yaourt grec Fage Total 5% (500g)",
+        "pt": "Autêntico Iogurte Grego Fage Total 5% (500g)",
+        "de": "Authentischer griechischer Joghurt Fage Total 5 % (500 g)"
+    },
+    "גבינת קווארק גרמנית / פרומאז' בלאן": {
+        "en": "German Quark / French Fromage Blanc (500g)",
+        "ru": "Немецкий творог Кварк / Фромаж блан (500 г)",
+        "ar": "كوارك ألماني / فروماج بلانك فرنسي (500 جرام)",
+        "es": "Quark Alemán / Fromage Blanc Francés (500g)",
+        "fr": "Quark allemand / Fromage blanc français (500g)",
+        "pt": "Quark Alemão / Fromage Blanc Francês (500g)",
+        "de": "Deutscher Quark / Französischer Fromage Blanc (500g)"
+    },
+    "גבינת גאודה הולנדית פרוסה": {
+        "en": "Dutch Gouda Sliced Cheese (250g)",
+        "ru": "Сыр Гауда голландский нарезной",
+        "ar": "شرائح جبنة جودا الهولندية (250 جرام)",
+        "es": "Queso Gouda Holandés En Lonchas (250g)",
+        "fr": "Fromage Gouda hollandais en tranches (250g)",
+        "pt": "Queijo Gouda Holandês Fatiado (250g)",
+        "de": "Holländischer Gouda-Scheibenkäse (250g)"
+    },
+    "גבינת ברי דה מו צרפתית": {
+        "en": "French Brie de Meaux Cheese (200g wedge)",
+        "ru": "Сыр Бри де Мо французский",
+        "ar": "جبنة بري دي مو الفرنسية (200 جرام)",
+        "es": "Queso Brie de Meaux francés (cuñas de 200 g)",
+        "fr": "Fromage Brie de Meaux français (coin de 200g)",
+        "pt": "Queijo Brie de Meaux francês (fatia de 200g)",
+        "de": "Französischer Brie de Meaux-Käse (200 g Stück)"
+    },
+    "גבינת קממבר נורמנדי בקופסת עץ": {
+        "en": "Camembert de Normandie in Wooden Box (250g)",
+        "ru": "Сыр Камамбер из Нормандии в коробочке",
+        "ar": "كاممبرت دي نورماندي في صندوق خشبي (250 جرام)",
+        "es": "Camembert de Normandie en Caja de Madera (250g)",
+        "fr": "Camembert de Normandie en boîte en bois (250g)",
+        "pt": "Camembert de Normandie em Caixa de Madeira (250g)",
+        "de": "Camembert de Normandie in Holzkiste (250g)"
+    },
+    "גבינת פרמיג'אנו רג'אנו 24 חודשים": {
+        "en": "Parmigiano Reggiano PDO 24 Months Aged (200g)",
+        "ru": "Сыр Пармиджано Реджано выдержка 24 мес",
+        "ar": "بارميجيانو ريجيانو PDO لعمر 24 شهرًا (200 جرام)",
+        "es": "Parmigiano Reggiano DOP 24 Meses Criado (200g)",
+        "fr": "Parmigiano Reggiano AOP vieilli 24 mois (200g)",
+        "pt": "Parmigiano Reggiano DOP 24 Meses de Envelhecimento (200g)",
+        "de": "Parmigiano Reggiano DOP 24 Monate gereift (200g)"
+    },
+    "גבינת מוצרלה די בופאלה דופ (125 גרם)": {
+        "en": "Mozzarella di Bufala Campana PDO (125g)",
+        "ru": "Моцарелла из молока буйволицы Джи О Пи",
+        "ar": "موزاريلا دي بوفالا كامبانا PDO (125 جرام)",
+        "es": "Mozzarella de Bufala Campana DOP (125g)",
+        "fr": "Mozzarella di Bufala Campana AOP (125g)",
+        "pt": "Mussarela de Búfala Campana DOP (125g)",
+        "de": "Mozzarella di Bufala Campana g.U. (125g)"
+    },
+    "גבינת פטה יוונית מסורתית דופ": {
+        "en": "Authentic Greek Feta PDO (200g block)",
+        "ru": "Сыр Фета греческий традиционный (200 г)",
+        "ar": "جبنة فيتا اليونانية الأصلية ذات تسمية المنشأ المحمية (كتلة 200 جرام)",
+        "es": "Auténtico queso feta griego DOP (bloque de 200 g)",
+        "fr": "Feta grecque authentique AOP (bloc de 200g)",
+        "pt": "Feta Grego Autêntico DOP (bloco de 200g)",
+        "de": "Authentischer griechischer Feta g.U. (200g-Block)"
+    },
+    "גבינת אמנטל צרפתית מגוררת (200 גרם)": {
+        "en": "French Emmental Grated Cheese (200g)",
+        "ru": "Сыр Эмменталь французский тертый",
+        "ar": "جبنة إيمنتال فرنسية مبشورة (200 جرام)",
+        "es": "Queso Emmental Francés Rallado (200g)",
+        "fr": "Fromage râpé Emmental français (200g)",
+        "pt": "Queijo Ralado Emmental Francês (200g)",
+        "de": "Französischer Emmentaler geriebener Käse (200g)"
+    },
+    "גבינת מסקרפונה איטלקית לעוגות": {
+        "en": "Italian Mascarpone Cheese (250g)",
+        "ru": "Сыр Маскарпоне итальянский для тирамису",
+        "ar": "جبنة ماسكاربوني إيطالية (250 جرام)",
+        "es": "Queso Mascarpone Italiano (250g)",
+        "fr": "Fromage mascarpone italien (250g)",
+        "pt": "Queijo Mascarpone Italiano (250g)",
+        "de": "Italienischer Mascarpone-Käse (250g)"
+    },
+    "גבינת ריקוטה טרייה": {
+        "en": "Fresh Italian Ricotta Cheese (250g)",
+        "ru": "Свежий сыр Рикотта итальянский",
+        "ar": "جبنة ريكوتا إيطالية طازجة (250 جرام)",
+        "es": "Queso Ricotta Italiano Fresco (250g)",
+        "fr": "Fromage Ricotta italien frais (250g)",
+        "pt": "Queijo Ricota Italiano Fresco (250g)",
+        "de": "Frischer italienischer Ricotta-Käse (250g)"
+    },
+    "גבינת רוקפור כחולה": {
+        "en": "Roquefort Blue Cheese PDO (100g)",
+        "ru": "Сыр с благородной голубой плесенью Рокфор",
+        "ar": "جبنة ريكفورد الزرقاء ذات تسمية منشأ محمي (100 جرام)",
+        "es": "Queso Azul Roquefort DOP (100g)",
+        "fr": "Fromage Bleu Roquefort AOP (100g)",
+        "pt": "Queijo Roquefort Azul DOP (100g)",
+        "de": "Roquefort-Blauschimmelkäse g.U. (100g)"
+    },
+    "גבינת עיזים צרפתית (סנט מור)": {
+        "en": "French Goat Cheese Log (Chèvre 200g)",
+        "ru": "Французский козий сыр Шевр поленце",
+        "ar": "سجل جبن الماعز الفرنسي (شيفر 200 جرام)",
+        "es": "Tronco de Queso de Cabra Francés (Chèvre 200g)",
+        "fr": "Bûche de Chèvre Français (Chèvre 200g)",
+        "pt": "Queijo de Cabra Francês (Chèvre 200g)",
+        "de": "Französischer Ziegenkäse (Chèvre 200g)"
+    },
+    "ביצים אורגניות אירופיות (מארז 10)": {
+        "en": "Free-Range Organic Eggs (Pack of 10)",
+        "ru": "Яйца деревенские органические (10 шт)",
+        "ar": "بيض عضوي مجاني (عبوة من 10 بيضات)",
+        "es": "Huevos orgánicos de gallinas camperas (paquete de 10)",
+        "fr": "Oeufs biologiques fermiers (paquet de 10)",
+        "pt": "Ovos orgânicos caipiras (pacote com 10)",
+        "de": "Bio-Eier aus Freilandhaltung (10er Pack)"
+    },
+    "באגט צרפתי מסורתי טרי (טרדיסיון)": {
+        "en": "Fresh French Traditional Baguette",
+        "ru": "Багет французский традиционный свежий",
+        "ar": "الرغيف الفرنسي التقليدي الطازج",
+        "es": "Baguette tradicional francesa fresca",
+        "fr": "Baguette traditionnelle française fraîche",
+        "pt": "Baguete Tradicional Francesa Fresca",
+        "de": "Frisches traditionelles französisches Baguette"
+    },
+    "קרואסונים חמאה טריים (רביעייה)": {
+        "en": "All-Butter French Croissants (Pack of 4)",
+        "ru": "Французские сливочные круассаны (4 шт)",
+        "ar": "كرواسون فرنسي بالزبدة (عبوة من 4 قطع)",
+        "es": "Croissants franceses con mantequilla (paquete de 4)",
+        "fr": "Croissants français tout beurre (paquet de 4)",
+        "pt": "Croissants Franceses com Manteiga (Pacote de 4)",
+        "de": "Französische Vollbutter-Croissants (4er-Pack)"
+    },
+    "לחמניות שוקולד צרפתיות (פאן או שוקולה)": {
+        "en": "Pain au Chocolat (Pack of 4)",
+        "ru": "Булочки с шоколадом Пан-о-шоколя (4 шт)",
+        "ar": "بان أو شوكولاتة (عبوة من 4 قطع)",
+        "es": "Pain au Chocolat (Paquete de 4)",
+        "fr": "Pains au Chocolat (Paquet de 4)",
+        "pt": "Pain au Chocolat (pacote com 4)",
+        "de": "Pain au Chocolat (4er Pack)"
+    },
+    "לחם מחמצת כפרי צרפתי (פאן דה קמפאן)": {
+        "en": "French Country Sourdough Loaf (Pain de Campagne)",
+        "ru": "Хлеб деревенский на закваске (Франция)",
+        "ar": "رغيف العجين المخمر الفرنسي (Pain de Campagne)",
+        "es": "Pan de masa madre campestre francés (Pain de Campagne)",
+        "fr": "Pain de campagne au levain de campagne française (Pain de Campagne)",
+        "pt": "Pão de massa fermentada francesa (Pain de Campagne)",
+        "de": "Französisches Bauernsauerteigbrot (Pain de Campagne)"
+    },
+    "לחם צ'יאבטה איטלקי טרי": {
+        "en": "Artisanal Italian Ciabatta",
+        "ru": "Хлеб чиабатта итальянская хрустящая",
+        "ar": "سياباتا الإيطالية الحرفية",
+        "es": "Ciabatta italiana artesanal",
+        "fr": "Ciabatta italienne artisanale",
+        "pt": "Ciabatta Italiana Artesanal",
+        "de": "Handwerklich hergestelltes italienisches Ciabatta"
+    },
+    "לחם שיפון כהה גרמני (פומפרניקל)": {
+        "en": "German Pumpernickel Rye Bread (500g)",
+        "ru": "Немецкий ржаной хлеб Пумперникель",
+        "ar": "خبز الجاودار الألماني Pumpernickel (500 جرام)",
+        "es": "Pan alemán de centeno y centeno (500 g)",
+        "fr": "Pain de seigle allemand Pumpernickel (500g)",
+        "pt": "Pão de Centeio Alemão Pumpernickel (500g)",
+        "de": "Deutsches Pumpernickel-Roggenbrot (500g)"
+    },
+    "בריוש חמאה צרפתי פרוס": {
+        "en": "Sliced French Butter Brioche Loaf (500g)",
+        "ru": "Булочка бриошь сливочная нарезная",
+        "ar": "شرائح رغيف بريوش بالزبدة الفرنسية (500 جرام)",
+        "es": "Brioche de mantequilla francesa en rodajas (500 g)",
+        "fr": "Pain brioché au beurre français tranché (500g)",
+        "pt": "Pão de Brioche Fatiado com Manteiga Francesa (500g)",
+        "de": "Geschnittenes französisches Butter-Brioche-Laib (500 g)"
+    },
+    "בייגל פרצל גרמני מסורתי (ברצל)": {
+        "en": "German Salted Brezel / Pretzel",
+        "ru": "Немецкий соленый крендель Брецель",
+        "ar": "البريزل المملح الألماني / البريتزل",
+        "es": "Brezel / Pretzel salado alemán",
+        "fr": "Brezel salé allemand / Bretzel",
+        "pt": "Brezel / pretzel salgado alemão",
+        "de": "Deutsche gesalzene Brezel / Brezel"
+    },
+    "צנימים קלויים צרפתיים (ביסקוט)": {
+        "en": "Crispy French Toasts (Biscottes Lu 300g)",
+        "ru": "Французские сухарики Бискот Lu",
+        "ar": "الخبز المحمص الفرنسي المقرمش (بسكويت لو 300 جرام)",
+        "es": "Tostadas Francesas Crujientes (Biscottes Lu 300g)",
+        "fr": "Pain perdu croustillant (Biscottes Lu 300g)",
+        "pt": "Rabanadas Crocantes (Biscottes Lu 300g)",
+        "de": "Knusprige French Toasts (Biscottes Lu 300g)"
+    },
+    "פרושוטו די פארמה איטלקי (100 גרם)": {
+        "en": "Prosciutto di Parma PDO (100g sliced)",
+        "ru": "Ветчина Прошутто ди Парма нарезка",
+        "ar": "بروسسيوتو دي بارما PDO (100 جرام مقطعة)",
+        "es": "Prosciutto di Parma DOP (100 g en lonchas)",
+        "fr": "Prosciutto de Parme AOP (100g tranché)",
+        "pt": "Presunto di Parma DOP (100g fatiado)",
+        "de": "Prosciutto di Parma g.U. (100g in Scheiben geschnitten)"
+    },
+    "חמון סראנו ספרדי מובחר (100 גרם)": {
+        "en": "Spanish Jamón Serrano Gran Reserva (100g)",
+        "ru": "Хамон Серрано испанский гран резерва",
+        "ar": "إسباني جامون سيرانو جران ريسيرفا (100 جم)",
+        "es": "Jamón Serrano Español Gran Reserva (100g)",
+        "fr": "Jamón Serrano Espagnol Gran Reserva (100g)",
+        "pt": "Jamón Serrano Gran Reserva Espanhol (100g)",
+        "de": "Spanischer Jamón Serrano Gran Reserva (100g)"
+    },
+    "סלמי יבש צרפתי מסורתי (סוסיסון)": {
+        "en": "Traditional French Dry Cured Salami (Saucisson 200g)",
+        "ru": "Сыровяленая французская колбаса Сосиссон",
+        "ar": "سلامي فرنسي تقليدي مجفف (سوسيسون 200 جرام)",
+        "es": "Salami tradicional francés curado en seco (Saucisson 200 g)",
+        "fr": "Salami salé à sec traditionnel français (Saucisson 200g)",
+        "pt": "Salame Curado Seco Tradicional Francês (Saucisson 200g)",
+        "de": "Traditionelle französische Trockensalami (Saucisson 200g)"
+    },
+    "נקניק צ'וריסו ספרדי פרוס": {
+        "en": "Spanish Sliced Chorizo Mild/Spicy",
+        "ru": "Испанская колбаса Чоризо нарезка",
+        "ar": "شرائح إسبانية كوريزو معتدلة/حارة",
+        "es": "Chorizo Español en Rebanadas Suave/Picante",
+        "fr": "Chorizo espagnol tranché doux/épicé",
+        "pt": "Chouriço fatiado espanhol suave/picante",
+        "de": "Spanische geschnittene Chorizo, mild/würzig"
+    },
+    "רצועות בייקון לארדון מעושן צרפתי": {
+        "en": "French Smoked Lardons (2 x 100g)",
+        "ru": "Копченый бекон кусочками Лардон",
+        "ar": "لاردون فرنسي مدخن (2 × 100 جرام)",
+        "es": "Lardons Ahumados Franceses (2 x 100g)",
+        "fr": "Lardons Fumés Français (2 x 100g)",
+        "pt": "Lardons Defumados Franceses (2 x 100g)",
+        "de": "Französische geräucherte Speckwürfel (2 x 100 g)"
+    },
+    "נקניקיות בראטוורסט גרמניות": {
+        "en": "German Bratwurst Sausages (Pack of 4)",
+        "ru": "Немецкие колбаски Братвурст (4 шт)",
+        "ar": "نقانق براتورست الألمانية (عبوة من 4 قطع)",
+        "es": "Salchichas Bratwurst Alemanas (Paquete de 4)",
+        "fr": "Saucisses Bratwurst allemandes (paquet de 4)",
+        "pt": "Salsichas Bratwurst Alemãs (pacote com 4)",
+        "de": "Deutsche Bratwürste (4er Pack)"
+    },
+    "נקניק פסטרמה הודו / חזיר פריזאי": {
+        "en": "Parisian Cooked Ham with Herbs (Jambon Supérieur)",
+        "ru": "Ветчина вареная по-парижски деликатесная",
+        "ar": "لحم الخنزير الباريسي المطبوخ مع الأعشاب (جامبون سوبريور)",
+        "es": "Jamón Cocido Parisino con Hierbas (Jambon Supérieur)",
+        "fr": "Jambon Cuit Parisien Aux Herbes (Jambon Supérieur)",
+        "pt": "Presunto Cozido Parisiense com Ervas (Jambon Supérieur)",
+        "de": "Pariser Kochschinken mit Kräutern (Jambon Supérieur)"
+    },
+    "חזה עוף חופש צרפתי (קילוגרם)": {
+        "en": "French Free-Range Chicken Breast Fillets (1kg)",
+        "ru": "Филе куриной грудки фермерское (1 кг)",
+        "ar": "شرائح صدور دجاج فرنسية حرة المدى (1 كجم)",
+        "es": "Filetes de pechuga de pollo de corral francés (1kg)",
+        "fr": "Filets de poitrine de poulet fermier français (1kg)",
+        "pt": "Filetes de Peito de Frango Caipira Francês (1kg)",
+        "de": "Französische Hähnchenbrustfilets aus Freilandhaltung (1 kg)"
+    },
+    "בשר בקר טחון אירופי 15% שומן": {
+        "en": "Minced Beef 15% Fat (500g)",
+        "ru": "Фарш говяжий 15% жирности (500 г)",
+        "ar": "لحم بقري مفروم 15% دسم (500 جرام)",
+        "es": "Carne Picada De Vacuno 15% Grasa (500g)",
+        "fr": "Boeuf Haché 15% MG (500g)",
+        "pt": "Carne Picada 15% Gordura (500g)",
+        "de": "Hackfleisch vom Rind 15 % Fett (500 g)"
+    },
+    "פילה סלמון נורבגי טרי (2 נתחים)": {
+        "en": "Fresh Norwegian Salmon Fillets (2 portions 250g)",
+        "ru": "Филе норвежского лосося свежее (2 шт)",
+        "ar": "شرائح سمك السلمون النرويجي الطازج (قطعتين 250 جرام)",
+        "es": "Filetes De Salmón Noruego Fresco (2 raciones 250g)",
+        "fr": "Filets de saumon frais de Norvège (2 portions 250g)",
+        "pt": "Filetes de Salmão Norueguês Fresco (2 porções 250g)",
+        "de": "Frische norwegische Lachsfilets (2 Portionen à 250 g)"
+    },
+    "סלמון נורבגי מעושן מובחר (150 גרם)": {
+        "en": "Smoked Norwegian Salmon (150g sliced)",
+        "ru": "Лосось норвежский слабосоленый нарезка",
+        "ar": "سمك السلمون النرويجي المدخن (شرائح 150 جرام)",
+        "es": "Salmón Noruego Ahumado (150g en lonchas)",
+        "fr": "Saumon fumé de Norvège (150g tranché)",
+        "pt": "Salmão Norueguês Fumado (150g fatiado)",
+        "de": "Geräucherter norwegischer Lachs (150 g in Scheiben geschnitten)"
+    },
+    "פחית טונה ריו מרה בשמן זית (שלישייה)": {
+        "en": "Rio Mare Tuna in Olive Oil (3 x 80g cans)",
+        "ru": "Консервы тунец в оливковом масле Rio Mare",
+        "ar": "ريو ماري تونا في زيت الزيتون (3 علب 80 جرام)",
+        "es": "Atún Rio Mare en Aceite de Oliva (3 latas de 80g)",
+        "fr": "Thon Rio Mare à l'huile d'olive (3 boîtes de 80 g)",
+        "pt": "Atum Rio Mare em Azeite (3 latas de 80g)",
+        "de": "Rio Mare Thunfisch in Olivenöl (3 x 80g Dosen)"
+    },
+    "פסטה ספגטי ברילה מספר 5 (500 גרם)": {
+        "en": "Barilla Spaghetti No. 5 (500g box)",
+        "ru": "Паста спагетти Barilla №5 (500 г)",
+        "ar": "باريلا سباجيتي رقم 5 (علبة 500 جرام)",
+        "es": "Espaguetis Barilla N°5 (caja 500g)",
+        "fr": "Spaghettis Barilla N°5 (boîte 500g)",
+        "pt": "Espaguete Barilla nº 5 (caixa de 500g)",
+        "de": "Barilla Spaghetti Nr. 5 (500g-Box)"
+    },
+    "פסטה פנה ריגטה ברילה (500 גרם)": {
+        "en": "Barilla Penne Rigate (500g)",
+        "ru": "Паста Пенне Ригате Barilla (500 г)",
+        "ar": "باريلا بيني ريجاتي (500 جرام)",
+        "es": "Barilla Penne Rigate (500g)",
+        "fr": "Penne Rigate Barilla (500g)",
+        "pt": "Penne Rigate Barilla (500g)",
+        "de": "Barilla Penne Rigate (500g)"
+    },
+    "פסטה טליאטלה ביצים דה צ'קו": {
+        "en": "De Cecco Egg Tagliatelle (500g)",
+        "ru": "Итальянская яичная паста Тальятелле De Cecco",
+        "ar": "دي سيكو بيض تالياتيلي (500 جرام)",
+        "es": "Tagliatelle al huevo De Cecco (500g)",
+        "fr": "Tagliatelles aux œufs De Cecco (500g)",
+        "pt": "Tagliatelle de ovo De Cecco (500g)",
+        "de": "De Cecco Ei-Tagliatelle (500g)"
+    },
+    "ניוקי תפוחי אדמה איטלקי טרי (500 גרם)": {
+        "en": "Fresh Italian Potato Gnocchi (500g)",
+        "ru": "Итальянские картофельные ньокки (500 г)",
+        "ar": "جنوكتشي بطاطس إيطالية طازجة (500 جرام)",
+        "es": "Ñoquis De Patata Italianos Frescos (500g)",
+        "fr": "Gnocchis de pommes de terre fraîches à l'italienne (500g)",
+        "pt": "Nhoque de Batata Italiana Fresca (500g)",
+        "de": "Frische italienische Kartoffelgnocchi (500g)"
+    },
+    "אורז איטלקי לריזוטו ארבוריו (1 ק\"ג)": {
+        "en": "Arborio Risotto Rice (1kg vacuum pack)",
+        "ru": "Итальянский рис для ризотто Арборио (1 кг)",
+        "ar": "أرز أربوريو ريزوتو (علبة مفرغة من الهواء 1 كجم)",
+        "es": "Arroz Risotto Arborio (envase al vacío de 1kg)",
+        "fr": "Riz Arborio Risotto (1kg sous vide)",
+        "pt": "Arroz Risoto Arborio (embalagem a vácuo de 1kg)",
+        "de": "Arborio Risottoreis (1kg Vakuumverpackung)"
+    },
+    "רוטב עגבניות פאסאטה מוטי (700 גרם)": {
+        "en": "Mutti Tomato Passata Purée (700g glass bottle)",
+        "ru": "Протертые томаты Пассата Mutti (700 г)",
+        "ar": "موتي طماطم باساتا بيوريه (زجاجة 700 جرام)",
+        "es": "Puré Passata De Tomate Mutti (botella de vidrio de 700 g)",
+        "fr": "Purée de Tomates Passata Mutti (bouteille en verre de 700g)",
+        "pt": "Purê de Passata de Tomate Mutti (garrafa de vidro de 700g)",
+        "de": "Mutti Tomaten-Passata-Püree (700g Glasflasche)"
+    },
+    "עגבניות איטלקיות מרוסקות מוטי פולפה": {
+        "en": "Mutti Polpa Crushed Tomatoes (400g can)",
+        "ru": "Томаты измельченные Mutti Polpa (400 г)",
+        "ar": "موتي بولبا - طماطم مطحونة (علبة 400 جرام)",
+        "es": "Tomate Triturado Mutti Polpa (lata de 400g)",
+        "fr": "Tomates concassées Mutti Polpa (boîte de 400 g)",
+        "pt": "Tomates Triturados Mutti Polpa (lata de 400g)",
+        "de": "Mutti Polpa Zerkleinerte Tomaten (400g Dose)"
+    },
+    "רוטב פסטו ג'נובזה איטלקי מקורי ברילה": {
+        "en": "Barilla Pesto alla Genovese (190g jar)",
+        "ru": "Итальянский соус Песто Дженовезе Barilla",
+        "ar": "باريلا بيستو ألا جينوفيز (جرة 190 جرام)",
+        "es": "Pesto Barilla a la Genovesa (tarro de 190g)",
+        "fr": "Barilla Pesto alla Genovese (pot de 190g)",
+        "pt": "Barilla Pesto alla Genovese (frasco de 190g)",
+        "de": "Barilla Pesto alla Genovese (190g Glas)"
+    },
+    "שמן זית כתית מעולה אירופי (1 ליטר)": {
+        "en": "Extra Virgin Olive Oil Cold Pressed (1L bottle)",
+        "ru": "Оливковое масло первого холодного отжима (1 л)",
+        "ar": "زيت زيتون بكر ممتاز معصور على البارد (زجاجة 1 لتر)",
+        "es": "Aceite de Oliva Virgen Extra Prensado en Frío (Botella 1L)",
+        "fr": "Huile d'Olive Extra Vierge Pressée à Froid (Bouteille de 1L)",
+        "pt": "Azeite Extra Virgem Prensado a Frio (garrafa de 1L)",
+        "de": "Extra natives Olivenöl kaltgepresst (1L-Flasche)"
+    },
+    "חומץ בלסמי ממודנה איטליה דופ": {
+        "en": "Balsamic Vinegar of Modena PGI (250ml)",
+        "ru": "Бальзамический уксус из Модены IGP",
+        "ar": "خل بلسمي مودينا PGI (250 مل)",
+        "es": "Vinagre Balsámico de Módena IGP (250ml)",
+        "fr": "Vinaigre Balsamique de Modène IGP (250ml)",
+        "pt": "Vinagre Balsâmico de Modena IGP (250ml)",
+        "de": "Balsamico-Essig aus Modena g.g.A. (250 ml)"
+    },
+    "חרדל דיז'ון צרפתי מיי (בקבוק זכוכית)": {
+        "en": "Maille Traditional French Dijon Mustard (215g)",
+        "ru": "Французская дижонская горчица Maille",
+        "ar": "خردل ديجون فرنسي تقليدي من ماي (215 جم)",
+        "es": "Mostaza Dijon Francesa Tradicional Maille (215g)",
+        "fr": "Moutarde de Dijon traditionnelle française Maille (215g)",
+        "pt": "Mostarda Dijon Francesa Tradicional Maille (215g)",
+        "de": "Maille Traditioneller französischer Dijon-Senf (215g)"
+    },
+    "מיונז צרפתי עם חרדל דיז'ון": {
+        "en": "French Mayonnaise with Dijon Mustard (Amora)",
+        "ru": "Французский майонез с дижонской горчицей",
+        "ar": "مايونيز فرنسي مع خردل ديجون (أمورا)",
+        "es": "Mayonesa francesa con mostaza de Dijon (Amora)",
+        "fr": "Mayonnaise française à la moutarde de Dijon (Amora)",
+        "pt": "Maionese Francesa com Mostarda Dijon (Amora)",
+        "de": "Französische Mayonnaise mit Dijon-Senf (Amora)"
+    },
+    "קמח חיטה צרפתי T55 (1 ק\"ג)": {
+        "en": "French Wheat Flour T55 (1kg)",
+        "ru": "Французская пшеничная мука Т55 (1 кг)",
+        "ar": "دقيق القمح الفرنسي T55 (1 كجم)",
+        "es": "Harina de Trigo Francesa T55 (1kg)",
+        "fr": "Farine de blé français T55 (1kg)",
+        "pt": "Farinha de Trigo Francesa T55 (1kg)",
+        "de": "Französisches Weizenmehl T55 (1kg)"
+    },
+    "סוכר דק לבן אירופי (1 ק\"ג)": {
+        "en": "European White Granulated Sugar (1kg)",
+        "ru": "Сахар-песок белый европейский (1 кг)",
+        "ar": "سكر حبيبات أبيض أوروبي (1 كجم)",
+        "es": "Azúcar Granulada Blanca Europea (1kg)",
+        "fr": "Sucre Granulé Blanc Européen (1kg)",
+        "pt": "Açúcar Granulado Branco Europeu (1kg)",
+        "de": "Europäischer weißer Kristallzucker (1 kg)"
+    },
+    "מלח ים אטלנטי אפור מגרנד (סל דה גרנד)": {
+        "en": "Sel de Guérande Coarse Atlantic Grey Sea Salt",
+        "ru": "Морская серая соль из Геранда",
+        "ar": "Sel de Guérande ملح البحر الرمادي الأطلسي الخشن",
+        "es": "Sel de Guérande Sal Marina Gris Atlántica Gruesa",
+        "fr": "Sel de Guérande Gros Sel Gris de l'Atlantique",
+        "pt": "Sel de Guérande Sal marinho grosso cinza atlântico",
+        "de": "Sel de Guérande Grobes atlantisches graues Meersalz"
+    },
+    "שוקולד שוויצרי לינדט אקסלנס 70% מריר": {
+        "en": "Lindt Excellence 70% Dark Chocolate (100g)",
+        "ru": "Шоколад швейцарский горький Lindt 70%",
+        "ar": "ليندت اكسلانس شوكولاتة داكنة 70% (100 جرام)",
+        "es": "Lindt Excellence 70% Chocolate Negro (100g)",
+        "fr": "Chocolat noir Lindt Excellence 70 % (100 g)",
+        "pt": "Lindt Excellence 70% Chocolate Amargo (100g)",
+        "de": "Lindt Excellence 70 % dunkle Schokolade (100 g)"
+    },
+    "שוקולד חלב מילקה אלפיני (100 גרם)": {
+        "en": "Milka Alpine Milk Chocolate (100g)",
+        "ru": "Шоколад молочный Milka Альпийское молоко",
+        "ar": "ميلكا شوكولاتة حليب جبال الألب (100 جرام)",
+        "es": "Chocolate con leche alpino Milka (100g)",
+        "fr": "Chocolat au lait alpin Milka (100g)",
+        "pt": "Chocolate ao Leite Alpino Milka (100g)",
+        "de": "Milka Alpenmilch Schokolade (100g)"
+    },
+    "עוגיות ביסקוויט פטי בור לואי (Lu)": {
+        "en": "LU Véritable Petit Beurre Biscuits (200g)",
+        "ru": "Печенье сливочное LU Petit Beurre",
+        "ar": "بسكويت لو فيريتال بيتي بور (200 جرام)",
+        "es": "Galletas LU Véritable Petit Beurre (200g)",
+        "fr": "LU Véritable Petit Beurre Biscuits (200g)",
+        "pt": "Biscoitos LU Véritable Petit Beurre (200g)",
+        "de": "LU Véritable Petit Beurre Kekse (200g)"
+    },
+    "עוגיות ספקולוס לוטוס מקוריות": {
+        "en": "Lotus Biscoff Speculoos Original Biscuits",
+        "ru": "Печенье пряное карамельное Lotus Biscoff",
+        "ar": "لوتس بيسكوف سبيكولوس البسكويت الأصلي",
+        "es": "Galletas Originales Lotus Biscoff Speculoos",
+        "fr": "Lotus Biscoff Biscuits Spéculoos Originaux",
+        "pt": "Biscoitos Originais Lotus Biscoff Speculoos",
+        "de": "Lotus Biscoff Speculoos Original Kekse"
+    },
+    "וופלים הולנדיים במילוי קרמל (סטרופוואפל)": {
+        "en": "Dutch Stroopwafels Caramel Wafers (8 pack)",
+        "ru": "Голландские вафли с карамелью Стропвафли",
+        "ar": "رقائق كراميل ستروبوافيل هولندية (8 عبوات)",
+        "es": "Obleas de caramelo Stroopwafels holandesas (paquete de 8)",
+        "fr": "Gaufrettes au caramel hollandaises Stroopwafels (paquet de 8)",
+        "pt": "Wafers de caramelo Stroopwafels holandeses (pacote com 8)",
+        "de": "Niederländische Stroopwafels Karamellwaffeln (8er-Pack)"
+    },
+    "עוגיות מדלן צרפתיות בחמאה (בונה מאמא)": {
+        "en": "Bonne Maman All-Butter French Madeleines",
+        "ru": "Французские бисквиты Мадлен Bonne Maman",
+        "ar": "بون مامان جميع الزبدة الفرنسية مادلين",
+        "es": "Magdalenas francesas con mantequilla Bonne Maman",
+        "fr": "Madeleines françaises tout beurre Bonne Maman",
+        "pt": "Bonne Maman Madeleines Francesas com Manteiga",
+        "de": "Bonne Maman All-Butter Französische Madeleines"
+    },
+    "ריבת תות שדה צרפתית בונה מאמא (370 גרם)": {
+        "en": "Bonne Maman Strawberry Conserve (370g jar)",
+        "ru": "Французское варенье клубничное Bonne Maman",
+        "ar": "بوني مامان مربى الفراولة (جرة 370 جرام)",
+        "es": "Conserva de Fresa Bonne Maman (tarro de 370g)",
+        "fr": "Conserve de Fraises Bonne Maman (pot de 370g)",
+        "pt": "Conserva de Morango Bonne Maman (frasco de 370g)",
+        "de": "Bonne Maman Erdbeerkonserve (370g Glas)"
+    },
+    "ממרח שוקולד אגוזים נוטלה מקורי (400 גרם)": {
+        "en": "Nutella Hazelnut Cocoa Spread (400g)",
+        "ru": "Ореховая паста с какао Nutella (400 г)",
+        "ar": "نوتيلا كريمة البندق والكاكاو (400 جرام)",
+        "es": "Crema para untar de cacao y avellanas Nutella (400g)",
+        "fr": "Tartinade de cacao aux noisettes Nutella (400g)",
+        "pt": "Pasta de cacau com avelã Nutella (400g)",
+        "de": "Nutella Haselnuss-Kakao-Aufstrich (400g)"
+    },
+    "דגני מוזלי פריכים עם פירות ואגוזים": {
+        "en": "Jordan's Crunchy Muesli with Fruit & Nuts",
+        "ru": "Хрустящие мюсли с фруктами и орехами",
+        "ar": "الموسلي الأردني المقرمش بالفواكه والمكسرات",
+        "es": "Muesli crujiente de Jordan con frutas y nueces",
+        "fr": "Muesli croquant de Jordan aux fruits et noix",
+        "pt": "Muesli Crocante da Jordânia com Frutas e Nozes",
+        "de": "Jordans Knuspermüsli mit Früchten und Nüssen"
+    },
+    "פולי קפה אספרסו איטלקי לאוואצה (1 ק\"ג)": {
+        "en": "Lavazza Qualità Oro Espresso Beans (1kg)",
+        "ru": "Кофе в зернах Lavazza Qualità Oro (1 кг)",
+        "ar": "حبوب قهوة لافاتزا كواليتا أورو (1 كجم)",
+        "es": "Lavazza Qualità Oro Café en Grano (1kg)",
+        "fr": "Lavazza Qualità Oro Espresso en grains (1kg)",
+        "pt": "Lavazza Qualità Oro Espresso em Grãos (1kg)",
+        "de": "Lavazza Qualità Oro Espressobohnen (1kg)"
+    },
+    "קפה איטלקי טחון למוקה איללי (250 גרם)": {
+        "en": "Illy Classico Ground Moka Coffee (250g tin)",
+        "ru": "Кофе молотый итальянский Illy Классико",
+        "ar": "قهوة إيلي كلاسيكو موكا مطحونة (علبة 250 جرام)",
+        "es": "Café Moka Molido Illy Classico (lata de 250g)",
+        "fr": "Café Moka moulu Illy Classico (boîte de 250g)",
+        "pt": "Café moka moído Illy Classico (lata de 250g)",
+        "de": "Illy Classico Gemahlener Moka-Kaffee (250g Dose)"
+    },
+    "תה ארל גריי טווינינגס (מארז 50 שקיקים)": {
+        "en": "Twinings Earl Grey Tea Bags (50 count)",
+        "ru": "Чай черный с бергамотом Twinings Earl Grey",
+        "ar": "أكياس شاي تويننجز إيرل جراي (50 كيس)",
+        "es": "Bolsitas de té Twinings Earl Grey (50 unidades)",
+        "fr": "Sachets de thé Twinings Earl Grey (50 unités)",
+        "pt": "Saquinhos de chá Twinings Earl Grey (50 contagens)",
+        "de": "Twinings Earl Grey Teebeutel (50 Stück)"
+    },
+    "מים מינרליים מוגזים סן פלגרינו (1 ליטר)": {
+        "en": "San Pellegrino Sparkling Natural Mineral Water (1L)",
+        "ru": "Минеральная газированная вода Сан Пеллегрино (1 л)",
+        "ar": "مياه معدنية طبيعية فوارة سان بيليجرينو (1 لتر)",
+        "es": "Agua Mineral Natural con Gas San Pellegrino (1L)",
+        "fr": "Eau minérale naturelle pétillante San Pellegrino (1L)",
+        "pt": "Água mineral natural com gás San Pellegrino (1L)",
+        "de": "San Pellegrino prickelndes natürliches Mineralwasser (1L)"
+    },
+    "מים מינרליים טבעיים אוויאן צרפת (1.5 ליטר)": {
+        "en": "Evian Natural Mineral Water (1.5L bottle)",
+        "ru": "Природная минеральная вода Эвиан (1.5 л)",
+        "ar": "مياه ايفيان المعدنية الطبيعية (زجاجة 1.5 لتر)",
+        "es": "Agua Mineral Natural Evian (botella de 1,5 L)",
+        "fr": "Eau Minérale Naturelle d'Evian (bouteille de 1,5 L)",
+        "pt": "Água Mineral Natural Evian (garrafa de 1,5L)",
+        "de": "Evian natürliches Mineralwasser (1,5 l Flasche)"
+    },
+    "משקה הדרים מוגז אורנג'ינה (1.5 ליטר)": {
+        "en": "Orangina Sparkling Citrus Drink with Pulp (1.5L)",
+        "ru": "Цитрусовый газированный напиток Оранжина",
+        "ar": "أورانجينا مشروب الحمضيات الفوار مع اللب (1.5 لتر)",
+        "es": "Bebida Cítrica Espumosa de Orangina con Pulpa (1,5L)",
+        "fr": "Boisson pétillante aux agrumes avec pulpe Orangina (1,5 L)",
+        "pt": "Bebida cítrica espumante Orangina com polpa (1,5L)",
+        "de": "Orangina Sparkling Citrus Drink mit Fruchtfleisch (1,5 l)"
+    },
+    "מיץ תפוזים טבעי 100% ללא תוספת סוכר": {
+        "en": "Pure Orange Juice 100% Not From Concentrate (1L)",
+        "ru": "Апельсиновый сок прямого отжима 100% (1 л)",
+        "ar": "عصير برتقال نقي 100% بدون مركز (1 لتر)",
+        "es": "Zumo Puro de Naranja 100% No Concentrado (1L)",
+        "fr": "Jus d'Orange Pur 100% Non Concentré (1L)",
+        "pt": "Suco de Laranja Puro 100% Não Concentrado (1L)",
+        "de": "Reiner Orangensaft 100 % nicht aus Konzentrat (1 l)"
+    },
+    "נייר טואלט לוטוס קומפורט (12 גלילים)": {
+        "en": "Lotus Confort Quilted Toilet Paper (12 Rolls)",
+        "ru": "Туалетная бумага мягкая Lotus (12 рулонов)",
+        "ar": "ورق تواليت مبطن لوتس كونفورت (12 رول)",
+        "es": "Papel Higiénico Acolchado Lotus Confort (12 Rollos)",
+        "fr": "Papier toilette matelassé Lotus Confort (12 rouleaux)",
+        "pt": "Papel higiénico acolchoado Lotus Confort (12 rolos)",
+        "de": "Lotus Confort gestepptes Toilettenpapier (12 Rollen)"
+    },
+    "מגבות נייר למטבח סופלין (3 גלילי ענק)": {
+        "en": "Sopalin / Regina Kitchen Towels (3 Giant Rolls)",
+        "ru": "Бумажные полотенца кухонные Sopalin (3 шт)",
+        "ar": "مناشف المطبخ سوبالين / ريجينا (3 لفات عملاقة)",
+        "es": "Paños de Cocina Sopalin / Regina (3 Rollos Gigantes)",
+        "fr": "Torchons de cuisine Sopalin / Regina (3 rouleaux géants)",
+        "pt": "Toalhas de Cozinha Sopalin / Regina (3 Rolinhos Gigantes)",
+        "de": "Sopalin / Regina Küchentücher (3 Riesenrollen)"
+    },
+    "שקיות אשפה עם שרוך 30 ליטר (20 יח')": {
+        "en": "Drawstring Kitchen Trash Bags 30L (20 count)",
+        "ru": "Мешки для мусора с завязками 30 л (20 шт)",
+        "ar": "أكياس قمامة المطبخ برباط 30 لتر (20 قطعة)",
+        "es": "Bolsas de basura de cocina con cordón 30L (20 unidades)",
+        "fr": "Sacs poubelles de cuisine à cordon 30L (20 pièces)",
+        "pt": "Sacos de lixo de cozinha com cordão 30L (20 contagens)",
+        "de": "Küchenabfallbeutel mit Kordelzug, 30 l (20 Stück)"
+    },
+    "נייר אפייה טבעי נון-סטיק (20 מטר)": {
+        "en": "Non-Stick Baking Parchment Paper Roll (20m)",
+        "ru": "Бумага пергаментная для выпечки (20 м)",
+        "ar": "لفة ورق خبز غير لاصق (20 م)",
+        "es": "Rollo de papel vegetal antiadherente para hornear (20 m)",
+        "fr": "Rouleau de papier sulfurisé antiadhésif (20 m)",
+        "pt": "Rolo de Papel Pergaminho Antiaderente (20m)",
+        "de": "Antihaftbeschichtete Backpapierrolle (20 m)"
+    },
+    "ספוגיות ניקוי ספונטקס למטבח (שלישייה)": {
+        "en": "Spontex Heavy Duty Kitchen Sponges (3 pack)",
+        "ru": "Губки для мытья посуды Spontex (3 шт)",
+        "ar": "اسفنجات المطبخ سبونتكس شديدة التحمل (3 عبوات)",
+        "es": "Esponjas de cocina resistentes Spontex (paquete de 3)",
+        "fr": "Éponges de cuisine robustes Spontex (paquet de 3)",
+        "pt": "Esponjas de cozinha para serviços pesados Spontex (pacote com 3)",
+        "de": "Spontex Hochleistungs-Küchenschwämme (3er-Pack)"
+    },
+    "ניילון נצמד עמיד למיקרוגל (50 מטר)": {
+        "en": "Food Cling Film Wrap (50m)",
+        "ru": "Пищевая стретч-пленка рулон (50 м)",
+        "ar": "غلاف تغليف الطعام (50 م)",
+        "es": "Film transparente para alimentos (50 m)",
+        "fr": "Film alimentaire alimentaire (50 m)",
+        "pt": "Película aderente para alimentos (50m)",
+        "de": "Lebensmittel-Frischhaltefolie (50 m)"
+    },
+    "ג'ל כביסה מרוכז אריאל / פרסיל (40 כביסות)": {
+        "en": "Ariel All-in-1 Pods / Liquid Detergent (40 loads)",
+        "ru": "Гель для стирки белья Ariel Концентрат (40 стирок)",
+        "ar": "كبسولات اريال الكل في 1 / منظف سائل (40 حمولة)",
+        "es": "Ariel All-in-1 Pods/Detergente Líquido (40 cargas)",
+        "fr": "Dosettes/détergent liquide tout-en-un Ariel (40 brassées)",
+        "pt": "Ariel All-in-1 Pods / Detergente Líquido (40 cargas)",
+        "de": "Ariel All-in-1 Pods/Flüssigwaschmittel (40 Ladungen)"
+    },
+    "מרכך כביסה לנור ניחוח אביבי (50 כביסות)": {
+        "en": "Lenor Fabric Conditioner Spring Awakening (1.4L)",
+        "ru": "Кондиционер для белья Ленор Весеннее пробуждение",
+        "ar": "منعم الأقمشة لينور صحوة الربيع (1.4 لتر)",
+        "es": "Acondicionador de telas Lenor Spring Awakening (1,4 L)",
+        "fr": "Lenor Après-shampoing textile Réveil du printemps (1,4 L)",
+        "pt": "Condicionador de Tecido Lenor Spring Awakening (1,4L)",
+        "de": "Lenor Weichspüler Frühlingserwachen (1,4L)"
+    },
+    "נוזל כלים מרוכז פיירי אוריג'ינל (450 מ\"ל)": {
+        "en": "Fairy Original Dishwashing Liquid (450ml)",
+        "ru": "Концентрированное средство для посуды Fairy",
+        "ar": "سائل غسيل الأطباق فيري أوريجينال (450 مل)",
+        "es": "Líquido lavavajillas Fairy Original (450ml)",
+        "fr": "Liquide Vaisselle Original Fée (450ml)",
+        "pt": "Detergente para Louça Fairy Original (450ml)",
+        "de": "Fairy Original Geschirrspülmittel (450 ml)"
+    },
+    "טבליות למדיח פיניש אול אין וואן (35 יח')": {
+        "en": "Finish All in 1 Dishwasher Tablets (35 count)",
+        "ru": "Таблетки для посудомоечной машины Finish",
+        "ar": "أقراص فينيش الكل في 1 لغسالة الأطباق (35 قطعة)",
+        "es": "Pastillas para lavavajillas Finish todo en 1 (35 unidades)",
+        "fr": "Tablettes Finish All in 1 pour lave-vaisselle (35 unités)",
+        "pt": "Concluir pastilhas para máquina de lavar louça All in 1 (contagem de 35)",
+        "de": "Finish All in 1 Spülmaschinentabs (35 Stück)"
+    },
+    "קרם ניקוי רב-שימושי סיף (500 מ\"ל)": {
+        "en": "Cif Cream Cleaner with Micro-crystals (500ml)",
+        "ru": "Чистящий крем с микрокристаллами Cif",
+        "ar": "منظف كريم سيف بالبلورات الدقيقة (500 مل)",
+        "es": "Cif Crema Limpiadora con Microcristales (500ml)",
+        "fr": "Cif Crème Nettoyante aux Microcristaux (500ml)",
+        "pt": "Cif Creme Limpador com Microcristais (500ml)",
+        "de": "Cif Cremereiniger mit Mikrokristallen (500 ml)"
+    },
+    "נוזל לניקוי רצפות אייאקס (1 ליטר)": {
+        "en": "Ajax Floor and Surface Cleaner Floral (1L)",
+        "ru": "Средство для мытья полов и поверхностей Ajax",
+        "ar": "اجاكس منظف الارضيات والاسطح برائحة الزهور (1 لتر)",
+        "es": "Limpiador de suelos y superficies Ajax Floral (1L)",
+        "fr": "Nettoyant pour sols et surfaces Ajax Floral (1L)",
+        "pt": "Limpador de Pisos e Superfícies Ajax Floral (1L)",
+        "de": "Ajax Boden- und Oberflächenreiniger Floral (1L)"
+    },
+    "ספריי לחיטוי וניקוי חדר רחצה אנטי-קאלק": {
+        "en": "Antikal Limescale and Bathroom Spray (750ml)",
+        "ru": "Спрей от известкового налета и ржавчины Antikal",
+        "ar": "انتيكال الرواسب الكلسية وبخاخ الحمام (750 مل)",
+        "es": "Antikal Cal y Spray de Baño (750ml)",
+        "fr": "Spray anticalcaire et salle de bain Antikal (750 ml)",
+        "pt": "Spray Anticalcário e Casa de Banho Antikal (750ml)",
+        "de": "Antikal Kalk- und Badezimmerspray (750 ml)"
+    },
+    "משכך כאבים דוליפרן פרצטמול 1000 מ\"ג (8 טבליות)": {
+        "en": "Doliprane / Paracetamol 1000mg Tablets (8 ct)",
+        "ru": "Обезболивающее Долипран / Парацетамол 1000 мг",
+        "ar": "دوليبرين / باراسيتامول 1000 ملغ أقراص (8 قيراط)",
+        "es": "Doliprano/Paracetamol 1000 mg comprimidos (8 unidades)",
+        "fr": "Doliprane / Paracétamol 1000 mg Comprimés (8 ct)",
+        "pt": "Comprimidos de Doliprano / Paracetamol 1000 mg (8 ct)",
+        "de": "Doliprane / Paracetamol 1000 mg Tabletten (8 ct)"
+    },
+    "משכך כאבים נורופן איבופרופן 400 מ\"ג (12 יח')": {
+        "en": "Nurofen Ibuprofen 400mg Soft Gel Capsules (12 ct)",
+        "ru": "Обезболивающее Нурофен Ибупрофен 400 мг",
+        "ar": "نوروفين ايبوبروفين 400 ملغ كبسولات هلامية ناعمة (12 قيراط)",
+        "es": "Nurofen Ibuprofeno 400 mg cápsulas de gel suave (12 unidades)",
+        "fr": "Nurofen Ibuprofène 400 mg Gélules molles (12 unités)",
+        "pt": "Nurofen Ibuprofeno 400 mg cápsulas de gel macio (12 ct)",
+        "de": "Nurofen Ibuprofen 400 mg Softgelkapseln (12 ct)"
+    },
+    "משחת שיניים אלמקס להגנה מעששת (75 מ\"ל)": {
+        "en": "Elmex Anti-Caries Toothpaste (75ml)",
+        "ru": "Зубная паста Elmex Защита от кариеса",
+        "ar": "معجون أسنان إلمكس مضاد للتسوس (75 مل)",
+        "es": "Pasta de Dientes Anticaries Elmex (75ml)",
+        "fr": "Dentifrice Anti-Caries Elmex (75 ml)",
+        "pt": "Pasta de dentes anti-cárie Elmex (75ml)",
+        "de": "Elmex Anti-Karies Zahnpasta (75ml)"
+    },
+    "מברשת שיניים אורל-בי פרו-אקספרט": {
+        "en": "Oral-B Pro-Expert Manual Toothbrush",
+        "ru": "Зубная щетка Oral-B Про-Эксперт",
+        "ar": "فرشاة أسنان أورال-بي برو-إكسبرت اليدوية",
+        "es": "Cepillo de dientes manual Oral-B Pro-Expert",
+        "fr": "Brosse à dents manuelle Oral-B Pro-Expert",
+        "pt": "Escova de dentes manual Oral-B Pro-Expert",
+        "de": "Oral-B Pro-Expert Handzahnbürste"
+    },
+    "ג'ל רחצה לה פטיט מרסיי פריחת תפוז (250 מ\"ל)": {
+        "en": "Le Petit Marseillais Orange Blossom Shower Gel",
+        "ru": "Гель для душа Le Petit Marseillais Цветок апельсина",
+        "ar": "جل الاستحمام لو بيتي مارسيليا بزهر البرتقال",
+        "es": "Le Petit Marseillais Gel de Ducha Azahar",
+        "fr": "Le Petit Marseillais Gel Douche Fleur d'Oranger",
+        "pt": "Le Petit Marseillais Gel de banho Flor de Laranjeira",
+        "de": "Le Petit Marseillais Orangenblüten-Duschgel"
+    },
+    "קרם לחות קלאסי ניוואה בקופסה כחולה (150 מ\"ל)": {
+        "en": "Nivea Creme Iconic Blue Tin Moisturizer (150ml)",
+        "ru": "Универсальный увлажняющий крем Nivea синяя банка",
+        "ar": "مرطب نيفيا كريم أيكونيك بلو تين (150 مل)",
+        "es": "Crema hidratante Nivea Creme Iconic Blue Tin (150 ml)",
+        "fr": "Nivea Crème Hydratante Iconic Blue Tin (150 ml)",
+        "pt": "Hidratante Nivea Creme Iconic Blue Tin (150ml)",
+        "de": "Nivea Creme Iconic Blue Dose Feuchtigkeitscreme (150 ml)"
+    },
+    "דאודורנט רול-און ניוואה דריי קומפורט": {
+        "en": "Nivea Dry Comfort Roll-On Deodorant (50ml)",
+        "ru": "Дезодорант шариковый Nivea Dry Comfort",
+        "ar": "مزيل العرق نيفيا دراي كومفورت رول أون (50 مل)",
+        "es": "Desodorante Roll-On Nivea Dry Confort (50ml)",
+        "fr": "Déodorant roll-on Nivea Dry Comfort (50 ml)",
+        "pt": "Desodorante Roll-On Nivea Dry Comfort (50ml)",
+        "de": "Nivea Dry Comfort Roll-On Deodorant (50 ml)"
+    },
+    "שמפו עדין גרנייה אולטרה דו (300 מ\"ל)": {
+        "en": "Garnier Ultra Doux Nourishing Shampoo (300ml)",
+        "ru": "Шампунь питательный Garnier Ultra Doux (300 мл)",
+        "ar": "شامبو غارنييه ألترا دوكس المغذي (300 مل)",
+        "es": "Garnier Ultra Doux Champú Nutritivo (300ml)",
+        "fr": "Garnier Ultra Doux Shampooing Nourrissant (300 ml)",
+        "pt": "Shampoo Nutritivo Garnier Ultra Doux (300ml)",
+        "de": "Garnier Ultra Doux Nährendes Shampoo (300 ml)"
+    },
+    "פלסטרים עמידים במים הנזפלסט (20 יח')": {
+        "en": "Hansaplast Water Resistant Plasters (20 ct)",
+        "ru": "Пластыри водостойкие бактерицидные Hansaplast",
+        "ar": "لاصقات مقاومة للماء من هانسابلاست (20 قطعة)",
+        "es": "Apósitos resistentes al agua Hansaplast (20 unidades)",
+        "fr": "Pansements résistants à l'eau Hansaplast (20 ct)",
+        "pt": "Emplastros Resistentes à Água Hansaplast (20 ct)",
+        "de": "Hansaplast wasserfeste Pflaster (20 ct)"
+    },
+    "בוק צ'וי ירוק (בייבי)": {
+        "en": "Baby Bok Choy",
+        "ru": "Капуста бэби Бок-чой",
+        "ar": "بيبي بوك تشوي",
+        "es": "Choy bebé",
+        "fr": "Bébé Bok Choy",
+        "pt": "Bebê Bok Choy",
+        "de": "Baby Bok Choy"
+    },
+    "שורש ג'ינג'ר טרי": {
+        "en": "Fresh Ginger Root",
+        "ru": "Свежий корень имбиря",
+        "ar": "جذر الزنجبيل الطازج",
+        "es": "Raíz de jengibre fresco",
+        "fr": "Racine de Gingembre Fraîche",
+        "pt": "Raiz de Gengibre Fresco",
+        "de": "Frische Ingwerwurzel"
+    },
+    "נבטי שעועית מש טריים": {
+        "en": "Fresh Mung Bean Sprouts",
+        "ru": "Ростки фасоли мунг свежие",
+        "ar": "براعم الفاصوليا مونج الطازجة",
+        "es": "Brotes de frijol mungo frescos",
+        "fr": "Germes de haricot mungo frais",
+        "pt": "Brotos de feijão mungo frescos",
+        "de": "Frische Mungobohnensprossen"
+    },
+    "פטריות שיטאקי טריות": {
+        "en": "Fresh Shiitake Mushrooms (200g)",
+        "ru": "Свежие грибы шиитаке",
+        "ar": "فطر شيتاكي طازج (200 جرام)",
+        "es": "Setas Shiitake Frescas (200g)",
+        "fr": "Champignons Shiitake frais (200g)",
+        "pt": "Cogumelos Shiitake Frescos (200g)",
+        "de": "Frische Shiitake-Pilze (200g)"
+    },
+    "פטריות שיטאקי מיובשות": {
+        "en": "Dried Shiitake Mushrooms (100g)",
+        "ru": "Сушеные грибы шиитаке",
+        "ar": "فطر شيتاكي مجفف (100 جرام)",
+        "es": "Hongos Shiitake Secos (100g)",
+        "fr": "Champignons Shiitake séchés (100g)",
+        "pt": "Cogumelos Shiitake Secos (100g)",
+        "de": "Getrocknete Shiitake-Pilze (100g)"
+    },
+    "פטריות אנוקי לבנות (שקית)": {
+        "en": "Fresh Enoki Mushrooms (200g)",
+        "ru": "Грибы эноки свежие",
+        "ar": "فطر إينوكي طازج (200 جرام)",
+        "es": "Hongos Enoki Frescos (200g)",
+        "fr": "Champignons Enoki frais (200g)",
+        "pt": "Cogumelos Enoki Frescos (200g)",
+        "de": "Frische Enoki-Pilze (200g)"
+    },
+    "פטריות קינג אויסטר": {
+        "en": "King Oyster Mushrooms",
+        "ru": "Королевские вешенки (Еринги)",
+        "ar": "فطر الملك المحار",
+        "es": "Hongos Ostra Rey",
+        "fr": "Pleurotes royales",
+        "pt": "Cogumelos Rei Ostra",
+        "de": "Königliche Austernpilze"
+    },
+    "פטריית ענן שחורה (אוריקולריה)": {
+        "en": "Dried Black Fungus (Wood Ear)",
+        "ru": "Черный древесный гриб муэр",
+        "ar": "الفطر الأسود المجفف (أذن الخشب)",
+        "es": "Hongo negro seco (oreja de madera)",
+        "fr": "Champignon noir séché (épi de bois)",
+        "pt": "Fungo Preto Seco (Orelha de Madeira)",
+        "de": "Getrockneter schwarzer Pilz (Holzohr)"
+    },
+    "צנון יפני דייקון": {
+        "en": "Daikon Radish",
+        "ru": "Японская редька дайкон",
+        "ar": "فجل دايكون",
+        "es": "Rábano Daikon",
+        "fr": "Radis daïkon",
+        "pt": "Rabanete Daikon",
+        "de": "Daikon-Rettich"
+    },
+    "בצל ירוק אסיאתי (ארוך)": {
+        "en": "Asian Green Scallions Bunch",
+        "ru": "Лук зеленый длинный",
+        "ar": "باقة من البصل الأخضر الآسيوي",
+        "es": "Manojo de cebolletas verdes asiáticas",
+        "fr": "Bouquet d'oignons verts asiatiques",
+        "pt": "Cacho de cebolinha verde asiática",
+        "de": "Asiatischer Bund grüner Frühlingszwiebeln"
+    },
+    "עשב לימון (למון גראס)": {
+        "en": "Fresh Lemongrass Stalks",
+        "ru": "Свежий лемонграсс (лимонная трава)",
+        "ar": "سيقان عشبة الليمون الطازجة",
+        "es": "Tallos de limoncillo fresco",
+        "fr": "Tiges de citronnelle fraîche",
+        "pt": "Talos de capim-limão fresco",
+        "de": "Frische Zitronengrasstiele"
+    },
+    "בצלצלי שאלוט אסיאתיים": {
+        "en": "Asian Red Shallots",
+        "ru": "Азиатский красный лук-шалот",
+        "ar": "الكراث الأحمر الآسيوي",
+        "es": "Chalotes rojos asiáticos",
+        "fr": "Échalotes rouges asiatiques",
+        "pt": "Chalotas Vermelhas Asiáticas",
+        "de": "Asiatische rote Schalotten"
+    },
+    "שורש לוטוס פרוס": {
+        "en": "Lotus Root (Fresh or Frozen)",
+        "ru": "Корень лотоса",
+        "ar": "جذر اللوتس (طازج أو مجمد)",
+        "es": "Raíz de loto (fresca o congelada)",
+        "fr": "Racine de Lotus (fraîche ou congelée)",
+        "pt": "Raiz de Lótus (fresca ou congelada)",
+        "de": "Lotuswurzel (frisch oder gefroren)"
+    },
+    "פלפל צ'ילי אדום תאילנדי (בירדז איי)": {
+        "en": "Thai Bird's Eye Red Chilies",
+        "ru": "Острый тайский перец чили",
+        "ar": "عين الطير التايلاندية بالفلفل الأحمر الحار",
+        "es": "Chiles rojos ojo de pájaro tailandés",
+        "fr": "Piments rouges thaïlandais Bird's Eye",
+        "pt": "Pimentões Vermelhos Olho de Pássaro Tailandês",
+        "de": "Thailändische Bird's Eye Rote Chilis"
+    },
+    "במבוק משומר חתוך לרצועות": {
+        "en": "Bamboo Shoots Sliced (Can)",
+        "ru": "Побеги бамбука консервированные",
+        "ar": "براعم الخيزران المقطعة (علبة)",
+        "es": "Brotes de bambú en rodajas (lata)",
+        "fr": "Pousses de bambou tranchées (boîte)",
+        "pt": "Brotos de Bambu Fatiados (Lata)",
+        "de": "Bambussprossen geschnitten (Dose)"
+    },
+    "עלי חרדל כבושים (סואן צאי)": {
+        "en": "Pickled Mustard Greens (Suan Cai)",
+        "ru": "Маринованная китайская горчица",
+        "ar": "مخلل الخردل الأخضر (سوان كاي)",
+        "es": "Hojas de mostaza en escabeche (Suan Cai)",
+        "fr": "Feuilles de moutarde marinées (Suan Cai)",
+        "pt": "Mostarda em conserva (Suan Cai)",
+        "de": "Eingelegtes Senfgrün (Suan Cai)"
+    },
+    "עלי קפיר ליים טריים": {
+        "en": "Fresh Kaffir Lime Leaves",
+        "ru": "Листья кафрского лайма",
+        "ar": "أوراق الليمون الكافير الطازجة",
+        "es": "Hojas frescas de lima kaffir",
+        "fr": "Feuilles fraîches de combava",
+        "pt": "Folhas frescas de limão Kaffir",
+        "de": "Frische Kaffernlimettenblätter"
+    },
+    "בזיליקום תאילנדי (הוראפה)": {
+        "en": "Fresh Thai Sweet Basil",
+        "ru": "Свежий тайский базилик",
+        "ar": "الريحان الحلو التايلاندي الطازج",
+        "es": "Albahaca dulce tailandesa fresca",
+        "fr": "Basilic doux thaïlandais frais",
+        "pt": "Manjericão Doce Tailandês Fresco",
+        "de": "Frisches thailändisches süßes Basilikum"
+    },
+    "בטטה יפנית סגולה (מוראסאקי)": {
+        "en": "Japanese Purple Sweet Potato",
+        "ru": "Японский сладкий батат",
+        "ar": "البطاطا الحلوة الأرجوانية اليابانية",
+        "es": "Batata morada japonesa",
+        "fr": "Patate douce violette japonaise",
+        "pt": "Batata Doce Roxa Japonesa",
+        "de": "Japanische lila Süßkartoffel"
+    },
+    "טופו מוצק להקפצה (פירם)": {
+        "en": "Firm Tofu for Stir-Fry (House Foods)",
+        "ru": "Твердый тофу для жарки",
+        "ar": "التوفو الثابت للقلي السريع (أطعمة منزلية)",
+        "es": "Tofu firme para salteado (alimentos caseros)",
+        "fr": "Tofu ferme pour sauté (House Foods)",
+        "pt": "Tofu firme para refogar (comida caseira)",
+        "de": "Fester Tofu zum Anbraten (House Foods)"
+    },
+    "טופו משי עדין למרקים (סילקן)": {
+        "en": "Silken Soft Tofu (Morinaga)",
+        "ru": "Шелковый мягкий тофу для супа",
+        "ar": "توفو حريري ناعم (موريناجا)",
+        "es": "Tofu suave y sedoso (Morinaga)",
+        "fr": "Tofu doux et soyeux (Morinaga)",
+        "pt": "Tofu macio e sedoso (Morinaga)",
+        "de": "Seidenweicher Tofu (Morinaga)"
+    },
+    "טמפה פולי סויה מותססים": {
+        "en": "Organic Soy Tempeh",
+        "ru": "Ферментированный соевый темпе",
+        "ar": "تمبيه الصويا العضوي",
+        "es": "Tempeh de soja orgánico",
+        "fr": "Tempeh de soja biologique",
+        "pt": "Tempeh de soja orgânica",
+        "de": "Bio-Soja-Tempeh"
+    },
+    "פולי אדממה קפואים בתרמיל": {
+        "en": "Frozen Edamame in Pods (1 lb)",
+        "ru": "Бобы эдамаме в стручках замороженные",
+        "ar": "ادامامي مجمد في القرون (1 رطل)",
+        "es": "Edamame congelado en vainas (1 libra)",
+        "fr": "Edamame congelé en dosettes (1 lb)",
+        "pt": "Edamame congelado em vagens (1 lb)",
+        "de": "Gefrorenes Edamame in Schoten (1 Pfund)"
+    },
+    "פולי אדממה מקולפים קפואים": {
+        "en": "Frozen Shelled Edamame Beans",
+        "ru": "Очищенные бобы эдамаме замороженные",
+        "ar": "فاصوليا ادامامي مقشرة ومجمدة",
+        "es": "Frijoles Edamame Sin Cáscara Congelados",
+        "fr": "Haricots Edamame écossés surgelés",
+        "pt": "Feijão Edamame Congelado Com Casca",
+        "de": "Gefrorene geschälte Edamame-Bohnen"
+    },
+    "עור טופו יבש (יוּבּה / פוז'ו)": {
+        "en": "Dried Bean Curd Sticks (Yuba)",
+        "ru": "Сушеная соевая спаржа (фучжу)",
+        "ar": "أصابع خثارة الفاصوليا المجففة (يوبا)",
+        "es": "Palitos de cuajada de frijoles secos (Yuba)",
+        "fr": "Bâtonnets de tofu séchés (Yuba)",
+        "pt": "Palitos de coalhada de feijão seco (Yuba)",
+        "de": "Getrocknete Tofustangen (Yuba)"
+    },
+    "טופו מטוגן (אבוראגה)": {
+        "en": "Fried Tofu Pouches (Aburaage)",
+        "ru": "Жареный тофу абурааге",
+        "ar": "أكياس التوفو المقلية (أبورااج)",
+        "es": "Bolsas de tofu frito (Aburaage)",
+        "fr": "Sachets de tofu frit (Aburaage)",
+        "pt": "Bolsas de Tofu Frito (Aburaage)",
+        "de": "Frittierte Tofu-Beutel (Aburaage)"
+    },
+    "אורז יסמין תאילנדי מובחר (שק 5 ק\"ג)": {
+        "en": "Thai Jasmine Fragrant Rice (Royal Umbrella 5kg)",
+        "ru": "Тайский рис Жасмин (5 кг)",
+        "ar": "أرز الياسمين التايلاندي (رويال أمبريلا 5 كجم)",
+        "es": "Arroz aromático de jazmín tailandés (Royal Umbrella 5 kg)",
+        "fr": "Riz parfumé au jasmin thaïlandais (Royal Umbrella 5kg)",
+        "pt": "Arroz Perfumado de Jasmim Tailandês (Royal Umbrella 5kg)",
+        "de": "Thailändischer Jasmin-Duftreis (Royal Umbrella 5 kg)"
+    },
+    "אורז עגול לסושי (קושיהיקרי 2 ק\"ג)": {
+        "en": "Japanese Sushi Rice (Koshihikari 2kg)",
+        "ru": "Японский рис для суши Косихикари (2 кг)",
+        "ar": "أرز السوشي الياباني (كوشيهيكاري 2 كجم)",
+        "es": "Arroz Japonés para Sushi (Koshihikari 2kg)",
+        "fr": "Riz à sushi japonais (Koshihikari 2kg)",
+        "pt": "Arroz de Sushi Japonês (Koshihikari 2kg)",
+        "de": "Japanischer Sushi-Reis (Koshihikari 2kg)"
+    },
+    "אורז דביק תאילנדי (סטיקי רייס)": {
+        "en": "Thai Sweet Glutinous Sticky Rice (1kg)",
+        "ru": "Тайский клейкий рис (1 кг)",
+        "ar": "أرز تايلاندي دبق حلو (1 كجم)",
+        "es": "Arroz pegajoso glutinoso dulce tailandés (1kg)",
+        "fr": "Riz collant gluant sucré thaï (1kg)",
+        "pt": "Arroz pegajoso glutinoso doce tailandês (1kg)",
+        "de": "Thailändischer süßer Klebreis (1 kg)"
+    },
+    "אטריות ראמן טריות יפניות": {
+        "en": "Fresh Japanese Ramen Noodles (Pack of 3)",
+        "ru": "Свежая лапша для рамена (3 порции)",
+        "ar": "نودلز رامين يابانية طازجة (عبوة من 3 قطع)",
+        "es": "Fideos ramen japoneses frescos (paquete de 3)",
+        "fr": "Nouilles ramen japonaises fraîches (paquet de 3)",
+        "pt": "Macarrão Ramen Japonês Fresco (pacote com 3)",
+        "de": "Frische japanische Ramen-Nudeln (3er-Pack)"
+    },
+    "אטריות אודון עבות טריות (ואקום)": {
+        "en": "Sanuki Thick Udon Noodles (Pack of 3)",
+        "ru": "Толстая японская лапша удон (3 порции)",
+        "ar": "نودلز سانوكي أودون السميكة (عبوة من 3 قطع)",
+        "es": "Fideos Udon gruesos Sanuki (paquete de 3)",
+        "fr": "Nouilles Udon épaisses Sanuki (paquet de 3)",
+        "pt": "Macarrão Udon Grosso Sanuki (pacote com 3)",
+        "de": "Sanuki Dicke Udon-Nudeln (3er Pack)"
+    },
+    "אטריות סובה כוסמת יפניות": {
+        "en": "Japanese Buckwheat Soba Noodles (300g)",
+        "ru": "Японская гречневая лапша соба (300 г)",
+        "ar": "نودلز سوبا الحنطة السوداء اليابانية (300 جرام)",
+        "es": "Fideos soba japoneses de trigo sarraceno (300 g)",
+        "fr": "Nouilles Soba japonaises au sarrasin (300g)",
+        "pt": "Macarrão Japonês de Trigo Sarraceno Soba (300g)",
+        "de": "Japanische Buchweizen-Soba-Nudeln (300g)"
+    },
+    "אטריות אורז שטוחות לפד תאי": {
+        "en": "Rice Noodles for Pad Thai (Medium 400g)",
+        "ru": "Рисовая лапша для Пад Тай (400 г)",
+        "ar": "نودلز الأرز للباد تاي (متوسطة 400 جرام)",
+        "es": "Fideos de Arroz para Pad Thai (Mediano 400g)",
+        "fr": "Nouilles de riz pour Pad Thai (Moyennes 400g)",
+        "pt": "Macarrão de Arroz para Pad Thai (Médio 400g)",
+        "de": "Reisnudeln für Pad Thai (Mittel 400g)"
+    },
+    "אטריות שעועית שקופות (ורמיצ'לי)": {
+        "en": "Glass Noodles / Bean Thread Vermicelli (250g)",
+        "ru": "Стеклянная лапша фунчоза (250 г)",
+        "ar": "نودلز زجاجية / شعيرية خيط الفول (250 جم)",
+        "es": "Fideos de Vidrio / Fideos de Hilo de Frijol (250g)",
+        "fr": "Nouilles en Verre / Vermicelles de Fil de Haricots (250g)",
+        "pt": "Macarrão de Vidro / Vermicelli de Fio de Feijão (250g)",
+        "de": "Glasnudeln / Bohnenfadennudeln (250g)"
+    },
+    "דפי אורז וייטנאמיים לספרינג רול": {
+        "en": "Vietnamese Rice Paper Spring Roll Wrappers",
+        "ru": "Вьетнамская рисовая бумага для спринг-роллов",
+        "ar": "أغلفة سبرينغ رول من ورق الأرز الفيتنامي",
+        "es": "Envoltorios de rollitos de primavera de papel de arroz vietnamita",
+        "fr": "Emballages de rouleaux de printemps vietnamiens en papier de riz",
+        "pt": "Invólucros de rolinho primavera de papel de arroz vietnamita",
+        "de": "Vietnamesische Reispapier-Frühlingsrollenverpackungen"
+    },
+    "דפי בצק לוונטון וגיוזה (קפואים)": {
+        "en": "Gyoza & Wonton Pastry Wrappers",
+        "ru": "Круглое тесто для пельменей гедза и вонтонов",
+        "ar": "أغلفة معجنات الجيوزا والونتون",
+        "es": "Envoltorios de hojaldre para gyoza y wonton",
+        "fr": "Emballages de pâtisserie pour gyoza et wonton",
+        "pt": "Invólucros de pastelaria Gyoza e Wonton",
+        "de": "Gyoza- und Wonton-Gebäckverpackungen"
+    },
+    "אטריות אינסטנט שין ראמיון חריפות": {
+        "en": "Nongshim Shin Ramyun Spicy Noodles (5 pack)",
+        "ru": "Острая корейская лапша Шин Рамён (5 пачек)",
+        "ar": "نونجشيم شين راميون نودلز حارة (5 عبوات)",
+        "es": "Fideos picantes Nongshim Shin Ramyun (paquete de 5)",
+        "fr": "Nouilles épicées Nongshim Shin Ramyun (paquet de 5)",
+        "pt": "Macarrão Picante Nongshim Shin Ramyun (pacote com 5)",
+        "de": "Nongshim Shin Ramyun würzige Nudeln (5er-Pack)"
+    },
+    "רוטב סויה מותסס טבעי קיקומן (1 ליטר)": {
+        "en": "Kikkoman Naturally Brewed Soy Sauce (1L)",
+        "ru": "Соевый соус натурального брожения Kikkoman (1 л)",
+        "ar": "صلصة الصويا المخمرة بشكل طبيعي كيكومان (1 لتر)",
+        "es": "Salsa de Soja Naturalmente Elaborada Kikkoman (1L)",
+        "fr": "Sauce soja naturellement fermentée Kikkoman (1L)",
+        "pt": "Molho de Soja de Fermentação Natural Kikkoman (1L)",
+        "de": "Kikkoman natürlich gebraute Sojasauce (1L)"
+    },
+    "רוטב סויה כהה סיני לי קום קי": {
+        "en": "Lee Kum Kee Premium Dark Soy Sauce (500ml)",
+        "ru": "Темный соевый соус Lee Kum Kee",
+        "ar": "صلصة الصويا الداكنة الفاخرة لي كوم كي (500 مل)",
+        "es": "Salsa de Soja Oscura Lee Kum Kee Premium (500ml)",
+        "fr": "Sauce soja noire premium Lee Kum Kee (500 ml)",
+        "pt": "Molho de soja escuro Lee Kum Kee Premium (500ml)",
+        "de": "Lee Kum Kee Premium dunkle Sojasauce (500 ml)"
+    },
+    "רוטב צדפות פרימיום לי קום קי": {
+        "en": "Lee Kum Kee Premium Oyster Sauce",
+        "ru": "Устричный соус премиум Lee Kum Kee",
+        "ar": "لي كوم كي بريميوم صلصة المحار",
+        "es": "Salsa de ostras premium Lee Kum Kee",
+        "fr": "Sauce aux huîtres de qualité supérieure Lee Kum Kee",
+        "pt": "Molho de Ostra Premium Lee Kum Kee",
+        "de": "Lee Kum Kee Premium Austernsauce"
+    },
+    "שמן שומשום קלוי טהור קאדויה": {
+        "en": "Kadoya Pure Toasted Sesame Oil (327ml)",
+        "ru": "Чистое жареное кунжутное масло Kadoya",
+        "ar": "كادويا زيت السمسم المحمص النقي (327 مل)",
+        "es": "Aceite puro de sésamo tostado Kadoya (327ml)",
+        "fr": "Huile de sésame grillée pure Kadoya (327 ml)",
+        "pt": "Óleo de gergelim torrado puro Kadoya (327ml)",
+        "de": "Kadoya Reines geröstetes Sesamöl (327 ml)"
+    },
+    "רוטב סריראצ'ה מקורי של הוי פונג": {
+        "en": "Huy Fong Sriracha Hot Chili Sauce (17 oz)",
+        "ru": "Острый соус Шрирача Huy Fong с петухом",
+        "ar": "هوي فونغ سريراتشا صلصة الفلفل الحار الحار (17 أوقية)",
+        "es": "Salsa de chile picante Huy Fong Sriracha (17 oz)",
+        "fr": "Sauce chili piquante Huy Fong Sriracha (17 oz)",
+        "pt": "Molho de pimenta picante Huy Fong Sriracha (17 onças)",
+        "de": "Huy Fong Sriracha Hot Chili Sauce (17 oz)"
+    },
+    "שמן צ'ילי פריך לאו גאן מא (Chili Crisp)": {
+        "en": "Lao Gan Ma Spicy Chili Crisp in Oil (210g)",
+        "ru": "Острый соус с хрустящим перцем чили Лао Ган Ма",
+        "ar": "لاو غان ما فلفل حار مقرمش بالزيت (210 جم)",
+        "es": "Chile Crujiente Picante En Aceite Lao Gan Ma (210g)",
+        "fr": "Lao Gan Ma Chili épicé croustillant à l'huile (210 g)",
+        "pt": "Pimentão picante Lao Gan Ma crocante em óleo (210g)",
+        "de": "Lao Gan Ma Spicy Chili Crisp in Öl (210g)"
+    },
+    "משחת מיסו יפנית לבנה (שירו מיסו)": {
+        "en": "Hikari White Miso Paste (500g)",
+        "ru": "Светлая мисо-паста Широ Мисо",
+        "ar": "معجون ميسو هيكاري الأبيض (500 جرام)",
+        "es": "Pasta de miso blanco Hikari (500 g)",
+        "fr": "Pâte de miso blanc Hikari (500g)",
+        "pt": "Pasta de missô branco Hikari (500g)",
+        "de": "Hikari Weiße Misopaste (500g)"
+    },
+    "משחת מיסו אדומה עמוקה (אקה מיסו)": {
+        "en": "Japanese Red Miso Paste (500g)",
+        "ru": "Темная красная паста Ака Мисо",
+        "ar": "معجون ميسو أحمر ياباني (500 جرام)",
+        "es": "Pasta de miso rojo japonés (500 g)",
+        "fr": "Pâte Miso Rouge Japonaise (500g)",
+        "pt": "Pasta de Miso Vermelho Japonês (500g)",
+        "de": "Japanische rote Miso-Paste (500 g)"
+    },
+    "רוטב דגים תאילנדי פיש סוס (Tiparos)": {
+        "en": "Tiparos Thai Fish Sauce (700ml)",
+        "ru": "Тайский рыбный соус Tiparos",
+        "ar": "صلصة السمك التايلاندية تيبارو (700 مل)",
+        "es": "Salsa de Pescado Tailandesa Tiparos (700ml)",
+        "fr": "Sauce de poisson thaïlandaise Tiparos (700 ml)",
+        "pt": "Molho de Peixe Tailandês Tiparos (700ml)",
+        "de": "Tiparos Thai-Fischsauce (700 ml)"
+    },
+    "יין בישול אורז יפני מירין (מירין מתוק)": {
+        "en": "Kikkoman Kotterin Mirin Sweet Cooking Sauce",
+        "ru": "Сладкий японский соус Мирин для глазури",
+        "ar": "كيكومان كوتيرين ميرين صلصة الطبخ الحلوة",
+        "es": "Salsa dulce para cocinar Kikkoman Kotterin Mirin",
+        "fr": "Sauce de cuisson sucrée Kikkoman Kotterin Mirin",
+        "pt": "Molho doce para cozinhar Kikkoman Kotterin Mirin",
+        "de": "Kikkoman Kotterin Mirin süße Kochsauce"
+    },
+    "חומץ אורז יפני לסושי": {
+        "en": "Mizkan Seasoned Rice Vinegar for Sushi",
+        "ru": "Рисовый уксус для суши Mizkan",
+        "ar": "خل الأرز المتبل من مزكان للسوشي",
+        "es": "Vinagre de arroz sazonado Mizkan para sushi",
+        "fr": "Vinaigre de riz assaisonné Mizkan pour sushi",
+        "pt": "Vinagre de arroz temperado Mizkan para sushi",
+        "de": "Mizkan Gewürzter Reisessig für Sushi"
+    },
+    "רוטב הוייסין סיני מתקתק": {
+        "en": "Lee Kum Kee Hoisin Sauce",
+        "ru": "Китайский соус Хойсин Lee Kum Kee",
+        "ar": "صلصة لي كوم كي هويسن",
+        "es": "Salsa Hoisin Lee Kum Kee",
+        "fr": "Sauce Hoisin Lee Kum Kee",
+        "pt": "Molho Lee Kum Kee Hoisin",
+        "de": "Lee Kum Kee Hoisinsauce"
+    },
+    "משחת קארי ירוק תאילנדית מיי פלוי": {
+        "en": "Mae Ploy Thai Green Curry Paste (400g)",
+        "ru": "Паста карри зеленая Mae Ploy (400 г)",
+        "ar": "معجون الكاري الأخضر التايلاندي ماي بلوي (400 جرام)",
+        "es": "Pasta de curry verde tailandés Mae Ploy (400 g)",
+        "fr": "Pâte de curry vert thaï Mae Ploy (400g)",
+        "pt": "Pasta de curry verde tailandês Mae Ploy (400g)",
+        "de": "Mae Ploy Thai Grüne Currypaste (400g)"
+    },
+    "משחת קארי אדום תאילנדית מיי פלוי": {
+        "en": "Mae Ploy Thai Red Curry Paste (400g)",
+        "ru": "Паста карри красная Mae Ploy (400 г)",
+        "ar": "معجون الكاري الأحمر التايلاندي ماي بلوي (400 جرام)",
+        "es": "Pasta de curry rojo tailandés Mae Ploy (400 g)",
+        "fr": "Pâte de curry rouge thaï Mae Ploy (400g)",
+        "pt": "Pasta de curry vermelho tailandês Mae Ploy (400g)",
+        "de": "Mae Ploy Thai-Rot-Curry-Paste (400g)"
+    },
+    "משחת קוריאנית גוצ'וג'אנג (צ'ילי מותסס)": {
+        "en": "CJ Haechandle Gochujang Chili Paste (500g)",
+        "ru": "Корейская острая паста Кочудян (500 г)",
+        "ar": "معجون الفلفل الحار سي جي هيشاندل جوتشوجانج (500 جم)",
+        "es": "Pasta de chile CJ Haechandle Gochujang (500 g)",
+        "fr": "Pâte de chili CJ Haechandle Gochujang (500g)",
+        "pt": "Pasta de pimenta CJ Haechandle Gochujang (500g)",
+        "de": "CJ Haechandle Gochujang Chilipaste (500g)"
+    },
+    "חלב קוקוס תאילנדי שמן צ'אוקו": {
+        "en": "Chaokoh 100% Coconut Milk (400ml can)",
+        "ru": "Кокосовое молоко натуральное Chaokoh (400 мл)",
+        "ar": "شاوكوه حليب جوز الهند 100% (علبة 400 مل)",
+        "es": "Chaokoh 100% Leche de Coco (lata de 400ml)",
+        "fr": "Chaokoh 100% lait de coco (boîte de 400 ml)",
+        "pt": "Chaokoh 100% Leite de Coco (lata de 400ml)",
+        "de": "Chaokoh 100 % Kokosmilch (400 ml Dose)"
+    },
+    "קרם קוקוס סמיך ארוי-די": {
+        "en": "Aroy-D Rich Coconut Cream (400ml)",
+        "ru": "Кокосовые сливки густые Aroy-D",
+        "ar": "كريم أروي-د بجوز الهند الغني (400 مل)",
+        "es": "Crema Rica de Coco Aroy-D (400ml)",
+        "fr": "Crème riche à la noix de coco Aroy-D (400 ml)",
+        "pt": "Creme de Coco Rico Aroy-D (400ml)",
+        "de": "Aroy-D Reichhaltige Kokoscreme (400 ml)"
+    },
+    "אבקת דאשי בטעם דג בוניטו": {
+        "en": "Ajinomoto Hondashi Bonito Soup Stock",
+        "ru": "Японский рыбный бульон Хондаши",
+        "ar": "مرق حساء أجينوموتو هونداشي بونيتو",
+        "es": "Caldo de sopa de bonito Ajinomoto Hondashi",
+        "fr": "Bouillon de soupe à la bonite Ajinomoto Hondashi",
+        "pt": "Caldo de Sopa Ajinomoto Hondashi Bonito",
+        "de": "Ajinomoto Hondashi Bonito-Suppenbrühe"
+    },
+    "פירורי לחם יפניים פנקו": {
+        "en": "Kikkoman Japanese Panko Bread Crumbs (227g)",
+        "ru": "Японские панировочные сухари Панко Kikkoman",
+        "ar": "كيكومان، فتات خبز البانكو الياباني (227 جم)",
+        "es": "Pan rallado Panko japonés Kikkoman (227 g)",
+        "fr": "Chapelure Panko japonaise Kikkoman (227g)",
+        "pt": "Pão ralado japonês Panko Kikkoman (227g)",
+        "de": "Kikkoman japanische Panko-Semmelbrösel (227 g)"
+    },
+    "כיסוני גיוזה עוף וירקות קפואים (ביביגו)": {
+        "en": "Bibigo Chicken & Vegetable Gyoza (24 oz)",
+        "ru": "Пельмени Дамплингс с курицей Bibigo замороженные",
+        "ar": "بيبيجو جيوزا الدجاج والخضروات (24 أونصة)",
+        "es": "Bibigo Gyoza de pollo y verduras (24 oz)",
+        "fr": "Bibigo Gyoza au poulet et légumes (24 oz)",
+        "pt": "Gyoza de Frango e Vegetais Bibigo (24 onças)",
+        "de": "Bibigo Hühnchen-Gemüse-Gyoza (24 oz)"
+    },
+    "כיסוני שו מאי שרימפס קפואים": {
+        "en": "Frozen Shrimp Shumai Dim Sum (16 count)",
+        "ru": "Китайские дим-самы с креветками Сюмай",
+        "ar": "جمبري مجمد شوماي ديم سوم (16 قطعة)",
+        "es": "Shumai Dim Sum de camarones congelados (16 unidades)",
+        "fr": "Crevettes surgelées Shumai Dim Sum (16 unités)",
+        "pt": "Camarão Congelado Shumai Dim Sum (16 contagens)",
+        "de": "Gefrorene Shrimps Shumai Dim Sum (16 Stück)"
+    },
+    "לחמניות באו במילוי בשר חזיר / עוף": {
+        "en": "Steamed BBQ Pork Bao Buns (4 pack)",
+        "ru": "Паровые булочки Бао с начинкой барбекю",
+        "ar": "كعك باو لحم الخنزير المشوي على البخار (4 عبوات)",
+        "es": "Bao Buns de cerdo BBQ al vapor (paquete de 4)",
+        "fr": "Bao Buns au porc barbecue cuit à la vapeur (paquet de 4)",
+        "pt": "Pãezinhos Bao de Porco para Churrasco no Vapor (4 unidades)",
+        "de": "Gedämpfte BBQ-Schweinefleisch-Bao-Brötchen (4er-Pack)"
+    },
+    "כדורי דגים אסיאתיים קפואים למרק": {
+        "en": "Asian Style Fish Balls for Hotpot (400g)",
+        "ru": "Рыбные шарики для супа и хотпота",
+        "ar": "كرات السمك على الطريقة الآسيوية للوعاء الساخن (400 جم)",
+        "es": "Bolas de Pescado Estilo Asiático para Estofado (400g)",
+        "fr": "Boulettes de poisson de style asiatique pour potée (400g)",
+        "pt": "Bolinhos de Peixe Estilo Asiático para Hotpot (400g)",
+        "de": "Asiatische Fischbällchen für Hotpot (400g)"
+    },
+    "בטן חזיר פרוסה דק לסיר חם (הוט פוט)": {
+        "en": "Thinly Sliced Pork Belly for Hotpot",
+        "ru": "Тонкая нарезка свиной грудинки для хотпота",
+        "ar": "شرائح رقيقة من بطن لحم الخنزير من أجل Hotpot",
+        "es": "Panceta de cerdo en rodajas finas para estofado",
+        "fr": "Poitrine de porc finement tranchée pour hotpot",
+        "pt": "Barriga de porco em fatias finas para hotpot",
+        "de": "Dünn geschnittener Schweinebauch für Hotpot"
+    },
+    "נתחי בקר פרוסים דק לשאבו-שאבו": {
+        "en": "Thinly Sliced Beef Ribeye for Shabu Shabu",
+        "ru": "Тонкая нарезка говядины Рибай для Шабу-шабу",
+        "ar": "شرائح لحم بقري ريب آي رقيقة لشابو شابو",
+        "es": "Ribeye de ternera en rodajas finas para Shabu Shabu",
+        "fr": "Ribeye de bœuf tranché finement pour Shabu Shabu",
+        "pt": "Ribeye de carne em fatias finas para Shabu Shabu",
+        "de": "Dünn geschnittenes Rinder-Ribeye für Shabu Shabu"
+    },
+    "שרימפס בלאק טייגר קפואים שלמים": {
+        "en": "Black Tiger Raw Prawns with Shell (800g)",
+        "ru": "Креветки Черный Тигр сырые с головой",
+        "ar": "روبيان النمر الأسود الخام مع القشرة (800 جرام)",
+        "es": "Gambas Crudas Tigre Negro con Concha (800g)",
+        "fr": "Crevettes crues Black Tiger avec carapace (800g)",
+        "pt": "Camarão Tigre Negro Cru com Casca (800g)",
+        "de": "Black Tiger Rohe Garnelen mit Schale (800g)"
+    },
+    "פילה סלמון טרי באיכות סשימי": {
+        "en": "Sashimi Grade Fresh Salmon Fillet",
+        "ru": "Свежее филе лосося качества Сашими",
+        "ar": "الساشيمي الصف سمك السلمون الطازج",
+        "es": "Filete De Salmón Fresco Grado Sashimi",
+        "fr": "Filet de saumon frais de qualité sashimi",
+        "pt": "Filé de Salmão Fresco Grau Sashimi",
+        "de": "Frisches Lachsfilet in Sashimi-Qualität"
+    },
+    "נקניקיות מתוקות סיניות (לאפ צ'ונג)": {
+        "en": "Kam Yen Jan Chinese Style Sausage (Lap Cheong)",
+        "ru": "Китайские сладкие вяленые колбаски Лап Чонг",
+        "ar": "سجق كام ين جان على الطريقة الصينية (لاب تشيونج)",
+        "es": "Salchicha estilo chino Kam Yen Jan (Lap Cheong)",
+        "fr": "Saucisse à la chinoise Kam Yen Jan (Lap Cheong)",
+        "pt": "Salsicha estilo chinês Kam Yen Jan (Lap Cheong)",
+        "de": "Kam Yen Jan-Wurst nach chinesischer Art (Lap Cheong)"
+    },
+    "אצות נורי פרימיום קלויות לסושי (10 דפים)": {
+        "en": "Roasted Nori Sushi Seaweed Sheets (10 sheets)",
+        "ru": "Листы водорослей Нори для суши (10 шт)",
+        "ar": "صفائح الأعشاب البحرية نوري سوشي المحمصة (10 أوراق)",
+        "es": "Hojas de Alga Nori Sushi Asada (10 hojas)",
+        "fr": "Feuilles d'algues Nori Sushi rôties (10 feuilles)",
+        "pt": "Folhas de algas marinhas Nori Sushi assadas (10 folhas)",
+        "de": "Geröstete Nori-Sushi-Algenblätter (10 Blatt)"
+    },
+    "אצות וואקאמה מיובשות למרק מיסו": {
+        "en": "Dried Cut Wakame Seaweed for Miso Soup",
+        "ru": "Сушеные морские водоросли Вакаме",
+        "ar": "قطع الأعشاب البحرية واكامي المجففة لحساء ميسو",
+        "es": "Alga Wakame cortada seca para sopa de miso",
+        "fr": "Algues Wakame coupées séchées pour soupe miso",
+        "pt": "Alga Wakame cortada seca para sopa de missô",
+        "de": "Getrocknete geschnittene Wakame-Algen für Miso-Suppe"
+    },
+    "סלט אצות מתובל מוכן קפוא (גומא וואקאמה)": {
+        "en": "Seasoned Sesame Seaweed Salad (Hiyashi Wakame)",
+        "ru": "Салат Чука из морских водорослей с кунжутом",
+        "ar": "سلطة الأعشاب البحرية بالسمسم (هياشي واكامي)",
+        "es": "Ensalada de algas y sésamo sazonada (Hiyashi Wakame)",
+        "fr": "Salade d'algues au sésame assaisonnée (Hiyashi Wakame)",
+        "pt": "Salada de Algas Temperadas com Gergelim (Hiyashi Wakame)",
+        "de": "Gewürzter Sesam-Algen-Salat (Hiyashi Wakame)"
+    },
+    "ג'ינג'ר כבוש ורוד לסושי (גארי)": {
+        "en": "Pickled Pink Sushi Ginger (Gari 340g)",
+        "ru": "Маринованный розовый имбирь для суши Гари",
+        "ar": "مخلل السوشي الوردي الزنجبيل (غاري 340 جرام)",
+        "es": "Jengibre para sushi rosa en escabeche (Gari 340g)",
+        "fr": "Gingembre Sushi Rose Mariné (Gari 340g)",
+        "pt": "Gengibre Sushi Rosa em Conserva (Gari 340g)",
+        "de": "Eingelegter rosa Sushi-Ingwer (Gari 340g)"
+    },
+    "משחת וואסאבי אמיתית בשפופרת": {
+        "en": "S&B Prepared Wasabi Paste Tube",
+        "ru": "Японский острый хрен Васаби в тюбике",
+        "ar": "أنبوب معجون الوسابي المُجهز من S&B",
+        "es": "Tubo de pasta de wasabi preparado S&B",
+        "fr": "Tube de pâte de wasabi préparé S&B",
+        "pt": "Tubo de pasta de Wasabi preparado por S&B",
+        "de": "Von S&B vorbereitete Tube mit Wasabipaste"
+    },
+    "שומשום קלוי מעורב (שחור ולבן לסושי)": {
+        "en": "Roasted Mixed Sesame Seeds (Black & White)",
+        "ru": "Жареный кунжут смесь белый и черный",
+        "ar": "بذور السمسم المحمصة (أسود وأبيض)",
+        "es": "Semillas de sésamo mixtas tostadas (blanco y negro)",
+        "fr": "Mélange de graines de sésame grillées (noir et blanc)",
+        "pt": "Sementes de gergelim mistas torradas (pretas e brancas)",
+        "de": "Geröstete gemischte Sesamsamen (schwarz und weiß)"
+    },
+    "גלידת מוצ'י יפנית במבחר טעמים (מארז 6)": {
+        "en": "My/Mochi Japanese Ice Cream Mochi (6 ct)",
+        "ru": "Японское мороженое Моти ассорти (6 шт)",
+        "ar": "ماي/موتشي آيس كريم ياباني موتشي (6 قيراط)",
+        "es": "My/Mochi Mochi de helado japonés (6 unidades)",
+        "fr": "Mochi à la crème glacée japonaise My/Mochi (6 ct)",
+        "pt": "Sorvete Japonês My/Mochi Mochi (6 ct)",
+        "de": "My/Mochi Japanisches Eis Mochi (6 ct)"
+    },
+    "חטיף פוקי ביסקוויט מצופה שוקולד": {
+        "en": "Glico Pocky Chocolate Cream Covered Biscuit Sticks",
+        "ru": "Японские сладкие палочки в шоколаде Pocky",
+        "ar": "غليكو بوكي أعواد البسكويت المغطاة بكريمة الشوكولاتة",
+        "es": "Palitos de galleta cubiertos de crema de chocolate Glico Pocky",
+        "fr": "Bâtonnets de biscuits enrobés de crème au chocolat Glico Pocky",
+        "pt": "Palitos de biscoito cobertos com creme de chocolate Glico Pocky",
+        "de": "Glico Pocky Keksstangen mit Schokoladencremeüberzug"
+    },
+    "חטיף פוקי בטעם תה ירוק מאצ'ה": {
+        "en": "Glico Pocky Matcha Green Tea Sticks",
+        "ru": "Палочки Pocky со вкусом зеленого чая Матча",
+        "ar": "غليكو بوكي ماتشا أعواد الشاي الأخضر",
+        "es": "Palitos de té verde Glico Pocky Matcha",
+        "fr": "Bâtonnets de thé vert Matcha Glico Pocky",
+        "pt": "Palitos de chá verde Glico Pocky Matcha",
+        "de": "Glico Pocky Matcha-Grüntee-Sticks"
+    },
+    "חטיפי אצות קלויות שמן שומשום ומלח (חבילת 3)": {
+        "en": "Roasted Seaweed Snack Sheets (3 pack)",
+        "ru": "Хрустящие снеки из морской капусты Нори",
+        "ar": "صفائح الوجبات الخفيفة من الأعشاب البحرية المحمصة (3 عبوات)",
+        "es": "Hojas de bocadillos de algas asadas (paquete de 3)",
+        "fr": "Feuilles de collation aux algues grillées (paquet de 3)",
+        "pt": "Folhas de salgadinhos de algas marinhas torradas (pacote com 3)",
+        "de": "Geröstete Algen-Snackblätter (3er-Pack)"
+    },
+    "קרקרים אורז יפניים פריכים (סנביי)": {
+        "en": "Bin Bin Seasoned Rice Crackers (Senbei)",
+        "ru": "Японские рисовые крекеры Сэнбэй",
+        "ar": "بن بن بسكويت الأرز المتبل (سينبي)",
+        "es": "Galletas de arroz sazonadas Bin Bin (Senbei)",
+        "fr": "Craquelins de riz assaisonnés Bin Bin (Senbei)",
+        "pt": "Biscoitos de arroz temperados Bin Bin (Senbei)",
+        "de": "Bin Bin Gewürzte Reiscracker (Senbei)"
+    },
+    "עוגיות מזל סיניות מסורתיות (מארז)": {
+        "en": "Golden Bowl Chinese Fortune Cookies (Box of 20)",
+        "ru": "Китайские печенья с предсказаниями (20 шт)",
+        "ar": "كوكيز الحظ الصينية جولدن بول (صندوق 20 قطعة)",
+        "es": "Galletas de la fortuna chinas Golden Bowl (Caja de 20)",
+        "fr": "Biscuits Fortune Chinois Golden Bowl (Boîte de 20)",
+        "pt": "Biscoitos da sorte chineses Golden Bowl (caixa com 20)",
+        "de": "Golden Bowl Chinesische Glückskekse (20er-Box)"
+    },
+    "עוגות אורז קוריאניות לטוקפוקי (רכות)": {
+        "en": "Korean Rice Cakes for Tteokbokki (500g)",
+        "ru": "Корейские рисовые брусочки Ттокпокки",
+        "ar": "كعك الأرز الكوري لتتوكبوكي (500 جرام)",
+        "es": "Tortitas de Arroz Coreanas para Tteokbokki (500g)",
+        "fr": "Galettes de riz coréennes pour Tteokbokki (500g)",
+        "pt": "Bolos de arroz coreano para Tteokbokki (500g)",
+        "de": "Koreanische Reiskuchen für Tteokbokki (500g)"
+    },
+    "אבקת תה ירוק מאצ'ה יפנית טהורה (100 גרם)": {
+        "en": "Authentic Uji Japanese Matcha Green Tea Powder",
+        "ru": "Настоящий японский чай Матча мелкий помол",
+        "ar": "مسحوق الشاي الأخضر ماتشا الياباني الأصيل من Uji",
+        "es": "Auténtico polvo de té verde Matcha japonés Uji",
+        "fr": "Authentique poudre de thé vert matcha japonais Uji",
+        "pt": "Pó de chá verde Uji japonês Matcha autêntico",
+        "de": "Authentisches japanisches Uji-Matcha-Grüntee-Pulver"
+    },
+    "תה יסמין סיני עלי שלמים בקופסת פח": {
+        "en": "Sunflower Chinese Jasmine Green Tea Tin (227g)",
+        "ru": "Китайский зеленый чай с жасмином в банке",
+        "ar": "شاي أخضر دوار الشمس والياسمين الصيني (227 جم)",
+        "es": "Lata de té verde jazmín chino de girasol (227 g)",
+        "fr": "Boîte de thé vert au jasmin chinois et tournesol (227 g)",
+        "pt": "Lata de Chá Verde Girassol Chinês Jasmim (227g)",
+        "de": "Chinesischer Jasmin-Grüntee mit Sonnenblume, Dose (227 g)"
+    },
+    "פניני טפיוקה שחורות לתה בועות (בובה)": {
+        "en": "WuFuYuan Black Tapioca Pearls for Boba Tea",
+        "ru": "Черные шарики тапиока для бабл-ти быстрого приготовления",
+        "ar": "WuFuYuan لآلئ التابيوكا السوداء لشاي بوبا",
+        "es": "Perlas de tapioca negra WuFuYuan para té Boba",
+        "fr": "Perles de tapioca noires WuFuYuan pour thé Boba",
+        "pt": "Pérolas de tapioca pretas WuFuYuan para chá Boba",
+        "de": "WuFuYuan Schwarze Tapiokaperlen für Boba-Tee"
+    },
+    "משקה אלוורה טבעי עם חתיכות (1.5 ליטר)": {
+        "en": "OKF Aloe Vera King Natural Drink (1.5L)",
+        "ru": "Напиток Алоэ Вера с кусочками мякоти",
+        "ar": "مشروب طبيعي أوكف ألوفيرا كينج (1.5 لتر)",
+        "es": "Bebida natural OKF Aloe Vera King (1,5 L)",
+        "fr": "Boisson naturelle OKF Aloe Vera King (1,5 L)",
+        "pt": "Bebida natural OKF Aloe Vera King (1,5L)",
+        "de": "OKF Aloe Vera King Naturgetränk (1,5 l)"
+    },
+    "חלב סויה אסייתי ממותק ויטסוי": {
+        "en": "Vitasoy Sweetened Soy Drink (6 pack)",
+        "ru": "Азиатское соевое молоко сладкое Vitasoy",
+        "ar": "فيتاسوي - مشروب الصويا المحلى (6 عبوات)",
+        "es": "Bebida de soja endulzada Vitasoy (paquete de 6)",
+        "fr": "Boisson au soja sucrée Vitasoy (paquet de 6)",
+        "pt": "Bebida de soja adoçada Vitasoy (pacote com 6)",
+        "de": "Vitasoy gesüßtes Sojagetränk (6er-Pack)"
+    },
+    "משקה מוגז יפני רמונה ליים (עם גולה)": {
+        "en": "Hata Ramune Japanese Marble Soda Original",
+        "ru": "Японский лимонад Рамунэ со стеклянным шариком",
+        "ar": "هاتا رامون صودا الرخام اليابانية الأصلية",
+        "es": "Hata Ramune Soda Japonesa Mármol Original",
+        "fr": "Hata Ramune Soda en marbre japonais original",
+        "pt": "Refrigerante de Mármore Japonês Hata Ramune Original",
+        "de": "Hata Ramune Japanisches Marmor-Soda-Original"
+    },
+    "מקלות אכילה במבוק איכותיים (חבילת 10 זוגות)": {
+        "en": "Reusable Bamboo Chopsticks (10 pairs)",
+        "ru": "Многоразовые бамбуковые палочки для еды (10 пар)",
+        "ar": "عيدان تناول الطعام من الخيزران قابلة لإعادة الاستخدام (10 أزواج)",
+        "es": "Palillos de Bambú Reutilizables (10 pares)",
+        "fr": "Baguettes en Bambou Réutilisables (10 paires)",
+        "pt": "Pauzinhos de Bambu Reutilizáveis (10 pares)",
+        "de": "Wiederverwendbare Bambus-Essstäbchen (10 Paar)"
+    },
+    "נייר אפייה עגול מחורר לאידוי במבוק (50 יח')": {
+        "en": "Bamboo Steamer Round Liner Papers (50 count)",
+        "ru": "Перфорированная бумага для бамбуковой пароварки",
+        "ar": "أوراق بطانة دائرية مصنوعة من الخيزران بالبخار (عدد 50)",
+        "es": "Papeles de revestimiento redondos para vaporera de bambú (50 unidades)",
+        "fr": "Papiers de doublure ronds pour cuiseur vapeur en bambou (50 unités)",
+        "pt": "Papéis de forro redondo para vaporizador de bambu (contagem de 50)",
+        "de": "Bamboo Steamer Round Liner Papers (50 Stück)"
+    },
+    "מחצלת במבוק לגלגול סושי (מאקיסו)": {
+        "en": "Bamboo Sushi Rolling Mat (Makisu)",
+        "ru": "Бамбуковая циновка Макису для сворачивания суши",
+        "ar": "حصيرة لف السوشي من الخيزران (ماكيسو)",
+        "es": "Estera enrollable de bambú para sushi (Makisu)",
+        "fr": "Tapis à rouler pour sushi en bambou (Makisu)",
+        "pt": "Tapete para enrolar sushi de bambu (Makisu)",
+        "de": "Bambus-Sushi-Rollmatte (Makisu)"
+    },
+    "מטליות מיקרופייבר לניקוי ווק": {
+        "en": "Wok Cleaning Heavy Duty Scrubber",
+        "ru": "Щетка бамбуковая для мытья вока",
+        "ar": "ووك تنظيف الغسيل الثقيلة",
+        "es": "Fregadora resistente de limpieza Wok",
+        "fr": "Épurateur robuste pour le nettoyage des woks",
+        "pt": "Purificador para serviço pesado de limpeza Wok",
+        "de": "Wok-Reinigungs-Hochleistungsschrubber"
+    },
+    "משחת טייגר באלם להקלה בכאבי שרירים": {
+        "en": "Tiger Balm White Muscle Pain Relief Ointment",
+        "ru": "Обезболивающий бальзам Белый Тигр (Тигровый)",
+        "ar": "مرهم تايجر بالم الأبيض لتخفيف آلام العضلات",
+        "es": "Ungüento para aliviar el dolor muscular blanco de bálsamo de tigre",
+        "fr": "Baume du Tigre Pommade blanche pour soulager les douleurs musculaires",
+        "pt": "Pomada branca para alívio da dor muscular Tiger Balm",
+        "de": "Tiger Balm Weiße Muskelschmerzlinderungssalbe"
+    },
+    "מדבקות טיגר באלם מחממות לגב": {
+        "en": "Tiger Balm Medicated Plasters / Patches",
+        "ru": "Обезболивающие пластыри Тигровый бальзам",
+        "ar": "لاصقات/رقعات طبية من بلسم النمر",
+        "es": "Apósitos/parches medicinales con bálsamo de tigre",
+        "fr": "Pansements/patchs médicamenteux Baume du Tigre",
+        "pt": "Emplastros / adesivos medicamentosos com bálsamo de tigre",
+        "de": "Medizinische Pflaster/Pflaster von Tiger Balm"
+    },
+    "עגבניות בלאדי באשכול": {
+        "en": "Baladi Cluster Tomatoes",
+        "ru": "Помидоры балади сладкие на ветке",
+        "ar": "طماطم بلدي عنقودية",
+        "es": "Tomates en racimo Baladi",
+        "fr": "Tomates en grappe Baladi",
+        "pt": "Tomates Baladi Cluster",
+        "de": "Baladi-Clustertomaten"
+    },
+    "מלפפונים קטנים בלאדי (בייבי פריכים)": {
+        "en": "Crispy Baby Baladi Cucumbers",
+        "ru": "Маленькие хрустящие огурцы балади",
+        "ar": "خيار بلدي مقرمش",
+        "es": "Pepinos crujientes Baby Baladi",
+        "fr": "Concombres Baladi croustillants",
+        "pt": "Pepinos Baladi Crocantes para Bebês",
+        "de": "Knusprige Baby-Baladi-Gurken"
+    },
+    "בצל יבש סגול בלאדי": {
+        "en": "Baladi Red Dry Onions",
+        "ru": "Красный лук балади",
+        "ar": "بصل أحمر جاف بلدي",
+        "es": "Cebollas Rojas Secas Baladi",
+        "fr": "Oignons secs rouges Baladi",
+        "pt": "Cebola seca vermelha Baladi",
+        "de": "Baladi Rote Trockenzwiebeln"
+    },
+    "שום בלאדי טרי באשכול": {
+        "en": "Fresh Braided Baladi Garlic",
+        "ru": "Чеснок балади косичкой",
+        "ar": "ثوم بلدي مضفر طازج",
+        "es": "Ajo Baladi Trenzado Fresco",
+        "fr": "Ail baladi frais tressé",
+        "pt": "Alho Baladi Trançado Fresco",
+        "de": "Frischer geflochtener Baladi-Knoblauch"
+    },
+    "חצילים בלאדי קטנים למילוי ולחמוצים": {
+        "en": "Small Baladi Eggplants for Pickling",
+        "ru": "Маленькие баклажаны балади для фаршировки",
+        "ar": "باذنجان بلدي صغير للتخليل",
+        "es": "Berenjenas Baladi pequeñas para encurtir",
+        "fr": "Petites aubergines Baladi à mariner",
+        "pt": "Berinjelas Baladi pequenas para decapagem",
+        "de": "Kleine Baladi-Auberginen zum Einlegen"
+    },
+    "קישואים בהירים בלאדי לממולאים (קוסא)": {
+        "en": "Light Baladi Courgettes for Stuffing (Kousa)",
+        "ru": "Светлые кабачки для фаршировки (Куса)",
+        "ar": "كوسة بلدي خفيفة للحشو (كوسا)",
+        "es": "Calabacines Baladi Light para Relleno (Kousa)",
+        "fr": "Courgettes Baladi Légères pour Farce (Kousa)",
+        "pt": "Abobrinha Baladi Light para Recheio (Kousa)",
+        "de": "Helle Baladi-Zucchini zum Füllen (Kousa)"
+    },
+    "במיה ירוקה בלאדי קטנה": {
+        "en": "Small Baladi Green Okra (Bamya)",
+        "ru": "Свежая бамия балади мелкая",
+        "ar": "بامية خضراء بلدي صغيرة (بامية)",
+        "es": "Okra verde Baladi pequeña (Bamya)",
+        "fr": "Petit Okra Vert Baladi (Bamya)",
+        "pt": "Quiabo Verde Baladi Pequeno (Bamya)",
+        "de": "Kleine grüne Baladi-Okra (Bamya)"
+    },
+    "עלי מלוחיה טריים": {
+        "en": "Fresh Molokhia Greens",
+        "ru": "Свежие листья молохии",
+        "ar": "ملوخية خضراء طازجة",
+        "es": "Verdes frescos de Molokhia",
+        "fr": "Feuilles fraîches de Molokhia",
+        "pt": "Verduras Molokhia Frescas",
+        "de": "Frisches Molokhia-Grün"
+    },
+    "עלי גפן טריים בלאדי למילוי": {
+        "en": "Fresh Baladi Vine Leaves for Rolling",
+        "ru": "Свежие виноградные листья балади для долмы",
+        "ar": "ورق عنب بلدي طازج لللف",
+        "es": "Hojas frescas de vid Baladi para enrollar",
+        "fr": "Feuilles de vigne fraîches Baladi à rouler",
+        "pt": "Folhas frescas de videira Baladi para enrolar",
+        "de": "Frische Baladi-Weinblätter zum Rollen"
+    },
+    "צרור עלי זעתר ירוק בלאדי": {
+        "en": "Fresh Green Wild Thyme (Za'atar Baladi)",
+        "ru": "Свежий горный тимьяן (дикий заатар)",
+        "ar": "زعتر بري أخضر طازج (زعتر بلدي)",
+        "es": "Tomillo silvestre verde fresco (Za'atar Baladi)",
+        "fr": "Thym sauvage vert frais (Za'atar Baladi)",
+        "pt": "Tomilho Selvagem Verde Fresco (Za'atar Baladi)",
+        "de": "Frischer grüner Wildthymian (Za'atar Baladi)"
+    },
+    "צרור נענע רעננה לקפה ולתה": {
+        "en": "Fresh Fragrant Spearmint for Tea",
+        "ru": "Свежая ароматная мята для чая",
+        "ar": "النعناع العطري الطازج للشاي",
+        "es": "Menta fresca y fragante para té",
+        "fr": "Menthe verte fraîche et parfumée pour le thé",
+        "pt": "Hortelã fresca perfumada para chá",
+        "de": "Frisch duftende grüne Minze für Tee"
+    },
+    "צרור פטרוזיליה בלאדי עשירה": {
+        "en": "Fresh Baladi Parsley Bunch",
+        "ru": "Свежая петрушка балади",
+        "ar": "باقة بقدونس بلدي طازجة",
+        "es": "Manojo de perejil Baladi fresco",
+        "fr": "Bouquet de persil Baladi frais",
+        "pt": "Molho de Salsa Baladi Fresca",
+        "de": "Bündel frischer Baladi-Petersilie"
+    },
+    "צרור כוסברה רעננה": {
+        "en": "Fresh Green Coriander (Cilantro)",
+        "ru": "Свежая кинза",
+        "ar": "كزبرة خضراء طازجة (كزبرة)",
+        "es": "Cilantro verde fresco (Cilantro)",
+        "fr": "Coriandre Verte Fraîche (Coriandre)",
+        "pt": "Coentro Verde Fresco (Coentro)",
+        "de": "Frischer grüner Koriander (Koriander)"
+    },
+    "צנוניות אדומות קראנצ'יות": {
+        "en": "Fresh Crunchy Red Radishes",
+        "ru": "Свежий хрустящий редис",
+        "ar": "الفجل الأحمر الطازج المقرمش",
+        "es": "Rábanos rojos frescos y crujientes",
+        "fr": "Radis rouges frais et croquants",
+        "pt": "Rabanetes Vermelhos Crocantes Frescos",
+        "de": "Frische knackige rote Radieschen"
+    },
+    "פלפל ירוק חריף בלאדי (שאטה)": {
+        "en": "Hot Baladi Green Chili Peppers",
+        "ru": "Острый зеленый перец балади",
+        "ar": "فلفل أخضر حار بلدي",
+        "es": "Chiles verdes Baladi picantes",
+        "fr": "Piments verts forts Baladi",
+        "pt": "Pimentas verdes Baladi picantes",
+        "de": "Scharfe grüne Baladi-Chilischoten"
+    },
+    "חמוצי לפת סגולים בלאדי (לפת כבושה)": {
+        "en": "Pickled Turnips with Beetroot (Left)",
+        "ru": "Маринованная репа со свеклой по-арабски",
+        "ar": "اللفت المخلل مع الشمندر (يسار)",
+        "es": "Nabos encurtidos con remolacha (izquierda)",
+        "fr": "Navets marinés à la betterave (à gauche)",
+        "pt": "Nabos em Conserva com Beterraba (Esquerda)",
+        "de": "Eingelegte Rüben mit Roter Bete (links)"
+    },
+    "מלפפונים חמוצים בלאדי ביתיים בצנצנת": {
+        "en": "Authentic Homemade Pickled Cucumbers",
+        "ru": "Домашние соленые огурцы балади в банке",
+        "ar": "خيار مخلل محلي الصنع أصيل",
+        "es": "Pepinos encurtidos caseros auténticos",
+        "fr": "Authentiques concombres marinés faits maison",
+        "pt": "Pepinos em conserva caseiros autênticos",
+        "de": "Authentische hausgemachte eingelegte Gurken"
+    },
+    "זיתים סוריים ירוקים מבוקעים": {
+        "en": "Cracked Green Souri Olives in Brine",
+        "ru": "Зеленые давленые сирийские оливки",
+        "ar": "زيتون سوري أخضر مكسر في محلول ملحي",
+        "es": "Aceitunas souri verdes partidas en salmuera",
+        "fr": "Olives vertes Souri concassées en saumure",
+        "pt": "Azeitonas verdes Souri rachadas em salmoura",
+        "de": "Gebrochene grüne Souri-Oliven in Salzlake"
+    },
+    "זיתים שחורים מצומקים מומלחים": {
+        "en": "Dry Salt Cured Black Olives",
+        "ru": "Вяленые черные маслины с солью",
+        "ar": "زيتون أسود معالج بالملح الجاف",
+        "es": "Aceitunas Negras Curadas Con Sal Secas",
+        "fr": "Olives noires séchées au sel sec",
+        "pt": "Azeitonas Pretas Curadas com Sal Seco",
+        "de": "Trockene, in Salz eingelegte schwarze Oliven"
+    },
+    "לאבנה כדורים עיזים בשמן זית (צנצנת)": {
+        "en": "Baladi Goat Labneh Balls in Olive Oil",
+        "ru": "Шарики козьего лабне в оливковом масле",
+        "ar": "كرات لبنة الماعز البلدي في زيت الزيتون",
+        "es": "Bolas de Cabra Labneh Baladi en Aceite de Oliva",
+        "fr": "Boulettes de labneh de chèvre Baladi à l'huile d'olive",
+        "pt": "Bolas de Cabra Labneh Baladi em Azeite",
+        "de": "Baladi-Ziegen-Labneh-Bällchen in Olivenöl"
+    },
+    "לאבנה רכה בלאדית חמצמצה": {
+        "en": "Fresh Creamy Baladi Spreadable Labneh",
+        "ru": "Свежий мягкий лабне с кислинкой",
+        "ar": "لبنة بلدي كريمية طازجة قابلة للدهن",
+        "es": "Labneh untable Baladi cremoso fresco",
+        "fr": "Labneh à tartiner Baladi frais et crémeux",
+        "pt": "Labneh para barrar Baladi cremoso fresco",
+        "de": "Frisches, cremiges Baladi-Streich-Labneh"
+    },
+    "גבינת נבלוסי קשה עם קצח ומחלב": {
+        "en": "Authentic Nabulsi Hard Cheese with Nigella",
+        "ru": "Сыр Набулси твердый с черным тмином",
+        "ar": "جبنة نابلسية صلبة أصلية مع حبة البركة",
+        "es": "Auténtico queso duro Nabulsi con Nigella",
+        "fr": "Authentique fromage à pâte dure Nabulsi à la Nigelle",
+        "pt": "Queijo duro Nabulsi autêntico com Nigella",
+        "de": "Authentischer Nabulsi-Hartkäse mit Nigella"
+    },
+    "גבינת עכאווי חצי מלוחה (לכנאפה)": {
+        "en": "Ackawi Semi-Salty Cheese for Knafeh",
+        "ru": "Сыр Аккави малосольный для кнафе",
+        "ar": "جبنة عكاوي نصف مملحة للكنافة",
+        "es": "Queso Ackawi Semi-Salado para Knafeh",
+        "fr": "Fromage semi-salé Ackawi pour Knafeh",
+        "pt": "Queijo Semi-Salgado Ackawi para Knafeh",
+        "de": "Halbsalziger Ackawi-Käse für Knafeh"
+    },
+    "גבינת חלומי להברשה וטיגון": {
+        "en": "Authentic Halloumi Grilling Cheese",
+        "ru": "Сыр Халуми для жарки на гриле",
+        "ar": "جبنة حلومي المشوية الأصلية",
+        "es": "Auténtico queso Halloumi para asar",
+        "fr": "Fromage grillé Halloumi authentique",
+        "pt": "Queijo Grelhado Halloumi Autêntico",
+        "de": "Authentischer Halloumi-Grillkäse"
+    },
+    "אבן ג'מיד יוגורט יבש למנסף": {
+        "en": "Dried Jameed Stone Yogurt for Mansaf",
+        "ru": "Сушеный каменный йогурт Джамид для мансафа",
+        "ar": "زبادي حجر الجميد المجفف للمنسف",
+        "es": "Yogur de piedra Jameed seco para Mansaf",
+        "fr": "Yaourt séché Jameed Stone pour Mansaf",
+        "pt": "Iogurte Jameed Stone Seco para Mansaf",
+        "de": "Getrockneter Jameed Stone Joghurt für Mansaf"
+    },
+    "גבינת שנקליש חריפה מתובלת בזעתר": {
+        "en": "Shanklish Spicy Aged Cheese with Thyme",
+        "ru": "Пряный выдержанный сыр Шанклиш с заатаром",
+        "ar": "شنكليش جبنة معتقة حارة مع زعتر",
+        "es": "Queso añejo picante Shanklish con tomillo",
+        "fr": "Fromage affiné épicé Shanklish au thym",
+        "pt": "Queijo envelhecido picante Shanklish com tomilho",
+        "de": "Shanklish würziger gereifter Käse mit Thymian"
+    },
+    "יוגורט עיזים בלאדי סמיך": {
+        "en": "Rich Baladi Goat Milk Yogurt (1L)",
+        "ru": "Густой натуральный козий йогурт балади (1 л)",
+        "ar": "زبادي حليب الماعز البلدي الغني (1 لتر)",
+        "es": "Rico yogur de leche de cabra Baladi (1L)",
+        "fr": "Yaourt riche au lait de chèvre Baladi (1L)",
+        "pt": "Iogurte Rico de Leite de Cabra Baladi (1L)",
+        "de": "Reichhaltiger Baladi-Ziegenmilchjoghurt (1 l)"
+    },
+    "שמנת קשטה טרייה לממתקים": {
+        "en": "Fresh Ashta / Kashta Clotted Cream",
+        "ru": "Свежие густые сливки Ашта для восточных сладостей",
+        "ar": "قشطة طازجة / قشطة قشطة",
+        "es": "Crema cuajada fresca de Ashta / Kashta",
+        "fr": "Crème caillée Ashta / Kashta fraîche",
+        "pt": "Creme Coagulado Ashta / Kashta Fresco",
+        "de": "Frische Ashta / Kashta Clotted Cream"
+    },
+    "חמאה מזוקקת בלאדית (סמנה / גהי)": {
+        "en": "Traditional Clarified Butter Ghee (Samneh)",
+        "ru": "Топленое масло Самнэ балади",
+        "ar": "سمن الزبدة المصفى التقليدي (السمنة)",
+        "es": "Ghee de mantequilla clarificada tradicional (Samneh)",
+        "fr": "Ghee au beurre clarifié traditionnel (Samneh)",
+        "pt": "Ghee de manteiga clarificada tradicional (Samneh)",
+        "de": "Traditionelles geklärtes Butter-Ghee (Samneh)"
+    },
+    "פיתות טאבון בלאדי עבות (חבילת 5)": {
+        "en": "Fresh Baladi Taboon Flatbreads (5 pack)",
+        "ru": "Толстые свежие лепешки из табона (5 шт)",
+        "ar": "خبز طابون بلدي طازج (5 عبوات)",
+        "es": "Panes planos frescos Baladi Taboon (paquete de 5)",
+        "fr": "Pains plats frais Baladi Taboon (paquet de 5)",
+        "pt": "Pães achatados Baladi Taboon frescos (pacote com 5)",
+        "de": "Frische Baladi Taboon Fladenbrote (5er Pack)"
+    },
+    "לחם שראק / מרקוק דק כנייר (חבילת 5)": {
+        "en": "Thin Shrak / Markook Flatbread (5 pack)",
+        "ru": "Тончайший бедуинский хлеб Шрак / Маркук (5 шт)",
+        "ar": "خبز شراك/مركوك رقيق (5 عبوات)",
+        "es": "Pan plano fino Shrak / Markook (paquete de 5)",
+        "fr": "Pain plat Shrak / Markook mince (paquet de 5)",
+        "pt": "Pão fino Shrak / Markook (pacote com 5)",
+        "de": "Dünnes Shrak-/Markook-Fladenbrot (5er-Pack)"
+    },
+    "פיתות כיס ערביות קלאסיות (עשירייה)": {
+        "en": "Classic Arabic Pocket Pita Bread (10 pack)",
+        "ru": "Арабские круглые питы с кармашком (10 шт)",
+        "ar": "خبز بيتا عربي كلاسيكي (10 عبوات)",
+        "es": "Pan de pita de bolsillo árabe clásico (paquete de 10)",
+        "fr": "Pain pita de poche arabe classique (paquet de 10)",
+        "pt": "Pão Pita Árabe Clássico de Bolso (pacote com 10)",
+        "de": "Klassisches arabisches Pocket-Pita-Brot (10er-Pack)"
+    },
+    "מנאקיש זעתר ושמן זית טרי מהתנור": {
+        "en": "Fresh Baked Manakish Za'atar & Olive Oil",
+        "ru": "Свежая арабская пицца Манакиш с заатаром",
+        "ar": "مناقيش طازجة مخبوزة بالزعتر وزيت الزيتون",
+        "es": "Manakish Za'atar recién horneado y aceite de oliva",
+        "fr": "Za'atar Manakish frais et huile d'olive",
+        "pt": "Manakish Za'atar Assado Fresco e Azeite",
+        "de": "Frisch gebackener Manakish Za'atar & Olivenöl"
+    },
+    "מנאקיש גבינה נבלוסית חמה": {
+        "en": "Fresh Baked Manakish with Melted Cheese",
+        "ru": "Горячая лепешка Манакиш с сыром набулси",
+        "ar": "مناقيش طازجة مخبوزة مع الجبنة الذائبة",
+        "es": "Manakish recién horneado con queso derretido",
+        "fr": "Manakish frais cuit au four avec du fromage fondu",
+        "pt": "Manakish Assado Fresco com Queijo Derretido",
+        "de": "Frisch gebackener Manakish mit geschmolzenem Käse"
+    },
+    "פטאייר תרד ובצל בעבודת יד": {
+        "en": "Handmade Spinach & Onion Fatayer Pastry",
+        "ru": "Пирожки Фатайер со шпинатом и луком",
+        "ar": "فطاير السبانخ والبصل المصنوعة يدوياً",
+        "es": "Pastelería Fatayer Artesanal De Espinacas Y Cebolla",
+        "fr": "Pâtisserie Fatayer faite à la main aux épinards et aux oignons",
+        "pt": "Pastelaria Fatayer Artesanal de Espinafre e Cebola",
+        "de": "Handgemachtes Spinat-Zwiebel-Fatayer-Gebäck"
+    },
+    "בצק קדאיף טרי אטריות לכנאפה (500 גרם)": {
+        "en": "Fresh Kataifi Shredded Dough for Knafeh",
+        "ru": "Свежее тесто Катаифи (волосы) для кнафе",
+        "ar": "عجينة قطيفي طازجة مقطعة للكنافة",
+        "es": "Masa fresca triturada de Kataifi para Knafeh",
+        "fr": "Pâte râpée Kataifi fraîche pour Knafeh",
+        "pt": "Massa desfiada Kataifi Fresca para Knafeh",
+        "de": "Frischer, zerkleinerter Kataifi-Teig für Knafeh"
+    },
+    "עלי בצק פילו דקיקים לבקלאווה (500 גרם)": {
+        "en": "Ultra-Thin Filo Pastry Leaves for Baklava",
+        "ru": "Тончайшее тесто фило для пахлавы",
+        "ar": "أوراق معجنات فيلو رقيقة جداً للبقلاوة",
+        "es": "Hojas de masa filo ultrafinas para baklava",
+        "fr": "Feuilles de pâte filo ultra fines pour baklava",
+        "pt": "Folhas de massa filo ultrafinas para baklava",
+        "de": "Ultradünne Filoteigblätter für Baklava"
+    },
+    "קעק אל קודס (בייגל ירושלמי עם שומשום)": {
+        "en": "Jerusalem Sesame Bread Ring (Ka'ak)",
+        "ru": "Иерусалимский продолговатый бублик с кунжутом",
+        "ar": "حلقة خبز القدس بالسمسم (كعك)",
+        "es": "Anillo de pan de sésamo de Jerusalén (Ka'ak)",
+        "fr": "Anneau de pain au sésame de Jérusalem (Ka'ak)",
+        "pt": "Anel de Pão de Gergelim de Jerusalém (Ka'ak)",
+        "de": "Jerusalem-Sesam-Brotring (Ka'ak)"
+    },
+    "טחינה גולמית מובחרת אל ארז (1 ק\"ג)": {
+        "en": "Al Arz Pure 100% Sesame Raw Tahini (1kg)",
+        "ru": "Натуральная кунжутная паста тахини Аль Арз (1 кг)",
+        "ar": "الأرز طحينة السمسم النقي 100% (1 كجم)",
+        "es": "Tahini crudo 100% sésamo puro Al Arz (1kg)",
+        "fr": "Tahini cru 100 % sésame pur Al Arz (1 kg)",
+        "pt": "Al Arz Tahine Puro 100% Gergelim Cru (1kg)",
+        "de": "Al Arz Pure 100 % Sesam-Roh-Tahini (1 kg)"
+    },
+    "טחינה גולמית היונה / קראוון (1 ק\"ג)": {
+        "en": "Al Karawan (The Dove) 100% Sesame Tahini",
+        "ru": "Кунжутная паста тахини Караван (Голубь)",
+        "ar": "الكروان (الحمامة) 100% سمسم طحينة",
+        "es": "Al Karawan (La Paloma) 100% Tahini de Sésamo",
+        "fr": "Al Karawan (La Colombe) Tahini 100% Sésame",
+        "pt": "Al Karawan (A Pomba) 100% Tahini com Gergelim",
+        "de": "Al Karawan (Die Taube) 100 % Sesam-Tahini"
+    },
+    "חומוס גרגירים יבש בלאדי קטן (1 ק\"ג)": {
+        "en": "Small Baladi Dry Chickpeas for Hummus (1kg)",
+        "ru": "Мелкий сухой нут балади для хумуса (1 кг)",
+        "ar": "حمص بلدي جاف صغير للحمص (1 كجم)",
+        "es": "Garbanzos Secos Baladi Pequeños para Hummus (1kg)",
+        "fr": "Petits pois chiches secs Baladi pour houmous (1kg)",
+        "pt": "Grão de bico seco Baladi pequeno para hummus (1kg)",
+        "de": "Kleine Baladi-Trockenkichererbsen für Hummus (1 kg)"
+    },
+    "פול מצרי יבש קטן למדמס (1 ק\"ג)": {
+        "en": "Dry Small Fava Beans for Foul Mudammas",
+        "ru": "Сухие египетские бобы фава для фула (1 кг)",
+        "ar": "فول مدمس صغير جاف للفول المدمس",
+        "es": "Habas pequeñas secas para mudammas repugnantes",
+        "fr": "Petites fèves sèches pour les mauvais Mudammas",
+        "pt": "Feijões Fava Pequenos Secos para Mudammas Sujos",
+        "de": "Trockene kleine Ackerbohnen für faule Mudammas"
+    },
+    "פריקה ירוקה מעושנת בעבודת יד (1 ק\"ג)": {
+        "en": "Authentic Green Smoked Freekeh Wheat",
+        "ru": "Зеленая копченая пшеница Фрике ручной работы",
+        "ar": "فريكة خضراء مدخنة أصلية",
+        "es": "Auténtico trigo Freekeh ahumado verde",
+        "fr": "Blé Freekeh fumé vert authentique",
+        "pt": "Trigo Freekeh Verde Fumado Autêntico",
+        "de": "Authentischer grüner geräucherter Freekeh-Weizen"
+    },
+    "בורגול דק חום לקובה ולתבולה (1 ק\"ג)": {
+        "en": "Fine Brown Bulgur for Kibbeh & Tabbouleh",
+        "ru": "Мелкий коричневый булгур для куббы и табуле",
+        "ar": "برغل بني ناعم للكبة والتبولة",
+        "es": "Bulgur marrón fino para kibbeh y tabulé",
+        "fr": "Boulgour brun fin pour kibbeh et taboulé",
+        "pt": "Bulgur marrom fino para quibe e tabule",
+        "de": "Feiner brauner Bulgur für Kibbeh und Taboulé"
+    },
+    "בורגול גס למג'דרה ובישול (1 ק\"ג)": {
+        "en": "Coarse Bulgur Wheat for Mujaddara (1kg)",
+        "ru": "Крупный булгур для плова и муджадары (1 кг)",
+        "ar": "برغل خشن للمجدرة (1كغ)",
+        "es": "Trigo Bulgur Grueso para Mujaddara (1kg)",
+        "fr": "Boulgour grossier pour Mujaddara (1kg)",
+        "pt": "Trigo Bulgur Grosso para Mujaddara (1kg)",
+        "de": "Grober Bulgurweizen für Mujaddara (1 kg)"
+    },
+    "עדשים חומות בלאדי למג'דרה (1 ק\"ג)": {
+        "en": "Whole Brown Lentils for Mujaddara (1kg)",
+        "ru": "Коричневая цельная чечевица для муджадары",
+        "ar": "عدس بني كامل للمجدرة (1 كيلو)",
+        "es": "Lentejas Marrones Enteras para Mujaddara (1kg)",
+        "fr": "Lentilles brunes entières pour Mujaddara (1kg)",
+        "pt": "Lentilhas marrons inteiras para Mujaddara (1kg)",
+        "de": "Ganze braune Linsen für Mujaddara (1 kg)"
+    },
+    "עדשים כתומות מפוצלות למרק (1 ק\"ג)": {
+        "en": "Split Red Lentils for Traditional Soup",
+        "ru": "Красная колотая чечевица для супа Шорба",
+        "ar": "العدس الأحمر المقسم للحساء التقليدي",
+        "es": "Lentejas rojas partidas para sopa tradicional",
+        "fr": "Lentilles rouges fendues pour soupe traditionnelle",
+        "pt": "Lentilhas vermelhas divididas para sopa tradicional",
+        "de": "Gespaltene rote Linsen für traditionelle Suppe"
+    },
+    "אורז יסמין מצרי / עגול לממולאים (1 ק\"ג)": {
+        "en": "Egyptian Short Grain Rice for Stuffing",
+        "ru": "Египетский круглозерный рис для махши",
+        "ar": "أرز مصري قصير الحبة للحشو",
+        "es": "Arroz egipcio de grano corto para relleno",
+        "fr": "Riz égyptien à grains courts pour la farce",
+        "pt": "Arroz egípcio de grãos curtos para recheio",
+        "de": "Ägyptischer Rundkornreis zum Füllen"
+    },
+    "רכז רימונים טהור דבס רומאן (בקבוק)": {
+        "en": "Pure Pomegranate Molasses (Dibs Rumman)",
+        "ru": "Натуральный гранатовый соус Наршараб / Дибс",
+        "ar": "دبس الرمان الصافي (دبس الرمان)",
+        "es": "Melaza pura de granada (Dibs Rumman)",
+        "fr": "Mélasse de grenade pure (Dibs Rumman)",
+        "pt": "Melaço de romã puro (Dibs Rumman)",
+        "de": "Reine Granatapfelmelasse (Dibs Rumman)"
+    },
+    "מי זהר פריחת הדרים טהורים לממתקים": {
+        "en": "Pure Orange Blossom Water (Mazaher)",
+        "ru": "Апельсиновая вода из цветков померанца",
+        "ar": "ماء زهر البرتقال النقي (مزاهير)",
+        "es": "Agua Pura de Azahar (Mazaher)",
+        "fr": "Eau pure de fleur d'oranger (Mazaher)",
+        "pt": "Água Pura de Flor de Laranjeira (Mazaher)",
+        "de": "Reines Orangenblütenwasser (Mazaher)"
+    },
+    "מי ורדים מזוקקים טהורים (מאוורד)": {
+        "en": "Pure Distilled Rose Water (Maward)",
+        "ru": "Натуральная розовая дистиллированная вода",
+        "ar": "ماء الورد المقطر النقي (موارد)",
+        "es": "Agua de rosas pura destilada (Maward)",
+        "fr": "Eau de rose distillée pure (Maward)",
+        "pt": "Água de Rosas Destilada Pura (Maward)",
+        "de": "Reines destilliertes Rosenwasser (Maward)"
+    },
+    "שמן זית בלאדי מסיק ראשון כתית מעולה": {
+        "en": "Cold-Pressed Authentic Baladi Olive Oil (1L)",
+        "ru": "Оливковое масло первого холодного отжима Балади",
+        "ar": "زيت زيتون بلدي أصيل ومعصور على البارد (1 لتر)",
+        "es": "Aceite de oliva Baladi auténtico prensado en frío (1L)",
+        "fr": "Huile d'olive Baladi authentique pressée à froid (1L)",
+        "pt": "Azeite Baladi autêntico prensado a frio (1L)",
+        "de": "Kaltgepresstes authentisches Baladi-Olivenöl (1L)"
+    },
+    "סילאן תמרים טבעי 100% ללא סוכר": {
+        "en": "100% Pure Natural Date Syrup (Silan)",
+        "ru": "Натуральный финиковый сироп силан без сахара",
+        "ar": "شراب التمر الطبيعي النقي 100% (السيلان)",
+        "es": "Jarabe de dátil 100% puro y natural (Silan)",
+        "fr": "Sirop de dattes 100 % naturel pur (Silan)",
+        "pt": "Xarope de Tâmara Natural 100% Puro (Silan)",
+        "de": "100 % reiner natürlicher Dattelsirup (Silan)"
+    },
+    "תערובת זעתר בלאדי עם שומשום וסומאק": {
+        "en": "Authentic Baladi Za'atar Blend with Sumac",
+        "ru": "Пряная смесь Заатар со специями и кунжутом",
+        "ar": "مزيج الزعتر البلدي الأصيل مع السماق",
+        "es": "Auténtica mezcla Baladi Za'atar con zumaque",
+        "fr": "Authentique mélange Baladi Za'atar avec Sumac",
+        "pt": "Mistura autêntica de Baladi Za'atar com sumagre",
+        "de": "Authentische Baladi Za'atar-Mischung mit Sumach"
+    },
+    "סומאק טהור טחון מובחר": {
+        "en": "Pure Ground Wild Red Sumac Spice",
+        "ru": "Чистый дикий молотый сумах гранатовый",
+        "ar": "توابل السماق الأحمر البري المطحون النقي",
+        "es": "Especia de zumaque rojo salvaje molido puro",
+        "fr": "Épice de sumac rouge sauvage moulu pur",
+        "pt": "Especiaria de sumagre vermelho selvagem moído puro",
+        "de": "Rein gemahlenes wildes rotes Sumachgewürz"
+    },
+    "תערובת בהרט שמי לקציצות ותבשילים": {
+        "en": "Syrian 7-Spices Baharat Blend",
+        "ru": "Смесь специй Бахарат 7 трав для мяса",
+        "ar": "خلطة بهارات السبع بهارات السورية",
+        "es": "Mezcla siria Baharat de 7 especias",
+        "fr": "Mélange Baharat syrien aux 7 épices",
+        "pt": "Mistura de Baharat com 7 Especiarias Sírias",
+        "de": "Syrische 7-Gewürze-Baharat-Mischung"
+    },
+    "הל ירוק שלם שלם מובחר לקפה (תרמילים)": {
+        "en": "Whole Green Cardamom Pods for Arabic Coffee",
+        "ru": "Цельные зеленые коробочки кардамона для кофе",
+        "ar": "حبات الهيل الخضراء الكاملة للقهوة العربية",
+        "es": "Vainas enteras de cardamomo verde para café árabe",
+        "fr": "Dosettes de cardamome verte entière pour café arabe",
+        "pt": "Vagens de cardamomo verde integral para café árabe",
+        "de": "Ganze grüne Kardamomkapseln für arabischen Kaffee"
+    },
+    "הל טחון טרי לקפה שחור": {
+        "en": "Freshly Ground Green Cardamom Powder",
+        "ru": "Свежемолотый зеленый кардамон для кофе",
+        "ar": "مسحوق الهيل الأخضر المطحون حديثًا",
+        "es": "Polvo de cardamomo verde recién molido",
+        "fr": "Poudre de cardamome verte fraîchement moulue",
+        "pt": "Pó de cardamomo verde recém-moído",
+        "de": "Frisch gemahlenes grünes Kardamompulver"
+    },
+    "כמון טחון טרי למאכלים ומרקים": {
+        "en": "Freshly Ground Cumin Powder (Kamoun)",
+        "ru": "Свежемолотый ароматный кумин (зира)",
+        "ar": "كمون مطحون طازج (كمون)",
+        "es": "Comino en polvo recién molido (Kamoun)",
+        "fr": "Poudre de cumin fraîchement moulue (Kamoun)",
+        "pt": "Cominho em pó recém-moído (Kamoun)",
+        "de": "Frisch gemahlenes Kreuzkümmelpulver (Kamoun)"
+    },
+    "שאטה יבשה כתושה חריפה": {
+        "en": "Crushed Dry Spicy Shatta Chili Flakes",
+        "ru": "Хлопья острого красного перца шатта",
+        "ar": "رقائق الشطة الحارة الجافة المطحونة",
+        "es": "Hojuelas de chile Shatta picante seco triturado",
+        "fr": "Flocons de chili Shatta épicés et secs écrasés",
+        "pt": "Flocos de pimenta Shatta picantes e secos esmagados",
+        "de": "Zerkleinerte, trockene, würzige Shatta-Chiliflocken"
+    },
+    "תערובת תבלינים לשווארמה ביתית": {
+        "en": "Traditional Shawarma Meat Seasoning",
+        "ru": "Смесь восточных пряностей для шаурмы",
+        "ar": "بهارات شاورما لحم تقليدية",
+        "es": "Condimento tradicional para carne de Shawarma",
+        "fr": "Assaisonnement traditionnel pour viande Shawarma",
+        "pt": "Tempero Tradicional de Carne Shawarma",
+        "de": "Traditionelles Shawarma-Fleischgewürz"
+    },
+    "זרעי קצח שחורים (חבת אל ברכה)": {
+        "en": "Black Nigella Seeds (Habbat al-Barakah)",
+        "ru": "Семена черного тмина (Хаббатуль Барака)",
+        "ar": "حبة البركة السوداء (حبة البركة)",
+        "es": "Semillas de Nigella Negra (Habbat al-Barakah)",
+        "fr": "Graines de Nigelle Noire (Habbat al-Barakah)",
+        "pt": "Sementes de Nigella Negra (Habbat al-Barakah)",
+        "de": "Schwarze Nigella-Samen (Habbat al-Barakah)"
+    },
+    "בשר כבש טרי טחון לקבב שוואי (ק\"ג)": {
+        "en": "Fresh Minced Lamb for Mashwi Kebab (1kg)",
+        "ru": "Свежий бараний фарш для кебаба на мангале",
+        "ar": "لحم ضأن مفروم طازج للمشوي كباب (1 كجم)",
+        "es": "Cordero fresco picado para Mashwi Kebab (1kg)",
+        "fr": "Agneau frais haché pour Mashwi Kebab (1kg)",
+        "pt": "Cordeiro Fresco Picado para Mashwi Kebab (1kg)",
+        "de": "Frisches Lammhackfleisch für Mashwi-Kebab (1 kg)"
+    },
+    "צלעות כבש טריות משובחות (ק\"ג)": {
+        "en": "Fresh Prime Lamb Chops (1kg)",
+        "ru": "Свежие бараньи ребрышки на гриль (1 кг)",
+        "ar": "قطع لحم غنم طازجة (1 كجم)",
+        "es": "Chuletas de Cordero Frescas (1kg)",
+        "fr": "Côtelettes d'agneau fraîches (1kg)",
+        "pt": "Costeletas de Cordeiro Frescas Prime (1kg)",
+        "de": "Frische erstklassige Lammkoteletts (1 kg)"
+    },
+    "עראייס בשר כבש מוכן למנגל (רביעייה)": {
+        "en": "Arayes Stuffed Pitas with Spiced Lamb (4 ct)",
+        "ru": "Араис лепешки с пряным бараньим фаршем (4 шт)",
+        "ar": "عرايس البيتا المحشوة بلحم الغنم المتبل (4 قيراط)",
+        "es": "Pitas Rellenas de Arayes con Cordero Especiado (4 ct)",
+        "fr": "Pitas farcis Arayes à l'agneau épicé (4 ct)",
+        "pt": "Pitas Recheadas Arayes com Cordeiro Temperado (4 ct)",
+        "de": "Arayes gefüllte Pitas mit gewürztem Lammfleisch (4 ct)"
+    },
+    "נקניקיות סוג'וק ערביות חריפות (ק\"ג)": {
+        "en": "Spicy Traditional Sujuk Sausages (1kg)",
+        "ru": "Острые пряные восточные колбаски Суджук",
+        "ar": "سجق سجق تقليدي حار (1 كجم)",
+        "es": "Salchichas Sujuk Tradicionales Picantes (1kg)",
+        "fr": "Saucisses Sujuk traditionnelles épicées (1kg)",
+        "pt": "Salsichas Sujuk Tradicionais Picantes (1kg)",
+        "de": "Würzige traditionelle Sujuk-Würstchen (1 kg)"
+    },
+    "נקניקיות מרגז כבש חריפות (ק\"ג)": {
+        "en": "Spicy Lamb Merguez Sausages (1kg)",
+        "ru": "Острые колбаски Мергез из баранины",
+        "ar": "نقانق لحم ضأن مرقاز حار (1 كجم)",
+        "es": "Salchichas Picantes De Cordero Merguez (1kg)",
+        "fr": "Saucisses merguez d'agneau épicées (1kg)",
+        "pt": "Salsichas Merguez de Borrego Picantes (1kg)",
+        "de": "Würzige Lamm-Merguez-Würstchen (1 kg)"
+    },
+    "כרעיים עוף טריות מפורקות (ק\"ג)": {
+        "en": "Fresh Boneless Chicken Thighs for Shawarma",
+        "ru": "Куриное филе бедра без кости для шаурмы (1 кг)",
+        "ar": "أفخاذ دجاج طازجة بدون عظم للشاورما",
+        "es": "Muslos de pollo frescos y deshuesados para Shawarma",
+        "fr": "Cuisses de poulet fraîches désossées pour shawarma",
+        "pt": "Coxas de frango frescas e desossadas para Shawarma",
+        "de": "Frische Hähnchenschenkel ohne Knochen für Shawarma"
+    },
+    "בשר בקר שריר לצלי ולתבשילים (ק\"ג)": {
+        "en": "Fresh Beef Shank for Stews (1kg)",
+        "ru": "Свежая говяжья голяшка для тушения (1 кг)",
+        "ar": "موزة لحم بقري طازج لليخنة (1 كجم)",
+        "es": "Codillo de ternera fresca para guisos (1kg)",
+        "fr": "Jarret de Boeuf Frais pour Ragoûts (1kg)",
+        "pt": "Pernil de Carne Fresca para Ensopados (1kg)",
+        "de": "Frische Rinderhaxe für Eintöpfe (1kg)"
+    },
+    "מגש כנאפה נבלוסית טרייה עם פיסטוק": {
+        "en": "Fresh Nabulsi Knafeh with Pistachios Tray",
+        "ru": "Свежая горячая кнафе по-набулсийски с фисташками",
+        "ar": "صينية كنافة نابلسية طازجة بالفستق",
+        "es": "Nabulsi Knafeh fresco con bandeja de pistachos",
+        "fr": "Knafeh Nabulsi frais avec plateau de pistaches",
+        "pt": "Bandeja Nabulsi Knafeh Fresco com Pistache",
+        "de": "Frisches Nabulsi-Knafeh mit Pistazien-Tablett"
+    },
+    "מארז בקלאווה אסלית מעורבת עם אגוזים": {
+        "en": "Assorted Traditional Nut Baklava Gift Box",
+        "ru": "Ассорти восточной пахлавы с орехами",
+        "ar": "علبة هدايا متنوعة من البقلاوة بالجوز التقليدي",
+        "es": "Caja de regalo tradicional de Baklava con nueces variadas",
+        "fr": "Coffret cadeau Baklava aux noix traditionnelles assorties",
+        "pt": "Caixa de presente Baklava de nozes tradicionais variadas",
+        "de": "Verschiedene traditionelle Nuss-Baklava-Geschenkbox"
+    },
+    "תמרי מג'הול סופר עסיסיים מובחרים (1 ק\"ג)": {
+        "en": "Premium Super Juicy Medjool Dates (1kg)",
+        "ru": "Отборные королевские финики Маджхоль (1 кг)",
+        "ar": "تمر المجهول الممتاز فائق العصير (1 كجم)",
+        "es": "Dátiles Medjool Súper Jugosos Premium (1kg)",
+        "fr": "Dattes Medjool super juteuses de qualité supérieure (1kg)",
+        "pt": "Tâmaras Premium Super Juicy Medjool (1kg)",
+        "de": "Premium supersaftige Medjool-Datteln (1 kg)"
+    },
+    "חלווה שאמית מובחרת עם פיסטוקים חלבי": {
+        "en": "Traditional Syrian Sesame Halva with Pistachios",
+        "ru": "Халва кунжутная шамийя с фисташками",
+        "ar": "حلاوة السمسم السورية التقليدية مع الفستق",
+        "es": "Halva tradicional siria de sésamo con pistachos",
+        "fr": "Halva syrienne traditionnelle au sésame et aux pistaches",
+        "pt": "Halva tradicional de gergelim sírio com pistache",
+        "de": "Traditionelle syrische Sesam-Halva mit Pistazien"
+    },
+    "רחת לוקום מסורתי במילוי פיסטוק וורדים": {
+        "en": "Traditional Turkish / Arabic Rahat Lokum Delights",
+        "ru": "Рахат-лукум восточный с фисташками и розой",
+        "ar": "المسرات التركية / العربية التقليدية رهط لوكوم",
+        "es": "Delicias tradicionales turcas / árabes de Rahat Lokum",
+        "fr": "Délices traditionnels turcs/arabes Rahat Lokum",
+        "pt": "Delícias tradicionais turcas / árabes de Rahat Lokum",
+        "de": "Traditionelle türkische/arabische Rahat-Lokum-Köstlichkeiten"
+    },
+    "עוגיות מעמול תמרים עם קצח ואניס": {
+        "en": "Homemade Semolina Date Ma'amoul Cookies",
+        "ru": "Печенье маамуль с финиковой начинкой",
+        "ar": "معمول التمر السميد محلي الصنع",
+        "es": "Galletas caseras de sémola y dátiles Ma'amoul",
+        "fr": "Biscuits Ma'amoul aux dattes et à la semoule maison",
+        "pt": "Biscoitos caseiros de semolina e tâmaras Ma'amoul",
+        "de": "Hausgemachte Grieß-Dattel-Ma'amoul-Kekse"
+    },
+    "קפה שחור ערבי קלוי עם תוספת הל כפולה": {
+        "en": "Authentic Arabic Dark Roast Coffee with Extra Cardamom",
+        "ru": "Традиционный арабский темный кофе с кардамоном",
+        "ar": "قهوة عربية محمصة داكنة أصلية مع هيل إضافي",
+        "es": "Auténtico café árabe tostado oscuro con cardamomo extra",
+        "fr": "Café torréfié foncé arabe authentique avec cardamome supplémentaire",
+        "pt": "Café torrado escuro árabe autêntico com cardamomo extra",
+        "de": "Authentischer arabischer dunkler Röstkaffee mit extra Kardamom"
+    },
+    "קפה ערבי ירוק בהיר מסורתי (קפה סאדה)": {
+        "en": "Traditional Light Roast Arabic Sada Coffee",
+        "ru": "Светлый традиционный арабский кофе сада",
+        "ar": "قهوة السادة العربية المشوية الخفيفة التقليدية",
+        "es": "Café Sada Árabe Tostado Ligero Tradicional",
+        "fr": "Café Sada arabe torréfié légèrement traditionnel",
+        "pt": "Café Sada Árabe Torrado Leve Tradicional",
+        "de": "Traditioneller hell gerösteter arabischer Sada-Kaffee"
+    },
+    "עלי תה שחור סילוני משובח לקנקן (500 גרם)": {
+        "en": "Loose Ceylon Black Tea for Arabic Teapot (500g)",
+        "ru": "Крупнолистовой цейлонский чай для заварника",
+        "ar": "شاي أسود سيلاني فضفاض لإبريق الشاي العربي (500 جرام)",
+        "es": "Té negro de Ceilán suelto para tetera árabe (500 g)",
+        "fr": "Thé noir de Ceylan en vrac pour théière arabe (500g)",
+        "pt": "Chá Preto Ceilão Solto para Bule Árabe (500g)",
+        "de": "Loser Ceylon-Schwarztee für arabische Teekanne (500 g)"
+    },
+    "תרכיז משקה תמרהינדי מסורתי (בקבוק)": {
+        "en": "Traditional Tamarind Sweet Drink Concentrate",
+        "ru": "Концентрат восточного напитка Тамаринд",
+        "ar": "مركز مشروب التمر الهندي الحلو التقليدي",
+        "es": "Concentrado de Bebida Dulce Tradicional de Tamarindo",
+        "fr": "Concentré de boisson sucrée traditionnelle au tamarin",
+        "pt": "Concentrado de bebida doce tradicional de tamarindo",
+        "de": "Traditionelles Tamarinden-Süßgetränkkonzentrat"
+    },
+    "תרכיז משקה סוס (שורש ליקוריץ שחור)": {
+        "en": "Liquorice Root Drink Concentrate (Erk Sous)",
+        "ru": "Традиционный лакричный напиток Эрк-Сус",
+        "ar": "مركز شراب عرق السوس (ايرك سوس)",
+        "es": "Bebida concentrada de raíz de regaliz (Erk Sous)",
+        "fr": "Boisson concentrée à la racine de réglisse (Erk Sous)",
+        "pt": "Bebida concentrada de raiz de alcaçuz (Erk Sous)",
+        "de": "Süßholzwurzel-Getränkekonzentrat (Erk Sous)"
+    },
+    "מיץ רימונים טבעי סחוט טרי (1 ליטר)": {
+        "en": "100% Pure Squeezed Pomegranate Juice (1L)",
+        "ru": "Гранатовый сок прямого отжима 100% (1 л)",
+        "ar": "عصير رمان معصور نقي 100% (1 لتر)",
+        "es": "Zumo de Granada Exprimido 100% Puro (1L)",
+        "fr": "Jus de grenade pressé 100 % pur (1 L)",
+        "pt": "Suco de Romã 100% Puro (1L)",
+        "de": "100 % reiner gepresster Granatapfelsaft (1 l)"
+    },
+    "עראק בלאדי מזוקק מענבים ואניס (750 מ\"ל)": {
+        "en": "Traditional Baladi Triple Distilled Arak (750ml)",
+        "ru": "Традиционный арабский арак трижды дистиллированный",
+        "ar": "العرق البلدي التقليدي المقطر الثلاثي (750 مل)",
+        "es": "Arak Baladi Triple Destilado Tradicional (750ml)",
+        "fr": "Arak triple distillé traditionnel Baladi (750 ml)",
+        "pt": "Arak Tradicional Baladi Triplo Destilado (750ml)",
+        "de": "Traditioneller dreifach destillierter Baladi-Arak (750 ml)"
+    },
+    "סבון שמן זית טבעי משכם (סבון נבלוסי טהור)": {
+        "en": "Authentic 100% Olive Oil Nabulsi Soap Bar",
+        "ru": "Натуральное мыло из оливкового масла Набулси",
+        "ar": "قالب الصابون النابلسي بزيت الزيتون الأصلي 100%",
+        "es": "Auténtica barra de jabón Nabulsi 100% aceite de oliva",
+        "fr": "Authentique barre de savon Nabulsi 100 % huile d'olive",
+        "pt": "Sabonete Nabulsi 100% Azeite Autêntico",
+        "de": "Authentisches Nabulsi-Seifenstück aus 100 % Olivenöl"
+    },
+    "ענף מיסוואק טבעי לצחצוח שיניים": {
+        "en": "Natural Miswak Root Toothbrush Stick",
+        "ru": "Натуральная палочка мисвак для чистки зубов",
+        "ar": "عصا فرشاة أسنان بجذور المسواك الطبيعية",
+        "es": "Palo de cepillo de dientes de raíz de Miswak natural",
+        "fr": "Bâton de brosse à dents à base de racine de Miswak naturelle",
+        "pt": "Escova de dentes com raiz natural de Miswak",
+        "de": "Natürlicher Miswak-Wurzel-Zahnbürstenstift"
+    },
+    "פחמים טבעיים מובחרים לנרגילה ולמנגל (1 ק\"ג)": {
+        "en": "Natural Coconut Charcoal Briquettes (1kg)",
+        "ru": "Кокосовый натуральный уголь для кальяна и гриля",
+        "ar": "قوالب فحم جوز الهند الطبيعي (1 كجم)",
+        "es": "Briquetas de Carbón de Coco Natural (1kg)",
+        "fr": "Briquettes de charbon de coco naturel (1kg)",
+        "pt": "Briquetes de Carvão de Coco Natural (1kg)",
+        "de": "Natürliche Kokoskohlebriketts (1 kg)"
+    },
+    "כוסות זכוכית קטנות מסורתיות לתה וקפה (שקפים)": {
+        "en": "Traditional Arabic Small Tea/Coffee Glasses (6 pack)",
+        "ru": "Традиционные стеклянные арабские стаканчики (6 шт)",
+        "ar": "أكواب الشاي/القهوة العربية التقليدية الصغيرة (6 عبوات)",
+        "es": "Vasos de té/café pequeños árabes tradicionales (paquete de 6)",
+        "fr": "Petits verres à thé/café arabes traditionnels (paquet de 6)",
+        "pt": "Copos pequenos de chá/café árabe tradicional (pacote com 6)",
+        "de": "Traditionelle arabische kleine Tee-/Kaffeegläser (6er-Pack)"
+    },
+    "פינג'אן קפה ערבי נירוסטה עם ידית ארוכה": {
+        "en": "Stainless Steel Arabic Coffee Pot (Ibrik / Cezve)",
+        "ru": "Турка металлическая для варки арабского кофе",
+        "ar": "إبريق قهوة عربي ستانلس ستيل (إيبريك / سيزفي)",
+        "es": "Cafetera Árabe de Acero Inoxidable (Ibrik / Cezve)",
+        "fr": "Cafetière arabe en acier inoxydable (Ibrik / Cezve)",
+        "pt": "Cafeteira árabe de aço inoxidável (Ibrik / Cezve)",
+        "de": "Arabische Kaffeekanne aus Edelstahl (Ibrik / Cezve)"
+    },
+    "משכך כאבים אקמול פראצטמול 500 מ\"ג (20 קפליות)": {
+        "en": "Acamol Paracetamol 500mg Tablets (20 ct)",
+        "ru": "Обезболивающее Акамол Парацетамол 500 мг",
+        "ar": "أقراص أكامول باراسيتامول 500 مجم (20 قرص)",
+        "es": "Acamol Paracetamol 500 mg comprimidos (20 unidades)",
+        "fr": "Acamol Paracétamol 500 mg Comprimés (20 ct)",
+        "pt": "Comprimidos de Acamol Paracetamol 500 mg (20 ct)",
+        "de": "Acamol Paracetamol 500 mg Tabletten (20 ct)"
+    },
+    "מגבוני פנים ורענון בניחוח מי ורדים": {
+        "en": "Rosewater Refreshing Cleansing Wet Wipes",
+        "ru": "Влажные освежающие салфетки с ароматом розы",
+        "ar": "مناديل مبللة للتنظيف المنعش بماء الورد",
+        "es": "Toallitas húmedas limpiadoras refrescantes de agua de rosas",
+        "fr": "Lingettes humides nettoyantes rafraîchissantes à l'eau de rose",
+        "pt": "Lenços umedecidos de limpeza refrescante com água de rosas",
+        "de": "Erfrischende, reinigende Feuchttücher mit Rosenwasser"
     }
 };
 
-// Comprehensive category translations
 const categoryTranslations = {
     "אגוזים וזרעים": {
         "he": "אגוזים וזרעים",
@@ -5332,6 +9660,12 @@ const categoryTranslations = {
 };
 
 const productCategoryMap = {
+    "ידיות": "כלי בית",
+    "כרוב סיני (נאפה)": "ירקות",
+    "כרוב סיני נאפה": "ירקות",
+    "כרוב סיני": "ירקות",
+    "גזר בייבי (חבילת 400 גרם)": "ירקות",
+    "גזר בייבי": "ירקות",
     "אבוקדו": "ירקות",
     "אבטיח": "פירות",
     "אבקת אפיה": "אפייה",
@@ -5896,6 +10230,12 @@ const productCategoryMap = {
 
 const productPricesLastUpdated = "10/2026";
 const productPrices = {
+    "ידיות": 12.0,
+    "כרוב סיני (נאפה)": 8.9,
+    "כרוב סיני נאפה": 8.9,
+    "כרוב סיני": 8.9,
+    "גזר בייבי (חבילת 400 גרם)": 8.9,
+    "גזר בייבי": 8.9,
     "אבוקדו": 14.9,
     "אבטיח": 4.9,
     "אבקת אפיה": 4.9,
@@ -6457,6 +10797,11 @@ const productPrices = {
 // Estimated calories per 100g / 100ml for food products
 const productCaloriesLastUpdated = "10/2026";
 const productCalories = {
+    "כרוב סיני (נאפה)": 16,
+    "כרוב סיני נאפה": 16,
+    "כרוב סיני": 16,
+    "גזר בייבי (חבילת 400 גרם)": 35,
+    "גזר בייבי": 35,
     "אבוקדו": 160,
     "אבטיח": 30,
     "אבקת אפיה": 53,
